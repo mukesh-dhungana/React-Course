@@ -1,0 +1,29 @@
+Week 1 (Feb 22- Feb 25)
+	1. Introduction
+	2. Structure and Project Overview
+	3. JSX
+	4. npm ClI
+
+Week 2 and Week 3 (Mar 1 - Mar 11)
+	4. Components
+	5. Life Cycle
+        5. React State and Props
+	6. Stateful vs Stateless 
+        6. React Hooks
+
+Week 4 (Mar 15 - Mar 18)
+        7. React Events
+	8. Routing
+
+Week 5 and Week 6 (Mar 22 - Apr 1)
+	10. Redux
+	11. Contex Api
+
+Week 7 and Week 8 (Apr 5 - Apr 15)
+	12. Redux thunk
+	13. Forms validation
+	14. Styling
+
+
+15 Redux Saga
+16 Webpack & Babel
