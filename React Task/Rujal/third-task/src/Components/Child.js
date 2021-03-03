@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 class Child extends Component {
 
     constructor(props) {
@@ -24,6 +23,7 @@ class Child extends Component {
 
     render() {
         const { name, address } = this.state
+
         return (
             <div>
                 <h1>Child</h1>
