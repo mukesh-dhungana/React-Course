@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons {
+    width: 100vw;
+    background-color: black;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+}
+
+button {
+    width: 70px;
+    height: 30px;
+    margin: 20px 40px;
+    background-color: black;
+    color: whitesmoke;
+    font-size: medium;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
