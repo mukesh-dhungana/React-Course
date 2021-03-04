@@ -16,11 +16,11 @@ function Modal({ id, title, body, show, onClose }) {
             <div className="modal-content">
                 <span style={close} onClick={onClose}>&times;</span>
                 <h1 style={{ textAlign: 'center' }}>
-                    {id}. {FirstLetterCapital(title)}
+                    {id}. {title && FirstLetterCapital(title)}
                 </h1>
                 <div style={{ textAlign: 'justify' }}>
                     <p style={{ margin: 'auto', width: '90%' }}>
-                        {FirstLetterCapital(body)}
+                        { body && FirstLetterCapital(body)}
                     </p>
                 </div>
             </div>
