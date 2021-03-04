@@ -13,3 +13,10 @@
   margin: 5px;
   text-align: center;
 }
+
+.form-control>input{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+}

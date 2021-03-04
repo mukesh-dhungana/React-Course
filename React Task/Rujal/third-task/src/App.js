@@ -24,14 +24,14 @@ class App extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div id="form">
             <div className="form-control">
-              <input type="text" name="name" />
+              <input type="text" name="name" placeholder="name" />
             </div>
             <div className="form-control">
-              <input type="text" name="address" />
+              <input type="text" name="address" placeholder="address" />
 
             </div>
             <div className="form-control">
-              <input type="submit" value="Submit" />
+              <button type="submit">Submit</button>
             </div>
           </div>
         </form>
