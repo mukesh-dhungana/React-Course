@@ -15,13 +15,17 @@ export default class CardLists extends Component {
     this.handleShowModal = this.handleShowModal.bind(this);
   }
   async componentDidMount() {
-    this.setState({ loading: true });
-    const res = await fetch(
-      "https://official-joke-api.appspot.com/jokes/programming/ten"
-    );
-    const data = await res.json();
-    this.setState({ jokes: data });
-    this.setState({ loading: false });
+    const fetchJokes = async () => {
+      this.setState({ loading: true });
+      const res = await fetch(
+        "https://official-joke-api.appspot.com/jokes/programming/ten"
+      );
+      const data = await res.json();
+      this.setState({ jokes: data });
+      this.setState({ loading: false });
+    };
+
+    fetchJokes();
   }
 
   handleShowModal(joke) {
