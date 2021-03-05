@@ -3,7 +3,7 @@ import { FirstLetterCapital } from './FirstLetterCapital'
 
 function Card({ id, title, body, onClick }) {
     return (
-        <div className="card" onClick={() => onClick(id)}>
+        <div className="card" onClick={() => onClick({id, title, body})}>
             <div className="card-header">
                 <h2>{id}. {FirstLetterCapital(title)}</h2>
             </div>

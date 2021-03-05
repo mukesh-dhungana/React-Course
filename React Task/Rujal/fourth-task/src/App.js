@@ -9,7 +9,8 @@ class App extends Component {
     this.state = {
       data: [],
       detail: {},
-      show: false
+      show: false,
+      error: false
     }
   }
 
@@ -20,18 +21,26 @@ class App extends Component {
 
   //Fetching data from api and saving to state(data:[])
   fetchData = async () => {
-    const data = await fetch('https://jsonplaceholder.typicode.com/posts')
-    const res = await data.json()
-    this.setState({ data: res })
+
+    await fetch('http://localhost:5000/posts')
+      .then(data => data.json())
+      .then(res => this.setState({ data: res }))
+      .catch(err => {
+        this.setState({ error: true })
+      })
+
+    if (this.state.error) {
+      //redirectT
+      alert('Need To Run "npm run server" in seperate command')
+    }
   }
 
 
   //Click on card and save to state(detail) by finding spcific id of the data
-  onCardClick = (id) => {
-    const detail = this.state.data.find(x => x.id === id)
+  onCardClick = (data) => {
     this.setState({
       show: true,
-      detail
+      detail:{...data}
     })
   }
 
