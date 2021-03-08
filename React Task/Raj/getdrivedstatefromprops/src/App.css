@@ -1,0 +1,119 @@
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+/* @keyframes col {
+  0% {
+    background-color: blue;
+  }
+  10% {
+    background-color: red;
+  }
+  20% {
+    background-color: blueviolet;
+  }
+  30% {
+    background-color: cornflowerblue;
+  }
+  40% {
+    background-color: darkkhaki;
+  }
+  50% {
+    background-color: chartreuse;
+  }
+  60% {
+    background-color: orange;
+  }
+  70% {
+    background-color: deeppink;
+  }
+} */
+/* @keyframes styling {
+  0% {
+    background-color: red;
+    border-radius: 0%;
+  }
+  10% {
+    width: 150px;
+    height: 70px;
+    background-color: green;
+    border-radius: 10%;
+  }
+  20% {
+    background-color: cornflowerblue;
+    border-radius: 20%;
+  }
+  30% {
+    width: 200px;
+    height: 90px;
+    background-color: rgb(100, 237, 157);
+    border-radius: 30%;
+  }
+  40% {
+    background-color: blue;
+    border-radius: 40%;
+  }
+  50% {
+    width: 150px;
+    height: 100px;
+    background-color: brown;
+    border-radius: 50%;
+  }
+  60% {
+    background-color: orange;
+    border-radius: 40%;
+  }
+  70% {
+    width: 200px;
+    height: 80px;
+    background-color: darkolivegreen;
+    border-radius: 30%;
+  }
+} */
+input {
+  display: inline-block;
+  width: 150px;
+  height: 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+  outline: none;
+}
+#input1 {
+  margin-right: 20px;
+  width: 150px;
+  height: 40px;
+  transition-property: all;
+  color: black;
+  animation-name: col;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+#input2 {
+  margin-right: 20px;
+  background-color: mediumturquoise;
+  color: black;
+  width: 150px;
+  animation-name: col;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+#input3 {
+  width: 100px;
+  height: 60px;
+  background-color: cornflowerblue;
+  transition-property: all;
+  transition-duration: 0.5s;
+  animation-name: styling;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+#input3:hover {
+  background-color: darkcyan;
+  width: 130px;
+  height: 70px;
+}
+div {
+  margin-left: 200px;
+}
