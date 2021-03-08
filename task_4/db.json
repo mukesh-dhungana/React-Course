@@ -1,0 +1,113 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "Server",
+      "author": "WEN"
+    },
+    {
+      "id": 3,
+      "title": "Team Mates",
+      "author": "React"
+    },
+    {
+      "id": 4,
+      "title": "Demo Json",
+      "author": "DB Json"
+    },
+    {
+      "id": 5,
+      "title": "Task Done",
+      "author": "WEN"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "title": "Beezay",
+      "author": "WEN Intern"
+    },
+    {
+      "id": 2,
+      "title": "Rujal Sapkota",
+      "author": "React Developer"
+    },
+    {
+      "id": 3,
+      "title": "Pariskrit Moktan",
+      "author": "React Trainer"
+    },
+    {
+      "id": 4,
+      "title": "Mukesh Dhungana",
+      "author": "React Supervisor"
+    }
+  ],
+  "jokes": [
+    {
+      "id": 18,
+      "type": "programming",
+      "title": "Why did the programmer quit his job?",
+      "author": "Because he didn't get arrays."
+    },
+    {
+      "id": 27,
+      "type": "programming",
+      "title": "['hip', 'hip']",
+      "author": "(hip hip array)"
+    },
+    {
+      "id": 33,
+      "type": "programming",
+      "title": "Which song would an exception sing?",
+      "author": "Can't catch me - Avicii"
+    },
+    {
+      "id": 377,
+      "type": "programming",
+      "title": "Knock-knock.",
+      "author": "A race condition. Who is there?"
+    },
+    {
+      "id": 15,
+      "type": "programming",
+      "title": "What's the best thing about a Boolean?",
+      "author": "Even if you're wrong, you're only off by a bit."
+    },
+    {
+      "id": 26,
+      "type": "programming",
+      "title": "If you put a million monkeys at a million keyboards, one of them will eventually write a Java program",
+      "author": "the rest of them will write Perl"
+    },
+    {
+      "id": 382,
+      "type": "programming",
+      "title": "What did the router say to the doctor?",
+      "author": "It hurts when IP."
+    },
+    {
+      "id": 378,
+      "type": "programming",
+      "title": "What's the best part about TCP jokes?",
+      "author": "I get to keep telling them until you get them."
+    },
+    {
+      "id": 60,
+      "type": "programming",
+      "title": "A user interface is like a joke.",
+      "author": "If you have to explain it then it is not that good."
+    },
+    {
+      "id": 23,
+      "type": "programming",
+      "title": "Why do programmers always mix up Halloween and Christmas?",
+      "author": "Because Oct 31 == Dec 25"
+    }
+  ]
+}

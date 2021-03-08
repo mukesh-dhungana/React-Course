@@ -1,0 +1,22 @@
+#main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#form{
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control{
+  margin: 5px;
+  text-align: center;
+}
+
+.form-control>input{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+}
