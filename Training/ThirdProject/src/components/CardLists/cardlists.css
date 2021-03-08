@@ -1,0 +1,21 @@
+.cardlists {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  row-gap: 10%;
+  column-gap: 2%;
+  width: 90%;
+  margin: 50px auto;
+  position: relative;
+}
+
+.cardlists__modal {
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -40%;
+  left: -10%;
+  right: -65px;
+  height: 100vh;
+}

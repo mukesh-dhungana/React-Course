@@ -1,0 +1,14 @@
+.nav-item {
+  cursor: pointer;
+  padding: 20px;
+  transition: all 0.3s;
+  font-size: 18px;
+  font-weight: 300;
+  padding: 20px;
+  color: rgba(22, 20, 20, 0.911);
+  letter-spacing: 1.5px;
+}
+
+.nav-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
