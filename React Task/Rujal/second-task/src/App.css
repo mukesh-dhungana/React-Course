@@ -1,0 +1,52 @@
+.App{
+  display: flex;
+  justify-content: space-around;
+}
+.button{
+    border: 3px solid white;
+    background: grey;
+    color: white;
+    padding: 13px 19px;
+    font-size: large;
+    font-family: monospace;
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+    width: 150px;
+    min-width: 100px;
+}
+.button:hover{
+  background: white;
+  border: 3px solid black;
+  color: grey;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+ul li{
+  margin: 12px;;
+}
+
+h1{
+  color: wheat;
+}
+
+.components{
+  transform: translateX(0px);
+}
+
+.home, .about, .contact{
+  animation: slide 1s ease-in;
+}
+
+@keyframes slide {
+  from {transform: translateX(500px);}
+  to {transform: translateX(0px);}
+}
