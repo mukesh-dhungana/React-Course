@@ -106,6 +106,7 @@ import About from "./About";
 import Contact from "./Contact";
 import Detail from "./Detail";
 import Form from "./Form";
+import Form2 from "./Form/Form2";
 
 const style = {
   background: "white",
@@ -130,6 +131,7 @@ class App extends Component {
     { id: "contact", child: "Contact" },
     { id: "details", child: "Details" },
     { id: "form", child: "Form" },
+    { id: "form2", child: "Form2" },
   ];
 
   render() {
@@ -176,6 +178,7 @@ class App extends Component {
             ""
           )}
           {this.state.id === "form" ? <Form /> : ""}
+          {this.state.id === "form2" ? <Form2 /> : ""}
         </div>
       </>
     );
