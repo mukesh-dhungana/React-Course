@@ -1,0 +1,18 @@
+.table {
+  border-collapse: collapse;
+  border-radius: 5px;
+  width: 80%;
+  margin: 50px auto;
+}
+
+h2 {
+  text-align: center;
+  color: gray;
+}
+
+th,
+td {
+  border: 1px solid;
+  padding: 10px;
+  text-align: center;
+}

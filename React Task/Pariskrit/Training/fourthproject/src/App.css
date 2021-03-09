@@ -1,0 +1,38 @@
+.app {
+  width: 90%;
+  margin: 50px auto;
+  padding: 10px;
+}
+
+h2 {
+  margin-left: 30px;
+}
+
+label {
+  color: gray;
+  font-weight: 700;
+}
+
+input {
+  padding: 7px 10px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid gray;
+  margin: 10px 0;
+  width: 50%;
+  transition: width 1s ease-out;
+  border-bottom: 2px solid rgb(31, 128, 192);
+}
+
+input:focus {
+  width: 100%;
+}
+
+.form {
+  width: 30%;
+  margin: auto;
+}
+
+.form__inputdiv {
+  margin: 10px 0;
+}
