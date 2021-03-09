@@ -17,13 +17,13 @@ class App extends React.Component {
       data: [...this.state.data, { id: this.getId(), ...data }]
     })
   }
-  
+
   getId = () => this.state.data.reduce((a, c) => a > c.id ? a : c.id, 0) + 1
 
   render() {
     return (
       <div className="App">
-        <Form handleSubmit={this.handleSubmit} data={this.state.data} />
+        <Form handleSubmit={this.handleSubmit} />
         <List data={this.state.data} />
       </div>
     );
