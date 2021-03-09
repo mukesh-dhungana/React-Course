@@ -18,7 +18,7 @@ export default class Row extends Component {
             const data = await response.json()
             this.setState({ detail: data })
         } catch {
-            throw new Error('Error Fetching')
+            console.log('Error');
         }
 
     }
