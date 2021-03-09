@@ -12,11 +12,20 @@ class Row extends Component {
   }
 
   handleLoad = () => {
-    fetch("https://jsonplaceholder.typicode.com/todos/", {
-      signal: this.abortController.signal,
-    })
-      .then((response) => response.json())
-      .then((json) => this.setState({ json }));
+    // fetch("https://jsonplaceholder.typicode.com/todos/", {
+    //   signal: this.abortController.signal,
+    // })
+    //   .then((response) => response.json())
+    //   .then((json) => this.setState({ json }))
+
+    setTimeout(() => {
+      fetch("https://jsonplaceholder.typicode.com/todos/", {
+        signal: this.abortController.signal,
+      })
+        .then((response) => response.json())
+        .then((json) => this.setState({ json }))
+        .catch((err) => console.log(err));
+    }, 2000);
   };
 
   render() {
