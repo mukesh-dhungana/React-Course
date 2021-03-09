@@ -15,7 +15,7 @@ export default class App extends Component {
     };
   }
   componentDidMount() {
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true }); //this can be done in initialization
     const getApiData = async () => {
       try {
         const response = await fetch(
