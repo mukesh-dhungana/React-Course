@@ -1,29 +1,22 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Child from "./Child.js";
 
-export class Contact extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      array: ["abc", "def", "ghi"],
-    };
-  }
+function Contact() {
+  const [array, setArray] = useState(["abc", "def", "ghi"]);
 
-  addArray = (value) => {
-    this.setState({ array: [...this.state.array, value] });
+  const addArray = (value) => {
+    setArray([...array, value]);
   };
 
-  render() {
-    return (
-      <div>
-        {this.state.array.length > 0 ? (
-          <Child array={this.state.array} add={this.addArray} />
-        ) : (
-          <Child add={this.addArray} />
-        )}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {array.length > 0 ? (
+        <Child array={array} add={addArray} />
+      ) : (
+        <Child add={addArray} />
+      )}
+    </div>
+  );
 }
 
 export default Contact;
