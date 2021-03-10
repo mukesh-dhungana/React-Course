@@ -1,32 +1,31 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Child.css";
-import PropTypes from "prop-types";
 
-class Child extends Component {
-  onClick = e => {
+const Child = props => {
+  const onClick = e => {
     e.preventDefault();
-    this.props.handler(e.target.name.value);
+    props.handler(e.target.name.value);
   };
-  render() {
-    return (
-      <div id="top">
-        <div id="form">
-          <form onSubmit={this.onClick}>
-            <input id="i" type="text" name="name" />
-            <input id="b" type="submit" />
-          </form>
-        </div>
-        <div id="main">
-          {this.props.data.map(d => (
-            <div className="d" key={d.name}>
-              {d.name}
-            </div>
-          ))}
-        </div>
+
+  return (
+    <div id="top">
+      <div id="form">
+        <form onSubmit={onClick}>
+          <input id="i" type="text" name="name" />
+          <input id="b" type="submit" />
+        </form>
       </div>
-    );
-  }
-}
+      <div id="main">
+        {props.data.map(d => (
+          <div className="d" key={d.name}>
+            {d.name}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 Child.defaultProps = {
   data: [
     {
@@ -36,6 +35,10 @@ Child.defaultProps = {
 };
 
 Child.propTypes = {
-  data: PropTypes.array,
+  data: function (props) {
+    if (!Array.isArray(props.data)) {
+      return new Error(props.data + "is not Array");
+    }
+  },
 };
 export default Child;

@@ -1,32 +1,24 @@
+import React, { useState } from "react";
 import "./App.css";
 import Child from "./Child";
 
-import React, { Component } from "react";
+export const App = () => {
+  const [data, setData] = useState([]);
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-    };
-  }
-  handleState = data => {
+  const handleState = val => {
     let result = {
-      name: data,
+      name: val,
     };
-    this.setState({
-      data: [...this.state.data, result],
-    });
+    setData([...data, result]);
   };
-  render() {
-    return (
-      <div>
-        {this.state.data.length > 0 ? (
-          <Child data={this.state.data} handler={this.handleState} />
-        ) : (
-          <Child handler={this.handleState} />
-        )}
-      </div>
-    );
-  }
-}
+
+  return (
+    <div>
+      {data.length > 0 ? (
+        <Child data={data} handler={handleState} />
+      ) : (
+        <Child handler={handleState} />
+      )}
+    </div>
+  );
+};
