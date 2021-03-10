@@ -103,7 +103,7 @@ import React, { Component } from "react";
 import "./css/nav.css";
 import Home from "./Home";
 import About from "./About";
-import Contact from "./Contact";
+import Contact from "./Contact/Contact";
 import Detail from "./Detail";
 import Form from "./Form";
 import Form2 from "./Form/Form2";

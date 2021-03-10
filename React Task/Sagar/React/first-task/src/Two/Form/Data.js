@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Loader from "../Loader";
+import TRow from "./Trow";
 
 class Data extends Component {
   constructor(props) {
@@ -9,9 +10,6 @@ class Data extends Component {
       loading: false,
     };
   }
-
-  controller = new window.AbortController();
-  signal = this.controller.signal;
 
   componentDidUpdate = (pP) => {
     // debugger;
@@ -25,31 +23,9 @@ class Data extends Component {
     }
   };
 
-  fetchData = async () => {
-    this.setState({ loading: true });
-    try {
-      const response = await fetch("https://reqres.in/api/users?delay=3", {
-        signal: this.signal,
-      });
-      const result = await response.json();
-      console.log(JSON.stringify(result));
-      this.setState({ loading: false });
-    } catch (err) {
-      console.log("The user aborted the request");
-    }
+  loadingHandler = (data) => {
+    this.setState({ loading: data });
   };
-
-  deleteRow = (n) => {
-    const arrayCopy = this.state.data.filter((row) => row.name !== n);
-    this.setState({ data: arrayCopy });
-    this.setState({ loading: false });
-    let show = arrayCopy.length > 0;
-    this.props.handleRemove(show);
-  };
-
-  componentWillUnmount() {
-    this.controller.abort();
-  }
 
   render() {
     return (
@@ -64,24 +40,22 @@ class Data extends Component {
           <tbody>
             {this.state.data.map((item) => {
               return (
-                <tr key={item.name}>
-                  <td>{item.name}</td>
-                  <td>{item.email}</td>
-
-                  <button onClick={() => this.fetchData()}>Load API</button>
-                  <button
-                    onClick={() => {
-                      this.deleteRow(item.name);
-                    }}
-                  >
-                    Delete
-                  </button>
-                </tr>
+                <TRow
+                  {...item}
+                  key={item.name}
+                  data={this.state.data}
+                  deleteRow={(n) => {
+                    this.setState({
+                      data: this.state.data.filter((row) => row.name !== n),
+                      loading: false,
+                    });
+                  }}
+                  loadingHandler={this.loadingHandler}
+                />
               );
             })}
           </tbody>
         </table>
-
         {this.state.loading ? <Loader /> : null}
       </div>
     );

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Data from "./Data";
+import classes from "../css/block.module.css";
+
 // import Data2 from './Data2'
 
 export class Form2 extends Component {
@@ -32,12 +34,11 @@ export class Form2 extends Component {
           <form onSubmit={this.submitHandler}>
             <input type="text" placeholder="Full Name" name="name" />
             <input type="email" placeholder="Email Address" name="address" />
-            <input type="submit" value="Submit" />
+            <input className={classes.submit} type="submit" value="Submit" />
           </form>
           {this.state.isComponentShow && (
             <Data {...this.state} handleRemove={this.handleRemove} />
           )}
-          {/* <Data2 {...this.state} /> */}
         </div>
       </div>
     );
