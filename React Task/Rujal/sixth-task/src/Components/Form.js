@@ -18,7 +18,7 @@ export default class Form extends Component {
             <form onSubmit={this.submitData}>
                 <input type="text" name="name" placeholder="Name" />
                 <input type="text" name="address" placeholder="Address" />
-                <input type="submit" value="submit" />
+                <input type="submit" value="Submit" />
             </form>
         )
     }

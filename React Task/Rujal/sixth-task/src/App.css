@@ -9,7 +9,7 @@ form{
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 70%;
+  width: 50%;
   margin: 5px;
 }
 
@@ -21,4 +21,8 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+input{
+  margin: 5px;
 }
