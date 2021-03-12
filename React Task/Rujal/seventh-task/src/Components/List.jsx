@@ -25,6 +25,7 @@ List.defaultProps = {
         address: 'Random Add'
     }]
 }
+
 List.propTypes = {
     data: function ({ data }) {
         if (!Array.isArray(data)) {
@@ -32,4 +33,5 @@ List.propTypes = {
         }
     }
 }
+
 export default List

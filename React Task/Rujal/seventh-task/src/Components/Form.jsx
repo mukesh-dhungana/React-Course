@@ -10,6 +10,7 @@ function Form(props) {
         name && address ? props.handleSubmit({ name, address }) : alert('Please provide Data')
         e.target.reset()
     }
+    
     return (
         <form onSubmit={submitData}>
             <input type="text" name="name" placeholder="Name" />
