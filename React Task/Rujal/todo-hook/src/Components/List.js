@@ -16,7 +16,7 @@ function List({ todos, deleteTodo, getDetail, onChange }) {
                 </thead>
                 <tbody>
                     {todos.map(x => (
-                        <Info x={x} getDetail={getDetail} deleteTodo={deleteTodo} onChange={onChange} />
+                        <Info key={x.id} x={x} getDetail={getDetail} deleteTodo={deleteTodo} onChange={onChange} />
                     ))}
                 </tbody>
             </table>
