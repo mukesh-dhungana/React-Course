@@ -4,7 +4,7 @@ function useValue(initialValue) {
     const [value, setValue] = React.useState(initialValue)
     return {
         value,
-        onChange: (value) => setValue(value),
+        onChange: (val) => setValue(val),
         reset: () => setValue('')
     }
 }
