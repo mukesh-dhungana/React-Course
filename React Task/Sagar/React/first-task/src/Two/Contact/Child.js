@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import classes from "../css/block.module.css";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 const Child = (props) => {
   const submitHandler = (e) => {

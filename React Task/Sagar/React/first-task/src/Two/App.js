@@ -1,112 +1,11 @@
-// import React, { Component } from "react";
-// import "./css/nav.css";
-// import Home from "./Home";
-// import About from "./About";
-// import Contact from "./Contact";
-// import Detail from "./Detail";
-
-// class App extends Component {
-//   state = {
-//     id: "home",
-//     array: [
-//       { Id: 1, Name: "Nabil_Bank" },
-//       { Id: 2, Name: "Nepal_Investment_Bank" },
-//       { Id: 3, Name: "Global_IME" },
-//       { Id: 4, Name: "NIC_ASIA" },
-//       { Id: 5, Name: "PRABHU" },
-//     ],
-//   };
-
-//   focusRef = React.createRef();
-
-//   componentDidMount() {
-//     this.focusRef.current.focus();
-//   }
-
-//   render() {
-//     return (
-//       <>
-//         <div className="Nav">
-//           <nav>
-//             <h2
-//               className="logo"
-//               onClick={() => {
-//                 this.setState({ id: "home" });
-//               }}
-//             >
-//               LOGO
-//             </h2>
-//             <ul activeClassName="active">
-//               <li>
-//                 <a
-//                   href="#home"
-//                   ref={this.focusRef}
-//                   onClick={(e) => {
-//                     e.preventDefault();
-//                     this.setState({ id: "home" });
-//                   }}
-//                 >
-//                   Home
-//                 </a>
-//               </li>
-//               <li>
-//                 <a
-//                   href="#about"
-//                   onClick={(e) => {
-//                     e.preventDefault();
-//                     this.setState({ id: "about" });
-//                   }}
-//                 >
-//                   About
-//                 </a>
-//               </li>
-//               <li>
-//                 <a
-//                   href="#contact"
-//                   onClick={(e) => {
-//                     e.preventDefault();
-//                     this.setState({ id: "contact" });
-//                   }}
-//                 >
-//                   Contact
-//                 </a>
-//               </li>
-//               <li>
-//                 <a
-//                   href="#detail"
-//                   onClick={(e) => {
-//                     e.preventDefault();
-//                     this.setState({ id: "detail" });
-//                   }}
-//                 >
-//                   Detail
-//                 </a>
-//               </li>
-//             </ul>
-//           </nav>
-//         </div>
-
-//         <div className="body">
-//           {this.state.id === "home" ? <Home /> : ""}
-//           {this.state.id === "about" ? <About /> : ""}
-//           {this.state.id === "contact" ? <Contact /> : ""}
-//           {this.state.id === "detail" ? <Detail list={this.state.array} /> : ""}
-//         </div>
-//       </>
-//     );
-//   }
-// }
-
-// export default App;
-
-import React, { Component } from "react";
 import "./css/nav.css";
 import Home from "./Home";
-import About from "./About";
-import Contact from "./Contact/Contact";
+import Todo from "./todo/Todo";
 import Detail from "./Detail";
-import Form from "./Form";
 import Form2 from "./Form/Form2";
+import Search from "./Search/Search";
+import Contact from "./Contact/Contact";
+import React, { Component } from "react";
 
 const style = {
   background: "white",
@@ -115,7 +14,7 @@ const style = {
 
 class App extends Component {
   state = {
-    id: "home",
+    id: "todo",
     array: [
       { Id: 1, Name: "Nabil_Bank" },
       { Id: 2, Name: "Nepal_Investment_Bank" },
@@ -127,10 +26,10 @@ class App extends Component {
 
   navList = [
     { id: "home", child: "Home" },
-    { id: "about", child: "About" },
+    { id: "todo", child: "Todo" },
     { id: "contact", child: "Contact" },
     { id: "details", child: "Details" },
-    { id: "form", child: "Form" },
+    { id: "search", child: "Search" },
     { id: "form2", child: "Form2" },
   ];
 
@@ -170,14 +69,14 @@ class App extends Component {
 
         <div className="body">
           {this.state.id === "home" ? <Home /> : ""}
-          {this.state.id === "about" ? <About /> : ""}
+          {this.state.id === "todo" ? <Todo /> : ""}
           {this.state.id === "contact" ? <Contact /> : ""}
           {this.state.id === "details" ? (
             <Detail list={this.state.array} />
           ) : (
             ""
           )}
-          {this.state.id === "form" ? <Form /> : ""}
+          {this.state.id === "search" ? <Search /> : ""}
           {this.state.id === "form2" ? <Form2 /> : ""}
         </div>
       </>
