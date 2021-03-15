@@ -9,7 +9,7 @@ function useTodo(initialState) {
         todos,
         editMode,
         addTodo: (data) => setTodos(a => [...a, data]),
-        deleteTodo: (id) => setTodos(a => [...a].filter(x => x.id !== id)),
+        deleteTodo: (id) => setTodos(a => a.filter(x => x.id !== id)),
         getDetail: (id) => {
             setEditMode(true)
             setId(id)
