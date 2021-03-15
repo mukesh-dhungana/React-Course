@@ -1,19 +1,22 @@
 import React from "react";
-import "./Comments.css";
+import "./Styles/Comments.css";
 
-const Comments = () => {
+const Comments = ({comment}) => {
+
+    console.log('Comment Section', comment);
+
   return (
     <div className="comments">
       <div className="comment-title">
-        <p>This is Comment title</p>
+        <p>{comment.comment}</p>
       </div>
       <div className="comment-details">
         <div className="comment">
           <p>
-            <i class="fas fa-user"></i> Beezay
+            <i class="fas fa-user"></i> {comment.comment_by}
           </p>
           <p>
-            <i class="fas fa-calendar-alt"></i> 15th March, 2020
+            <i class="fas fa-calendar-alt"></i> {comment.commented_at}
           </p>
         </div>
         <div className="comment-action">

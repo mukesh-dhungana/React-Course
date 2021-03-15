@@ -31,7 +31,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 2px;
-  width: 96%;
+  width: 98%;
   max-width: 100%;
   font-size: 12px;
   margin: 0 auto;
@@ -45,7 +45,7 @@
   margin: 0 8px;
   color: #6c5ce796;
   /* border: 1px solid black; */
-  width: 60%;
+  width: 80%;
 }
 
 .comments .comment-details p:hover {
