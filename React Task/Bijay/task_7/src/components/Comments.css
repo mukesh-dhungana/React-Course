@@ -1,0 +1,77 @@
+.comments {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 1em;
+  /* max-height: 170px;
+  overflow-y: scroll;
+  overflow-x: hidden; */
+}
+
+.comments .comment-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 20px;
+  /* border: 1px solid #ced6e0; */
+  border-radius: 10px;
+  width: 100%;
+  text-align: start;
+  padding: 2px;
+  background-color: #f1f2f6;
+  color: #57606f;
+  font-weight: lighter;
+  box-shadow: 5px 3px 8px 1px #ced6e0;
+}
+
+.comments .comment-title p {
+  margin: 2px 10px;
+}
+
+.comments .comment-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px;
+  width: 96%;
+  max-width: 100%;
+  font-size: 12px;
+  margin: 0 auto;
+  margin-top: 8px;
+  /* border: 2px solid red; */
+}
+
+.comments .comment-details .comment {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 8px;
+  color: #6c5ce796;
+  /* border: 1px solid black; */
+  width: 60%;
+}
+
+.comments .comment-details p:hover {
+  color: #6c5ce7;
+}
+
+.comments .comment-details .comment-action {
+  display: flex;
+  margin-right: 12px;
+}
+
+.comments .comment-details .comment-action p {
+  padding: 8px;
+  font-size: 14px;
+  transition: all 0.5s ease-out;
+  color: #a4b0be;
+}
+
+.comments .comment-details .comment-action p:hover {
+  transform: scale(1.2);
+}
+
+.comments .comment-details .comment-action .edit:hover {
+  color: #2ed573;
+}
+
+.comments .comment-details .comment-action .delete:hover {
+  color: #ff4757;
+}

@@ -1,0 +1,29 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css');
+
+.main-container {
+  /* width: %; */
+  /* border: 5px solid crimson; */
+  margin: 2px auto;
+  height: 100vh;
+  position: relative;
+  /* text-align: center; */
+}
+
+.container {
+  width: 95%;
+  /* border: 5px solid brown; */
+  margin: 1px auto;
+  height: calc(100vh - 13px);
+}
+
+.post-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+}
+
+.post-container>* {
+  flex: 2 2 200px;
+}
