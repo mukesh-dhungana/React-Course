@@ -10,6 +10,7 @@ function App() {
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const [data, setData] = React.useState([])
   const [value, setValue] = React.useState('')
+  
   const changeTheme = (e) => {
     const checked = e.target.checked
     setTheme(th => th === 'light' ? 'dark' : 'light')
