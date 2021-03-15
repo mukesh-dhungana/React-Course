@@ -6,6 +6,7 @@ const Data = {
       comments: [
         { id: 1, comment: "Post 1 Comment 1", comment_by:'Rujal Sapkota', commented_at: '14th March, 2021' },
         { id: 2, comment: "Post 1 Comment 2", comment_by:'Mukesh Dhungana', commented_at: '13th March, 2021' },
+        { id: 3, comment: "Post 1 Comment 3", comment_by:'Pariskrit Moktan', commented_at: '16th March, 2021' },
       ],
       user_name: "Beezay Bohora",
       created_at: "13 March, 2021",

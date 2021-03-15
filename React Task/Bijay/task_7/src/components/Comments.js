@@ -1,9 +1,9 @@
 import React from "react";
 import "./Styles/Comments.css";
 
-const Comments = ({comment}) => {
+const Comments = ({comment, deleteComment}) => {
 
-    console.log('Comment Section', comment);
+    // console.log('Comment Section', comment);
 
   return (
     <div className="comments">
@@ -13,15 +13,15 @@ const Comments = ({comment}) => {
       <div className="comment-details">
         <div className="comment">
           <p>
-            <i class="fas fa-user"></i> {comment.comment_by}
+            <i className="fas fa-user"></i> {comment.comment_by}
           </p>
           <p>
-            <i class="fas fa-calendar-alt"></i> {comment.commented_at}
+            <i className="fas fa-calendar-alt"></i> {comment.commented_at}
           </p>
         </div>
         <div className="comment-action">
-            <p className="edit"><i class="fas fa-user-edit"></i></p>
-            <p className="delete"><i class="fas fa-trash-alt"></i></p>
+            <p ><i className="fas fa-user-edit edit"></i></p>
+            <p ><i onClick={() => deleteComment(comment.id)} className="fas fa-trash-alt delete"></i></p>
         </div>
       </div>
     </div>

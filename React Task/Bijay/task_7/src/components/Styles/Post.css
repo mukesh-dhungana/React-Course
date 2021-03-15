@@ -2,10 +2,10 @@
   padding: 20px;
   margin: 10px 12px;
   /* border: 1px solid chartreuse; */
-  min-height: max-content;
   min-width: 30%;
   max-width: 45%;
   box-shadow: 5px 3px 8px 1px #d1ccc0;
+  min-height: 200px;
 }
 
 .post-header {
@@ -14,6 +14,7 @@
   align-items: flex-start;
   justify-content: center;
   color: #1e90ff;
+  margin-bottom: 1em;
 }
 
 .post-header .post-heading {
@@ -47,4 +48,23 @@
 .comments-section {
     max-height: 200px;
     overflow: auto;
+}
+
+hr {
+  height: 2px;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 0.6em;
+  background: #706fd3;
+  animation: flow 1s ease;
+  transition: transform 1s ease;
+}
+
+@keyframes flow {
+  from {
+    transform:scaleX(0)
+  }
+  to {
+    transform:scaleX(1)
+  }
 }

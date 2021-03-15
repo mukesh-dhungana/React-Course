@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 1em;
+  /* margin-top: 1em; */
   /* max-height: 170px;
   overflow-y: scroll;
   overflow-x: hidden; */
@@ -13,7 +13,7 @@
   font-size: 20px;
   /* border: 1px solid #ced6e0; */
   border-radius: 10px;
-  width: 100%;
+  width: 98%;
   text-align: start;
   padding: 2px;
   background-color: #f1f2f6;
@@ -60,11 +60,15 @@
 .comments .comment-details .comment-action p {
   padding: 8px;
   font-size: 14px;
-  transition: all 0.5s ease-out;
   color: #a4b0be;
+  cursor: pointer;
 }
 
-.comments .comment-details .comment-action p:hover {
+.comments .comment-details .comment-action p i {
+  transition: all 0.3s ease-out;
+}
+
+.comments .comment-details .comment-action p i:hover {
   transform: scale(1.2);
 }
 
