@@ -8,9 +8,7 @@ const Post = React.memo(({ id, title, comments, dispatch }) => {
 
     const getId = () => comments.reduce((a, c) => a > c.id ? a : c.id, 0) + 1
 
-    const addComment = () => {
-        dispatch({ type: "ADD_COMMENT", postId: id, payload: { id: getId(), comment: comment } })
-    }
+    const addComment = () => dispatch({ type: "ADD_COMMENT", postId: id, payload: { id: getId(), comment } })
 
     const editComment = (id) => {
         setEditMode(true)

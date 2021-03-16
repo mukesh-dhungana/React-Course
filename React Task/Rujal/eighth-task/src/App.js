@@ -2,30 +2,34 @@ import './App.css';
 import React from 'react'
 import Post from './Components/Post'
 import Data from './Components/Data'
-
 import { initialState, reducer } from './useReducer'
+import Button from './Components/Button';
+
 function App() {
   const [theme, setTheme] = React.useState('light')
-  const [checkedButton, setCheck] = React.useState(false)
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const [data, setData] = React.useState([])
   const [value, setValue] = React.useState('')
-  
-  const changeTheme = (e) => {
-    const checked = e.target.checked
-    setTheme(th => th === 'light' ? 'dark' : 'light')
-    setCheck(checked)
+
+  const changeTheme = () => setTheme(th => th === 'light' ? 'dark' : 'light')
+
+  const fetchData = async () => {
+    await fetch("https://jsonplaceholder.typicode.com/photos")
+      .then(res => res.json())
+      .then(data => {
+        const d = data.map(x => {
+          return {
+            id: x.id,
+            name: x.title
+          }
+        })
+        setData(d)
+      })
   }
 
   React.useEffect(() => {
-    const fetchData = async () => {
-      await fetch("https://jsonplaceholder.typicode.com/comments")
-        .then(res => res.json())
-        .then(data => setData(data))
-    }
     fetchData()
   }, [])
-
 
 
   const filterData = React.useMemo(() => {
@@ -37,14 +41,13 @@ function App() {
     }
   }, [value, data])
 
+  const uiData = React.useMemo(() => {
+    return filterData.map(x => <Data key={x.id} {...x} />)
+  }, [filterData])
+
   return (
     <div className={`App ${theme}`}>
-      <div className="switches">
-        <label className="switch">
-          <input type="checkbox" onChange={changeTheme} checked={checkedButton} />
-          <span className="slider"></span>
-        </label>
-      </div>
+      <Button changeTheme={changeTheme} theme={theme} />
       <div className="posts">
         {
           state.posts.map(x => (
@@ -65,7 +68,7 @@ function App() {
             </thead>
             <tbody>
               {
-                filterData.map(x => <Data key={x.id} {...x} />)
+                uiData
               }
             </tbody>
           </table>
