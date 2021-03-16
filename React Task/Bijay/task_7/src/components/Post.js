@@ -26,7 +26,10 @@ const Post = ({ post, dispatch }) => {
     setModal(false);
   };
 
+
+
   const [modal, setModal] = useState(false);
+  // const [isInput, setIsInput] = useState(true);
 
   console.log("Comments", comments);
   return (
