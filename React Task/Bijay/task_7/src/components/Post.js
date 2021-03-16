@@ -30,10 +30,11 @@ const Post = ({ post, dispatch }) => {
           id: comments.length + 1,
           comment: addedComment,
           comment_by: 'Mukesh Dhungana',
-          commented_at: '17th March, 2021'
+          commented_at: new Date().toLocaleDateString()
         }
       }
     })
+    setAddComment(!addComment);
   };
 
   const addComments = () => {

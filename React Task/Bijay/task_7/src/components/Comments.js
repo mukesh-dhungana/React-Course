@@ -6,7 +6,7 @@ const Comments = ({ comment, deleteComment }) => {
   const inputRef = React.useRef();
   const [modal, setModal] = useState(false);
   const [isInput, setIsInput] = useState(true);
-  const [newComment, setNewComment] = useState('');
+  const [newComment, setNewComment] = useState(comment.comment);
   // console.log('Comment Section', comment);
   // const showModal = () => {
   //   console.log("Modal Shown");
