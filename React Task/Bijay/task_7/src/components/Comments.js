@@ -6,26 +6,30 @@ const Comments = ({ comment, deleteComment }) => {
   const inputRef = React.useRef();
   const [modal, setModal] = useState(false);
   const [isInput, setIsInput] = useState(true);
-  const [newComment, setNewComment] = useState(comment.comment);
+  const [newComment, setNewComment] = useState('');
   // console.log('Comment Section', comment);
   // const showModal = () => {
   //   console.log("Modal Shown");
   //   setModal(true);
   // };
 
+  console.log('comment',newComment);
   useEffect(() => {
+   
     if (!isInput) {
       inputRef.current.focus();
     }
-  }, [isInput]);
+
+    setNewComment(comment.comment)
+  }, [comment,isInput]);
   const activeInput = id => {
     // document.getElementById('focus-me').focus();
     setIsInput(!isInput);
-    inputRef.current.focus();
+    
 
     // ref.current.focus();
     // console.log(ref.current.id);
-    console.log("Comment Id", id);
+    
   };
 
   const toggleModal = () => {

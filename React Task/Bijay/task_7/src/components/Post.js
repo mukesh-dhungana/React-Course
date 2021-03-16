@@ -18,9 +18,22 @@ const Post = ({ post, dispatch }) => {
     });
   };
 
-  const addNewComment = e => {
+  const addNewComment = (e,addedComment) => {
     e.preventDefault();
-    console.log("Clicked", e.target);
+    console.log("Clicked=>", addedComment);
+    console.log(comments.length);
+    dispatch({
+      type: "ADD_COMMENT",
+      payload: {
+        postId: post.user_id,
+        comment: {
+          id: comments.length + 1,
+          comment: addedComment,
+          comment_by: 'Mukesh Dhungana',
+          commented_at: '17th March, 2021'
+        }
+      }
+    })
   };
 
   const addComments = () => {
@@ -67,7 +80,7 @@ const Post = ({ post, dispatch }) => {
         <div className="comments-section">
           {/* <Comments comments={comments}/> */}
           {comments.map(comment => (
-            <Comments comment={comment} deleteComment={deleteComment} />
+            <Comments key={comment.id}comment={comment} deleteComment={deleteComment} />
           ))}
         </div>
       </div>

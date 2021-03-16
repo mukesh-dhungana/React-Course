@@ -120,17 +120,31 @@ const reducer = (state, action) => {
       return {
         ...state,
         posts: [
-            ...state.posts.map(post =>
-                post.user_id === payload.postId
-                  ? {
-                      ...post,
-                      comments: post.comments.filter(
-                        comment => comment.id !== payload.commentId
-                      ),
-                    }
-                  : post
-              ),
-        ] 
+          ...state.posts.map(post =>
+            post.user_id === payload.postId
+              ? {
+                  ...post,
+                  comments: post.comments.filter(
+                    comment => comment.id !== payload.commentId
+                  ),
+                }
+              : post
+          ),
+        ],
+      };
+
+    case "ADD_COMMENT":
+      console.log("From Reducer", payload);
+      return {
+        ...state,
+        posts: [
+          ...state.posts.map(post =>
+            post.user_id === payload.postId ? {
+              ...post,
+              comments: [payload.comment, ...post.comments]
+            } : post
+          ),
+        ],
       };
 
     default:
