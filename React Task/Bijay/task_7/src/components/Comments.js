@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Modal from "./Modal";
 import "./Styles/Comments.css";
 
 const Comments = ({ comment, deleteComment }) => {
-  // const ref = React.useRef(null);
+  const inputRef = React.useRef();
+  const [modal, setModal] = useState(false);
+  const [isInput, setIsInput] = useState(true);
+  const [newComment, setNewComment] = useState(comment.comment)
   // console.log('Comment Section', comment);
   // const showModal = () => {
   //   console.log("Modal Shown");
   //   setModal(true);
   // };
 
+  useEffect(() => {
+
+    if(!isInput){
+      
+      inputRef.current.focus();
+    }
+   
+    
+  },[isInput])
   const activeInput = id => {
     // document.getElementById('focus-me').focus();
     setIsInput(!isInput);
-  
+    inputRef.current.focus();
    
     // ref.current.focus();
     // console.log(ref.current.id);
@@ -30,9 +42,7 @@ const Comments = ({ comment, deleteComment }) => {
     setNewComment(e.target.value)
   }
 
-  const [modal, setModal] = useState(false);
-  const [isInput, setIsInput] = useState(true);
-  const [newComment, setNewComment] = useState(comment.comment)
+ 
 
   return (
     <>
@@ -52,6 +62,7 @@ const Comments = ({ comment, deleteComment }) => {
             disabled={isInput}
             autoFocus
             onChange={(e)=> editComment(e)}
+            ref={inputRef}
           />
         </div>
         {/* <div className="comment-title">
@@ -71,7 +82,7 @@ const Comments = ({ comment, deleteComment }) => {
               {isInput ? <i
                 onClick={(e) => activeInput(e)}
                 className="fas fa-user-edit edit"
-              ></i> : <i onClick={(e) => activeInput(e)} class="fas fa-check-circle"></i>}
+              ></i> : <i onClick={(e) => activeInput(e)} class="fas fa-check-circle tick"></i>}
             </p>
             <p>
               <i
