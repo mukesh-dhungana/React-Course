@@ -1,0 +1,27 @@
+.post {
+  width: 50%;
+  margin: 50px auto;
+  padding: 0 30px;
+}
+
+h3 {
+  text-align: start;
+}
+
+form {
+  text-align: start;
+}
+
+.input {
+  width: 60%;
+}
+.post__header > .MuiCardHeader-content > .MuiCardHeader-title {
+  font-size: 1.8rem !important;
+  color: black;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

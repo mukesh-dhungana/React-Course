@@ -1,0 +1,44 @@
+.comment {
+  margin: 20px 0;
+  padding: 20px;
+  text-align: start;
+}
+
+.MuiCardHeader-title {
+  font-size: 1rem !important;
+  color: gray;
+  font-weight: 600 !important;
+}
+.MuiCardHeader-subheader {
+  margin: 0 30px !important;
+  font-size: 0.8rem !important;
+}
+.MuiCardHeader-content {
+  display: flex;
+  align-items: center;
+}
+
+p {
+  padding: 0 20px;
+}
+
+.deleteicon {
+  cursor: pointer;
+  color: rgb(235, 49, 49) !important;
+}
+
+.editicon {
+  color: rgb(18, 125, 224);
+  cursor: pointer;
+}
+
+.modal__content {
+  background-color: white;
+  padding: 20px;
+  min-height: 200px;
+  width: 30%;
+}
+.modal__content > h2 {
+  text-align: center;
+  font-size: 2rem;
+}
