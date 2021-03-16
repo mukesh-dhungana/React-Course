@@ -10,9 +10,10 @@ const Post = React.memo(({ id, title, comments, dispatch }) => {
 
     const addComment = () => dispatch({ type: "ADD_COMMENT", postId: id, payload: { id: getId(), comment } })
 
-    const editComment = (id) => {
+    const editComment = (idc) => {
+        document.getElementById(`input${id}`).focus()
         setEditMode(true)
-        const detail = comments.find(x => x.id === id)
+        const detail = comments.find(x => x.id === idc)
         setComment(detail.comment)
         setDetail(detail)
     }
@@ -38,6 +39,7 @@ const Post = React.memo(({ id, title, comments, dispatch }) => {
                         placeholder="ADD COMMENT"
                         onChange={(e) => setComment(e.target.value)}
                         value={comment}
+                        id={`input${id}`}
                     />
                     <input type="submit" value="Submit" />
                 </form>

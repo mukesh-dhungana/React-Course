@@ -11,7 +11,7 @@ function App() {
   const [data, setData] = React.useState([])
   const [value, setValue] = React.useState('')
 
-  const changeTheme = () => setTheme(th => th === 'light' ? 'dark' : 'light')
+  const changeTheme = React.useCallback(() => setTheme(th => th === 'light' ? 'dark' : 'light'),[])
 
   const fetchData = async () => {
     await fetch("https://jsonplaceholder.typicode.com/photos")
@@ -47,7 +47,7 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
-      <Button changeTheme={changeTheme} theme={theme} />
+      <Button changeTheme={changeTheme} />
       <div className="posts">
         {
           state.posts.map(x => (
