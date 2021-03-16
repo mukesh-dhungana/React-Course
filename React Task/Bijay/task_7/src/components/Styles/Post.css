@@ -57,11 +57,23 @@
   margin: 0 4px;
 }
 
-.post-header .post-details .add-comment {
+.post-header .post-details .add-comments {
   right: 10px;
   font-size: 20px;
   color: #0985e379;
   transition: all 0.3s ease-in;
+}
+
+.add-comments .fa-minus-circle {
+  font-size: 20px;
+  color: #ff6348c7;
+  transition: all 0.5s ease;
+}
+
+.add-comments .fa-minus-circle:hover {
+  color: #ff6348;
+  transform: scale(1.1);
+  transform-style: flat;
 }
 
 .comments-section {

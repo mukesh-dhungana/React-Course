@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddComment from "./AddComment";
 import Comments from "./Comments";
 import Modal from "./Modal";
 import "./Styles/Post.css";
@@ -17,8 +18,14 @@ const Post = ({ post, dispatch }) => {
     });
   };
 
-  const addComment = () => {
-    setModal(true);
+  const addNewComment = e => {
+    e.preventDefault();
+    console.log("Clicked", e.target);
+  };
+
+  const addComments = () => {
+    console.log("Add Comment");
+    setAddComment(!addComment);
   };
 
   const toggleModal = () => {
@@ -26,15 +33,13 @@ const Post = ({ post, dispatch }) => {
     setModal(false);
   };
 
-
-
   const [modal, setModal] = useState(false);
-  // const [isInput, setIsInput] = useState(true);
+  const [addComment, setAddComment] = useState(false);
 
   console.log("Comments", comments);
   return (
     <>
-      {modal && <Modal toggleModal={toggleModal}/>}
+      {modal && <Modal toggleModal={toggleModal} />}
       <div className="post">
         <div className="post-header">
           <div className="post-heading">
@@ -48,12 +53,17 @@ const Post = ({ post, dispatch }) => {
             <p className="post-date">
               <i className="fas fa-calendar-alt"></i> {post.created_at}
             </p>
-            <p className="add-comment">
-              <i onClick={addComment} class="fas fa-plus-circle"></i>
+            <p className="add-comments">
+              {addComment ? (
+                <i onClick={addComments} class="fas fa-minus-circle"></i>
+              ) : (
+                <i onClick={addComments} class="fas fa-plus-circle"></i>
+              )}
             </p>
           </div>
         </div>
         <hr />
+        {addComment && <AddComment addNewComment={addNewComment} />}
         <div className="comments-section">
           {/* <Comments comments={comments}/> */}
           {comments.map(comment => (
