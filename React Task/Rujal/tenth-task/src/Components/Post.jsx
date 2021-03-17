@@ -3,18 +3,14 @@ import React from 'react'
 function Post(props) {
     const [posts, setPosts] = React.useState({})
 
-
-
-
     React.useEffect(() => {
         const fetchData = async () => {
-            await fetch(" https://jsonplaceholder.typicode.com/posts/" + props.match.params.id)
+            await fetch("https://jsonplaceholder.typicode.com/posts/" + props.match.params.id)
                 .then(res => res.json())
                 .then(data => setPosts(data))
         }
         fetchData()
     }, [props.match.params.id])
-
 
     return (
         <div style={{ textAlign: 'center' }}>
