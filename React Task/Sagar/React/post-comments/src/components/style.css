@@ -1,0 +1,124 @@
+.Container {
+    width: 100%;
+    height: 100%;
+    padding: 10px 15px;
+    background-color: #eee;
+}
+
+.ContainerDark {
+    width: 100%;
+    height: 100%;
+    padding: 10px 15px;
+    background-color: #18191a;
+}
+
+.wrapper{
+    width:500px;
+    margin:50px auto;
+    background: white;
+    border-radius: .5em;
+}
+
+.wrapperDark{
+    width:500px;
+    margin:50px auto;
+    background: rgb(65, 65, 65);
+    border-radius: .5em;
+}
+
+.user {
+    padding: 15px 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.images{
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+form{
+    position: relative;
+    width: 100%;
+    /* background-color: #eee; */
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+form .commentBox {
+    width: 85%;
+    height: 40px;
+    padding: 15px;
+    background: #eee;
+    border: none;
+    outline: none;border-radius: 5em;
+}
+
+.submitInput,.submitInputDark{
+    position: absolute;
+    right: 5px;
+    width: 15%;
+    height: 30px;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer
+}
+
+.submitInputDark{
+    color: rgb(231, 230, 230)
+}
+
+.submitInput:hover,.submitInputDark:hover{
+    color: rgb(92, 170, 243)
+}
+
+.comments{
+    padding: 10px 15px;
+}
+
+.commentWrapper{
+    font-size: .9em;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px ;
+}
+
+.comment{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+.commented{
+    margin-left: 10px;
+    font-size: 1em;
+}
+
+.buttons,.buttonsDark {
+    width: 100px;
+}
+
+.buttons button ,.buttonsDark button{
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.buttonsDark button{
+    color: white
+}
+
+.buttons button:hover,.buttonsDark button:hover{
+    color: rgb(92, 170, 243)
+}
+
+.edit{
+    margin-right: 10px;
+}
+
+

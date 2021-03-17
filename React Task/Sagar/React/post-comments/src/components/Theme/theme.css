@@ -1,0 +1,13 @@
+.themeButton,.themeButtonDark{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: rgb(92, 170, 243)
+}
+
+.themeButtonDark {
+    background-color: #eee;
+}
