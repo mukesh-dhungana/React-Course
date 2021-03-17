@@ -11,7 +11,7 @@ function App() {
   const [data, setData] = React.useState([])
   const [value, setValue] = React.useState('')
 
-  const changeTheme = React.useCallback(() => setTheme(th => th === 'light' ? 'dark' : 'light'),[])
+  const changeTheme = React.useCallback(() => setTheme(th => th === 'light' ? 'dark' : 'light'), [])
 
   const fetchData = async () => {
     await fetch("https://jsonplaceholder.typicode.com/photos")

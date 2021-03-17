@@ -10,8 +10,14 @@ function App() {
   const changeHeader = () => refItem.current.style.color = "red"
 
   React.useEffect(() => {
-    refItem.current.addEventListener('mouseenter', insideMouse)
-    refItem.current.addEventListener('mouseleave', outsideMouse)
+    var refrerence= refItem.current
+    refrerence.addEventListener('mouseenter', insideMouse)
+    refrerence.addEventListener('mouseleave', outsideMouse)
+
+    return ()=>{
+      refrerence.removeEventListener('mouseenter')
+      refrerence.removeEventListener('mouseleave')
+    }
   }, [])
 
   const { changeTheme } = useTheme("app")
