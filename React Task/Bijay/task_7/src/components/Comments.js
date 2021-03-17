@@ -5,7 +5,7 @@ import "./Styles/Comments.css";
 const Comments = ({ comment, deleteComment }) => {
   const inputRef = React.useRef();
   const [modal, setModal] = useState(false);
-  const [isInput, setIsInput] = useState(true);
+  const [disableInput, setDisableInput] = useState(true);
   const [newComment, setNewComment] = useState(comment.comment);
   // console.log('Comment Section', comment);
   // const showModal = () => {
@@ -13,23 +13,24 @@ const Comments = ({ comment, deleteComment }) => {
   //   setModal(true);
   // };
 
-  console.log('comment',newComment);
+  console.log("comment", newComment);
   useEffect(() => {
-   
-    if (!isInput) {
+    // setDisableInput(true);
+    if (!disableInput) {
       inputRef.current.focus();
     }
 
     // setNewComment(comment.comment)
-  }, [isInput]);
+  }, [disableInput]);
+
   const activeInput = id => {
     // document.getElementById('focus-me').focus();
-    setIsInput(!isInput);
-    
+    if (disableInput) {
+      setDisableInput(false);
+    }
 
     // ref.current.focus();
     // console.log(ref.current.id);
-    
   };
 
   const toggleModal = () => {
@@ -41,7 +42,8 @@ const Comments = ({ comment, deleteComment }) => {
     e.preventDefault();
     console.log(e.target.comment.value);
     setNewComment(e.target.name.value);
-    setIsInput(!isInput);
+    // disableInput ? setDisableInput(!disableInput) : setDisableInput(false)
+    setDisableInput(!disableInput);
   };
 
   return (
@@ -61,11 +63,11 @@ const Comments = ({ comment, deleteComment }) => {
               id={`focus-me`}
               name="comment"
               value={newComment}
-              disabled={isInput}
+              disabled={disableInput}
               autoFocus
               onChange={e => setNewComment(e.target.value)}
               ref={inputRef}
-              onBlur={() => setIsInput(!isInput)}
+              onBlur={() => setDisableInput(!disableInput)}
             />
           </form>
         </div>
@@ -83,14 +85,14 @@ const Comments = ({ comment, deleteComment }) => {
           </div>
           <div className="comment-action">
             <p>
-              {isInput ? (
+              {disableInput ? (
                 <i
                   onClick={e => activeInput(e)}
                   className="fas fa-user-edit edit"
                 ></i>
               ) : (
                 <i
-                  onClick={e => activeInput(e)}
+                  onClick={e => editComment(e)}
                   class="fas fa-check-circle tick"
                 ></i>
               )}
