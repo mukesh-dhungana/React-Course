@@ -6,7 +6,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 function App() {
   const [value, setValue] = useState("");
   const [datas, setDatas] = useState([]);
-  const [lists, setLists] = useState([]);
+
   const [toggleTheme, setToggleTheme] = useState(false);
 
   const getData = async () => {
@@ -16,18 +16,20 @@ function App() {
   };
   useEffect(() => {
     getData();
-  }, [toggleTheme]);
+  }, []);
 
-  const searchTexts = useMemo(
-    () => datas.filter((data) => data.name.slice(0, 3) === value.slice(0, 3)),
-    [datas, value]
-  );
+  const searchTexts = useMemo(() => {
+    let i = 0;
+    while (i < 200000000) {
+      i++;
+    }
+    return datas.filter((data) => data.name.slice(0, 3) === value.slice(0, 3));
+  }, [value, datas]);
 
   const handleChange = (e) => {
-    if (value.length >= 3) {
-      setLists([...searchTexts]);
+    if (e.target.value.length >= 3) {
+      setValue(e.target.value);
     }
-    setValue(e.target.value);
   };
 
   const changeTheme = useCallback(() => setToggleTheme(!toggleTheme), [
@@ -41,10 +43,9 @@ function App() {
         id="standard-basic"
         label="Standard"
         placeholder="Enter Texts..."
-        value={value}
         onChange={handleChange}
       />
-      {lists.map((item) => (
+      {searchTexts.map((item) => (
         <p key={item.id}>{item.name}</p>
       ))}
     </div>
