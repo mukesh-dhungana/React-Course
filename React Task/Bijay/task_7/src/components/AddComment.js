@@ -13,14 +13,14 @@ const AddComment = ({ addNewComment, notFocused }) => {
   //     console.log('value', e.target.name.value);
   // }
 
-  const isFocused = () => {
-    console.log(document.getElementById("is-focus").is(":focus"))
-    document.getElementById("is-focus").is(":focus");
-  };
+  // const isFocused = () => {
+  //   console.log(document.getElementById("is-focus").is(":focus"))
+  //   document.getElementById("is-focus").is(":focus");
+  // };
 
-  if(isFocused) {
-    console.log('Focused')
-  }
+  // if(isFocused) {
+  //   console.log('Focused')
+  // }
 
 
   const [addedComment, setAddedComment] = useState("");

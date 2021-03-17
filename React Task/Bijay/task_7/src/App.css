@@ -7,6 +7,7 @@
   height: 100vh;
   position: relative;
   /* text-align: center; */
+  /* background: black; */
 }
 
 .container {
@@ -14,6 +15,26 @@
   /* border: 5px solid brown; */
   margin: 1px auto;
   height: calc(100vh - 13px);
+  z-index:2;
+  /* background: black; */
+}
+
+.posts-container {
+  /* background: black; */
+  /* z-index: 5; */
+}
+
+.dark-mode {
+  height: 100%;
+  width:100%;
+  position: absolute;
+  top:0;
+  left:0;
+  background: #34495e;
+  background-blend-mode:unset;
+  z-index: -110;
+  border: 2px solid black;
+  color: #fff;
 }
 
 .post-container {
@@ -21,6 +42,10 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap; 
+  /* z-index:5; */
+  /* z-index: 5; */
+  /* background: #34495e; */
+  color: #fff;
   /* border: 2px solid blue;  */
 }
 

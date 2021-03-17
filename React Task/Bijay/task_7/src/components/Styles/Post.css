@@ -5,8 +5,11 @@
   min-width: 30%;
   max-width: 45%;
   box-shadow: 5px 3px 8px 1px #d1ccc0;
-  min-height: max-content;
-  max-height: max-content;
+  min-height: 300px;
+  /* max-height: 800px; */
+  overflow: auto;
+  z-index:10;
+  background: #fff;
 }
 
 .post-header {

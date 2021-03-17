@@ -20,8 +20,8 @@ const Comments = ({ comment, deleteComment }) => {
       inputRef.current.focus();
     }
 
-    setNewComment(comment.comment)
-  }, [comment,isInput]);
+    // setNewComment(comment.comment)
+  }, [isInput]);
   const activeInput = id => {
     // document.getElementById('focus-me').focus();
     setIsInput(!isInput);
@@ -65,6 +65,7 @@ const Comments = ({ comment, deleteComment }) => {
               autoFocus
               onChange={e => setNewComment(e.target.value)}
               ref={inputRef}
+              onBlur={() => setIsInput(!isInput)}
             />
           </form>
         </div>
