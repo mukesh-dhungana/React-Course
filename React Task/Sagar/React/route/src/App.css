@@ -1,0 +1,67 @@
+.className {
+  height: 100vh;
+  background-color: white;
+  width: 80%;
+  margin: auto;
+}
+
+.App {
+  text-align: center;
+  width: 100%;
+  background-color: white;
+  margin: auto;
+}
+
+.links {
+  /* background: rgb(136, 197, 247); */
+  background: linear-gradient(45deg, rgb(52, 125, 184), rgb(136, 197, 247));
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home,
+.about,
+.contact,
+.posts {
+  text-decoration: none;
+  padding: 10px 25px;
+  color: rgb(49, 49, 49);
+}
+
+.home:hover,
+.about:hover,
+.contact:hover,
+.posts:hover {
+  color: rgb(255, 255, 255);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.active {
+  color: red;
+}
+
+.postLink {
+  background-color: black;
+}
+
+.p {
+  width: 90%;
+  margin: 5px auto;
+  padding: 10px;
+  background-color: #eee;
+  color: black;
+}
+
+.p:hover {
+  background-color: rgb(219, 219, 219);
+}
+
+.detailp {
+  background-color: #eee;
+  padding: 20px 30px;
+  width: 50%;
+  margin: 30px auto;
+  border-radius: 10px;
+}
