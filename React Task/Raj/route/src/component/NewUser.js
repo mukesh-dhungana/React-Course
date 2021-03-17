@@ -6,6 +6,7 @@ function NewUser() {
   const [data, setData] = useState({});
 
   const { id } = useParams();
+
   const fetchData = id => {
     fetch(` https://jsonplaceholder.typicode.com/posts/${id}`)
       .then(x => x.json())

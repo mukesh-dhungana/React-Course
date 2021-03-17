@@ -20,11 +20,7 @@ function APIData(props) {
       {state.map((x, i) => {
         return (
           <>
-            <Link
-              key={i}
-              to={{ pathname: `/user/${x.id}`, state: { ...x } }}
-              className="box"
-            >
+            <Link key={i} to={{ pathname: `/user/${x.id}` }} className="box">
               <span>Title : </span>
               {x.title}
             </Link>

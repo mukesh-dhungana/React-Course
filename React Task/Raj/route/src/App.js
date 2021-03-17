@@ -20,9 +20,9 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about/" component={About} />
-          <Route path="/error" component={Error} />
-          <Route path="/api" component={APIData} />
-          <Route path="/user/:id" component={NewUser} />
+          <Route exact path="/api" component={APIData} />
+          <Route exact path="/user/:id" component={NewUser} />
+          <Route exact path="/error" component={Error} />
           <Redirect to="/error" />
         </Switch>
       </Router>
