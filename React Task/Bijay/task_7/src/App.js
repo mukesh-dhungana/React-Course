@@ -11,18 +11,20 @@ const App = () => {
   // console.log('Data Posts',posts);
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [darkMode, setDarkMode] =useState(false)
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleMe = () => {
-    console.log('Dark Mode');
-    setDarkMode(!darkMode)
-  }
+    console.log("Dark Mode");
+    setDarkMode(!darkMode);
+  };
 
   // const posts = state.posts
   return (
     <div className="main-container">
-      <ToogleMode toggleMe={toggleMe} />
-      {darkMode ? <div className="dark-mode"></div> : ''}
+      <div className="toggle">
+        <ToogleMode toggleMe={toggleMe} />
+      </div>
+      {darkMode ? <div className="dark-mode"></div> : ""}
       <div className="container">
         <section className="posts-container">
           <div className="post-container">
