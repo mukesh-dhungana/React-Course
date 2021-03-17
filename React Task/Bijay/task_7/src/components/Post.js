@@ -42,6 +42,11 @@ const Post = ({ post, dispatch }) => {
     setAddComment(!addComment);
   };
 
+  const notFocused =() => {
+    console.log('Out Focus');
+    setAddComment(!addComment);
+  }
+
   const toggleModal = () => {
     console.log("Clicked");
     setModal(false);
@@ -77,7 +82,7 @@ const Post = ({ post, dispatch }) => {
           </div>
         </div>
         <hr />
-        {addComment && <AddComment addNewComment={addNewComment} />}
+        {addComment && <AddComment addNewComment={addNewComment} addComment={addComment} notFocused={notFocused} />}
         <div className="comments-section">
           {/* <Comments comments={comments}/> */}
           {comments.map(comment => (
