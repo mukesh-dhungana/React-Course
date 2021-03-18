@@ -1,6 +1,8 @@
 import { Component } from "react";
 
 import Cardbody from "./components/Cardbody";
+import Form from "./components/Form";
+import FormDisplay from "./components/FormDisplay";
 
 
 // //***FETCH TASKS FROM API
@@ -66,6 +68,8 @@ class App extends Component {
         </div>
         
         {this.state.fetchData && <Cardbody url={this.state.url}/>}
+        <Form />
+        {/* <FormDisplay /> */}
       </div>
     );
   }
