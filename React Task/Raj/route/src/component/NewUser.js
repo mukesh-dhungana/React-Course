@@ -14,7 +14,7 @@ function NewUser() {
   };
   useEffect(() => {
     fetchData(id);
-  }, [data]);
+  }, []);
 
   return (
     <div className="data">

@@ -6,7 +6,7 @@ function Home(props) {
     <div>
       <h1
         style={{ textAlign: "center", color: "white", marginTop: "70px" }}
-      >{`This is Home Page`}</h1>
+      >{`This is Home Page`}</h1> 
     </div>
   );
 }
