@@ -65,3 +65,21 @@
   margin: 30px auto;
   border-radius: 10px;
 }
+
+.backBtn {
+  padding: 10px 15px;
+  width: 100px;
+  text-transform: uppercase;
+  font-weight: 600;
+  background-color: rgb(136, 197, 247);
+  border: none;
+  outline: none;
+  color: rgb(58, 57, 57);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.backBtn:hover {
+  background-color: rgb(75, 154, 219);
+  color: rgb(255, 255, 255);
+}
