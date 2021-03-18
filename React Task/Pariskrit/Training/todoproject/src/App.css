@@ -1,0 +1,16 @@
+.app {
+  text-align: center;
+  width: 90%;
+  margin: 50px auto;
+}
+
+.app > h1 {
+  margin: 20px 0;
+}
+.card {
+  width: 50%;
+  margin: 50px auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
