@@ -21,12 +21,14 @@ button {
   margin-top: 10px;
   border: none;
   outline: none;
-  background-color: #e0eafc;
+  background-color: black;
+  color: white;
   border-radius: 20px;
   cursor: pointer;
   font-weight: bold;
 }
 
 button:hover {
-  background-color: #cfdef3;
+  background-color: rgb(153, 153, 153);
+  color: black;
 }
