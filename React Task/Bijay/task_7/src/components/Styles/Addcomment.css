@@ -1,0 +1,54 @@
+.add-comment {
+  width: 98%;
+  /* border: 2px solid black; */
+  position: relative;
+  margin-bottom: 1em;
+  padding: 2px;
+}
+
+.add-comment input {
+  width: 98%;
+  font-size: 17px;
+  background: transparent;
+  padding: 0 5px;
+  font-weight: 300;
+  font-family: "Roboto", sans-serif;
+  box-shadow: 1px 1px 2px 1px #ced6e0;
+  border-radius: 10px;
+  border-style: none;
+  height: 35px;
+}
+
+.add-comment input:focus {
+    outline: none;
+}
+
+.add-comment input::placeholder {
+    color: #747d8c;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.add-comment p {
+    position: absolute;
+    right: 0;
+    bottom:0;
+    transform: translate(-50%, -25%);
+    z-index: 10;
+    /* border: 2px solid red; */
+    padding:3px;
+    /* background: rgba(0, 0, 0, 0.432); */
+    /* border-radius: ; */
+}
+
+.add-comment p i {
+    color: #ced6e0;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+}
+
+.add-comment p i:hover {
+    color: #2f3542;
+    transform: scale(1.2);
+}
