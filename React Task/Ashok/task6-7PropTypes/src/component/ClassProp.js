@@ -1,9 +1,7 @@
 import React, { Component } from "react";
+import Child from "./Child";
 
-import "./App.css";
-import Child from "./component/Child";
-
-export default class App extends Component {
+export default class ClassProp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +24,8 @@ export default class App extends Component {
   };
   render() {
     return (
-      <div className="App">
+      <div>
+        <h2>Class Based PropTypes</h2>
         <Child data={this.state.data} formHandle={this.HandleChildFormData} />
       </div>
     );
