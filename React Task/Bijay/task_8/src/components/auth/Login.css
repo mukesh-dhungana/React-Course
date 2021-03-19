@@ -206,9 +206,9 @@ img {
 .sub-main-w3 input[type="password"] {
   outline: none;
   font-size: 1.1em;
-  padding: 20px 10px 20px 10px;
+  padding: 20px 10px 8px 10px;
   border: none;
-  margin: 0 0 15px 0;
+  margin: 0 0 8px 0;
   font-family: "Open Sans", sans-serif;
   background: none;
   width: 20%;
@@ -243,32 +243,51 @@ img {
   /* transform-origin: center; */
 }
 
+.sub-main-w3 .input-name,
+.sub-main-w3 .input-pass {
+  position: relative;
+  /* border: 2px solid white; */
+}
+
 .sub-main-w3 p {
-  color:coral;
+  position: absolute;
+  color: #00d8d6;
+  top: 105%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family:cursive;
+  font-size: 16px;
+}
+
+.sub-main-w3 .input-name p {
 }
 /*--//main--*/
 
 /*--placeholder-color--*/
 
 ::-webkit-input-placeholder {
-  color: #dfe6e998;
+  color: #b2bec3;
+  font-family: monospace;
+  font-size: 14px;
+  text-align: center;
+  /* border: 2px solid red; */
 }
 
 :-moz-placeholder {
   /* Firefox 18- */
   color: #dfe6e998;
-
+  font-family: monospace;
 }
 
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #dfe6e998;
-
+  font-family: monospace;
 }
 
 :-ms-input-placeholder {
-    color: #dfe6e998;
-
+  color: #dfe6e998;
+  font-family: monospace;
 }
 /*--//placeholder-color--*/
 
