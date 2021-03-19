@@ -7,41 +7,74 @@ class LoginClass extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "",
-      password: "",
+      userName:{
+        value:"",
+        focused:false
+      },
+      password:{
+        value:"",
+        focused:false,
+      },
       formCheck: {
         isName: false,
         isPass: false,
       },
-      showError: false
+      showError: false,
     };
+  }
+
+  handleFocus=(e)=>{
+    const { name, value } = e.target;
+    console.log(name, value);
+    this.setState({
+      [name]:{...this.state[name], focused:true},
+    });
+    if(name==="password" && this.state.userName.focused && this.state.userName.value.length===0){
+      console.log("provide username first");
+      this.setState({
+        showError: true
+      })
+      setTimeout(()=> {
+        this.setState({
+          showError: false
+        })
+      }, 3000)
+    }
   }
 
   handleChange = e => {
     console.log("Change value", e.target.value.length);
     const { name, value } = e.target;
+    console.log(name, value);
+   
+
     this.setState({
-      [name]: value,
+      [name]:{...this.state[name], focused:true, value:value},
     });
 
-    if(this.state.showError) {
-      if (e.target.name === 'password') {
-        // console.log(this.state.userName.trim());
-        if (e.target.value.length > 0) {
-          // console.log(this.state.userName.trim());
-          this.setState({
-            formCheck: {
-              isPass: true,
-            },
-          });
-        } else {
-          this.setState({
-            formCheck: {
-              isPass: false,
-            },
-          });
+
+    //**** ERROR HANDLING */
+    if (this.state.showError) {
+      if (e.target.name === "password") {
+        if(this.state.userName.focused){
+          console.log("Please enter username first");
+        }else{
+          if (e.target.value.length > 0) {
+            this.setState({
+              formCheck: {
+                isPass: true,
+              },
+            });
+          } else {
+            this.setState({
+              formCheck: {
+                isPass: false,
+              },
+            });
+          }
         }
-      } else if (e.target.name === 'userName') {
+       
+      } else if (e.target.name === "userName") {
         if (e.target.value.length > 0) {
           // console.log(this.state.userName.trim());
           this.setState({
@@ -58,26 +91,30 @@ class LoginClass extends Component {
         }
       }
     }
-  
   };
 
   formSubmit = e => {
     e.preventDefault();
 
-    if (!this.state.formCheck.isName || this.state.formCheck.isPass) {
+    if (!this.state.userName.value || !this.state.password.value) {
       console.log("Please fill Name/Pass");
       this.setState({
-        showError: true
-      })
+        showError: true,
+      });
+      setTimeout(()=> {
+        this.setState({
+          showError: false
+        })
+      }, 6000)
       return;
     }
     console.log("Form Submitted", this.props);
     console.log(Users);
     Users.map(user => {
       console.log("User", user);
-      return this.state.userName === user.user_name ||
-        this.state.userName === user.email
-        ? this.state.password === user.password
+      return this.state.userName.value === user.user_name ||
+      this.state.userName.value === user.email
+        ? this.state.password.value === user.password
           ? this.props.isLogin(true)
           : console.log("Password wrong")
         : console.log("MisMatch");
@@ -102,10 +139,11 @@ class LoginClass extends Component {
                   name="userName"
                   className="user"
                   type="text"
-                  defaultValue={this.state.userName}
+                  defaultValue={this.state.userName.value}
                   onInput={this.handleChange}
+                  onFocus = {this.handleFocus}
                 />
-                {this.state.showError && <p>Please Enter UserName or Email</p> }
+                {this.state.showError && <p>Please Enter UserName or Email</p>}
               </div>
               <br />
               <div className="input-pass">
@@ -114,8 +152,10 @@ class LoginClass extends Component {
                   name="password"
                   className="pass"
                   type="password"
-                  defaultValue={this.state.password}
+                  defaultValue={this.state.password.value}
                   onInput={this.handleChange}
+                  onFocus = {this.handleFocus}
+
                 />
                 {this.state.showError && <p>Please Enter Password</p>}
               </div>
