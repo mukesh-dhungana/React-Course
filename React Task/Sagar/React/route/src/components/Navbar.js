@@ -19,6 +19,9 @@ function Navbar() {
       <Link to="/posts" className="posts">
         Posts
       </Link>
+      <Link to="/login" style={{ textDecoration: "none" }} className="login">
+        Login
+      </Link>
     </div>
   );
 }
