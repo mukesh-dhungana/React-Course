@@ -1,8 +1,9 @@
 import React, { useState, useReducer } from "react";
 import AddUser from "./AddUser";
 import UsersRow from "./UsersRow";
+import {withRouter} from 'react-router-dom'
 
-const Users = ({state, dispatch}) => {
+const Users = ({state, dispatch, history}) => {
 
     const [addUser, setAddUser] = useState(false)
 
@@ -29,6 +30,9 @@ const Users = ({state, dispatch}) => {
   return (
     <div className="users-container">
       <div className="add-body">
+        <button type="button" className="btn btn-info btn-lg btn-block" onClick={()=>history.push('/')} >
+          Back
+        </button>
         <button type="button" className="btn btn-primary btn-lg btn-block" onClick={handleAddUser} >
           Add New User
         </button>
@@ -57,4 +61,4 @@ const Users = ({state, dispatch}) => {
   );
 };
 
-export default Users;
+export default withRouter(Users);
