@@ -1,0 +1,9 @@
+.userdetail {
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.userdetail:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
