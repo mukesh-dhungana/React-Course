@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 
 function User({ state, dispatch }) {
     const { id } = useParams()
@@ -12,7 +12,7 @@ function User({ state, dispatch }) {
 
             <form onSubmit={(e) => {
                 e.preventDefault()
-                dispatch({ type: "EDIT_USER", payload: { ...user, name: name } })
+                dispatch({ type: "EDIT_USER", payload: { ...user, name } })
             }}>
                 <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
                 <input type="submit" value="Submit" />
