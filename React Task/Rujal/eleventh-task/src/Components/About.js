@@ -11,6 +11,7 @@ function About(props) {
 
     return (
         <div>
+            <h1>About</h1>
             <form>
                 <input type="text" name="title" onChange={props.handleChange} value={props.title || ''} /> <br />
                 <input type="text" name="description" onChange={props.handleChange} value={props.description || ''} /> <br />

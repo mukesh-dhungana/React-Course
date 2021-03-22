@@ -13,6 +13,7 @@ function Contact(props) {
 
     return (
         <div>
+            <h1>Contact</h1>
             <form>
                 <input type="text" name="address" onChange={(e) => props.handleChange(e)} value={props.address || ''} /> <br />
                 <input type="text" name="mobile" onChange={(e) => props.handleChange(e)} value={props.mobile || ''} /> <br />
