@@ -10,8 +10,20 @@ const Users = ({state, dispatch}) => {
         setAddUser(value);
     }
 
-    const addNewUser = () => {
-        console.log('User Added');
+    const addNewUser = (userInfo) => {
+        console.log('User Added', userInfo);
+        dispatch({
+          type: "ADD_USER",
+          payload: {...userInfo, id: state.users.length + 1}
+        })
+    }
+
+    const deleteUser = (id) => {
+      console.log('Deleted', id);
+      dispatch({
+        type: "DELETE_USER",
+        payload: {id: id}
+      })
     }
 
   return (
@@ -20,7 +32,7 @@ const Users = ({state, dispatch}) => {
         <button type="button" className="btn btn-primary btn-lg btn-block" onClick={handleAddUser} >
           Add New User
         </button>
-        { addUser && <AddUser handleForm={handleAddUser} userDetail={addNewUser} /> }
+        { addUser && <AddUser handleForm={handleAddUser} userDetail={addNewUser} editMode={false} /> }
       </div>
       <div className="table-body">
         <table className="table table-hover">
@@ -36,7 +48,7 @@ const Users = ({state, dispatch}) => {
           </thead>
           <tbody>
             {state.users.map((user)  => (
-                <UsersRow user={user} key={user.id} />
+                <UsersRow user={user} key={user.id} deleteUser={deleteUser} />
             ))}
           </tbody>
         </table>

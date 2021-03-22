@@ -2,16 +2,25 @@ import React, { useState } from "react";
 import {withRouter, useParams} from 'react-router-dom'
 import AddUser from "./AddUser";
 
-const User = ({users, history}) => {
+
+const User = ({users, history, dispatch}) => {
   const [editUser, setEditUser] = useState(false);
    
   const {id} = useParams();
 
     const user = users.find(x => x.id === +id)
-    console.log(user);
+    // console.log(user);
 
   const handleEditUser = (value) => {
       setEditUser(value)
+  }
+
+  const editInfo = (userInfo) => {
+    console.log(userInfo);
+    dispatch({
+      type: "EDIT_USER",
+      payload: userInfo
+    })
   }
 
   return (
@@ -41,7 +50,7 @@ const User = ({users, history}) => {
           </div>
         </div>
       </div>
-      <div className="edit-container">{editUser && <AddUser handleForm={handleEditUser} />}</div>
+      <div className="edit-container">{editUser && <AddUser handleForm={handleEditUser} user={user} editMode={editUser} editInfo={editInfo} />}</div>
     </>
   );
 };

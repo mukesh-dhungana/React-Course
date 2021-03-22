@@ -18,7 +18,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/users" render={()=> <Users state={state} dispatch={dispatch} />} />
-        <Route  path="/users/:id" render={() => <User users={state.users} />} />
+        <Route  path="/users/:id" render={() => <User users={state.users} state={state} dispatch={dispatch} />} />
         <Redirect to="/" />
       </Switch>
     </div>

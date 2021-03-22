@@ -1,29 +1,33 @@
 import React, { useState } from "react";
 
-const AddUser = ({handleForm, userDetail}) => {
+const AddUser = ({ handleForm, userDetail, user, editMode, editInfo }) => {
+  const [userInfo, setUserInfo] = useState(user);
 
-    const [fullName, setFullName] = useState('')
-    const [role, setRole] = useState('')
-    const [email, setEmail] = useState('')
-    const [address, setAddress] = useState('')
+  const handleCancel = () => {
+    console.log("Add User");
+    handleForm(false);
+    // handleEditUser(false);
+  };
 
+  const handleChange = e => {
+    console.log(e.target.value);
+    setUserInfo(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-    const handleCancel = () =>{
-        console.log('Add User');
-        handleForm(false);
-        // handleEditUser(false);
+  const handleSubmit = e => {
+    e.preventDefault();
+    if(!editMode) {
+      userDetail(userInfo);
     }
-
-    const handleChange = (e) => {
-        console.log(e.target.value);
+    else {
+      console.log('Edit Mode', userInfo);
+      editInfo(userInfo);
     }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(e.target.name);
-        userDetail();
-        handleForm(false);
-    }
+    handleForm(false);
+  };
 
   return (
     <div className="add-user">
@@ -39,7 +43,7 @@ const AddUser = ({handleForm, userDetail}) => {
                 className="form-control-plaintext"
                 id="staticEmail"
                 name="fullName"
-                defaultValue="Your Full Name"
+                defaultValue={editMode ? user.fullName : "Your Full Name"}
                 onChange={handleChange}
               />
             </div>
@@ -54,7 +58,7 @@ const AddUser = ({handleForm, userDetail}) => {
                 className="form-control-plaintext"
                 id="staticEmail"
                 name="address"
-                defaultValue="Your Address"
+                defaultValue={editMode ? user.address : "Your Address"}
                 onChange={handleChange}
               />
             </div>
@@ -69,24 +73,34 @@ const AddUser = ({handleForm, userDetail}) => {
                 className="form-control-plaintext"
                 id="staticEmail"
                 name="email"
-                defaultValue="email@example.com"
+                defaultValue={editMode ? user.email : "email@example.com"}
                 onChange={handleChange}
               />
             </div>
           </div>
-          <div class="form-group">
-            <label for="exampleSelect1">Role</label>
-            <select class="form-control col-sm-10" id="exampleSelect1">
-              <option>admin</option>
-              <option>moderator</option>
-              <option>viewer</option>
+          <div className="form-group">
+            <label htmlFor="exampleSelect1">Role</label>
+            <select
+              className="form-control col-sm-10"
+              id="exampleSelect1"
+              name="role"
+              onChange={handleChange}
+              defaultValue={editMode ? user.role : ""}
+            >
+              <option value="admin">admin</option>
+              <option value="moderator">moderator</option>
+              <option value="viewer">viewer</option>
             </select>
           </div>
 
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
-          <button type="button" className="btn btn-secondary" onClick={handleCancel}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleCancel}
+          >
             Cancel
           </button>
         </fieldset>

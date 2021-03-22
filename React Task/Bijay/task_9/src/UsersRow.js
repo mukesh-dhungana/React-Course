@@ -1,10 +1,14 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-const UsersRow = ({ user, history }) => {
+const UsersRow = ({ user, history, deleteUser }) => {
   const handleUserClick = () => {
     console.log("Clicked");
     history.push(`/users/${user.id}`);
   };
+
+  const handleDelete = () => {
+    deleteUser(user.id)
+  }
 
   return (
     <>
@@ -15,7 +19,7 @@ const UsersRow = ({ user, history }) => {
         <td>{user.email}</td>
         <td>{user.address}</td>
         <td className="dlt-icon">
-          <i className="fas fa-trash"></i>
+          <i className="fas fa-trash" onClick={handleDelete} ></i>
         </td>
       </tr>
     </>
