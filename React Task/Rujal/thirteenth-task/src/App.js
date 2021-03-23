@@ -9,17 +9,22 @@ class App extends Component {
         this.state = {
             reducer: {}
         }
+        store.subscribe(() => {
+            this.setState({ reducer: store.getState() })
+        })
     }
 
-    
+
 
     componentDidMount() {
         const getData = async () => {
             await store.dispatch(fetchData())
-            this.setState({reducer:store.getState()})
+            this.setState({ reducer: store.getState() })
         }
         getData()
     }
+
+
 
     render() {
         return (

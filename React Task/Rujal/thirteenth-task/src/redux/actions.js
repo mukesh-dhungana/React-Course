@@ -17,5 +17,5 @@ export const fetchData = () => async (dispatch) => {
     await dispatch(requestData())
     const ff = await fetch("https://jsonplaceholder.typicode.com/users")
     const data = await ff.json()
-    dispatch(successData(data))
+    setTimeout(() => dispatch(successData(data)), 2000)
 }
