@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router";
 import { EDIT_USER } from "../../actionTypes";
 
@@ -6,12 +6,7 @@ function UserDetail(props) {
     const [newinfo, setNewInfo] = useState({ name: "", address: "" });
     const [edit, setEdit] = useState(false);
 
-    const userDetail = props.users.find(
-        (item) => item.id === +props.match.params.id
-    );
-    useEffect(() => {
-        setNewInfo(userDetail);
-    }, []);
+    const userDetail = props?.location?.state?.user;
 
     const handleChange = (e) => {
         setNewInfo((prev) => ({
@@ -23,8 +18,11 @@ function UserDetail(props) {
     const handleEdit = (e) => {
         e.preventDefault();
         props.dispatch({ type: EDIT_USER, payload: newinfo });
-        console.log(newinfo);
         props.history.push("/all-users");
+    };
+    const handleEditForm = () => {
+        setEdit(!edit);
+        setNewInfo(userDetail);
     };
 
     return (
@@ -33,7 +31,7 @@ function UserDetail(props) {
             <h3>ID: {userDetail.id}</h3>
             <h3>Name: {userDetail.name}</h3>
             <h3>Address: {userDetail.address}</h3>
-            <button onClick={() => setEdit(!edit)}>Edit Info</button>
+            <button onClick={handleEditForm}>Edit Info</button>
             {edit && (
                 <form onSubmit={handleEdit}>
                     <input

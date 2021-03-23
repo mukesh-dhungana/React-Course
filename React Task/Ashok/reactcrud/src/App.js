@@ -10,14 +10,13 @@ function App() {
 
   return (
     <div className="App">
-      {console.log(state)}
       <BrowserRouter>
         <Switch>
           <Route exact path="/all-users">
             <AllUser users={state?.allUsers} dispatch={dispatch} />
           </Route>
           <Route exact path="/user/:id">
-            <UserDetail users={state?.allUsers} dispatch={dispatch} />
+            <UserDetail dispatch={dispatch} />
           </Route>
         </Switch>
       </BrowserRouter>

@@ -3,11 +3,11 @@ import { ADD_USER, EDIT_USER, REMOVE_USER } from "./actionTypes";
 export const initalState = {
   allUsers: [
     { id: 1, name: "Ashok Ganika", address: "Pepsicola" },
-    { id: 2, name: "Ashok Ganika", address: "Pepsicola" },
-    { id: 3, name: "Ashok Ganika", address: "Pepsicola" },
-    { id: 4, name: "Ashok Ganika", address: "Pepsicola" },
-    { id: 5, name: "Ashok Ganika", address: "Pepsicola" },
-    { id: 6, name: "Ashok Ganika", address: "Pepsicola" },
+    { id: 2, name: "maX Ganika", address: "Pepsicola" },
+    { id: 3, name: "jENNIFER Ganika", address: "Pepsicola" },
+    { id: 4, name: "kUSUM Ganika", address: "Pepsicola" },
+    { id: 5, name: "Dell Ganika", address: "Pepsicola" },
+    { id: 6, name: "Micheal Ganika", address: "Pepsicola" },
   ],
 };
 
@@ -23,7 +23,9 @@ export const reducer = (state, action) => {
       );
       state.allUsers.splice(indexoFUser, 1, action.payload);
       return {
-        ...state,
+        allUsers: state.allUsers.map((item) =>
+          item.id === action.payload.id ? action.payload : item
+        ),
       };
 
     case REMOVE_USER:
