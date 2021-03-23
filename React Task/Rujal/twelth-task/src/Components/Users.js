@@ -10,8 +10,11 @@ function Users({ state, dispatch }) {
             <div>
                 <h1>Add User</h1>
                 <form onSubmit={(e) => {
+                    const name = e.target.name.value
                     e.preventDefault()
-                    dispatch({ type: "ADD_USER", payload: { id: getId(state.users), name: e.target.name.value } })
+                    if (name.length) {
+                        dispatch({ type: "ADD_USER", payload: { id: getId(state.users), name } })
+                    }
                     e.target.reset()
                 }}>
                     <input type="text" name="name" />

@@ -12,7 +12,9 @@ function User({ state, dispatch }) {
 
             <form onSubmit={(e) => {
                 e.preventDefault()
-                dispatch({ type: "EDIT_USER", payload: { ...user, name } })
+                if (name.length>0) {
+                    dispatch({ type: "EDIT_USER", payload: { ...user, name } })
+                }
             }}>
                 <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
                 <input type="submit" value="Submit" />
