@@ -1,15 +1,20 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
+//import Dashboard from "./Dashboard";
 
-function Auth({ Dashboard, path }) {
+function Auth({ Comp, path }) {
   return (
-    <>
-      {localStorage.getItem("item") === "true" ? (
-        <Route exact path={path} component={Dashboard} />
-      ) : (
-        <Redirect to="/login" />
-      )}
-    </>
+    <Route
+      exact
+      path={path}
+      render={() => {
+        if (localStorage.getItem("item") == "true") {
+          return <Comp />;
+        } else {
+          return <Redirect to="/login" />;
+        }
+      }}
+    />
   );
 }
 

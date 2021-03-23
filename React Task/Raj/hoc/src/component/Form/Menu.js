@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 
-function Menu({ history, setisAuth }) {
+function Menu({ history }) {
+  const [isauth, setisAuth] = useState(localStorage.getItem("item"));
+
+  useEffect(() => {
+    localStorage.getItem("item") === null
+      ? localStorage.setItem("item", "false")
+      : localStorage.getItem("item");
+  }, []);
+
   const isShow = (history, path) => {
     if (history.location.pathname === path) {
       return { color: "white" };
@@ -36,7 +44,7 @@ function Menu({ history, setisAuth }) {
               Form @
             </Link>
           </li>
-          {localStorage.getItem("item") === "false" ? (
+          {isauth == "false" ? (
             <>
               <li className="nav-item">
                 <Link
@@ -52,9 +60,10 @@ function Menu({ history, setisAuth }) {
             <>
               <li className="nav-item">
                 <button
-                  onClick={() =>
-                    setisAuth(localStorage.setItem("item", "false"))
-                  }
+                  onClick={() => {
+                    setisAuth(localStorage.getItem("item"));
+                    localStorage.setItem("item", "false");
+                  }}
                   className="nav-link"
                   style={{ backgroundColor: "grey" }}
                 >

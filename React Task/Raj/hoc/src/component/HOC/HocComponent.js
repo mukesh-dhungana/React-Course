@@ -1,10 +1,10 @@
 import React from "react";
 import { Button } from "@material-ui/core";
+import Layout from "../Form/Layout";
 import "./Hoc.css";
 
 const HocComponent = Form => {
   return class extends React.Component {
-    myRef = React.createRef();
     state = {
       data: "",
       result: "",
@@ -14,23 +14,23 @@ const HocComponent = Form => {
     };
     handleSubmit = () => {
       this.setState({ result: this.state.data });
-      this.myRef.current.value = "";
+      this.setState({ data: "" });
     };
     clear = () => {
       this.setState({ data: "", result: "" });
     };
-    render() {
+    forms = () => {
       return (
-        <div className="container">
+        <>
           <div>
             <h1 className="text-center">Title Header</h1>
           </div>
           <Form
-            data={this.state.result}
+            data={this.state.data}
+            result={this.state.result}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             clear={this.clear}
-            myRef={this.myRef}
           />
           <footer className="my-10">
             <Button
@@ -42,6 +42,19 @@ const HocComponent = Form => {
               Submit
             </Button>
           </footer>
+        </>
+      );
+    };
+    render() {
+      return (
+        <div>
+          <Layout
+            title="High Order Component"
+            description="This is high Order Component"
+            className="container col-md-8 offset-md-2"
+          >
+            {this.forms()}
+          </Layout>
         </div>
       );
     }

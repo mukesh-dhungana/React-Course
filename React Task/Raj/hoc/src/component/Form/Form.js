@@ -1,10 +1,9 @@
 import React from "react";
 import { Button } from "@material-ui/core";
 
-function Form({ handleChange, handleSubmit }) {
+function Form({ handleChange, handleSubmit, error }) {
   const form = () => (
     <>
-      <h2 className="my-10">Login Here... </h2>
       <form className="container col-md-8 offset-md-2">
         <div className="form-group">
           <label className="text-muted">UserName</label>

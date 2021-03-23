@@ -1,41 +1,75 @@
 import React, { useState } from "react";
-
-import { withRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Form from "./Form";
+import Layout from "./Layout";
 
-function Login({ history }) {
-  const [data] = useState({
+function Login() {
+  const [data, setData] = useState({
+    defaultUsername: "admin",
+    defaultPassword: "admin",
     username: "admin",
     password: "admin",
+    error: "",
+    redirect: false,
   });
 
-  const [state, setstate] = useState({
-    username: "",
-    password: "",
-  });
+  const {
+    defaultUsername,
+    defaultPassword,
+    username,
+    password,
+    error,
+    redirect,
+  } = data;
 
   const handleChange = (name, event) => {
-    setstate({ ...state, [name]: event.target.value });
+    setData({
+      ...data,
+      [name]: event.target.value,
+      error: "",
+      redirect: false,
+    });
   };
-  // const timer = () =>
-  //   setTimeout(() => localStorage.setItem("item", "false"), 6000);
 
   const handleSubmit = event => {
-    // timer();
     event.preventDefault();
-    if (data.username === state.username && data.password === state.password) {
+
+    if (defaultUsername === username && defaultPassword === password) {
       localStorage.setItem("item", "true");
-      return history.push("/dashboard");
+      setData({ ...data, error: "", redirect: true });
     } else {
-      alert("Invalid Username and Password");
+      setData({
+        ...data,
+        redirect: false,
+        error: "Username or Password Do not Match",
+      });
     }
   };
 
+  const redirectTo = () => redirect && <Redirect to="/dashboard" />;
+
+  const errMsg = () => (
+    <div
+      className=" container col-md-8 offset-md-2 alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>
+  );
+
   return (
-    <>
-      <Form handleChange={handleChange} handleSubmit={handleSubmit} />
-    </>
+    <div>
+      <Layout
+        title="Login Page"
+        description="This is Login page"
+        className="container col-md-8 offset-md-2"
+      >
+        {errMsg()}
+        {redirectTo()}
+        <Form handleChange={handleChange} handleSubmit={handleSubmit} />
+      </Layout>
+    </div>
   );
 }
 
-export default withRouter(Login);
+export default Login;
