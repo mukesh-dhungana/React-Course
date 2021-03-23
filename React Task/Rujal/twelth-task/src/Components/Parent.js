@@ -15,9 +15,9 @@ function Parent() {
                 <Route exact path={`${path}users`}>
                     <Users state={state} dispatch={dispatch} />
                 </Route>
-                <Route path={`${path}users/:id`}>
-                    <User  state={state} dispatch={dispatch} />
-                </Route>
+                <Route path={`${path}users/:id`} render={(props) => <User state={state} dispatch={dispatch} {...props}/>
+                } />
+
             </Switch>
         </div>
     )

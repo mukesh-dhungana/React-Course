@@ -37,7 +37,7 @@ function Users({ state, dispatch }) {
                             <td>{x.id}</td>
                             <td>{x.name}</td>
                             <td>
-                                <button onClick={() => history.push('/users/' + x.id)}>Detail</button>
+                                <button onClick={() => history.push({pathname:'/users/' + x.id})}>Detail</button>
                                 <button onClick={() => dispatch({ type: "DELETE_USER", payload: x.id })}>Delete</button>
                             </td>
                         </tr>

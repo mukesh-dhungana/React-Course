@@ -1,10 +1,11 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-function User({ state, dispatch }) {
+function User({ state, dispatch, ...rest }) {
     const { id } = useParams()
     const user = state.users.find(x => x.id === +id)
     const [name, setName] = React.useState(user.name)
+
     return (
         <div className="user">
             <h2>ID: {user.id}</h2>
