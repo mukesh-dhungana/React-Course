@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import Contact from "./components/Contact";
+import CustomHooks from "./customHooks/Input";
 import LoginFail from "./components/LoginFail";
 import PostDetail from "./components/PostDetail";
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -41,6 +42,7 @@ function App() {
           />
           <Route path="/loginfail" component={LoginFail} exact />
           <ProtectedRoute path="/profile" component={Profile} />
+          <Route path="/customhook" component={CustomHooks} />
           <Route path="/posts/:id" component={PostDetail} exact />
           <Route path="/error" component={Error} />
           <Redirect to="/error" />

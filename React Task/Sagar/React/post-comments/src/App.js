@@ -17,8 +17,8 @@ function App() {
   return (
     <div className={`App ${theme}`}>
       <div className="nav">
-        <Theme theme={theme} toggleTheme={toggleTheme} />
         <Search />
+        <Theme theme={theme} toggleTheme={toggleTheme} />
       </div>
       <UseReducer theme={theme} />
     </div>

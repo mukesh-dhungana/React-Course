@@ -9,10 +9,12 @@ const Form = ({ un, pw, setError, setIsAuth }) => {
 
   const userFunction = (e) => {
     setUsername(e.target.value);
+    setError("");
   };
 
   const passFunctioin = (e) => {
     setPassword(e.target.value);
+    setError("");
   };
 
   const onSubmitHandler = (e) => {

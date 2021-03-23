@@ -22,6 +22,9 @@ function Navbar() {
       <Link to="/login" style={{ textDecoration: "none" }} className="login">
         Login
       </Link>
+      <Link to="/customhook" className="posts">
+        CustomHooks
+      </Link>
     </div>
   );
 }
