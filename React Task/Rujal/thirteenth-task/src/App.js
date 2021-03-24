@@ -17,11 +17,7 @@ class App extends Component {
 
 
     componentDidMount() {
-        const getData = async () => {
-            await store.dispatch(fetchData())
-            this.setState({ reducer: store.getState() })
-        }
-        getData()
+        store.dispatch(fetchData())
     }
 
 
