@@ -17,7 +17,10 @@ class App extends Component {
 
 
     componentDidMount() {
-        store.dispatch(fetchData())
+        const getData = async () => {
+            store.dispatch(fetchData())
+        }
+        getData()
     }
 
 
