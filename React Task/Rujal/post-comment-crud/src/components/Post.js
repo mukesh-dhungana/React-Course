@@ -6,7 +6,7 @@ import Comment from './Comment'
 function Post(props) {
 
     const getId = () => props.comments.reduce((a, c) => a > c.id ? a : c.id, 0) + 1
-    
+
     const [comment, setComment] = React.useState('')
     const [editMode, setEditMode] = React.useState(false)
     const [commentDetail, setCommentDetail] = React.useState({})
