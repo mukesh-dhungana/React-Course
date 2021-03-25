@@ -4,14 +4,14 @@ const initialState = {
     posts: [
         {
             id: 1, title: "Post 1", comments: [
-                { id: 1, comment: "P1 C1" },
-                { id: 2, comment: "P1 C2" },
+                { id: 1, comment: "Post One Comment One" },
+                { id: 2, comment: "Post One Comment Two" },
             ]
         },
         {
             id: 2, title: "Post 2", comments: [
-                { id: 1, comment: "P2, C1" },
-                { id: 2, comment: "P2 C2" }
+                { id: 1, comment: "Post Two Comment One" },
+                { id: 2, comment: "Post Two Comment Two" }
             ]
         }
     ]

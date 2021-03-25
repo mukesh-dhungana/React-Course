@@ -5,10 +5,18 @@
   padding: 12px;
 }
 
+.post form{
+  text-align: center;
+}
+
+.post h1{
+  text-align: center;
+}
+
 .comment{
   display: flex;
   margin: 12px;
-  padding: 7px;
+  padding: 3px;
 }
 
 .comment h3{
