@@ -21,7 +21,8 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import NewUser from "./components/NewUser";
 import ErrorPage from "./components/errorPage";
-import RouteNest from "./RouteNest";
+import Route from "./Route";
+import ActionDispatcher from "./components/ActionDispatcher";
 
 function App({ id }) {
   const [string, setvalue] = useState(false);
@@ -61,23 +62,23 @@ function App({ id }) {
       <UseMemo /> */}
       {isShown && <Modal show={isShown} />}
       <Events />
-
+      <ActionDispatcher />
       <Router>
         <Switch>
-
-          <RouteNest path="/error" exact component={ErrorPage} />
-          <RouteNest path="/" exact component={Home} />
-          <RouteNest path="/about" component={About} />
+          <Route path="/error" exact component={ErrorPage} />
+          <Route path="/" exact component={Home} />
+          <Route path="/about" component={About} />
           {/* <Route path="/contact" component={Contact} /> */}
           {/* <Route path="/contact">
             <Contact />
           </Route> */}
           {/* <Route path="/contact" render={(props) => <Contact {...props} />} /> */}
-          <RouteNest path="/user/:id" exact component={NewUser} />
-          <RouteNest path="/contact">
+          <Route path="/user/:id" exact component={NewUser} />
+          <Route path="/contact">
             <Contact />
-            <RouteNest path="/contact/user" component={Users} />
-          </RouteNest>
+            <Route path="/contact/user" component={Users} />
+          </Route>
+          {/* <Route path="/actions" component={ActionDispatcher} /> */}
           <Redirect from="/home" to="/" />
           <Redirect to="/error" />
         </Switch>
