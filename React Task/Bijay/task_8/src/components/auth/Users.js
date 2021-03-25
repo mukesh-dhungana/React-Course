@@ -1,8 +1,8 @@
 const Users = [
   {
-    user_name: "beezay",
+    user_name: "bee",
     email: "np.beezay@gmail.com",
-    password: "testpass",
+    password: "pass",
   },
 ];
 

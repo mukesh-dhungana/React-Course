@@ -3,7 +3,7 @@ import { Component } from "react";
 import "./App.css";
 import Login from "./components/auth/Login";
 import LoginClass from "./components/auth/LoginClass";
-import ErrorPage from "./components/ErrorPage.jsx"
+import ErrorPage from "./components/ErrorPage.jsx";
 
 import {
   BrowserRouter as Router,
@@ -28,34 +28,54 @@ class App extends Component {
       isLogged: params,
     });
   };
-
+  componentDidMount()
+{
+  console.log("auth mout")
+}
   render() {
     const { isLogged } = this.state;
 
     return (
       <div className="app">
-        <Switch>
-          {/* <Route path="/" exact component={Login} /> */}
-          <Route
-            path="/"
-            exact
-            render={() =>
-              !isLogged ? (
-                <LoginClass isLogin={this.handleLogin} />
-              ) : (
-                <Redirect to="/dashboard" />
-              )
-            }
-          />
-          <Route path="/dashboard" exact render={()=> <Homepage isLogin={this.handleLogin} />} />
-          {/* {isLogin ? <Redirect to="/dashboard" /> : <Redirect to="/" /> } */}
-          {/* <Redirect exact from="/login" to="/" /> */}
-          <Route path="*" component={ErrorPage} />
-          <Redirect to="/" />
-        </Switch>
+       <ChildCompoent isLogged ={isLogged} handleLogin={this.handleLogin}/>
       </div>
     );
   }
+}
+
+
+const ChildCompoent = ({isLogged,handleLogin})=>{
+  return (
+    <Switch>
+    {/* <Route path="/" exact component={Login} /> */}
+    <Route
+      path="/"
+      exact
+      render={() =>
+        !isLogged ? (
+          <LoginClass isLogin={handleLogin} />
+        ) : (
+          <Redirect to="/dashboard" />
+        )
+      }
+    />
+    <Route
+      path="/dashboard"
+      exact
+      render={() =>
+        isLogged ? (
+          <Homepage isLogin={handleLogin} />
+        ) : (
+          <Redirect to="/" />
+        )
+      }
+    />
+    {/* {isLogin ? <Redirect to="/dashboard" /> : <Redirect to="/" /> } */}
+    {/* <Redirect exact from="/login" to="/" /> */}
+    <Route path="*" component={ErrorPage} />
+    <Redirect to="/" />
+  </Switch>
+  )
 }
 
 export default App;
