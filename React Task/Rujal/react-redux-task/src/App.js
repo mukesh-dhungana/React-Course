@@ -41,7 +41,6 @@ function App(props) {
 
   return (
     <div className="App">
-
       <Router>
         <Switch>
           <ProtectedSignIn exact path="/" component={Login} logIn={logIn} auth={auth} />

@@ -1,7 +1,6 @@
 import * as actionType from './actionTypes'
 
-
-export const fetchData = () => async(dispatch) => {
+export const fetchData = () => async (dispatch) => {
     dispatch({ type: actionType.FETCH_REQUEST })
     await fetch("https://jsonplaceholder.typicode.com/users")
         .then(res => res.json())
@@ -12,7 +11,7 @@ export const fetchData = () => async(dispatch) => {
         })
 }
 
-export const fetchDetail = id => async(dispatch) => {
+export const fetchDetail = id => async (dispatch) => {
     dispatch({ type: actionType.DETAIL_REQUEST })
     await fetch("https://jsonplaceholder.typicode.com/users/" + id)
         .then(res => res.json())
