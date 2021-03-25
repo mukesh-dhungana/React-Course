@@ -23,13 +23,16 @@ function Post(props) {
             <h1>{props.title}</h1>
             <form onSubmit={(e) => {
                 e.preventDefault()
-                if (editMode) {
-                    props.updateComment({ postId: props.id, comment: { ...commentDetail, comment } })
-                    setCommentDetail({})
-                    setEditMode(false)
-                } else {
-                    props.addComment({ postId: props.id, comment: { id: getId(), comment } })
+                if (comment) {
+                    if (editMode) {
+                        props.updateComment({ postId: props.id, comment: { ...commentDetail, comment } })
+                        setCommentDetail({})
+                        setEditMode(false)
+                    } else {
+                        props.addComment({ postId: props.id, comment: { id: getId(), comment } })
+                    }
                 }
+
                 setComment('')
             }}>
                 <input

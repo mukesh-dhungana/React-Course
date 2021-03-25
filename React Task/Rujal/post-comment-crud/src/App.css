@@ -1,16 +1,17 @@
 .App {
   display: flex;
-  flex-direction: column;
   align-items: center;
   padding: 12px;
 }
 
 .post{
-  background-color: red;
+  background-color: rgb(32, 6, 6);
   margin: 5px;
   overflow: auto;
   height: 300px;
   width: 50%;
+  flex: 50%;
+  color: wheat;
 }
 
 .post form{
