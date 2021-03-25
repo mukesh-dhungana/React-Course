@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
                 posts: state.posts.map(x => x.id === payload.postId ?
                     {
                         ...x,
-                        comments: [...x.comments, payload.comment]
+                        comments: [payload.comment, ...x.comments]
                     }
                     : x)
             }
