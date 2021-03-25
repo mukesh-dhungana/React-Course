@@ -1,4 +1,3 @@
-import React from "react";
 import { ADD_TODO, DELETE_TODO, EDIT_TODO } from "../Action/type";
 
 const initialState = {

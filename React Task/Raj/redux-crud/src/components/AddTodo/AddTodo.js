@@ -19,7 +19,7 @@ export const AddData = () => {
     <div>
       <form onSubmit={e => handleSubmit(e)}>
         <input name="data" type="text" onChange={handleChange} />
-        <button onChange="">Submit</button>
+        <button>Submit</button>
       </form>
     </div>
   );
