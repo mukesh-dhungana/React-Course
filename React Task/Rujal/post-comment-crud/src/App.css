@@ -5,6 +5,14 @@
   padding: 12px;
 }
 
+.post{
+  background-color: red;
+  margin: 5px;
+  overflow: auto;
+  height: 300px;
+  width: 50%;
+}
+
 .post form{
   text-align: center;
 }
@@ -15,8 +23,16 @@
 
 .comment{
   display: flex;
-  margin: 12px;
-  padding: 3px;
+  align-items: center;
+}
+
+.comment .title{
+  width: 60%;
+  text-align: center;
+}
+
+.comment .buttons{
+  width: 40%;
 }
 
 .comment h3{
