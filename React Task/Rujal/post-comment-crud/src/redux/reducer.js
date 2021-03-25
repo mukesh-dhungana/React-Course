@@ -1,3 +1,4 @@
+import { ADD_COMMENT, DELETE_COMMENT, UPDATE_COMMENT } from "./action"
 
 const initialState = {
     posts: [
@@ -17,7 +18,41 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    switch(action.type){
+    const { type, payload } = action
+    switch (type) {
+        case ADD_COMMENT:
+            return {
+                ...state,
+                posts: state.posts.map(x => x.id === payload.postId ?
+                    {
+                        ...x,
+                        comments: [...x.comments, payload.comment]
+                    }
+                    : x)
+            }
+
+        case DELETE_COMMENT:
+            return {
+                ...state,
+                posts: state.posts.map(x => x.id === payload.postId ?
+                    {
+                        ...x,
+                        comments: x.comments.filter(y => y.id !== payload.commentId)
+                    }
+                    : x)
+
+            }
+
+        case UPDATE_COMMENT:
+            return {
+                ...state,
+                posts: state.posts.map(x => x.id === payload.postId ?
+                    {
+                        ...x,
+                        comments: x.comments.map(y => y.id === payload.comment.id ? payload.comment : y)
+                    }
+                    : x)
+            }
 
         default: return state
     }
