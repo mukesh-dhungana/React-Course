@@ -8,7 +8,9 @@ function App() {
   const [view, setview] = useState(false);
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
-    store.dispatch(getAllUserAction);
+    store.dispatch(
+      getAllUserAction("https://jsonplaceholder.typicode.com/todos")
+    );
   }, []);
 
   store.subscribe(() => {
@@ -20,7 +22,21 @@ function App() {
       {isLoading ? (
         <h1>LOading...</h1>
       ) : (
-        <button onClick={() => setview(!view)}>View Details</button>
+        <>
+          <button onClick={() => setview(!view)}>View Details</button>
+          <button
+            onClick={() =>
+              store.dispatch(
+                getAllUserAction(
+                  "https://jsonplaceholder.typicode.com/todos/?_limit=2"
+                )
+              )
+            }
+          >
+            {" "}
+            New data
+          </button>
+        </>
       )}
 
       {view && <UserDetail />}
