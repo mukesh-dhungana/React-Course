@@ -38,8 +38,18 @@
 
 .post-container > * {
   flex: 2 2 200px;
+  transition: all 0.3s ease;
+  
   /* max-height: max-content;
   min-height: max-content; */
+}
+
+.post-container:hover > * {
+  opacity: 0.4;
+}
+
+.post-container:hover > *:hover {
+  opacity: 1;
 }
 
 .toggle {

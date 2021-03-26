@@ -12,7 +12,7 @@ const App = props => {
     console.log("Dark Mode");
     setDarkMode(!darkMode);
   };
-
+  // console.log(props.ui);
   return (
     <div className="main-container">
       <div className="toggle">
