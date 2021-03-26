@@ -24,7 +24,7 @@ const App = props => {
           <div className="post-container">
             {/* <Post /> */}
             {props.ui.map(post => (
-              <Post post={post} />
+              <Post key={post.user_id} post={post} />
             ))}
           </div>
         </section>
@@ -34,7 +34,7 @@ const App = props => {
 };
 
 const mapStateToProps = state => ({
-  ui: state.posts,
+  ui: state.postData.posts,
 });
 
 export default connect(mapStateToProps)(App);

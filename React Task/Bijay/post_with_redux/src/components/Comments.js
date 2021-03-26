@@ -8,7 +8,7 @@ const Comments = ({ comment, deleteComment, commentEdit }) => {
   const [disableInput, setDisableInput] = useState(true);
   const [newComment, setNewComment] = useState(comment.comment);
 
-  console.log("comment", newComment);
+  // console.log("comment", newComment);
   useEffect(() => {
     // setDisableInput(true);
     if (!disableInput) {
@@ -32,9 +32,9 @@ const Comments = ({ comment, deleteComment, commentEdit }) => {
 
   const editComment = e => {
     e.preventDefault();
-    console.log(e.target.comment.value, comment.id);
+    // console.log(e.target.comment.value, comment.id);
     commentEdit(e.target.comment.value, comment.id)
-    setNewComment(e.target.name.value);
+    // setNewComment(e.target.name.value);
     // disableInput ? setDisableInput(!disableInput) : setDisableInput(false)
     setDisableInput(!disableInput);
   };
@@ -55,7 +55,7 @@ const Comments = ({ comment, deleteComment, commentEdit }) => {
               type="text"
               id={`focus-me`}
               name="comment"
-              value={newComment}
+              value={newComment || ''}
               disabled={disableInput}
               autoFocus
               onChange={e => setNewComment(e.target.value)}

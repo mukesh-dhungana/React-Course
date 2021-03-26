@@ -51,24 +51,24 @@ const Post = props => {
   }
 
   const addComments = () => {
-    console.log("Add Comment");
+    // console.log("Add Comment");
     setAddComment(!addComment);
   };
 
   const notFocused = () => {
-    console.log("Out Focus");
+    // console.log("Out Focus");
     setAddComment(!addComment);
   };
 
   const toggleModal = () => {
-    console.log("Clicked");
+    // console.log("Clicked");
     setModal(false);
   };
 
   const [modal, setModal] = useState(false);
   const [addComment, setAddComment] = useState(false);
 
-  console.log("Comments", comments);
+  // console.log("Comments", comments);
   return (
     <>
       {modal && <Modal toggleModal={toggleModal} />}

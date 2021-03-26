@@ -153,7 +153,7 @@ const postReducer = (state = initalState, action) => {
         ],
       };
     case DELETE_COMMENT:
-      console.log(action.payload, state);
+      // console.log(action.payload, state);
       return {
         ...state,
         posts: [
