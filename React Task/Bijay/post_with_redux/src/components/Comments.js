@@ -2,16 +2,11 @@ import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
 import "./Styles/Comments.css";
 
-const Comments = ({ comment, deleteComment }) => {
+const Comments = ({ comment, deleteComment, commentEdit }) => {
   const inputRef = React.useRef();
   const [modal, setModal] = useState(false);
   const [disableInput, setDisableInput] = useState(true);
   const [newComment, setNewComment] = useState(comment.comment);
-  // console.log('Comment Section', comment);
-  // const showModal = () => {
-  //   console.log("Modal Shown");
-  //   setModal(true);
-  // };
 
   console.log("comment", newComment);
   useEffect(() => {
@@ -28,9 +23,6 @@ const Comments = ({ comment, deleteComment }) => {
     if (disableInput) {
       setDisableInput(false);
     }
-
-    // ref.current.focus();
-    // console.log(ref.current.id);
   };
 
   const toggleModal = () => {
@@ -40,7 +32,8 @@ const Comments = ({ comment, deleteComment }) => {
 
   const editComment = e => {
     e.preventDefault();
-    console.log(e.target.comment.value);
+    console.log(e.target.comment.value, comment.id);
+    commentEdit(e.target.comment.value, comment.id)
     setNewComment(e.target.name.value);
     // disableInput ? setDisableInput(!disableInput) : setDisableInput(false)
     setDisableInput(!disableInput);

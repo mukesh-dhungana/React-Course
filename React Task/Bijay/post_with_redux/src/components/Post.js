@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import "./Styles/Post.css";
 
 import { connect } from "react-redux";
-import { addComment, deleteComment } from "../reducers/postReducer";
+import { addComment, deleteComment, editComments } from "../reducers/postReducer";
 
 const Post = props => {
   const comments = props.post.comments;
@@ -37,6 +37,18 @@ const Post = props => {
     props.addComment(newComment);
     setAddComment(!addComment);
   };
+
+  const commentEdit = (...args) => {
+    // console.log('Edited', args[0], props.post.user_id);
+    const editedComment = {
+      postId: props.post.user_id,
+      comment: {
+        id: args[1],
+        comment: args[0]
+      }
+    }
+    props.editComments(editedComment)
+  }
 
   const addComments = () => {
     console.log("Add Comment");
@@ -96,6 +108,7 @@ const Post = props => {
             <Comments
               key={comment.id}
               comment={comment}
+              commentEdit={commentEdit}
               deleteComment={deleteComments}
             />
           ))}
@@ -105,4 +118,4 @@ const Post = props => {
   );
 };
 
-export default connect(null, { addComment, deleteComment })(Post);
+export default connect(null, { addComment, deleteComment, editComments })(Post);
