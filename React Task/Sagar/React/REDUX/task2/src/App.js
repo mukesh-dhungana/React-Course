@@ -7,13 +7,21 @@ import ProfileContainer from "./container/ProfileContainer";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+  console.log("object");
 
   return (
     <div className="App">
       <Switch>
         <Route path="/login" render={() => <Login setIsAuth={setIsAuth} />} />
-        {isAuth ? <Route path="/home" component={HomeContainer} /> : ""}
-        {isAuth ? <Route path="/profile" component={ProfileContainer} /> : ""}
+        {isAuth ? (
+          <>
+            <Route path="/home" component={HomeContainer} />{" "}
+            <Route path="/profile" component={ProfileContainer} />{" "}
+          </>
+        ) : (
+          ""
+        )}
+        {/* {isAuth ?  : ""} */}
 
         <Redirect exact from="/" to="/login" />
         <Route component={Error} />

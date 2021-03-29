@@ -17,7 +17,7 @@ const Home = (props) => {
 
   useEffect(() => {
     props.showDataHandler(apiValue);
-  });
+  }, [apiValue]);
 
   console.log("props", props.data);
   return (
@@ -25,7 +25,6 @@ const Home = (props) => {
       <Link to="/profile">
         <button>Go To Profile</button>
       </Link>
-      
     </div>
   );
 };
