@@ -10,7 +10,7 @@ function Main() {
       {selector.map((x, i) => {
         return (
           <div className="data" key={i}>
-            <Form postId={x.id} x={x} />
+            <Form postData={x} />
           </div>
         );
       })}

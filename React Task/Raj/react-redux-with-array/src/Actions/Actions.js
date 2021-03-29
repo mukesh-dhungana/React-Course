@@ -11,6 +11,7 @@ export const deleteCmnt = data => ({
   postId: data.postId,
   commentId: data.commentId,
 });
+
 export const editData = ({ postId, payload }) => ({
   type: EDIT,
   postId,
