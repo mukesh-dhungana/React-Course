@@ -3,7 +3,7 @@ import AddUser from "./AddUser";
 import UsersRow from "./UsersRow";
 import { withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addUsers, deleteUsers, editUser, selectUsers } from "./UsersSlice";
+import { addUsers, deleteUsers, selectUsers } from "./UsersSlice";
 
 const Users = ({ history }) => {
   console.log('Toolkit', selectUsers);

@@ -39,13 +39,21 @@ export const usersSlice = createSlice({
         ]
       }
     },
-    editUser: (state, action) => {
+    editUsers: (state, action) => {
       console.log("Edited");
+      return {
+        ...state,
+        users: [
+          ...state.users.map(user => (
+            user.id === action.payload.id ? action.payload : user
+          ))
+        ]
+      }
     },
   },
 });
 
-export const { addUsers, deleteUsers, editUser } = usersSlice.actions;
+export const { addUsers, deleteUsers, editUsers } = usersSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This

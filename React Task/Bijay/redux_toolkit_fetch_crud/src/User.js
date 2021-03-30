@@ -1,27 +1,33 @@
 import React, { useState } from "react";
-import {withRouter, useParams} from 'react-router-dom'
+import { withRouter, useParams } from "react-router-dom";
 import AddUser from "./AddUser";
+import { useSelector, useDispatch } from "react-redux";
 
+import { editUsers, selectUsers } from "./UsersSlice";
 
-const User = ({users, history, dispatch}) => {
+const User = ({ history }) => {
+  const singleUser = useSelector(selectUsers);
+  const dispatch = useDispatch();
+
   const [editUser, setEditUser] = useState(false);
-   
-  const {id} = useParams();
 
-    const user = users.find(x => x.id === +id)
-    // console.log(user);
+  const { id } = useParams();
 
-  const handleEditUser = (value) => {
-      setEditUser(value)
-  }
+  const user = singleUser.find(x => x.id === +id);
+  // console.log(user);
 
-  const editInfo = (userInfo) => {
+  const handleEditUser = value => {
+    setEditUser(value);
+  };
+
+  const editInfo = userInfo => {
     console.log(userInfo);
-    dispatch({
-      type: "EDIT_USER",
-      payload: userInfo
-    })
-  }
+    // dispatch({
+    //   type: "EDIT_USER",
+    //   payload: userInfo,
+    // });
+    dispatch(editUsers(userInfo))
+  };
 
   return (
     <>
@@ -43,14 +49,23 @@ const User = ({users, history, dispatch}) => {
             <button
               type="button"
               className="btn btn-secondary"
-              onClick={() => history.push('/users')}
+              onClick={() => history.push("/users")}
             >
               Back
             </button>
           </div>
         </div>
       </div>
-      <div className="edit-container">{editUser && <AddUser handleForm={handleEditUser} user={user} editMode={editUser} editInfo={editInfo} />}</div>
+      <div className="edit-container">
+        {editUser && (
+          <AddUser
+            handleForm={handleEditUser}
+            user={user}
+            editMode={editUser}
+            editInfo={editInfo}
+          />
+        )}
+      </div>
     </>
   );
 };
