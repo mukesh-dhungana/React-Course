@@ -3,7 +3,13 @@ import AddUser from "./AddUser";
 import UsersRow from "./UsersRow";
 import { withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addUsers, deleteUsers, selectUsers, selectStatus, toggleLoading } from "./UsersSlice";
+import {
+  addUsers,
+  deleteUsers,
+  selectUsers,
+  selectStatus,
+  toggleLoading,
+} from "./UsersSlice";
 import Loader from "./Loader";
 
 const Users = ({ history }) => {
@@ -37,18 +43,20 @@ const Users = ({ history }) => {
     dispatch(deleteUsers({ id: id }));
   };
 
-  useEffect(()=> {
-    if(status) {
-      setTimeout(()=> {
-        dispatch(toggleLoading())
-      }, 3000)
+  useEffect(() => {
+    if (status) {
+      setTimeout(() => {
+        dispatch(toggleLoading());
+      }, 3000);
     }
-  }, [])
+  }, []);
 
   return (
     <>
       {status ? (
-        <Loader />
+        <div className="loader-container">
+          <Loader />
+        </div>
       ) : (
         <div className="users-container">
           <div className="add-body">
