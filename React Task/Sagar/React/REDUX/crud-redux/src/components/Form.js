@@ -18,7 +18,7 @@ const Form = (props) => {
             props.setValue("");
             props.setEdit(false);
           } else {
-            dispatch(addComment(props.postId, props.value));
+            dispatch(addComment(props.postId, props.value, props.posts));
             props.setValue("");
           }
         }}

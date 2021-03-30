@@ -23,11 +23,12 @@ export const deleteComment = (pId, cId) => {
   };
 };
 
-export const addComment = (pId, comment) => {
+export const addComment = (pId, comment, comments) => {
+  console.log(Math.max(...comments.map((x) => x.id)) + 1);
   return {
     type: ADD_COMMENT,
     payloads: {
-      id: Math.random() * 100,
+      id: Math.max(...comments.map((x) => x.id)) + 1,
       comment: comment,
       commenter: "New User",
       commentedDate: new Date(),
@@ -36,7 +37,6 @@ export const addComment = (pId, comment) => {
   };
 };
 
-
 export const updateComment = (pId, value, valueDetail) => {
   return {
     type: UPDATE_COMMENT,
@@ -44,6 +44,6 @@ export const updateComment = (pId, value, valueDetail) => {
       ...valueDetail,
       comment: value,
     },
-    pId
+    pId,
   };
 };

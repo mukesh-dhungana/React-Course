@@ -16,7 +16,7 @@ const Home = (props) => {
   }, []);
 
   useEffect(() => {
-    props.showDataHandler(apiValue);
+    props. (apiValue);
   }, [apiValue]);
 
   console.log("props", props.data);

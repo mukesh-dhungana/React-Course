@@ -25,6 +25,7 @@ const Comments = (props) => {
         edit={edit}
         setEdit={setEdit}
         valueDetail={valueDetail}
+        posts={props.comment}
       />
       {props.comment.map((c) => (
         <div key={c.id}>
