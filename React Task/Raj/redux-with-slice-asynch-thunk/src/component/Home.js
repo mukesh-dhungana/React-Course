@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TextField, Button } from "@material-ui/core";
 import cuid from "cuid";
@@ -12,9 +12,9 @@ export const Home = () => {
     address: "",
     phone: "",
   });
-  const ref1 = useRef(null);
+
   const dispatch = useDispatch();
-  const state1 = useSelector(state => state);
+  const state1 = useSelector(state => state.editData);
 
   const { name, email, address, phone } = state;
 
@@ -49,19 +49,16 @@ export const Home = () => {
       phone: state1.phone,
     });
   };
-  useEffect(() => {
-    ref1.current.focus();
-  }, []);
+
   return (
     <div>
-      <h2>Edit Form</h2>
+      <h3>Edit Form</h3>
       <form onSubmit={handleSubmit}>
         <TextField
           type="text"
           onChange={e => handleChange("name", e)}
           label="Enter Name"
           required
-          ref={ref1}
           value={name}
         />
         <TextField
@@ -91,14 +88,14 @@ export const Home = () => {
       </form>
 
       <div>
-        <h1>{state1.id}</h1>
-        <h2>{state1.name}</h2>
+        <h3>{state1.id}</h3>
+        <h3>{state1.name}</h3>
         <h3>{state1.email}</h3>
-        <h2>{state1.address}</h2>
-        <h1>{state1.phone}</h1>
+        <h3>{state1.address}</h3>
+        <h3>{state1.phone}</h3>
       </div>
       <div>
-        <Button color="primary" variant="contained" onClick={editBtn}>
+        <Button m={10} color="primary" variant="contained" onClick={editBtn}>
           Edit
         </Button>
       </div>
