@@ -1,7 +1,17 @@
 import React from "react";
-import {Link} from 'react-router-dom'
-import './Navbar.css'
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { checkLogged, loginUser } from "../reducers/UsersSlice";
+import "./Navbar.css";
 const NavLogged = () => {
+  // const loginUser = useSelector(checkLogged)
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    console.log("Logged Out");
+    dispatch(loginUser(false));
+  };
+
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -26,16 +36,19 @@ const NavLogged = () => {
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav mr-auto">
             <div className="flex-start">
-              <li class="nav-item active">
-                <a class="nav-link" href="!#">
-                  Home
-                  <span class="sr-only">(current)</span>
-                </a>
+            <li class="nav-item active">
+                <Link to="/">
+                  <a class="nav-link" href="!#">
+                    Home
+                  </a>
+                </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="!#">
-                  Blogs
-                </a>
+                <Link to="/">
+                  <a class="nav-link" href="!#">
+                    Blogs
+                  </a>
+                </Link>
               </li>
             </div>
             <div className="flex-end">
@@ -48,7 +61,7 @@ const NavLogged = () => {
               </li>
               <li class="nav-item left-nav">
                 <Link to="/login">
-                  <a class="nav-link" href="!#">
+                  <a class="nav-link" href="!#" onClick={handleLogout}>
                     Logout
                   </a>
                 </Link>

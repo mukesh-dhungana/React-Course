@@ -21,6 +21,7 @@ const App = () => {
         <Route path="/" exact render={() => isLogged ? <LandingPage /> : <Register/> } />
         <Route path="/register" exact render={() => <Register />} />
         <Route path="/login" render={() => <Login />} />
+        <Route path="/dashboard" render={() => <LandingPage/>} />
         {/* <Register /> */}
         {/* <Login /> */}
       </Switch>

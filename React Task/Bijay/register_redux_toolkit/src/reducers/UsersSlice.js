@@ -1,26 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 export const usersSlice = createSlice({
   name: "users",
   initialState: {
-    users: [],
-    isLogged: false
+    users: [
+      {
+        email: "np.beezay@gmail.com",
+        password: "test",
+      },
+    ],
+    
+    isLogged: false,
   },
   reducers: {
     registerUsers: (state, action) => {
       console.log("Registered", action.payload);
       return {
         ...state,
-        users:[...state.users, action.payload]
-      }
+        users: [...state.users, action.payload],
+      };
     },
     loginUser: (state, action) => {
-      console.log("Logged");
+      console.log("Logged", action.payload);
+      return {
+        ...state,
+        users: [...state.users],
+        isLogged: action.payload
+      }
     },
-    
   },
-
 });
 
 export const { registerUsers, loginUser } = usersSlice.actions;
@@ -39,6 +47,7 @@ export const { registerUsers, loginUser } = usersSlice.actions;
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectUsers = state => state.users.users;
+// export const selectLoggedUser = state => state.users.loggeduser;
 export const checkLogged = state => state.users.isLogged;
 // export const selectStatus = state => state.users.isLoading;
 
