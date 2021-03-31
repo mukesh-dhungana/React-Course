@@ -171,16 +171,24 @@ const postReducer = (state = initalState, action) => {
       };
 
     case EDIT_COMMENT:
-      console.log(action.payload)
+      console.log(action.payload);
       return {
         ...state,
         posts: [
-          ...state.posts.map(post => post.user_id === action.payload.postId ? {
-            ...post,
-            comments: post.comments.map(comment => comment.id === action.payload.comment.id ? action.payload.comment : comment)
-          } : post )
-        ]
-      }
+          ...state.posts.map(post =>
+            post.user_id === action.payload.postId
+              ? {
+                  ...post,
+                  comments: post.comments.map(comment =>
+                    comment.id === action.payload.comment.id
+                      ? action.payload.comment
+                      : comment
+                  ),
+                }
+              : post
+          ),
+        ],
+      };
     default:
       return state;
   }

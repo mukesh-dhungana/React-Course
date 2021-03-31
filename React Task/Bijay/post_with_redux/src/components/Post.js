@@ -28,7 +28,7 @@ const Post = props => {
     const newComment = {
       postId: post.user_id,
       comment: {
-        id: comments.length + 1,
+        id: comments.length + 10,
         comment: addedComment,
         comment_by: "Mukesh Dhungana",
         commented_at: new Date().toLocaleDateString(),

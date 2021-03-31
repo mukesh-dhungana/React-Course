@@ -45,11 +45,12 @@
 }
 
 .post-container:hover > * {
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .post-container:hover > *:hover {
   opacity: 1;
+  /* background-color: black; */
 }
 
 .toggle {
