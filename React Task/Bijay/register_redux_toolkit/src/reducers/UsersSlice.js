@@ -1,15 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
+  const res = await fetch("http://localhost:5001/users");
+  const data = await res.json();
+  return data;
+});
 
 export const usersSlice = createSlice({
   name: "users",
   initialState: {
-    users: [
-      {
-        email: "np.beezay@gmail.com",
-        password: "test",
-      },
-    ],
-    
+    users: [],
     isLogged: false,
   },
   reducers: {
@@ -25,8 +25,20 @@ export const usersSlice = createSlice({
       return {
         ...state,
         users: [...state.users],
-        isLogged: action.payload
-      }
+        isLogged: action.payload,
+      };
+    },
+  },
+  extraReducers: {
+    [fetchUsers.pending]: (state, action) => {
+      //   state.status = false;
+    },
+    [fetchUsers.fulfilled]: (state, action) => {
+      console.log("Fulfilled");
+      state.users = action.payload;
+    },
+    [fetchUsers.rejected]: state => {
+      // state.status = false;
     },
   },
 });

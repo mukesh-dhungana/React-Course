@@ -38,7 +38,9 @@ const Login = props => {
       return;
     }
     const check = checkUser(loginUserInfo);
-    if (check.map(bool => true)) {
+    const filterUser = check.filter(x => x !== false)
+    console.log(check, filterUser);
+    if (filterUser.length > 0) {
       console.log("Logged In");
       dispatch(loginUser(true));
       props.history.push("/dashboard");
@@ -68,7 +70,7 @@ const Login = props => {
         }, 3000);
         return false
       } else {
-        return true;
+        return user;
       }
     });
     console.log(status);

@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "John Smith",
+      "email": "john@test.com",
+      "password": "test",
+      "password2": "test"
+    },
+    {
+      "id": 2,
+      "fullName": "Beezay Bohora",
+      "email": "test@test.com",
+      "password": "pass",
+      "password2": "pass"
+    }
+  ]
+}
