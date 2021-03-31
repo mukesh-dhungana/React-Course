@@ -77,7 +77,7 @@ export const { registerUsers, loginUser, logoutUser } = usersSlice.actions;
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectUsers = state => state.users.users;
-// export const selectLoggedUser = state => state.users.loggeduser;
+export const selectLoggedUser = state => state.users.loggedUser;
 export const checkLogged = state => state.users.isLogged;
 // export const selectStatus = state => state.users.isLoading;
 

@@ -45,3 +45,8 @@
     #content-container button:hover{
     opacity: 0.9;
     }
+
+    h1 cite.user-text {
+        color:crimson;
+        text-transform: uppercase;
+    }

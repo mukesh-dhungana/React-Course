@@ -20,6 +20,13 @@
       "password": "add",
       "password2": "add",
       "id": 3
+    },
+    {
+      "fullName": "test",
+      "email": "pari@test.com",
+      "password": "pari",
+      "password2": "pari",
+      "id": 4
     }
   ]
 }
