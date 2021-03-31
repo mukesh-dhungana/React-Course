@@ -1,59 +1,133 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
 import "./Register.css";
 
-const Register = () => {
+import { registerUsers } from "../../reducers/UsersSlice";
+import ErrorBlock from "./Error";
 
+const Register = props => {
+  //***FOR REDUCERS****/
+  const dispatch = useDispatch();
 
+  //** Constants for Handling FORM DATA */
+  const [userInfo, setUserInfo] = useState();
+
+  //***Handling Errors Block***/
+  const [showError, setShowError] = useState(false);
+  const [checkPasswordError, setCheckPasswordError] = useState(false)
 
   //** Handling Forms */
-  const handleInputChange = (e) => {
-    console.log(e.target.value);
-  }
+  const handleInputChange = e => {
+    // console.log(e.target.value);
+    setUserInfo(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    console.log('Form Submission');
-  }
+    console.log(e.target.fullName);
+    if (e.target.password.value !== e.target.password2.value) {
+      console.log("Password not matched");
+      setCheckPasswordError(true)
+      setTimeout(()=> {
+        setCheckPasswordError(false)
+      }, 3000)
+      return;
+    }
+
+    if (
+      e.target.fullName.value === "" ||
+      e.target.email.value === "" ||
+      e.target.password.value === "" ||
+      e.target.password2.value === ""
+    ) {
+      console.log("Enter Data");
+      setShowError(true);
+      setTimeout(() => {
+        setShowError(false);
+      }, 3000);
+      return;
+    }
+
+    if (typeof userInfo === "undefined") {
+      return;
+    }
+    console.log("Form Submission", userInfo);
+    dispatch(registerUsers(userInfo));
+    props.history.push("/login");
+  };
 
   return (
     <div>
-      <form class="form-register" method="post" action="#" onSubmit={handleSubmit} >
-        <div class="form-register-with-email">
-          <div class="form-white-background">
-            <div class="form-title-row">
+      <form
+        className="form-register"
+        method="post"
+        action="#"
+        onSubmit={handleSubmit}
+      >
+        <div className="form-register-with-email">
+          <div className="form-white-background">
+            <div className="form-title-row">
               <h1>Create an account</h1>
             </div>
-
-            <div class="form-row">
+            {showError && <ErrorBlock title="Fill up all Input Fields" />}
+            {checkPasswordError && <ErrorBlock title="Passwords did not Matched" />}
+            <div className="form-row">
               <label>
                 <span>Name</span>
-                <input type="text" name="name" value="" onChange={handleInputChange} />
+                <input
+                  type="text"
+                  name="fullName"
+                  defaultValue=""
+                  onChange={handleInputChange}
+                />
+                {/* <ErrorBlock title="Please enter Name" /> */}
               </label>
             </div>
 
-            <div class="form-row">
+            <div className="form-row">
               <label>
                 <span>Email</span>
-                <input type="email" name="email" value="" onChange={handleInputChange} />
+                <input
+                  type="email"
+                  name="email"
+                  defaultValue=""
+                  onChange={handleInputChange}
+                />
+                {/* <ErrorBlock title="Please enter valid Email" /> */}
               </label>
             </div>
 
-            <div class="form-row">
+            <div className="form-row">
               <label>
                 <span>Password</span>
-                <input type="password" name="password" value="" onChange={handleInputChange} />
+                <input
+                  type="password"
+                  name="password"
+                  defaultValue=""
+                  onChange={handleInputChange}
+                />
+                {/* <ErrorBlock title="Please enter Password" /> */}
               </label>
             </div>
 
-            <div class="form-row">
+            <div className="form-row">
               <label>
                 <span>Confirm Password</span>
-                <input type="password" name="password2" value="" onChange={handleInputChange} />
+                <input
+                  type="password"
+                  name="password2"
+                  defaultValue=""
+                  onChange={handleInputChange}
+                />
+                {/* <ErrorBlock title="This field cannot be blank" /> */}
               </label>
             </div>
 
-            <div class="form-row">
+            <div className="form-row">
               <button type="submit">Register</button>
             </div>
           </div>
@@ -69,4 +143,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default withRouter(Register);
