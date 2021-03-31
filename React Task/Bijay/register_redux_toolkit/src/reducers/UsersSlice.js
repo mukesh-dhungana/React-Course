@@ -6,10 +6,20 @@ export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   return data;
 });
 
+// export const postUser = createAsyncThunk("users/postUser", async () => {
+//   const res = await fetch("http://localhost:5001/users", {
+//     method: 'POST',
+//     headers: {
+//       'Content-type': 'application/json'
+//     },
+//   })
+// })
+
 export const usersSlice = createSlice({
   name: "users",
   initialState: {
     users: [],
+    loggedUser: {},
     isLogged: false,
   },
   reducers: {
@@ -24,8 +34,16 @@ export const usersSlice = createSlice({
       console.log("Logged", action.payload);
       return {
         ...state,
-        users: [...state.users],
-        isLogged: action.payload,
+        isLogged: true,
+        loggedUser: action.payload
+      };
+    },
+    logoutUser: (state) => {
+      console.log("Logged Out");
+      return {
+        ...state,
+        isLogged: false,
+        loggedUser: {}
       };
     },
   },
@@ -43,7 +61,7 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { registerUsers, loginUser } = usersSlice.actions;
+export const { registerUsers, loginUser, logoutUser } = usersSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This

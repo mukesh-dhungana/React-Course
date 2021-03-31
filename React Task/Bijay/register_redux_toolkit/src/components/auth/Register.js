@@ -56,9 +56,22 @@ const Register = props => {
       return;
     }
     console.log("Form Submission", userInfo);
+    addUser(userInfo);
     dispatch(registerUsers(userInfo));
     props.history.push("/login");
   };
+
+  const addUser = async (userInfo) => {
+    const res = await fetch('http://localhost:5001/users', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify(userInfo)
+  })
+  const data = await res.json()
+  return data
+  }
 
   return (
     <div>

@@ -42,7 +42,7 @@ const Login = props => {
     console.log(check, filterUser);
     if (filterUser.length > 0) {
       console.log("Logged In");
-      dispatch(loginUser(true));
+      dispatch(loginUser(...filterUser));
       props.history.push("/dashboard");
     } else {
       // console.log('Cannot Login');

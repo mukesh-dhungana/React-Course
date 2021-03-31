@@ -13,6 +13,13 @@
       "email": "test@test.com",
       "password": "pass",
       "password2": "pass"
+    },
+    {
+      "fullName": "Bijay Bohora",
+      "email": "deadly.death7@gmail.com",
+      "password": "add",
+      "password2": "add",
+      "id": 3
     }
   ]
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { checkLogged, loginUser } from "../reducers/UsersSlice";
+import { logoutUser } from "../reducers/UsersSlice";
 import "./Navbar.css";
 const NavLogged = () => {
   // const loginUser = useSelector(checkLogged)
@@ -9,7 +9,7 @@ const NavLogged = () => {
 
   const handleLogout = () => {
     console.log("Logged Out");
-    dispatch(loginUser(false));
+    dispatch(logoutUser());
   };
 
   return (
