@@ -53,7 +53,7 @@ const NavLogged = () => {
             </div>
             <div className="flex-end">
               <li class="nav-item ">
-                <Link to="/">
+                <Link to="/profile">
                   <a class="nav-link" href="!#">
                     Profile
                   </a>

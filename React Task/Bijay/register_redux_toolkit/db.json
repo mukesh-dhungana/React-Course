@@ -27,6 +27,20 @@
       "password": "pari",
       "password2": "pari",
       "id": 4
+    },
+    {
+      "fullName": "new user",
+      "email": "new@test.com",
+      "password": "new",
+      "password2": "new",
+      "id": 5
+    },
+    {
+      "fullName": "Rujal",
+      "email": "rujal@gmail.com",
+      "password": "rujal",
+      "password2": "rujal",
+      "id": 6
     }
   ]
 }

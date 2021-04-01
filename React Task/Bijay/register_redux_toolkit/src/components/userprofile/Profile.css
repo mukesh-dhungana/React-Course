@@ -1,0 +1,32 @@
+.profile-card {
+    margin: 14px auto;
+    text-align: center!important;
+}
+
+.profile-card .card-body {
+    font-size: 22px;
+}
+
+.settings-card {
+    margin-bottom: 24px!important;
+}
+
+.settings-card .settings-card-header {
+    text-align: center;
+    margin: 10px auto;
+    font-size: 18px;
+    width: 100%;
+}
+
+.settings-card ul li {
+    margin: 8px 0 8px 8px!important;
+    font-size: 16px;
+    cursor: pointer;
+    width: 70%;
+    transition: all 0.2s ease;
+}
+
+.settings-card ul li:hover {
+    background-color: darkgrey;
+    color: crimson;
+}

@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import NavLogged from "./components/NavLogged";
 import Register from "./components/auth/Register";
 import { checkLogged, fetchUsers } from "./reducers/UsersSlice";
+import Profile from "./components/userprofile/Profile";
 
 const App = () => {
 
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/register" exact render={() => <Register />} />
         <Route path="/login" render={() => <Login />} />
         <Route path="/dashboard" render={() => isLogged ? <LandingPage /> : <Register/>} />
+        <Route path="/profile" render={() => isLogged ? <Profile /> : <Register/>} />
         {/* <Register /> */}
         {/* <Login /> */}
       </Switch>
