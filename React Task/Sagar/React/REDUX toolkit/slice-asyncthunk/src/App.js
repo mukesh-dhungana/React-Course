@@ -1,9 +1,9 @@
 import "./App.css";
 import React from "react";
-import { edit, getData, load } from "./slice/slice";
-import { useSelector, useDispatch } from "react-redux";
 import Data from "./components/Data";
 import Loading from "./components/Loading";
+import { edit, getData, load } from "./slice/slice";
+import { useSelector, useDispatch } from "react-redux";
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -56,7 +56,6 @@ function App() {
   console.log(selector);
   const handleEdit = () => {
     setValue({
-      ...value,
       id: selector.id,
       name: selector.name,
       email: selector.email,

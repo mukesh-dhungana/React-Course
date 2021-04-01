@@ -18,7 +18,13 @@ const initialState = {
     address: "xyz xyz",
     phone: "2121212121221",
   },
+  addUser: {
+    name: "",
+    pass: "",
+  },
+  checkUsers: [],
   loading: false,
+  error: false,
 };
 
 const dataSlice = createSlice({
@@ -31,15 +37,31 @@ const dataSlice = createSlice({
     load(state) {
       state.loading = true;
     },
+    add(state, action) {
+      state.addUser = action.payload;
+    },
+    editPass(state, action) {
+      state.addUser.pass = action.payload.pass;
+    },
+    checkUsers(state, action) {
+      state.checkUsers = action.payload;
+    },
+    error(state, action) {
+      state.error = true;
+    },
+    setError(state, action) {
+      state.error = false;
+    },
   },
   extraReducers: {
     [getData.fulfilled]: (state, action) => {
       state.entities = action.payload;
       state.loading = false;
+      console.warn("slice", action);
     },
   },
 });
 
-export const { edit, load } = dataSlice.actions;
+export const { edit, load, add, editPass } = dataSlice.actions;
 
 export default dataSlice.reducer;
