@@ -44,32 +44,26 @@ const Profile = () => {
               render={() => <AccountSetting />}
             />
             <Route
+              exact
               path="/profile/securitysetting"
               render={() => <SecuritySetting />}
             />
-          </Switch>
-        </div>
-        <div className="flex-content2">
-          <Switch>
-            <Route
-              exact
-              path="/profile/usersetting/username"
-              render={() => <Username />}
-            />
-            <Route
+            {/* <Route
+
               path="/profile/securitysetting/username"
               render={() => <Username />}
-            />
-            <Route
+            /> */}
+            {/* <Route
               path="/profile/securitysetting/email"
               render={() => <Email />}
             />
             <Route
               path="/profile/securitysetting/changepassword"
               render={() => <PasswordChange />}
-            />
+            /> */}
           </Switch>
         </div>
+        
       </div>
     </>
   );

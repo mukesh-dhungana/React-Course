@@ -1,6 +1,7 @@
 import React from "react";
 
 const Username = () => {
+  console.log('Rendered');
   return (
     <div className="input-group">
       <div className="input-group-prepend">

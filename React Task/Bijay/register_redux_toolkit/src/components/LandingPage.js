@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectLoggedUser } from "../reducers/UsersSlice";
 import "./LandingPage.css";
-// import Svg from './bg.svg'
+import bg from './bg.png'
 const LandingPage = () => {
   const user = useSelector(selectLoggedUser);
 
@@ -18,7 +18,7 @@ const LandingPage = () => {
         </p>
         <button>Read More</button>
       </div>
-      <div id="bg-container">{/* <svg> <Svg /> </svg> */}</div>
+      <div id="bg-container"><img src={bg} className="landing-bg" alt="bg" /></div>
     </div>
   );
 };
