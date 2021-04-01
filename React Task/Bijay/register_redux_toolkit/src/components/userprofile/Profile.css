@@ -30,3 +30,31 @@
     background-color: darkgrey;
     color: crimson;
 }
+
+.change {
+    width: 100%;
+    margin-left: 1em;
+    margin-top: 2em;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+.change:hover {
+    background-color: #325d88c4;
+    color: turquoise;
+}
+
+.flex-container {
+    /* border: 2px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.flex-container .flex-content2 {
+    margin-right: 2rem;
+}
+
+/* .account-container {
+    width:100%;
+} */

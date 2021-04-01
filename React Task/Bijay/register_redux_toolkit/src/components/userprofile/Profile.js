@@ -2,8 +2,11 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import { Link } from "react-router-dom";
 import AccountSetting from "./AccountSetting";
+import Email from "./Email";
+import PasswordChange from "./PasswordChange";
 import "./Profile.css";
 import SecuritySetting from "./SecuritySetting";
+import Username from "./Username";
 import UserSetting from "./UserSetting";
 const Profile = () => {
   return (
@@ -27,22 +30,47 @@ const Profile = () => {
           </ul>
         </div>
       </div>
-      <Switch>
-        <Route
-          exact
-          path="/profile/usersetting"
-          render={() => <UserSetting />}
-        />
-        <Route
-          exact
-          path="/profile/accountsetting"
-          render={() => <AccountSetting />}
-        />
-        <Route
-          path="/profile/securitysetting"
-          render={() => <SecuritySetting />}
-        />
-      </Switch>
+      <div className="flex-container container">
+        <div className="flex-content1">
+          <Switch>
+            <Route
+              exact
+              path="/profile/usersetting"
+              render={() => <UserSetting />}
+            />
+            <Route
+              exact
+              path="/profile/accountsetting"
+              render={() => <AccountSetting />}
+            />
+            <Route
+              path="/profile/securitysetting"
+              render={() => <SecuritySetting />}
+            />
+          </Switch>
+        </div>
+        <div className="flex-content2">
+          <Switch>
+            <Route
+              exact
+              path="/profile/usersetting/username"
+              render={() => <Username />}
+            />
+            <Route
+              path="/profile/securitysetting/username"
+              render={() => <Username />}
+            />
+            <Route
+              path="/profile/securitysetting/email"
+              render={() => <Email />}
+            />
+            <Route
+              path="/profile/securitysetting/changepassword"
+              render={() => <PasswordChange />}
+            />
+          </Switch>
+        </div>
+      </div>
     </>
   );
 };
