@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 const SecuritySetting = () => {
   return (
-    <div className="container">
+    <div className="container security-container">
       <h4>Security Setting</h4>
       <Link to="/profile/securitysetting/username">
         <div className="alert alert-primary change" role="alert">

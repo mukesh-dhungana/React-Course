@@ -14,8 +14,11 @@
 .settings-card .settings-card-header {
     text-align: center;
     margin: 10px auto;
-    font-size: 18px;
+    font-size: 24px;
     width: 100%;
+    letter-spacing: 4px;
+    font-weight: 1200;
+    padding: 8px 20px;
 }
 
 .settings-card ul li {
@@ -23,6 +26,7 @@
     font-size: 16px;
     cursor: pointer;
     width: 70%;
+    letter-spacing: 1px;
     transition: all 0.2s ease;
 }
 
@@ -44,17 +48,33 @@
     color: turquoise;
 }
 
-.flex-container {
+.flex-container  {
     /* border: 2px solid black; */
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
+.flex-container h4 {
+    letter-spacing: 2px;
+}
+
 .flex-container .flex-content2 {
     margin-right: 2rem;
 }
 
-/* .account-container {
-    width:100%;
-} */
+.flex-container .flex-content1 {
+    width: 100%;
+}
+
+.account-container {
+    /* border: 2px solid red; */
+    width:100%!important;
+}
+
+.security-container {
+    width:30%;
+    margin-left: 100px!important;
+    /* position: absolute!important;
+    left:0; */
+}
