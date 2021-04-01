@@ -1,26 +1,6 @@
 {
   "users": [
-    {
-      "id": 1,
-      "fullName": "John Smith",
-      "email": "john@test.com",
-      "password": "test",
-      "password2": "test"
-    },
-    {
-      "id": 2,
-      "fullName": "Beezay Bohora",
-      "email": "test@test.com",
-      "password": "pass",
-      "password2": "pass"
-    },
-    {
-      "fullName": "Bijay Bohora",
-      "email": "deadly.death7@gmail.com",
-      "password": "add",
-      "password2": "add",
-      "id": 3
-    },
+    
     {
       "fullName": "test",
       "email": "pari@test.com",
@@ -41,6 +21,13 @@
       "password": "rujal",
       "password2": "rujal",
       "id": 6
+    },
+    {
+      "fullName": "Beezay Bohora",
+      "email": "np.beezay@gmail.com",
+      "password": "2222",
+      "password2": "2222",
+      "id": 7
     }
   ]
 }

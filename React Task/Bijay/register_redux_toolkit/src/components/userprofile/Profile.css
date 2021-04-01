@@ -78,3 +78,12 @@
     /* position: absolute!important;
     left:0; */
 }
+
+div.buttons {
+    margin: 12px 0;
+}
+
+div.buttons-container button {
+    margin: 0 10px;
+    font-size: 14px;
+}

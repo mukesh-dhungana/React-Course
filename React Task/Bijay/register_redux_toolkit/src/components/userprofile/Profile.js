@@ -1,13 +1,10 @@
 import React from "react";
 import { Route, Switch } from "react-router";
 import { Link } from "react-router-dom";
-import AccountSetting from "./AccountSetting";
-import Email from "./Email";
-import PasswordChange from "./PasswordChange";
+import AccountSetting from "./accountsetting/AccountSetting";
 import "./Profile.css";
-import SecuritySetting from "./SecuritySetting";
-import Username from "./Username";
-import UserSetting from "./UserSetting";
+import SecuritySetting from "./securitysetting/SecuritySetting";
+import UserSetting from "./usersetting/UserSetting";
 const Profile = () => {
   return (
     <>
@@ -34,19 +31,20 @@ const Profile = () => {
         <div className="flex-content1">
           <Switch>
             <Route
-              exact
+              
               path="/profile/usersetting"
               render={() => <UserSetting />}
             />
             <Route
-              exact
+              
               path="/profile/accountsetting"
               render={() => <AccountSetting />}
             />
             <Route
-              exact
+              
               path="/profile/securitysetting"
-              render={() => <SecuritySetting />}
+              render={(props) => <SecuritySetting {...props}/>}
+             
             />
             {/* <Route
 

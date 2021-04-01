@@ -1,7 +1,7 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { Link } from "react-router-dom";
-import { logoutUser } from "../reducers/UsersSlice";
+import { logoutUser } from '../../reducers/UsersSlice';
 import "./Navbar.css";
 const NavLogged = () => {
   // const loginUser = useSelector(checkLogged)

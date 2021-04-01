@@ -1,12 +1,11 @@
 import React from "react";
 import {Link, useRouteMatch} from 'react-router-dom'
-const CheckComp = () => {
-
+const CheckComp = (props) => {
+   
     const {url} = useRouteMatch()
-    console.log(url,'url');
   return (
     <div>
-      <Link to={`${url}/username`}>
+      <Link to={`${url}/username`} >
         <div className="alert alert-primary change" role="alert">
           Change Username
         </div>

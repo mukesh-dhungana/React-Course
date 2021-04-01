@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router";
 import "./App.css";
 import LandingPage from "./components/LandingPage";
 import Login from "./components/auth/Login";
-import Navbar from "./components/Navbar";
-import NavLogged from "./components/NavLogged";
+import Navbar from "./components/navbar/Navbar";
+import NavLogged from "./components/navbar/NavLogged";
 import Register from "./components/auth/Register";
 import { checkLogged, fetchUsers } from "./reducers/UsersSlice";
 import Profile from "./components/userprofile/Profile";
