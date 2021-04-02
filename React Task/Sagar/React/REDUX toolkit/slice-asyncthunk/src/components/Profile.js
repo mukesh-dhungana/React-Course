@@ -1,5 +1,5 @@
 import React from "react";
-import { editPass, checkUsers } from "../slice/slice";
+import { editPass } from "../slice/slice";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "@material-ui/core";
 import EditPass from "./EditPass";
@@ -18,7 +18,6 @@ const Profile = () => {
     if (errorSelector === true) {
       setError(true);
     } else {
-      console.log(password);
       setError(false);
       dispatch(editPass({ pass: password }));
       setPassword("");

@@ -22,7 +22,6 @@ const initialState = {
     name: "",
     pass: "",
   },
-  checkUsers: [],
   loading: false,
   error: false,
 };
@@ -42,9 +41,6 @@ const dataSlice = createSlice({
     },
     editPass(state, action) {
       state.addUser.pass = action.payload.pass;
-    },
-    checkUsers(state, action) {
-      state.checkUsers = action.payload;
     },
     error(state, action) {
       state.error = true;
