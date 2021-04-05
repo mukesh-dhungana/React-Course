@@ -4,7 +4,7 @@ import StudentListRow from "./StudentListRow";
 
 const StudentsList = () => {
 
-  const [students, setStudents] =useContext(StudentListContext)
+  const [studentsList, setStudentsList] =useContext(StudentListContext)
 
   return (
     <>
@@ -19,7 +19,7 @@ const StudentsList = () => {
           </tr>
         </thead>
         <tbody className="text-center">
-          {students.map(student => (
+          {studentsList.students.map(student => (
             <StudentListRow key={student.id} student={student} />
           ))}
         </tbody>

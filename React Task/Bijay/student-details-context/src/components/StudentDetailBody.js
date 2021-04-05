@@ -32,7 +32,7 @@ const StudentDetailBody = () => {
               <td>First</td>
               <td>3.2</td>
               <td>
-                <span class=" badge-pill badge-primary">CLICK</span>
+                <span className=" badge-pill badge-primary">CLICK</span>
               </td>
             </tr>
           </tbody>

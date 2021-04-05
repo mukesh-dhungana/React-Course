@@ -1,13 +1,14 @@
-import { createContext, useState } from "react"
+import { createContext, useReducer, useState } from "react"
 import { studentList } from "../data"
+import { studentListReducer } from "../reducers/studentlistreducer"
 
-export const StudentListContext = createContext()
+export const StudentListContext = createContext(null)
 
 export const StudentListProvider = props => {
-    const [students, setStudents] = useState(studentList)
+    const [state, dispatch] = useReducer(studentListReducer, studentList)
 
     return (
-        <StudentListContext.Provider value={[students, setStudents]}>
+        <StudentListContext.Provider value={[state, dispatch]}>
             {props.children}
         </StudentListContext.Provider>
     )

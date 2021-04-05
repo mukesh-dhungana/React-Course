@@ -9,10 +9,10 @@ const StudentListRow = ({student}) => {
         <td>{student.student_email}</td>
         <td>{student.student_contactNo}</td>
         <td className="edit-student">
-          <span class=" badge-pill badge-primary ">VIEW</span>
+          <span className=" badge-pill badge-primary ">VIEW</span>
         </td>
         <td className="delete-student">
-          <span class=" badge-pill badge-danger ">DELETE</span>
+          <span className=" badge-pill badge-danger ">DELETE</span>
         </td>
       </tr>
     </>
