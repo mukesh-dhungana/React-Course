@@ -1,0 +1,60 @@
+.header-container {
+  text-align: center;
+  margin: 20px auto;
+  font-weight: 2000 !important;
+}
+
+.card-body.student-detail-body {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.card-body.student-detail-body  .card-title {
+  max-width: 60%;
+  min-width: 38%;
+  /* border: 2px solid red; */
+}
+
+.card-body .student-detail {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+  /* border: 2px solid black; */
+  min-width: 60%;
+  text-align: center;
+}
+
+.card-body .student-detail  cite {
+  color: crimson;
+  font-size: 1.2rem;
+}
+
+.card-body .student-detail  p {
+  color: darkslateblue;
+  font-size: 1rem;
+}
+
+.card-header.student-detail-header {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: rgb(243, 108, 108);
+}
+td.edit-student, td.delete-student {
+  cursor:pointer;
+  opacity: 0.7;
+  transition: all 1s ease-out;
+}
+
+td.edit-student:hover, td.delete-student:hover {
+  opacity: 1;
+  transform: scale(1.1) translateZ(2px)!important;
+  border-radius: 8px;
+}
+
+.badge-primary {
+  padding: 10px;
+}
