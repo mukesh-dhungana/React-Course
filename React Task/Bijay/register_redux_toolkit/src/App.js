@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router";
-import "./App.css";
+import "./css/App.css";
 import LandingPage from "./components/LandingPage";
 import Login from "./components/auth/Login";
 import Navbar from "./components/navbar/Navbar";
@@ -20,7 +20,7 @@ const App = () => {
 
   useEffect(()=> {
     dispatch(fetchUsers())
-  },[])
+  })
 
   return (
     <>

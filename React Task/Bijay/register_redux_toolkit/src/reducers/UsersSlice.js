@@ -20,7 +20,7 @@ export const usersSlice = createSlice({
   initialState: {
     users: [],
     loggedUser: {},
-    isLogged: true,
+    isLogged: false,
   },
   reducers: {
     registerUsers: (state, action) => {

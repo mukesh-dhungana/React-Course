@@ -38,9 +38,12 @@ const Login = props => {
       return;
     }
     const check = checkUser(loginUserInfo);
-    const filterUser = check.filter(x => x !== false)
-    console.log(check, filterUser);
-    if (filterUser.length > 0) {
+    const filterUser = users.filter(
+      x =>
+        x.email === loginUserInfo.email && loginUserInfo.password === x.password
+    );
+    // console.log(check, filterUser);
+    if (check) {
       console.log("Logged In");
       dispatch(loginUser(...filterUser));
       props.history.push("/dashboard");
@@ -52,29 +55,45 @@ const Login = props => {
 
   const checkUser = login => {
     console.log("Check User Credentials", login, users);
-    const status = users.map(user => {
-      if (user.email !== login.email) {
-        console.log("Email Incorrect");
-        setErrorTitle("Email Incorrect");
-        setShowError(true);
-        setTimeout(() => {
-          setShowError(false);
-        }, 3000);
-        return false;
-      } else if (user.password !== login.password) {
-        console.log("Password Wrong");
-        setErrorTitle("Password Incorrect");
-        setShowError(true);
-        setTimeout(() => {
-          setShowError(false);
-        }, 3000);
-        return false
-      } else {
-        return user;
-      }
-    });
-    console.log(status);
-    return status;
+    const userEmail = users.find(user => user.email === login.email);
+    const userPassword = users.find(user => user.password === login.password);
+    if (!userEmail) {
+      setErrorTitle("Email Incorrect");
+      setShowError(true);
+      setTimeout(() => {
+        setShowError(false);
+      }, 3000);
+    } else if (!userPassword) {
+      setErrorTitle("Password Incorrect");
+      setShowError(true);
+      setTimeout(() => {
+        setShowError(false);
+      }, 3000);
+      return false;
+    }
+    // const status = users.map(user => {
+    //   if (user.email !== login.email) {
+    //     console.log("Email Incorrect");
+    //     setErrorTitle("Email Incorrect");
+    //     setShowError(true);
+    //     setTimeout(() => {
+    //       setShowError(false);
+    //     }, 3000);
+    //     return false;
+    //   } else if (user.password !== login.password) {
+    //     console.log("Password Wrong");
+    //     setErrorTitle("Password Incorrect");
+    //     setShowError(true);
+    //     setTimeout(() => {
+    //       setShowError(false);
+    //     }, 3000);
+    //     return false
+    //   } else {
+    //     return user;
+    //   }
+    // });
+    // console.log(status);
+    return userEmail && userPassword;
   };
 
   return (

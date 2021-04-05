@@ -1,6 +1,5 @@
 {
   "users": [
-    
     {
       "fullName": "test",
       "email": "pari@test.com",
@@ -28,6 +27,13 @@
       "password": "2222",
       "password2": "2222",
       "id": 7
+    },
+    {
+      "fullName": "test name",
+      "email": "test@test.com",
+      "password": "pass",
+      "password2": "pass",
+      "id": 8
     }
   ]
 }
