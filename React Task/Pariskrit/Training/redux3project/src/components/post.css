@@ -1,0 +1,55 @@
+.post {
+  width: 50%;
+  margin: 50px auto;
+  padding: 0 10px;
+}
+
+h3 {
+  text-align: start;
+}
+
+form {
+  text-align: start;
+}
+
+.input {
+  width: 60%;
+}
+.post__header > .MuiCardHeader-content > .MuiCardHeader-title {
+  font-size: 1.8rem !important;
+  color: black;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__avatar {
+  font-size: 3rem !important;
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.show__more {
+  color: #332929;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.comment__form {
+  margin: 20px 0;
+}
+
+.comment__form__top {
+  display: flex;
+}
+
+.commentform__button {
+  margin: 10px 60px !important;
+}
+
+.comment__formavatar {
+  margin: 0 10px !important;
+}
