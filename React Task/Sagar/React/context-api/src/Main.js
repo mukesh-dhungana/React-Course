@@ -11,6 +11,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
+
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
@@ -44,6 +45,7 @@ const Main = () => {
                 CRUD
               </Link>
             </Typography>
+           
           </Toolbar>
         </AppBar>
       </div>
@@ -53,6 +55,7 @@ const Main = () => {
         <Provider store={store}>
           <Route path="/crud" component={Page} />
         </Provider>
+
         <Route path="/error" component={Error} />
         <Redirect to="/error" />
       </Switch>

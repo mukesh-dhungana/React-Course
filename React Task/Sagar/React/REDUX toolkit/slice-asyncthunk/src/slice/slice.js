@@ -30,14 +30,14 @@ const dataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
+    add(state, action) {
+      state.addUser = action.payload;
+    },
     edit(state, action) {
       state.user = action.payload;
     },
     load(state) {
       state.loading = true;
-    },
-    add(state, action) {
-      state.addUser = action.payload;
     },
     editPass(state, action) {
       state.addUser.pass = action.payload.pass;

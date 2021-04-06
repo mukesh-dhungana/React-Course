@@ -3,6 +3,7 @@ import { books } from "../../App";
 
 const Book = () => {
   const booksDetail = useContext(books);
+
   return (
     <div>
       {booksDetail.Books.map((book) => (

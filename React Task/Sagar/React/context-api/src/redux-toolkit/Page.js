@@ -43,7 +43,7 @@ const Page = () => {
       if (edit) {
         console.log("edit");
         dispatch(editValue({ id, name, phone }));
-        setValue({ name: "", phone: "", id: Math.max(...maxId) + 1 });
+        setValue({ name: "", phone: "", id: Math.max(...maxId) + 1 }); //Increase Id
         console.log(maxId);
         setEdit(false);
       } else {

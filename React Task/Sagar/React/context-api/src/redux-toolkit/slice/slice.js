@@ -20,7 +20,7 @@ const dataSlice = createSlice({
       state.list = [
         ...state.list.filter((user) => user.id !== action.payload.id),
         action.payload,
-      ];
+      ].sort((a, b) => a.id - b.id);
     },
   },
 });
