@@ -24,6 +24,7 @@ export const studentDetailData = {
       student_id: 1,
       results: [
         {
+          id:1,
           semester: "first",
           gpa: 3.2,
         },
@@ -34,14 +35,17 @@ export const studentDetailData = {
       student_id: 2,
       results: [
         {
+          id:1,
           semester: "first",
           gpa: 2.0,
         },
         {
+          id:2,
           semester: "second",
           gpa: 3.0,
         },
         {
+          id:3,
           semester: "third",
           gpa: 3.5,
         },
