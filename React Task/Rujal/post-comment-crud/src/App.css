@@ -1,0 +1,45 @@
+.App {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+}
+
+.post{
+  background-color: rgb(32, 6, 6);
+  margin: 5px;
+  overflow: auto;
+  height: 300px;
+  width: 50%;
+  flex: 50%;
+  color: wheat;
+}
+
+.post form{
+  text-align: center;
+}
+
+.post h1{
+  text-align: center;
+}
+
+.comment{
+  display: flex;
+  align-items: center;
+}
+
+.comment .title{
+  width: 60%;
+  text-align: center;
+}
+
+.comment .buttons{
+  width: 40%;
+}
+
+.comment h3{
+  margin-right: 5px;
+}
+
+.comment button{
+  margin-right: 5px;
+}
