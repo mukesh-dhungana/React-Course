@@ -9,6 +9,7 @@ const StudentDetailBodyRow = ({result, student}) => {
         <td> {result.gpa} </td>
         <td>
           <span className=" badge-pill badge-primary">CLICK</span>
+          <span className=" badge-pill badge-danger ml-3 mr-0">DELETE</span>
         </td>
       </tr>
     </>

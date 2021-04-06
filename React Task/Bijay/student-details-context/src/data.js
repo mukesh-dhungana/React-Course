@@ -6,6 +6,7 @@ export const studentList = {
       student_email: "ganikafunny@emoji.com",
       student_contactNo: "9812161518",
       student_address: "XYZ street",
+      student_img: "/assets/studentsImages/student1.jpg"
     },
     {
       id: 2,
@@ -13,6 +14,7 @@ export const studentList = {
       student_email: "picturefreak@senorita.com",
       student_contactNo: "9851235647",
       student_address: "ABC street",
+      student_img: "/assets/studentsImages/student2.jpg"
     },
   ],
 };

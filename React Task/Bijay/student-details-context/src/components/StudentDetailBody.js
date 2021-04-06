@@ -9,19 +9,26 @@ const StudentDetailBody = ({ results, student }) => {
         <table className="table table-hover">
           <thead className="text-center">
             <tr>
-              <th scope="col" rowSpan="2">
-                Student_Id
+              <th scope="col" colSpan="1">
+                <span className="btn btn-outline-success">
+                  Add New Result
+                </span>
               </th>
               <th scope="col" colSpan="2">
                 Result Details
               </th>
-              <th scope="col" rowSpan="2">
-                Action
+              <th scope="col" colSpan="2">
+                <span className="btn btn-outline-warning">
+                  DELETE ALL Results
+                </span>
               </th>
             </tr>
             <tr>
+              <th scope="col">Student ID</th>
               <th scope="col">Semester</th>
               <th scope="col">GPA</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody className="text-center">

@@ -42,6 +42,31 @@
   font-size: 1.3rem;
   font-weight: 800;
   color: rgb(243, 108, 108);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.card-header.student-detail-header p {
+  display: inline-block;
+  padding: 2px 12px!important;
+  /* border: 2px solid red!important; */
+  min-width: 80%;
+}
+
+.card-header.student-detail-header span.btn-info {
+  padding: 10px 22px;
+  background: rgba(22, 14, 1, 0.795)!important;
+  color:#fff;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin: auto;
+  transition: all 0.2s ease;
+}
+
+.card-header.student-detail-header span.btn-info:hover {
+  background: rgba(22, 14, 1, 0.959)!important;
+
 }
 td.edit-student, td.delete-student {
   cursor:pointer;
@@ -55,6 +80,25 @@ td.edit-student:hover, td.delete-student:hover {
   border-radius: 8px;
 }
 
-.badge-primary {
+
+
+.badge-primary, .badge-danger {
   padding: 10px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: all 0.2s ease-in;
+}
+
+.badge-primary:hover, .badge-danger:hover {
+  opacity: 1;
+}
+
+.student-img {
+  max-width: 150px;
+  max-height: 100px;
+}
+
+.student-img img {
+  border-radius: 50%;
+  object-fit: cover;
 }
