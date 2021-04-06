@@ -14,11 +14,11 @@ const AddedResult = props => {
           </tr>
         </thead>
         <tbody className="text-center">
-        {props.allresultsInfo.map(result => (
+          {props.allresultsInfo.map(result => (
             <tr key={result.id}>
-              <td scope="col"> {result.semester} </td>
-              <td scope="col"> {result.gpa} </td>
-              <td scope="col">Delete</td>
+              <td> {result.semester} </td>
+              <td> {result.gpa} </td>
+              <td>Delete</td>
             </tr>
           ))}
         </tbody>

@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { StudentDetailContext } from "../context/StudentDetailContext";
 import { StudentListContext } from "../context/StudentListContext";
 import AddedResult from "./AddedResult";
 import AddStudentResultForm from "./AddStudentResultForm";
@@ -7,6 +8,11 @@ const AddStudentForm = () => {
   const [studentListState, studentListDispatch] = useContext(
     StudentListContext
   );
+
+  const [studentResultState, studentResultDispatch] = useContext(
+    StudentDetailContext
+  );
+
   const [addResult, setAddResult] = useState(false);
 
   const [studentInfo, setStudentInfo] = useState();
@@ -37,16 +43,28 @@ const AddStudentForm = () => {
 
   const handleFormSubmit = e => {
     e.preventDefault();
-    console.log(studentInfo);
+    console.log(studentInfo, allresultsInfo, "Form Submission");
+    const forId = Date.now();
     studentListDispatch({
-      type: "ADD_USER",
+      type: "ADD_STUDENT",
       payload: {
-        id: Date.now(),
+        id: forId,
         ...studentInfo,
       },
     });
+    studentResultDispatch({
+      type: "ADD_RESULT",
+      payload: {
+        id: Date.now() + 1,
+        student_id: forId,
+        results: [
+          ...allresultsInfo
+        ]
+
+      },
+    });
   };
-  console.log(allresultsInfo);
+  console.log('results=> ',allresultsInfo);
   return (
     <>
       <form className="" onSubmit={handleFormSubmit}>

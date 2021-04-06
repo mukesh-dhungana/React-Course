@@ -4,7 +4,7 @@ export const studentListReducer = (state, action) => {
   console.log("Reducer", state);
 
   switch (action.type) {
-    case "ADD_USER":
+    case "ADD_STUDENT":
       console.log("Add User", action.payload);
 
       return {
