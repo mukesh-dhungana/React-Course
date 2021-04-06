@@ -16,6 +16,14 @@ export const studentList = {
       student_address: "ABC street",
       student_img: "/assets/studentsImages/student2.jpg"
     },
+    {
+      id: 3,
+      student_name: "Beezay Bohora",
+      student_email: "unstability@hits.com",
+      student_contactNo: "9849782805",
+      student_address: "KBC World",
+      student_img: "/assets/studentsImages/student3.jpg"
+    },
   ],
 };
 
@@ -51,6 +59,13 @@ export const studentDetailData = {
           semester: "third",
           gpa: 3.5,
         },
+      ],
+    },
+    {
+      id: 3,
+      student_id: 3,
+      result: [
+        
       ],
     },
   ],

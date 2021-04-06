@@ -1,13 +1,37 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useParams } from "react-router";
+import { StudentDetailContext } from "../../context/StudentDetailContext";
 import "./Forms.css";
 const AddResultForm = ({ onclick }) => {
   const [newResult, setNewResult] = useState({});
+
+  const { id } = useParams();
+
+  const [studentResultState, studentResultDispatch] = useContext(
+    StudentDetailContext
+  );
 
   const handleInputChange = e => {
     setNewResult(prev => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
+  };
+
+  const handleFormSubmit = e => {
+    e.preventDefault();
+    console.log(newResult);
+    studentResultDispatch({
+      type: "ADD_RESULT_AFTER",
+      payload: {
+        student_id: id,
+        result: {
+          id: Date.now() + 1,
+          ...newResult,
+        },
+      },
+    });
+    onclick(false)
   };
 
   return (
@@ -18,7 +42,7 @@ const AddResultForm = ({ onclick }) => {
         aria-labelledby="exampleModalLabel"
       >
         <div className="form-wrapper">
-          <form action="">
+          <form action="" onSubmit={handleFormSubmit}>
             <div className="row">
               <div className="col-4">
                 <input
@@ -42,7 +66,11 @@ const AddResultForm = ({ onclick }) => {
               </div>
 
               <div className="col-4 d-flex">
-                <button type="button" className="btn btn-success btn-large ">
+                <button
+                  type="submit"
+                  className="btn btn-success btn-large "
+                  onClick={handleFormSubmit}
+                >
                   Add
                 </button>
                 <button

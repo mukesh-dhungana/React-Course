@@ -21,6 +21,7 @@
   /* border: 2px soild red; */
   border-radius: 12px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
   box-shadow: 0 5px 5px 5px #302f2fab;
