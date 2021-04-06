@@ -64,7 +64,7 @@ export const studentDetailData = {
     {
       id: 3,
       student_id: 3,
-      result: [
+      results: [
         
       ],
     },

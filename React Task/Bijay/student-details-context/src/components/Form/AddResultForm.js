@@ -24,7 +24,7 @@ const AddResultForm = ({ onclick }) => {
     studentResultDispatch({
       type: "ADD_RESULT_AFTER",
       payload: {
-        student_id: id,
+        student_id: +id,
         result: {
           id: Date.now() + 1,
           ...newResult,
