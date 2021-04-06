@@ -3,6 +3,7 @@ import "./App.css";
 import TopHeader from "./components/TopHeader";
 import StudentsList from "./components/StudentsList";
 import { StudentListProvider } from "./context/StudentListContext";
+import StudentDetail from "./components/StudentDetail";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       </div>
       <div className="container">
         <StudentsList />
+        {/* <StudentDetail /> */}
       </div>
     </StudentListProvider>
   );
