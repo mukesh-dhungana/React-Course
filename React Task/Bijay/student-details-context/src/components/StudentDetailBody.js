@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import StudentDetailBodyRow from "./StudentDetailBodyRow";
-
+import AddResultForm from './Form/AddResultForm'
 const StudentDetailBody = ({ results, student }) => {
   console.log("ResultBody=> ", results);
+
+  const [showAddResult, setShowAddResult] = useState(false)
+
+  const handleAddResultClick = () => {
+    setShowAddResult(true)
+  }
+
+  const hideModal = set => {
+    setShowAddResult(set);
+  }
+
   return (
     <>
+    {showAddResult && <AddResultForm onclick={hideModal}/>}
       <div className="container-fluid">
         <table className="table table-hover">
           <thead className="text-center">
             <tr>
               <th scope="col" colSpan="1">
-                <span className="btn btn-outline-success">
+                <span
+                  className="btn btn-success"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                  onClick={handleAddResultClick}
+                >
                   Add New Result
                 </span>
               </th>
