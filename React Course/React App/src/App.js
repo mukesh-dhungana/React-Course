@@ -21,8 +21,9 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import NewUser from "./components/NewUser";
 import ErrorPage from "./components/errorPage";
-import Route from "./Route";
 import ActionDispatcher from "./components/ActionDispatcher";
+import ProviderWrapper from './context/ProviderWrapper';
+import Form from './components/form-validation/Form'
 
 function App({ id }) {
   const [string, setvalue] = useState(false);
@@ -55,14 +56,14 @@ function App({ id }) {
       <button onClick={() => setTitle("dsds")}>Set state</button>
       <button onClick={() => changeState("dsd")}>Change state</button>
       <button onClick={() => changeValue("fdfd")}>Change value</button> */}
-
-      <button onClick={() => setShowModal(!isShown)}>Toggle Modal show</button>
+{/* 
+      <button onClick={() => setShowModal(!isShown)}>Toggle Modal show</button> */}
       {/* <UseReducer />
       <UseCallBack onClick={changeState} />
       <UseMemo /> */}
-      {isShown && <Modal show={isShown} />}
+      {/* {isShown && <Modal show={isShown} />}
       <Events />
-      <ActionDispatcher />
+      <ActionDispatcher /> */}
       <Router>
         <Switch>
           <Route path="/error" exact component={ErrorPage} />
@@ -79,6 +80,8 @@ function App({ id }) {
             <Route path="/contact/user" component={Users} />
           </Route>
           {/* <Route path="/actions" component={ActionDispatcher} /> */}
+          <Route path="/contextApi" component={ProviderWrapper}/>
+          <Route path="/form" component={Form}/>
           <Redirect from="/home" to="/" />
           <Redirect to="/error" />
         </Switch>
