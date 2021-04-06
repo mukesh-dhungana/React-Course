@@ -1,20 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { withRouter } from "react-router";
 import AddStudent from "./AddStudent";
 
-const TopHeader = () => {
+const TopHeader = ({url, history}) => {
+  const [addStudentForm, setAddStudentForm] = useState(false);
 
-    const [addStudentForm, setAddStudentForm] = useState(false)
+  const [showReturnBtn, setShowReturnBtn] = useState(false);
 
-    const handleAddButton = () => {
-        setAddStudentForm(!addStudentForm)
+  const handleAddButton = () => {
+    setAddStudentForm(!addStudentForm);
+  };
+
+  const handleCloseForm = val => {
+    if (addStudentForm) {
+      val = false;
     }
+    setAddStudentForm(val);
+  };
 
-    const handleCloseForm = () => {
-        if(addStudentForm) {
-            setAddStudentForm(false)
-        }
+  useEffect(() => {
+    if(url !== 'http://localhost:3000/') {
+      setShowReturnBtn(true)
     }
-
+  },[url] )
   return (
     <>
       <h2>WEN Student Info</h2>
@@ -22,12 +30,26 @@ const TopHeader = () => {
         Here we have all the list of students with their Details.
         <small className="text-danger"> WEN Welcomes You!</small>
       </blockquote>
-      <button type="button" className="btn btn-primary btn-lg btn-block" onClick={handleAddButton}>
-        {addStudentForm ? "Cancel New Entry" : "Add New Student"}
-      </button>
+      {showReturnBtn ? (
+        <button
+          type="button"
+          className="btn btn-outline-warning btn-lg btn-block"
+          onClick={()=> history.push('/')}
+        >
+          Return to Home
+        </button>
+      ) : (
+        <button
+          type="button"
+          className="btn btn-primary btn-lg btn-block"
+          onClick={handleAddButton}
+        >
+          {addStudentForm ? "Cancel New Entry" : "Add New Student"}
+        </button>
+      )}
       {addStudentForm && <AddStudent handleCloseForm={handleCloseForm} />}
     </>
   );
 };
 
-export default TopHeader;
+export default withRouter(TopHeader);

@@ -12,14 +12,14 @@ const AddStudent = (props) => {
             type="button"
             className="close"
             aria-label="Close"
-            onClick={props.handleCloseForm}
+            onClick={()=>props.handleCloseForm(false)}
           >
             <span aria-hidden="true">×</span>
           </button>
         </div>
 
         {/* FORM SHOWN HERE!!!  */}
-        <AddStudentForm />
+        <AddStudentForm close={props.handleCloseForm}/>
 
         
       </div>

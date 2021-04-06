@@ -8,11 +8,15 @@ import { StudentDetailProvider } from "./context/StudentDetailContext";
 import { Route, Switch } from "react-router";
 
 function App() {
+
+  let url = window.location.href
+
   return (
     <StudentListProvider>
       <StudentDetailProvider>
         <div className="container header-container">
-          <TopHeader />
+          <TopHeader url={url} />
+          {/* <Route exact path="/" render={()=> <TopHeader title="GO BACK" />} /> */}
         </div>
         <div className="container">
           <Switch>

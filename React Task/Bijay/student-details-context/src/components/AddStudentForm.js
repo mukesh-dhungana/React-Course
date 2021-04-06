@@ -4,7 +4,7 @@ import { StudentListContext } from "../context/StudentListContext";
 import AddedResult from "./AddedResult";
 import AddStudentResultForm from "./AddStudentResultForm";
 
-const AddStudentForm = () => {
+const AddStudentForm = ({close}) => {
   const [studentListState, studentListDispatch] = useContext(
     StudentListContext
   );
@@ -63,6 +63,7 @@ const AddStudentForm = () => {
 
       },
     });
+    close(false)
   };
   console.log('results=> ',allresultsInfo);
   return (

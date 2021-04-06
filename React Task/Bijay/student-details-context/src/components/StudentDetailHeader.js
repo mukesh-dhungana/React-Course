@@ -1,5 +1,4 @@
 import React from "react";
-import image from '../assets/studentsImage/student1.jpg'
 
 const StudentDetailHeader = (props) => {
   const {student} = props
