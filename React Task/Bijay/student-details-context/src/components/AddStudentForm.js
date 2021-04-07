@@ -3,8 +3,12 @@ import { StudentDetailContext } from "../context/StudentDetailContext";
 import { StudentListContext } from "../context/StudentListContext";
 import AddedResult from "./AddedResult";
 import AddStudentResultForm from "./AddStudentResultForm";
-
+import useForm from "./validation/useForm";
+import {validateInfo} from './validation/FormValidation'
 const AddStudentForm = ({close}) => {
+
+  const {handleChange, values, handleSubmit, errors} = useForm(validateInfo)
+
   const [studentListState, studentListDispatch] = useContext(
     StudentListContext
   );
@@ -29,12 +33,12 @@ const AddStudentForm = ({close}) => {
     }
   };
 
-  const handleInputChange = e => {
-    setStudentInfo(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  // const handleInputChange = e => {
+  //   setStudentInfo(prev => ({
+  //     ...prev,
+  //     [e.target.name]: e.target.value,
+  //   }));
+  // };
 
   const handleResultInfo = result => {
     console.log("Results", allresultsInfo);
@@ -69,7 +73,7 @@ const AddStudentForm = ({close}) => {
   console.log('results=> ',allresultsInfo);
   return (
     <>
-      <form className="" onSubmit={handleFormSubmit}>
+      <form className="" onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-6">
             <input
@@ -77,8 +81,10 @@ const AddStudentForm = ({close}) => {
               className="form-control"
               placeholder="Student Name"
               name="student_name"
-              onChange={handleInputChange}
+              onChange={handleChange}
+              value={values.student_name}
             />
+            {errors.studentName && <p className="errors">{errors.studentName}</p> }
           </div>
           <div className="col-6">
             <input
@@ -86,8 +92,11 @@ const AddStudentForm = ({close}) => {
               className="form-control"
               placeholder="Student Email"
               name="student_email"
-              onChange={handleInputChange}
+              onChange={handleChange}
+              value={values.student_email}
             />
+            {errors.studentEmail && <p className="errors">{errors.studentEmail}</p> }
+
           </div>
           <div className="col-4">
             <input
@@ -95,8 +104,11 @@ const AddStudentForm = ({close}) => {
               className="form-control"
               placeholder="Student Address"
               name="student_address"
-              onChange={handleInputChange}
+              onChange={handleChange}
+              value={values.student_address}
             />
+            {errors.studentAddress && <p className="errors">{errors.studentAddress}</p> }
+
           </div>
           <div className="col-6">
             <input
@@ -104,8 +116,11 @@ const AddStudentForm = ({close}) => {
               className="form-control"
               placeholder="Student Contact Number"
               name="student_contactNo"
-              onChange={handleInputChange}
+              onChange={handleChange}
+              value={values.student_contactNo}
             />
+            {errors.studentContact && <p className="errors">{errors.studentContact}</p> }
+
           </div>
         </div>
         <div className="row">
@@ -126,7 +141,7 @@ const AddStudentForm = ({close}) => {
           <AddStudentResultForm
             handleCancelResult={handleCancelResult}
             handleResultInfo={handleResultInfo}
-            handleInputChange={handleInputChange}
+            handleInputChange={handleChange}
           />
         )}
 
@@ -134,7 +149,7 @@ const AddStudentForm = ({close}) => {
           <button
             type="button"
             className="btn btn-primary btn-lg"
-            onClick={handleFormSubmit}
+            onClick={handleSubmit}
           >
             Save Entry
           </button>
