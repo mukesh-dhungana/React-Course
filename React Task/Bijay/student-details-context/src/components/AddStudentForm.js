@@ -43,7 +43,8 @@ const AddStudentForm = ({close}) => {
 
   const handleFormSubmit = e => {
     e.preventDefault();
-    console.log(studentInfo, allresultsInfo, "Form Submission");
+    
+    // console.log(studentInfo, allresultsInfo, "Form Submission");
     const forId = Date.now();
     studentListDispatch({
       type: "ADD_STUDENT",
