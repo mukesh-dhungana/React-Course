@@ -19,12 +19,22 @@ const StudentDetailBody = ({ results}) => {
   }
 
   const handleSingleDeleteResult = (resultId) => {
-    console.log('Result Id=>', resultId);
+    // console.log('Result Id=>', resultId);
     StudentResultDispatch({
       type: "DELETE_ONE_RESULT",
       payload: {
         student_id: +id,
         resultId: resultId
+      }
+    })
+  }
+
+  const handleAllResultDelete = () => {
+    console.log('All Result Deleted');
+    StudentResultDispatch({
+      type: "DELETE_ALL_RESULT",
+      payload: {
+        student_id: +id
       }
     })
   }
@@ -50,7 +60,7 @@ const StudentDetailBody = ({ results}) => {
                 Result Details
               </th>
               <th scope="col" colSpan="2">
-                <span className="btn btn-outline-warning">
+                <span className="btn btn-outline-warning" onClick={handleAllResultDelete} >
                   DELETE ALL Results
                 </span>
               </th>
