@@ -24,6 +24,7 @@ import ErrorPage from "./components/errorPage";
 import ActionDispatcher from "./components/ActionDispatcher";
 import ProviderWrapper from './context/ProviderWrapper';
 import Form from './components/form-validation/Form'
+import FormHooks from './components/form-validation/FormHooks'
 
 function App({ id }) {
   const [string, setvalue] = useState(false);
@@ -82,6 +83,7 @@ function App({ id }) {
           {/* <Route path="/actions" component={ActionDispatcher} /> */}
           <Route path="/contextApi" component={ProviderWrapper}/>
           <Route path="/form" component={Form}/>
+          <Route path="/formhooks" component={FormHooks}/>
           <Redirect from="/home" to="/" />
           <Redirect to="/error" />
         </Switch>
