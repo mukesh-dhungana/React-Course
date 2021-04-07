@@ -1,7 +1,7 @@
 export const studentDetailReducer = (state, action) => {
   switch (action.type) {
     case "ADD_RESULT":
-    //   console.log("Result Added =>", action.payload);
+      //   console.log("Result Added =>", action.payload);
       return {
         ...state,
         studentResults: [...state.studentResults, action.payload],
@@ -20,7 +20,7 @@ export const studentDetailReducer = (state, action) => {
         ),
       };
     case "DELETE_ONE_RESULT":
-    //   console.log("Delete Result", action.payload);
+      //   console.log("Delete Result", action.payload);
       return {
         ...state,
         studentResults: state.studentResults.map(res =>
@@ -42,11 +42,14 @@ export const studentDetailReducer = (state, action) => {
           res.student_id === action.payload.student_id
             ? {
                 ...res,
-                results: []
+                results: [],
               }
             : res
         ),
       };
+    case "EDIT_RESULT":
+      console.log("Edit Result", action.payload);
+      return state;
     default:
       return state;
   }

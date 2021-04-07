@@ -1,47 +1,65 @@
 import React, { useState, useContext } from "react";
 import StudentDetailBodyRow from "./StudentDetailBodyRow";
-import AddResultForm from './Form/AddResultForm'
+import AddResultForm from "./Form/AddResultForm";
 import { StudentDetailContext } from "../context/StudentDetailContext";
 import { useParams } from "react-router";
-const StudentDetailBody = ({ results}) => {
+const StudentDetailBody = ({ results }) => {
   console.log("ResultBody=> ", results);
 
-  const [showAddResult, setShowAddResult] = useState(false)
-  const [studentResult, StudentResultDispatch] = useContext(StudentDetailContext)
-  const {id } = useParams();
+  const [showAddResult, setShowAddResult] = useState(false);
+
+  const [editMode, setEditMode] = useState(false);
+  const [idToEdit, setIdToEdit] = useState()
+
+  const [studentResult, StudentResultDispatch] = useContext(
+    StudentDetailContext
+  );
+  const { id } = useParams();
 
   const handleAddResultClick = () => {
-    setShowAddResult(true)
-  }
+    setShowAddResult(true);
+    setEditMode(false)
+  };
 
   const hideModal = set => {
     setShowAddResult(set);
-  }
+    setEditMode(false)
+  };
 
-  const handleSingleDeleteResult = (resultId) => {
+  const handleSingleDeleteResult = resultId => {
     // console.log('Result Id=>', resultId);
     StudentResultDispatch({
       type: "DELETE_ONE_RESULT",
       payload: {
         student_id: +id,
-        resultId: resultId
-      }
-    })
-  }
+        resultId: resultId,
+      },
+    });
+  };
 
   const handleAllResultDelete = () => {
-    console.log('All Result Deleted');
+    console.log("All Result Deleted");
     StudentResultDispatch({
       type: "DELETE_ALL_RESULT",
       payload: {
-        student_id: +id
-      }
-    })
-  }
+        student_id: +id,
+      },
+    });
+  };
+
+  const handleResultEdit = resultId => {
+    setShowAddResult(true);
+    setEditMode(true);
+    setIdToEdit(resultId)
+  };
 
   return (
     <>
-    {showAddResult && <AddResultForm onclick={hideModal}/>}
+      {showAddResult && editMode ? (
+        <AddResultForm onclick={hideModal} editMode={editMode} resultId={idToEdit} results={results} />
+      ) : (
+        showAddResult && <AddResultForm onclick={hideModal} />
+      )}
       <div className="container-fluid">
         <table className="table table-hover">
           <thead className="text-center">
@@ -60,7 +78,10 @@ const StudentDetailBody = ({ results}) => {
                 Result Details
               </th>
               <th scope="col" colSpan="2">
-                <span className="btn btn-outline-warning" onClick={handleAllResultDelete} >
+                <span
+                  className="btn btn-outline-warning"
+                  onClick={handleAllResultDelete}
+                >
                   DELETE ALL Results
                 </span>
               </th>
@@ -79,6 +100,7 @@ const StudentDetailBody = ({ results}) => {
                 key={result.id}
                 result={result}
                 handleSingleDelete={handleSingleDeleteResult}
+                handleResultEdit={handleResultEdit}
               />
             ))}
           </tbody>

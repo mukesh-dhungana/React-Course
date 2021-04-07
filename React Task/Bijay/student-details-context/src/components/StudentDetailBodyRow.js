@@ -1,6 +1,6 @@
 import React from "react";
 
-const StudentDetailBodyRow = ({result, handleSingleDelete}) => {
+const StudentDetailBodyRow = ({result, handleSingleDelete, handleResultEdit}) => {
   return (
     <>
       <tr className="table-light">
@@ -8,7 +8,7 @@ const StudentDetailBodyRow = ({result, handleSingleDelete}) => {
         <td> {result.semester} </td>
         <td> {result.gpa} </td>
         <td>
-          <span className=" badge-pill badge-primary">CLICK</span>
+          <span className=" badge-pill badge-primary" onClick={()=> handleResultEdit(result.id)} >EDIT</span>
           <span className=" badge-pill badge-danger ml-3 mr-0" onClick={()=>handleSingleDelete(result.id)} >DELETE</span>
         </td>
       </tr>
