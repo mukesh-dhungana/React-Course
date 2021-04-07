@@ -5,7 +5,7 @@ import AddStudent from "./AddStudent";
 const TopHeader = ({url, history}) => {
   const [addStudentForm, setAddStudentForm] = useState(false);
 
-  const [showReturnBtn, setShowReturnBtn] = useState(false);
+  // const [showReturnBtn, setShowReturnBtn] = useState(false);
 
   const handleAddButton = () => {
     setAddStudentForm(!addStudentForm);
@@ -17,12 +17,7 @@ const TopHeader = ({url, history}) => {
     }
     setAddStudentForm(val);
   };
-
-  useEffect(() => {
-    if(url !== 'http://localhost:3000/') {
-      setShowReturnBtn(true)
-    }
-  },[url] )
+  // console.log(history)
   return (
     <>
       <h2>WEN Student Info</h2>
@@ -30,7 +25,7 @@ const TopHeader = ({url, history}) => {
         Here we have all the list of students with their Details.
         <small className="text-danger"> WEN Welcomes You!</small>
       </blockquote>
-      {showReturnBtn ? (
+      {history.location.pathname!=='/' ? (
         <button
           type="button"
           className="btn btn-outline-warning btn-lg btn-block"
