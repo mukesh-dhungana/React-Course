@@ -1,10 +1,10 @@
 import React from "react";
 
-const StudentDetailBodyRow = ({result, handleSingleDelete, handleResultEdit}) => {
+const StudentDetailBodyRow = ({result, handleSingleDelete, handleResultEdit, idx}) => {
   return (
     <>
       <tr className="table-light">
-        <td> {result.id} </td>
+        <td> {idx+1} </td>
         <td> {result.semester} </td>
         <td> {result.gpa} </td>
         <td>

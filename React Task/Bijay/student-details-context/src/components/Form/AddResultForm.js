@@ -5,14 +5,9 @@ import "./Forms.css";
 const AddResultForm = ({ onclick, editMode, resultId, results }) => {
   const [newResult, setNewResult] = useState({});
 
-  const [semester, setSemester] = useState("");
-  const [gpa, setGpa] = useState("");
-
   const { id } = useParams();
 
-  const [studentResultState, studentResultDispatch] = useContext(
-    StudentDetailContext
-  );
+  const [x,studentResultDispatch] = useContext(StudentDetailContext);
 
   const handleInputChange = e => {
     setNewResult(prev => ({
@@ -39,7 +34,7 @@ const AddResultForm = ({ onclick, editMode, resultId, results }) => {
 
   const handleEditSubmit = e => {
     e.preventDefault();
-    console.log("Edit Mode", semester, gpa);
+
     studentResultDispatch({
       type: "EDIT_RESULT",
       payload: {

@@ -12,17 +12,17 @@ const AddStudentForm = ({ close, submitForm }) => {
     validateInfo
   );
 
-  const [studentListState, studentListDispatch] = useContext(
+  const [y, studentListDispatch] = useContext(
     StudentListContext
   );
 
-  const [studentResultState, studentResultDispatch] = useContext(
+  const [x, studentResultDispatch] = useContext(
     StudentDetailContext
   );
 
   const [addResult, setAddResult] = useState(false);
 
-  const [studentInfo, setStudentInfo] = useState();
+  const [studentInfo] = useState();
   // const [resultsInfo, setResultsInfo] = useState({});
   const [allresultsInfo, setAllResultsInfo] = useState([]);
   const handleAddResult = () => {

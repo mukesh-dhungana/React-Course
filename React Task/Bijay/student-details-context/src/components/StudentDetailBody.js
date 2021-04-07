@@ -9,7 +9,7 @@ const StudentDetailBody = ({ results }) => {
   const [showAddResult, setShowAddResult] = useState(false);
 
   const [editMode, setEditMode] = useState(false);
-  const [idToEdit, setIdToEdit] = useState()
+  const [idToEdit, setIdToEdit] = useState();
 
   const [studentResult, StudentResultDispatch] = useContext(
     StudentDetailContext
@@ -18,12 +18,12 @@ const StudentDetailBody = ({ results }) => {
 
   const handleAddResultClick = () => {
     setShowAddResult(true);
-    setEditMode(false)
+    setEditMode(false);
   };
 
   const hideModal = set => {
     setShowAddResult(set);
-    setEditMode(false)
+    setEditMode(false);
   };
 
   const handleSingleDeleteResult = resultId => {
@@ -50,13 +50,18 @@ const StudentDetailBody = ({ results }) => {
   const handleResultEdit = resultId => {
     setShowAddResult(true);
     setEditMode(true);
-    setIdToEdit(resultId)
+    setIdToEdit(resultId);
   };
 
   return (
     <>
       {showAddResult && editMode ? (
-        <AddResultForm onclick={hideModal} editMode={editMode} resultId={idToEdit} results={results} />
+        <AddResultForm
+          onclick={hideModal}
+          editMode={editMode}
+          resultId={idToEdit}
+          results={results}
+        />
       ) : (
         showAddResult && <AddResultForm onclick={hideModal} />
       )}
@@ -75,32 +80,37 @@ const StudentDetailBody = ({ results }) => {
                 </span>
               </th>
               <th scope="col" colSpan="2">
-                Result Details
+                {results.length > 0 ? "Result Details" : "No Results"}
               </th>
               <th scope="col" colSpan="2">
-                <span
-                  className="btn btn-outline-warning"
-                  onClick={handleAllResultDelete}
-                >
-                  DELETE ALL Results
-                </span>
+                {results.length > 0 && (
+                  <span
+                    className="btn btn-outline-warning"
+                    onClick={handleAllResultDelete}
+                  >
+                    DELETE ALL Results
+                  </span>
+                )}
               </th>
             </tr>
-            <tr>
-              <th scope="col">Result ID</th>
-              <th scope="col">Semester</th>
-              <th scope="col">GPA</th>
-              <th></th>
-              <th></th>
-            </tr>
+            {results.length > 0 && (
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Semester</th>
+                <th scope="col">GPA</th>
+                <th></th>
+                <th></th>
+              </tr>
+            )}
           </thead>
           <tbody className="text-center">
-            {results?.map(result => (
+            {results?.map((result, idx) => (
               <StudentDetailBodyRow
                 key={result.id}
                 result={result}
                 handleSingleDelete={handleSingleDeleteResult}
                 handleResultEdit={handleResultEdit}
+                idx={idx}
               />
             ))}
           </tbody>
