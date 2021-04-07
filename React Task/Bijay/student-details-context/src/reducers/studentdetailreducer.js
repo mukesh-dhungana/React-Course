@@ -49,7 +49,21 @@ export const studentDetailReducer = (state, action) => {
       };
     case "EDIT_RESULT":
       console.log("Edit Result", action.payload);
-      return state;
+      return {
+        ...state,
+        studentResults: state.studentResults.map(res =>
+          res.student_id === action.payload.student_id
+            ? {
+                ...res,
+                results: res.results.map(result =>
+                  result.id === action.payload.editedResult.id
+                    ? action.payload.editedResult
+                    : result
+                ),
+              }
+            : res
+        ),
+      };
     default:
       return state;
   }

@@ -15,16 +15,10 @@ const AddResultForm = ({ onclick, editMode, resultId, results }) => {
   );
 
   const handleInputChange = e => {
-    // if (editMode) {
-    //   console.log(e.target);
-    //   setSemester(e.target.value);
-    //   setGpa(e.target.value);
-    // } else {
-      setNewResult(prev => ({
-        ...prev,
-        [e.target.name]: e.target.value,
-      }));
-    
+    setNewResult(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleFormSubmit = e => {
@@ -52,6 +46,7 @@ const AddResultForm = ({ onclick, editMode, resultId, results }) => {
         student_id: +id,
         editedResult: {
           id: resultId,
+          ...result,
           ...newResult,
         },
       },
@@ -77,7 +72,10 @@ const AddResultForm = ({ onclick, editMode, resultId, results }) => {
         aria-labelledby="exampleModalLabel"
       >
         <div className="form-wrapper">
-          <form action="" onSubmit={editMode ? handleEditSubmit : handleFormSubmit}>
+          <form
+            action=""
+            onSubmit={editMode ? handleEditSubmit : handleFormSubmit}
+          >
             <div className="row">
               <div className="col-4">
                 <input
