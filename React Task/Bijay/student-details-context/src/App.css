@@ -11,10 +11,15 @@
   align-items: center;
 }
 
-.card-body.student-detail-body  .card-title {
+.card-body.student-detail-body .student-name {
   max-width: 60%;
   min-width: 38%;
-  /* border: 2px solid red; */
+  text-align: center;
+}
+
+.card-body.student-detail-body .student-name p {
+  color: rgb(160, 77, 0);
+  font-weight: 400;
 }
 
 .card-body .student-detail {
@@ -27,12 +32,12 @@
   text-align: center;
 }
 
-.card-body .student-detail  cite {
+.card-body .student-detail cite {
   color: crimson;
   font-size: 1.2rem;
 }
 
-.card-body .student-detail  p {
+.card-body .student-detail p {
   color: darkslateblue;
   font-size: 1rem;
 }
@@ -49,15 +54,15 @@
 
 .card-header.student-detail-header p {
   display: inline-block;
-  padding: 2px 12px!important;
+  padding: 2px 12px !important;
   /* border: 2px solid red!important; */
   min-width: 80%;
 }
 
 .card-header.student-detail-header span.btn-info {
   padding: 10px 22px;
-  background: rgba(22, 14, 1, 0.795)!important;
-  color:#fff;
+  background: rgba(22, 14, 1, 0.795) !important;
+  color: #fff;
   font-size: 14px;
   letter-spacing: 2px;
   margin: auto;
@@ -65,31 +70,32 @@
 }
 
 .card-header.student-detail-header span.btn-info:hover {
-  background: rgba(22, 14, 1, 0.959)!important;
-
+  background: rgba(22, 14, 1, 0.959) !important;
 }
-td.edit-student, td.delete-student {
-  cursor:pointer;
+td.edit-student,
+td.delete-student {
+  cursor: pointer;
   opacity: 0.7;
   transition: all 1s ease-out;
 }
 
-td.edit-student:hover, td.delete-student:hover {
+td.edit-student:hover,
+td.delete-student:hover {
   opacity: 1;
-  transform: scale(1.1) translateZ(2px)!important;
+  transform: scale(1.1) translateZ(2px) !important;
   border-radius: 8px;
 }
 
-
-
-.badge-primary, .badge-danger {
+.badge-primary,
+.badge-danger {
   padding: 10px;
   cursor: pointer;
   opacity: 0.8;
   transition: all 0.2s ease-in;
 }
 
-.badge-primary:hover, .badge-danger:hover {
+.badge-primary:hover,
+.badge-danger:hover {
   opacity: 1;
 }
 

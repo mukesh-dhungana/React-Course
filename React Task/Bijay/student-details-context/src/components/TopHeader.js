@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { withRouter } from "react-router";
 import AddStudent from "./AddStudent";
 
-const TopHeader = ({url, history}) => {
+const TopHeader = ({ url, history }) => {
   const [addStudentForm, setAddStudentForm] = useState(false);
 
   // const [showReturnBtn, setShowReturnBtn] = useState(false);
@@ -17,6 +17,8 @@ const TopHeader = ({url, history}) => {
     }
     setAddStudentForm(val);
   };
+
+  
   // console.log(history)
   return (
     <>
@@ -25,11 +27,11 @@ const TopHeader = ({url, history}) => {
         Here we have all the list of students with their Details.
         <small className="text-danger"> WEN Welcomes You!</small>
       </blockquote>
-      {history.location.pathname!=='/' ? (
+      {history.location.pathname !== "/" ? (
         <button
           type="button"
           className="btn btn-outline-warning btn-lg btn-block"
-          onClick={()=> history.push('/')}
+          onClick={() => history.push("/")}
         >
           Return to Home
         </button>
@@ -42,7 +44,7 @@ const TopHeader = ({url, history}) => {
           {addStudentForm ? "Cancel New Entry" : "Add New Student"}
         </button>
       )}
-      {addStudentForm && <AddStudent handleCloseForm={handleCloseForm} />}
+      {addStudentForm && <AddStudent handleCloseForm={handleCloseForm}  />}
     </>
   );
 };

@@ -32,7 +32,7 @@ const StudentDetail = () => {
       <StudentDetailHeader key={matchedStudent.id} student={matchedStudent} />
     }
     {
-      <StudentDetailBody key={matchedResult.id} results={matchedResult.results} student={matchedStudent} />
+      <StudentDetailBody key={matchedResult.id} results={matchedResult.results} />
     }
       {/* <StudentDetailHeader studentsList={studentsList} />
       <StudentDetailBody /> */}

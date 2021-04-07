@@ -1,7 +1,7 @@
 import React from "react";
 
-const StudentDetailHeader = (props) => {
-  const {student} = props
+const StudentDetailHeader = props => {
+  const { student } = props;
   return (
     <>
       <div className="card border-secondary mb-3" style={{ maxWidth: "100%" }}>
@@ -10,11 +10,19 @@ const StudentDetailHeader = (props) => {
           <span className="btn btn-info">Edit</span>
         </div>
         <div className="card-body student-detail-body">
-          <h4 className="card-title">{student.student_name}</h4>
-          <div className="student-detail">
-          <div className="student-img">
-            <img src={student.student_img} alt="" width="100px" height="100px" />
+          <div className="student-name">
+            <h4 className="card-title">{student.student_name}</h4>
+            <p>Student Id: ({student.id})</p>
           </div>
+          <div className="student-detail">
+            <div className="student-img">
+              <img
+                src={student.student_img}
+                alt=""
+                width="100px"
+                height="100px"
+              />
+            </div>
             <div className="email">
               <cite>Email: </cite>
               <p className="card-text">{student.student_email}</p>

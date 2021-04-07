@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import StudentDetailBodyRow from "./StudentDetailBodyRow";
 import AddResultForm from './Form/AddResultForm'
-const StudentDetailBody = ({ results, student }) => {
+import { StudentDetailContext } from "../context/StudentDetailContext";
+import { useParams } from "react-router";
+const StudentDetailBody = ({ results}) => {
   console.log("ResultBody=> ", results);
 
   const [showAddResult, setShowAddResult] = useState(false)
+  const [studentResult, StudentResultDispatch] = useContext(StudentDetailContext)
+  const {id } = useParams();
 
   const handleAddResultClick = () => {
     setShowAddResult(true)
@@ -12,6 +16,17 @@ const StudentDetailBody = ({ results, student }) => {
 
   const hideModal = set => {
     setShowAddResult(set);
+  }
+
+  const handleSingleDeleteResult = (resultId) => {
+    console.log('Result Id=>', resultId);
+    StudentResultDispatch({
+      type: "DELETE_ONE_RESULT",
+      payload: {
+        student_id: +id,
+        resultId: resultId
+      }
+    })
   }
 
   return (
@@ -41,7 +56,7 @@ const StudentDetailBody = ({ results, student }) => {
               </th>
             </tr>
             <tr>
-              <th scope="col">Student ID</th>
+              <th scope="col">Result ID</th>
               <th scope="col">Semester</th>
               <th scope="col">GPA</th>
               <th></th>
@@ -53,7 +68,7 @@ const StudentDetailBody = ({ results, student }) => {
               <StudentDetailBodyRow
                 key={result.id}
                 result={result}
-                student={student}
+                handleSingleDelete={handleSingleDeleteResult}
               />
             ))}
           </tbody>

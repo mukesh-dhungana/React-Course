@@ -27,11 +27,11 @@ export const validateInfo = values => {
 //   }
 
   //Optional Contact No
-  if (values.student_contactNo) {
-    if (!phoneReg.test(values.student_contactNo)) {
-      errors.studentContact = "Please enter Valid 10 Digit Number!";
-    }
-  }
+//   if (values.student_contactNo) {
+//     if (!phoneReg.test(values.student_contactNo)) {
+//       errors.studentContact = "Please enter Valid 10 Digit Number!";
+//     }
+//   }
 
   return errors;
 };

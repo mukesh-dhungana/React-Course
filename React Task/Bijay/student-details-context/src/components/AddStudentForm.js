@@ -4,10 +4,13 @@ import { StudentListContext } from "../context/StudentListContext";
 import AddedResult from "./AddedResult";
 import AddStudentResultForm from "./AddStudentResultForm";
 import useForm from "./validation/useForm";
-import {validateInfo} from './validation/FormValidation'
-const AddStudentForm = ({close}) => {
+import { validateInfo } from "./validation/FormValidation";
 
-  const {handleChange, values, handleSubmit, errors} = useForm(validateInfo)
+const AddStudentForm = ({ close, submitForm }) => {
+  const { handleChange, values, handleSubmit, errors, isSubmitting } = useForm(
+    submitForm,
+    validateInfo
+  );
 
   const [studentListState, studentListDispatch] = useContext(
     StudentListContext
@@ -22,7 +25,6 @@ const AddStudentForm = ({close}) => {
   const [studentInfo, setStudentInfo] = useState();
   // const [resultsInfo, setResultsInfo] = useState({});
   const [allresultsInfo, setAllResultsInfo] = useState([]);
-
   const handleAddResult = () => {
     setAddResult(!addResult);
   };
@@ -44,33 +46,34 @@ const AddStudentForm = ({close}) => {
     console.log("Results", allresultsInfo);
     setAllResultsInfo([...allresultsInfo, result]);
   };
+  // console.log("results=> ", allresultsInfo);
 
-  const handleFormSubmit = e => {
-    e.preventDefault();
-    
-    // console.log(studentInfo, allresultsInfo, "Form Submission");
-    const forId = Date.now();
-    studentListDispatch({
-      type: "ADD_STUDENT",
-      payload: {
-        id: forId,
-        ...studentInfo,
-      },
-    });
-    studentResultDispatch({
-      type: "ADD_RESULT",
-      payload: {
-        id: Date.now() + 1,
-        student_id: forId,
-        results: [
-          ...allresultsInfo
-        ]
+  
 
-      },
-    });
-    close(false)
-  };
-  console.log('results=> ',allresultsInfo);
+  if (isSubmitting) {
+    const handleData = () => {
+      const forId = Date.now();
+      studentListDispatch({
+        type: "ADD_STUDENT",
+        payload: {
+          id: forId,
+          ...studentInfo,
+        },
+      });
+      studentResultDispatch({
+        type: "ADD_RESULT",
+        payload: {
+          id: Date.now() + 1,
+          student_id: forId,
+          results: [...allresultsInfo],
+        },
+      });
+      close(false);
+    };
+    handleData();
+    // setIsSubmitted(true);
+  }
+
   return (
     <>
       <form className="" onSubmit={handleSubmit}>
@@ -84,19 +87,22 @@ const AddStudentForm = ({close}) => {
               onChange={handleChange}
               value={values.student_name}
             />
-            {errors.studentName && <p className="errors">{errors.studentName}</p> }
+            {errors.studentName && (
+              <p className="errors">{errors.studentName}</p>
+            )}
           </div>
           <div className="col-6">
             <input
-              type="email"
+              type="text"
               className="form-control"
               placeholder="Student Email"
               name="student_email"
               onChange={handleChange}
               value={values.student_email}
             />
-            {errors.studentEmail && <p className="errors">{errors.studentEmail}</p> }
-
+            {errors.studentEmail && (
+              <p className="errors">{errors.studentEmail}</p>
+            )}
           </div>
           <div className="col-4">
             <input
@@ -107,8 +113,9 @@ const AddStudentForm = ({close}) => {
               onChange={handleChange}
               value={values.student_address}
             />
-            {errors.studentAddress && <p className="errors">{errors.studentAddress}</p> }
-
+            {errors.studentAddress && (
+              <p className="errors">{errors.studentAddress}</p>
+            )}
           </div>
           <div className="col-6">
             <input
@@ -119,8 +126,9 @@ const AddStudentForm = ({close}) => {
               onChange={handleChange}
               value={values.student_contactNo}
             />
-            {errors.studentContact && <p className="errors">{errors.studentContact}</p> }
-
+            {errors.studentContact && (
+              <p className="errors">{errors.studentContact}</p>
+            )}
           </div>
         </div>
         <div className="row">
