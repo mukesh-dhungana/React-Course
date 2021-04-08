@@ -1,6 +1,11 @@
 import React from "react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { incrementCountActionCreater, changeName } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  incrementAction,
+  getUserAction,
+  asyncActioncreater,
+} from "../redux/actions";
+import { increment, getUsers } from "../redux/reducer";
 
 function ActionDispatcher(props) {
   // const { count } = store.getState();
@@ -8,23 +13,20 @@ function ActionDispatcher(props) {
   // const count = useSelector((state) => state.countReducer.count);
   // const name = useSelector((state) => state.countReducer.name);
   //strict comparison ===
-  const { count, name } = useSelector(
-    ({ countReducer: { count, name } }) => ({
-      count,
-      name,
-    }),
-    shallowEqual
+  const { count, userCount } = useSelector(
+    (state) => state.countReducer
   );
+  const { users,isloading} = useSelector((state) => state.reducer);
 
-  // const state = useSelector((state) => state);
-  console.log({ id: 0, name: "abc" } === { id: 0, name: "abc" });
-  console.log(shallowEqual({ id: 0, name: "abc" }, { id: 0, name: "abc" }));
   return (
     <div>
+      {isloading && <div>Loading...</div>}
       {/* {count} */}
       {count}
+      {userCount}
+      {JSON.stringify(users)}
       ActionDispatcher
-      <button onClick={() => dispatch(changeName("Ravi"))}>
+      <button onClick={() => dispatch(getUserAction())}>
         Dispatch action
       </button>
     </div>
