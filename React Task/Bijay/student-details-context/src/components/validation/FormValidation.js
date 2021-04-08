@@ -1,7 +1,11 @@
 const emailReg = /\S+@\S+\.\S+/;
 const phoneReg = /^[98]{2}[0-9]{8}$/gm;
 export const validateInfo = values => {
+  console.log('Form Validation', values);
   let errors = {};
+
+ 
+
 
   if (!values.student_name.trim()) {
     errors.studentName = "Student Name is Required!";

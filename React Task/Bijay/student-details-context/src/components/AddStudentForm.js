@@ -7,9 +7,7 @@ import useForm from "./validation/useForm";
 import { validateInfo } from "./validation/FormValidation";
 
 const AddStudentForm = ({ close, submitForm }) => {
-  const { handleChange, values, handleSubmit, errors, isSubmitting } = useForm(
-    validateInfo
-  );
+  
 
   const [y, studentListDispatch] = useContext(StudentListContext);
 
@@ -44,9 +42,7 @@ const AddStudentForm = ({ close, submitForm }) => {
   // console.log("results=> ", allresultsInfo);
 
   const handleSubmitForm = e => {
-    handleSubmit(e);
 
-    if (isSubmitting) {
       const forId = Date.now();
       studentListDispatch({
         type: "ADD_STUDENT",
@@ -64,12 +60,16 @@ const AddStudentForm = ({ close, submitForm }) => {
         },
       });
       close(false);
-    }
+      // setIsSubmitting(false)
+    
+    
   };
-
+  const { handleChange, values, handleSubmit, errors } = useForm(
+    validateInfo, handleSubmitForm
+  );
   return (
     <>
-      <form className="" onSubmit={handleSubmitForm}>
+      <form className="" onSubmit={(e)=>handleSubmit(e)}>
         <div className="row">
           <div className="col-6">
             <input
@@ -148,9 +148,8 @@ const AddStudentForm = ({ close, submitForm }) => {
 
         <div className="modal-footer">
           <button
-            type="button"
+            type="submit"
             className="btn btn-primary btn-lg"
-            onClick={handleSubmitForm}
           >
             Save Entry
           </button>
