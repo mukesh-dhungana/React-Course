@@ -9,9 +9,9 @@ import { validateInfo } from "./validation/FormValidation";
 const AddStudentForm = ({ close }) => {
   
 
-  const [y, studentListDispatch] = useContext(StudentListContext);
+  const [, studentListDispatch] = useContext(StudentListContext);
 
-  const [x, studentResultDispatch] = useContext(StudentDetailContext);
+  const [, studentResultDispatch] = useContext(StudentDetailContext);
 
   const [addResult, setAddResult] = useState(false);
 
@@ -40,6 +40,7 @@ const AddStudentForm = ({ close }) => {
   const handleResultInfo = result => {
     console.log("Results", allresultsInfo);
     setAllResultsInfo([...allresultsInfo, result]);
+    handleAddResult();
   };
   // console.log("results=> ", allresultsInfo);
 
@@ -66,6 +67,12 @@ const AddStudentForm = ({ close }) => {
     
     
   };
+
+  const handleDeleteResult = (resultId) => {
+    console.log('Deleted', resultId, allresultsInfo);
+    setAllResultsInfo(allresultsInfo.filter(res => res.id !== resultId))
+  }
+
   const { handleChange, values, handleSubmit, errors } = useForm(
     validateInfo, handleSubmitForm
   );
@@ -138,13 +145,14 @@ const AddStudentForm = ({ close }) => {
           </div>
         </div>
         {allresultsInfo.length > 0 && (
-          <AddedResult allresultsInfo={allresultsInfo} />
+          <AddedResult allresultsInfo={allresultsInfo} handleDeleteResult={handleDeleteResult} />
         )}
         {addResult && (
           <AddStudentResultForm
             handleCancelResult={handleCancelResult}
             handleResultInfo={handleResultInfo}
             handleInputChange={handleChange}
+            
           />
         )}
 

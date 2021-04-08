@@ -18,7 +18,10 @@ const AddedResult = props => {
             <tr key={result.id}>
               <td> {result.semester} </td>
               <td> {result.gpa} </td>
-              <td>Delete</td>
+              <td>
+                {" "}
+                <span className=" badge-pill badge-danger" onClick={()=>props.handleDeleteResult(result.id)} >DELETE</span>
+              </td>
             </tr>
           ))}
         </tbody>
