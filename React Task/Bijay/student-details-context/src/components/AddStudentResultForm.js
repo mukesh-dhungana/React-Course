@@ -1,13 +1,24 @@
 import React, { useState } from "react";
+import useForm from "./validation/useForm";
 
 const AddStudentResultForm = props => {
   const [resultInfo, setResultInfo] = useState({});
+
+  let initialState = {
+    semester: "",
+    gpa: ""    
+  };
 
   const handleInputChange = e => {
     setResultInfo(prev => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
+  };
+
+  const onChange = e => {
+    const { name, value } = e.target;
+    handleChange(name, value);
   };
 
   const handleResultSubmit =(e) => {
@@ -18,6 +29,8 @@ const AddStudentResultForm = props => {
     }
     props.handleResultInfo(result)
   }
+
+  const {handleChange, handleSubmit, errors} = useForm()
 
   return (
     <>
@@ -31,7 +44,7 @@ const AddStudentResultForm = props => {
                 placeholder="semester"
                 name="semester"
                 defaultValue=""
-                onChange={handleInputChange}
+                onChange={onChange}
               />
             </div>
             <div className="col-4">
@@ -41,7 +54,7 @@ const AddStudentResultForm = props => {
                 placeholder="GPA"
                 name="gpa"
                 defaultValue=""
-                onChange={handleInputChange}
+                onChange={onChange}
               />
             </div>
 

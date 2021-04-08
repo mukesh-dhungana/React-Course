@@ -1,54 +1,44 @@
-import   { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // import { validateInfo } from './FormValidation'
 
-const useForm = (validateInfo, callback) => {
-  const [values, setValues] = useState({
-    student_name: "",
-    student_email: "",
-    student_contactNo: "",
-    student_address: "",
-  });
+const useForm = (initialState, validateInfo, callback) => {
+  const [values, setValues] = useState(initialState);
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setValues({
-      ...values,
+  console.log("Errors", errors);
+
+  const handleChange = (name, value) => {
+    setValues(prev => ({
+      ...prev,
       [name]: value,
-    });
-    // if (isSubmitting) {
-    //   setErrors(
-    //     validateInfo({
-    //       [name]: value,
-    //     })
-    //   );
-    // }
+    }));
+    if (isSubmitted) {
+      let call = validateInfo({[name]:value})
+      setErrors(prev => ({
+        ...prev,
+        ...call
+      }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     console.log("Errors", errors, isSubmitting);
-    // if (Object.keys(errors).length === 0) {
-    //   setIsSubmitting(true);
-
+    setIsSubmitted(true);
     setIsSubmitting(true);
     setErrors(validateInfo(values));
-    // callback();
-    //
-
-    // setTimeout(()=>{
-    //     setIsSubmitting(false)
-    // },2000)
   };
 
   useEffect(() => {
     console.log("useEffect");
-    if (Object.keys(errors).length === 0 && isSubmitting) {
+    if (Object.values(errors).filter(item => item).length === 0 && isSubmitted) {
+      console.log('Dispatched');
       callback();
     }
-  }, [isSubmitting, errors]);
+  }, [isSubmitted, errors]);
 
   return {
     handleChange,

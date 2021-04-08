@@ -16,6 +16,14 @@ const AddStudentForm = ({ close }) => {
   const [formValid, setFormValid] = useState(false);
 
   const [allresultsInfo, setAllResultsInfo] = useState([]);
+
+  let initialState = {
+    student_name: "",
+    student_email: "",
+    student_contactNo: "",
+    student_address: "",
+  };
+
   const handleAddResult = () => {
     setAddResult(!addResult);
   };
@@ -30,6 +38,11 @@ const AddStudentForm = ({ close }) => {
     console.log("Results", allresultsInfo);
     setAllResultsInfo([...allresultsInfo, result]);
     handleAddResult();
+  };
+
+  const onChange = e => {
+    const { name, value } = e.target;
+    handleChange(name, value);
   };
 
   const handleSubmitForm = e => {
@@ -58,6 +71,7 @@ const AddStudentForm = ({ close }) => {
   };
 
   const { handleChange, values, handleSubmit, errors } = useForm(
+    initialState,
     validateInfo,
     handleSubmitForm
   );
@@ -71,11 +85,11 @@ const AddStudentForm = ({ close }) => {
               className="form-control"
               placeholder="Student Name"
               name="student_name"
-              onChange={handleChange}
+              onChange={onChange}
               value={values.student_name}
             />
-            {errors.studentName && (
-              <p className="errors">{errors.studentName}</p>
+            {errors.student_name && (
+              <p className="errors">{errors.student_name}</p>
             )}
           </div>
           <div className="col-6">
@@ -84,11 +98,11 @@ const AddStudentForm = ({ close }) => {
               className="form-control"
               placeholder="Student Email"
               name="student_email"
-              onChange={handleChange}
+              onChange={onChange}
               value={values.student_email}
             />
-            {errors.studentEmail && (
-              <p className="errors">{errors.studentEmail}</p>
+            {errors.student_email && (
+              <p className="errors">{errors.student_email}</p>
             )}
           </div>
           <div className="col-4">
@@ -97,11 +111,11 @@ const AddStudentForm = ({ close }) => {
               className="form-control"
               placeholder="Student Address"
               name="student_address"
-              onChange={handleChange}
+              onChange={onChange}
               value={values.student_address}
             />
-            {errors.studentAddress && (
-              <p className="errors">{errors.studentAddress}</p>
+            {errors.student_address && (
+              <p className="errors">{errors.student_address}</p>
             )}
           </div>
           <div className="col-6">
@@ -110,11 +124,11 @@ const AddStudentForm = ({ close }) => {
               className="form-control"
               placeholder="Student Contact Number"
               name="student_contactNo"
-              onChange={handleChange}
+              onChange={onChange}
               value={values.student_contactNo}
             />
-            {errors.studentContact && (
-              <p className="errors">{errors.studentContact}</p>
+            {errors.student_contactNo && (
+              <p className="errors">{errors.student_contactNo}</p>
             )}
           </div>
         </div>
