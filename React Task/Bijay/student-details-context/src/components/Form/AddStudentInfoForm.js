@@ -13,9 +13,9 @@ const AddStudentInfoForm = props => {
   const [, studentListDispatch] = useContext(StudentListContext);
 
   let initialState = {
-    student_name: "",
-    student_email: "",
-    student_contactNo: "",
+    student_name: student.student_name,
+    student_email: student.student_email,
+    student_address: student.student_address
   };
 
   // const handleInputChange = e => {
@@ -31,7 +31,7 @@ const AddStudentInfoForm = props => {
   };
 
   const handleEditSubmit = e => {
-    e.preventDefault();
+    
     studentListDispatch({
       type: "EDIT_STUDENT",
       payload: {
