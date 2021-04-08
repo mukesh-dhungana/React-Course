@@ -6,36 +6,38 @@ const AddStudentResultForm = props => {
 
   let initialState = {
     semester: "",
-    gpa: ""    
+    gpa: "",
   };
 
-  const handleInputChange = e => {
-    setResultInfo(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  // const handleInputChange = e => {
+  //   setResultInfo(prev => ({
+  //     ...prev,
+  //     [e.target.name]: e.target.value,
+  //   }));
+  // };
 
   const onChange = e => {
     const { name, value } = e.target;
     handleChange(name, value);
   };
 
-  const handleResultSubmit =(e) => {
-    e.preventDefault();
+  const handleResultSubmit = e => {
     const result = {
-      ...resultInfo,
-      id: Date.now() + 1
-    }
-    props.handleResultInfo(result)
-  }
+      ...values,
+      id: Date.now() + 1,
+    };
+    props.handleResultInfo(result);
+  };
 
-  const {handleChange, handleSubmit, errors} = useForm()
+  const { handleChange, handleSubmit, errors, values } = useForm(
+    initialState,
+    handleResultSubmit
+  );
 
   return (
     <>
       <div className="container">
-        <form action="" onSubmit={handleResultSubmit}>
+        <form action="" onSubmit={e => handleSubmit(e)}>
           <div className="row">
             <div className="col-4">
               <input
@@ -46,6 +48,9 @@ const AddStudentResultForm = props => {
                 defaultValue=""
                 onChange={onChange}
               />
+              {errors.semester && (
+                <p className="errors">{errors.semester}</p>
+              )}
             </div>
             <div className="col-4">
               <input
@@ -56,13 +61,16 @@ const AddStudentResultForm = props => {
                 defaultValue=""
                 onChange={onChange}
               />
+              {errors.gpa && (
+                <p className="errors">{errors.gpa}</p>
+              )}
             </div>
 
             <div className="col-4">
               <button
-                type="button"
+                type="submit"
                 className="btn btn-success btn-large "
-                onClick={handleResultSubmit}
+                // onClick={e => handleSubmit(e)}
               >
                 Add
               </button>

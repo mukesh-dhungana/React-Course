@@ -5,7 +5,7 @@ import StudentsList from "./components/StudentsList";
 import { StudentListProvider } from "./context/StudentListContext";
 import StudentDetail from "./components/StudentDetail";
 import { StudentDetailProvider } from "./context/StudentDetailContext";
-import { Route, Switch } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
             <Route exact path="/" component={StudentsList} />
             <Route path="/students/:id" component={StudentDetail} />
             {/* <StudentDetail /> */}
+            <Redirect to="/" />
           </Switch>
         </div>
       </StudentDetailProvider>

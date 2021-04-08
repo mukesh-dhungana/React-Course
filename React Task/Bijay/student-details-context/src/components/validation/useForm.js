@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { validateInfo } from "./FormValidation";
+
 // import { validateInfo } from './FormValidation'
 
-const useForm = (initialState, validateInfo, callback) => {
+const useForm = (initialState, callback) => {
   const [values, setValues] = useState(initialState);
 
   const [errors, setErrors] = useState({});
@@ -16,10 +18,10 @@ const useForm = (initialState, validateInfo, callback) => {
       [name]: value,
     }));
     if (isSubmitted) {
-      let call = validateInfo({[name]:value})
+      let call = validateInfo({ [name]: value });
       setErrors(prev => ({
         ...prev,
-        ...call
+        ...call,
       }));
     }
   };
@@ -34,11 +36,18 @@ const useForm = (initialState, validateInfo, callback) => {
 
   useEffect(() => {
     console.log("useEffect");
-    if (Object.values(errors).filter(item => item).length === 0 && isSubmitted) {
-      console.log('Dispatched');
-      callback();
+    if (Object.values(errors).filter(item => item).length !== 0) {
+      setIsSubmitting(false);
     }
-  }, [isSubmitted, errors]);
+    if (
+      Object.values(errors).filter(item => item).length === 0 &&
+      isSubmitting
+    ) {
+      console.log("Dispatched");
+      callback();
+      setIsSubmitted(false);
+    }
+  }, [isSubmitting, errors]);
 
   return {
     handleChange,

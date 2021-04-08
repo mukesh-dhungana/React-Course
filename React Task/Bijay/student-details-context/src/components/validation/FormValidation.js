@@ -31,7 +31,7 @@ export const validateInfo = fields => {
             : "";
 
         break;
-      case "semseter":
+      case "semester":
         errors[field] = fields[field] === "" ? "Semester is Required!" : "";
         break;
       case "gpa":

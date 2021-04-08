@@ -4,7 +4,6 @@ import { StudentListContext } from "../context/StudentListContext";
 import AddedResult from "./AddedResult";
 import AddStudentResultForm from "./AddStudentResultForm";
 import useForm from "./validation/useForm";
-import { validateInfo } from "./validation/FormValidation";
 
 const AddStudentForm = ({ close }) => {
   const [, studentListDispatch] = useContext(StudentListContext);
@@ -72,7 +71,6 @@ const AddStudentForm = ({ close }) => {
 
   const { handleChange, values, handleSubmit, errors } = useForm(
     initialState,
-    validateInfo,
     handleSubmitForm
   );
   return (

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router";
 import { StudentListContext } from "../../context/StudentListContext";
+import useForm from "../validation/useForm";
 import "./Forms.css";
 const AddStudentInfoForm = props => {
   const { student } = props;
@@ -11,14 +12,25 @@ const AddStudentInfoForm = props => {
 
   const [, studentListDispatch] = useContext(StudentListContext);
 
-  const handleInputChange = e => {
-    setStudentInfo(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+  let initialState = {
+    student_name: "",
+    student_email: "",
+    student_contactNo: "",
   };
 
-  const handleSubmit = e => {
+  // const handleInputChange = e => {
+  //   setStudentInfo(prev => ({
+  //     ...prev,
+  //     [e.target.name]: e.target.value,
+  //   }));
+  // };
+
+  const onChange = e => {
+    const { name, value } = e.target;
+    handleChange(name, value);
+  };
+
+  const handleEditSubmit = e => {
     e.preventDefault();
     studentListDispatch({
       type: "EDIT_STUDENT",
@@ -26,12 +38,17 @@ const AddStudentInfoForm = props => {
         studentId: +id,
         edited: {
           ...student,
-          ...studentInfo,
+          ...values,
         },
       },
     });
     props.handleEditHeader(false);
   };
+
+  const { handleChange, values, errors, handleSubmit } = useForm(
+    initialState,
+    handleEditSubmit
+  );
 
   return (
     <>
@@ -41,7 +58,7 @@ const AddStudentInfoForm = props => {
         aria-labelledby="exampleModalLabel"
       >
         <div className="form-wrapper">
-          <form action="" onSubmit={handleSubmit}>
+          <form action="" onSubmit={e => handleSubmit(e)}>
             <div className="row">
               <div className="col-12">
                 <input
@@ -50,8 +67,11 @@ const AddStudentInfoForm = props => {
                   placeholder="Full Name"
                   name="student_name"
                   defaultValue={student.student_name}
-                  onChange={handleInputChange}
+                  onChange={onChange}
                 />
+                {errors.student_name && (
+                  <p className="errors">{errors.student_name}</p>
+                )}
               </div>
               <div className="col-6">
                 <input
@@ -59,20 +79,26 @@ const AddStudentInfoForm = props => {
                   className="input-field"
                   placeholder="Email"
                   name="student_email"
-                  onChange={handleInputChange}
+                  onChange={onChange}
                   defaultValue={student.student_email}
                 />
+                {errors.student_email && (
+                  <p className="errors">{errors.student_email}</p>
+                )}
               </div>
               <div className="col-6">
                 <input
                   type="text"
                   className="input-field"
-                  placeholder="Contact No"
-                  name="student_contactNo"
-                  onChange={handleInputChange}
-                  defaultValue={student.student_contactNo}
+                  placeholder="Address"
+                  name="student_address"
+                  onChange={onChange}
+                  defaultValue={student.student_address}
                   s
                 />
+                {errors.student_address && (
+                  <p className="errors">{errors.student_address}</p>
+                )}
               </div>
             </div>
             <div className="row d-flex btn-group">
