@@ -18,8 +18,8 @@ const Form = ({
   const studentDetail = useContext(studentDetails);
   const studentResult = useContext(studentResults);
 
-  const { detailDispatch, detailState } = studentDetail;
-  const { resultDispatch, resultState } = studentResult;
+  const { detailDispatch } = studentDetail;
+  const { resultDispatch } = studentResult;
 
   //Destructuring States
   const { name, email, phone } = detailValue;
@@ -42,7 +42,8 @@ const Form = ({
   };
 
   //On Button Click
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
     if (!edit) {
       const random = Math.random() * 100;
       detailDispatch({
@@ -120,7 +121,7 @@ const Form = ({
   return (
     <div>
       Formm
-      <form action="">
+      <form action="" onSubmit={(e) => onSubmitHandler(e)}>
         <TextField
           variant="outlined"
           label="Name"
@@ -172,7 +173,7 @@ const Form = ({
         <Button
           variant="contained"
           color="primary"
-          onClick={() => onSubmitHandler()}
+          type="submit"
         >
           Submit
         </Button>
