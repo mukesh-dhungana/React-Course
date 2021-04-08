@@ -6,7 +6,7 @@ import AddStudentResultForm from "./AddStudentResultForm";
 import useForm from "./validation/useForm";
 import { validateInfo } from "./validation/FormValidation";
 
-const AddStudentForm = ({ close, submitForm }) => {
+const AddStudentForm = ({ close }) => {
   
 
   const [y, studentListDispatch] = useContext(StudentListContext);
@@ -15,7 +15,9 @@ const AddStudentForm = ({ close, submitForm }) => {
 
   const [addResult, setAddResult] = useState(false);
 
-  const [studentInfo] = useState();
+  const [formValid, setFormValid] = useState(false)
+
+  // const [studentInfo] = useState();
   // const [resultsInfo, setResultsInfo] = useState({});
   const [allresultsInfo, setAllResultsInfo] = useState([]);
   const handleAddResult = () => {
@@ -146,10 +148,11 @@ const AddStudentForm = ({ close, submitForm }) => {
           />
         )}
 
-        <div className="modal-footer">
+        <div className="modal-footer form-submit-btn">
           <button
             type="submit"
             className="btn btn-primary btn-lg"
+            disabled={!formValid}
           >
             Save Entry
           </button>

@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router";
 
-const StudentListRow = ({student,history}) => {
+const StudentListRow = ({student,history, handleStudentDelete}) => {
   return (
     <>
       <tr className="table-light">
@@ -13,7 +13,7 @@ const StudentListRow = ({student,history}) => {
           <span className=" badge-pill badge-primary ">VIEW</span>
         </td>
         <td className="delete-student">
-          <span className=" badge-pill badge-danger ">DELETE</span>
+          <span className=" badge-pill badge-danger " onClick={()=>handleStudentDelete(student.id)} >DELETE</span>
         </td>
       </tr>
     </>

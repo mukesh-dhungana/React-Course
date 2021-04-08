@@ -113,3 +113,9 @@ p.errors {
   margin-top: 1px;
   color: crimson;
 }
+
+.form-submit-btn button:disabled {
+  pointer-events: all;
+  cursor: not-allowed;
+  background-color: rgba(34, 33, 33, 0.787);
+}

@@ -35,7 +35,7 @@ export const studentDetailReducer = (state, action) => {
         ),
       };
     case "DELETE_ALL_RESULT":
-      console.log("Delete All Result", action.payload);
+      // console.log("Delete All Result", action.payload);
       return {
         ...state,
         studentResults: state.studentResults.map(res =>
@@ -47,6 +47,13 @@ export const studentDetailReducer = (state, action) => {
             : res
         ),
       };
+    case "DELETE_ALL":
+      console.log("Delete All", action.payload);
+      return {
+        ...state,
+        studentResults: state.studentResults.filter(res => res.student_id !== action.payload)
+      }
+
     case "EDIT_RESULT":
       console.log("Edit Result", action.payload);
       return {
