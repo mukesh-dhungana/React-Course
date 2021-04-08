@@ -4,7 +4,6 @@ import AddResultForm from "./Form/AddResultForm";
 import { StudentDetailContext } from "../context/StudentDetailContext";
 import { useParams } from "react-router";
 const StudentDetailBody = ({ results }) => {
-  console.log("ResultBody=> ", results);
 
   const [showAddResult, setShowAddResult] = useState(false);
 

@@ -1,8 +1,6 @@
 // import {studentList} from '../data'
 
 export const studentListReducer = (state, action) => {
-  console.log("Reducer", state);
-
   switch (action.type) {
     case "ADD_STUDENT":
       return {

@@ -25,7 +25,7 @@ const StudentDetail = () => {
       {<StudentDetailHeader key={matchedStudent.id} student={matchedStudent} />}
       {
         <StudentDetailBody
-          key={matchedResult.id}
+          key={matchedResult.id + Date.now()}
           results={matchedResult.results}
         />
       }

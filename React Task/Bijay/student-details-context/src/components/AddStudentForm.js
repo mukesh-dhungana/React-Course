@@ -135,24 +135,24 @@ const AddStudentForm = ({ close }) => {
             handleDeleteResult={handleDeleteResult}
           />
         )}
-        {addResult && (
-          <AddStudentResultForm
-            handleCancelResult={handleCancelResult}
-            handleResultInfo={handleResultInfo}
-            handleInputChange={handleChange}
-          />
-        )}
-
-        <div className="modal-footer form-submit-btn">
-          <button
-            type="submit"
-            className="btn btn-primary btn-lg"
-            disabled={!formValid}
-          >
-            Save Entry
-          </button>
-        </div>
       </form>
+      {addResult && (
+        <AddStudentResultForm
+          handleCancelResult={handleCancelResult}
+          handleResultInfo={handleResultInfo}
+          handleInputChange={handleChange}
+        />
+      )}
+      <div className="modal-footer form-submit-btn">
+        <button
+          type="submit"
+          className="btn btn-primary btn-lg"
+          disabled={formValid}
+          onClick={e => handleSubmit(e)}
+        >
+          Save Entry
+        </button>
+      </div>
     </>
   );
 };
