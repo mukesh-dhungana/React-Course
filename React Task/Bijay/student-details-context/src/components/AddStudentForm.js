@@ -8,17 +8,12 @@ import { validateInfo } from "./validation/FormValidation";
 
 const AddStudentForm = ({ close, submitForm }) => {
   const { handleChange, values, handleSubmit, errors, isSubmitting } = useForm(
-    submitForm,
     validateInfo
   );
 
-  const [y, studentListDispatch] = useContext(
-    StudentListContext
-  );
+  const [y, studentListDispatch] = useContext(StudentListContext);
 
-  const [x, studentResultDispatch] = useContext(
-    StudentDetailContext
-  );
+  const [x, studentResultDispatch] = useContext(StudentDetailContext);
 
   const [addResult, setAddResult] = useState(false);
 
@@ -48,16 +43,16 @@ const AddStudentForm = ({ close, submitForm }) => {
   };
   // console.log("results=> ", allresultsInfo);
 
-  
+  const handleSubmitForm = e => {
+    handleSubmit(e);
 
-  if (isSubmitting) {
-    const handleData = () => {
+    if (isSubmitting) {
       const forId = Date.now();
       studentListDispatch({
         type: "ADD_STUDENT",
         payload: {
           id: forId,
-          ...studentInfo,
+          ...values,
         },
       });
       studentResultDispatch({
@@ -69,14 +64,12 @@ const AddStudentForm = ({ close, submitForm }) => {
         },
       });
       close(false);
-    };
-    handleData();
-    // setIsSubmitted(true);
-  }
+    }
+  };
 
   return (
     <>
-      <form className="" onSubmit={handleSubmit}>
+      <form className="" onSubmit={handleSubmitForm}>
         <div className="row">
           <div className="col-6">
             <input
@@ -157,7 +150,7 @@ const AddStudentForm = ({ close, submitForm }) => {
           <button
             type="button"
             className="btn btn-primary btn-lg"
-            onClick={handleSubmit}
+            onClick={handleSubmitForm}
           >
             Save Entry
           </button>
