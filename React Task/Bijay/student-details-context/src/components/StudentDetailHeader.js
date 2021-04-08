@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import AddStudentInfoForm from "./Form/AddStudentInfoForm";
 
 const StudentDetailHeader = props => {
+
+  const [modal, setModal] = useState(false)
+
+  const handleEditHeader = (val) => {
+    setModal(val)
+  }
+
   const { student } = props;
   return (
     <>
+    {modal && <AddStudentInfoForm handleEditHeader={handleEditHeader} student={student} />}
       <div className="card border-secondary mb-3" style={{ maxWidth: "100%" }}>
         <div className="card-header student-detail-header">
           <p>Student Details</p>
-          <span className="btn btn-info">Edit</span>
+          <span className="btn btn-info" onClick={()=>handleEditHeader(true)} >Edit</span>
         </div>
         <div className="card-body student-detail-body">
           <div className="student-name">

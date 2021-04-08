@@ -7,7 +7,7 @@ const AddResultForm = ({ onclick, editMode, resultId, results }) => {
 
   const { id } = useParams();
 
-  const [x,studentResultDispatch] = useContext(StudentDetailContext);
+  const [,studentResultDispatch] = useContext(StudentDetailContext);
 
   const handleInputChange = e => {
     setNewResult(prev => ({

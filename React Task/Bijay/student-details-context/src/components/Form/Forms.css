@@ -27,6 +27,8 @@
   box-shadow: 0 5px 5px 5px #302f2fab;
 }
 
+
+
 input.input-field {
   padding: 8px;
   min-height: 3rem!important;
@@ -35,6 +37,7 @@ input.input-field {
   border-bottom: 1px solid #ccc;
   width: 100%;
   text-align: center;
+  margin: 12px auto;
 }
 
 input.input-field:focus, input.input-field:active {
@@ -46,3 +49,8 @@ input.input-field::placeholder {
     font-size: 14px;
     letter-spacing: 2px;
 }
+ .row.btn-group {
+   min-width: 80%;
+   /* border: 2px solid black; */
+   margin: 10px auto;
+ }

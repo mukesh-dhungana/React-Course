@@ -17,7 +17,20 @@ export const studentListReducer = (state, action) => {
 
       return {
         ...state,
-        students: state.students.filter(student => student.id !== action.payload)
+        students: state.students.filter(
+          student => student.id !== action.payload
+        ),
+      };
+
+    case "EDIT_STUDENT":
+      console.log("Edit Student", action.payload);
+      return {
+        ...state,
+        students: state.students.map(student =>
+          student.id === action.payload.studentId
+            ? action.payload.edited
+            : student
+        ),
       };
 
     default:
