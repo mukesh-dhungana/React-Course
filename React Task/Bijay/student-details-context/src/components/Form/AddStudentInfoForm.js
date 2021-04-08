@@ -20,7 +20,6 @@ const AddStudentInfoForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("Submitted", student);
     studentListDispatch({
       type: "EDIT_STUDENT",
       payload: {

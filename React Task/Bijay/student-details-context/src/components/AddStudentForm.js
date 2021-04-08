@@ -7,18 +7,14 @@ import useForm from "./validation/useForm";
 import { validateInfo } from "./validation/FormValidation";
 
 const AddStudentForm = ({ close }) => {
-  
-
   const [, studentListDispatch] = useContext(StudentListContext);
 
   const [, studentResultDispatch] = useContext(StudentDetailContext);
 
   const [addResult, setAddResult] = useState(false);
 
-  const [formValid, setFormValid] = useState(false)
+  const [formValid, setFormValid] = useState(false);
 
-  // const [studentInfo] = useState();
-  // const [resultsInfo, setResultsInfo] = useState({});
   const [allresultsInfo, setAllResultsInfo] = useState([]);
   const handleAddResult = () => {
     setAddResult(!addResult);
@@ -30,55 +26,44 @@ const AddStudentForm = ({ close }) => {
     }
   };
 
-  // const handleInputChange = e => {
-  //   setStudentInfo(prev => ({
-  //     ...prev,
-  //     [e.target.name]: e.target.value,
-  //   }));
-  // };
-
   const handleResultInfo = result => {
     console.log("Results", allresultsInfo);
     setAllResultsInfo([...allresultsInfo, result]);
     handleAddResult();
   };
-  // console.log("results=> ", allresultsInfo);
 
   const handleSubmitForm = e => {
-
-      const forId = Date.now();
-      studentListDispatch({
-        type: "ADD_STUDENT",
-        payload: {
-          id: forId,
-          ...values,
-        },
-      });
-      studentResultDispatch({
-        type: "ADD_RESULT",
-        payload: {
-          id: Date.now() + 1,
-          student_id: forId,
-          results: [...allresultsInfo],
-        },
-      });
-      close(false);
-      // setIsSubmitting(false)
-    
-    
+    const forId = Date.now();
+    studentListDispatch({
+      type: "ADD_STUDENT",
+      payload: {
+        id: forId,
+        ...values,
+      },
+    });
+    studentResultDispatch({
+      type: "ADD_RESULT",
+      payload: {
+        id: Date.now() + 1,
+        student_id: forId,
+        results: [...allresultsInfo],
+      },
+    });
+    close(false);
+    // setIsSubmitting(false)
   };
 
-  const handleDeleteResult = (resultId) => {
-    console.log('Deleted', resultId, allresultsInfo);
-    setAllResultsInfo(allresultsInfo.filter(res => res.id !== resultId))
-  }
+  const handleDeleteResult = resultId => {
+    setAllResultsInfo(allresultsInfo.filter(res => res.id !== resultId));
+  };
 
   const { handleChange, values, handleSubmit, errors } = useForm(
-    validateInfo, handleSubmitForm
+    validateInfo,
+    handleSubmitForm
   );
   return (
     <>
-      <form className="" onSubmit={(e)=>handleSubmit(e)}>
+      <form className="" onSubmit={e => handleSubmit(e)}>
         <div className="row">
           <div className="col-6">
             <input
@@ -145,14 +130,16 @@ const AddStudentForm = ({ close }) => {
           </div>
         </div>
         {allresultsInfo.length > 0 && (
-          <AddedResult allresultsInfo={allresultsInfo} handleDeleteResult={handleDeleteResult} />
+          <AddedResult
+            allresultsInfo={allresultsInfo}
+            handleDeleteResult={handleDeleteResult}
+          />
         )}
         {addResult && (
           <AddStudentResultForm
             handleCancelResult={handleCancelResult}
             handleResultInfo={handleResultInfo}
             handleInputChange={handleChange}
-            
           />
         )}
 

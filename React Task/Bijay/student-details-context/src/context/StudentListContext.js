@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react"
+import { createContext, useReducer } from "react"
 import { studentList } from "../data"
 import { studentListReducer } from "../reducers/studentlistreducer"
 

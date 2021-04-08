@@ -7,7 +7,7 @@ const AddResultForm = ({ onclick, editMode, resultId, results }) => {
 
   const { id } = useParams();
 
-  const [,studentResultDispatch] = useContext(StudentDetailContext);
+  const [, studentResultDispatch] = useContext(StudentDetailContext);
 
   const handleInputChange = e => {
     setNewResult(prev => ({
@@ -18,7 +18,6 @@ const AddResultForm = ({ onclick, editMode, resultId, results }) => {
 
   const handleFormSubmit = e => {
     e.preventDefault();
-    console.log(newResult);
     studentResultDispatch({
       type: "ADD_RESULT_AFTER",
       payload: {
@@ -58,7 +57,6 @@ const AddResultForm = ({ onclick, editMode, resultId, results }) => {
     result = val[0];
   }
 
-  // console.log("Add Result=>", results, studentResults, resultId, result);
   return (
     <>
       <div

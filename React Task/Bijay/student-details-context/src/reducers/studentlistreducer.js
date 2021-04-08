@@ -5,16 +5,12 @@ export const studentListReducer = (state, action) => {
 
   switch (action.type) {
     case "ADD_STUDENT":
-      // console.log("Add User", action.payload);
-
       return {
         ...state,
         students: [...state.students, action.payload],
       };
 
     case "DELETE_STUDENT":
-      console.log("Delete User", action.payload);
-
       return {
         ...state,
         students: state.students.filter(
@@ -23,7 +19,6 @@ export const studentListReducer = (state, action) => {
       };
 
     case "EDIT_STUDENT":
-      console.log("Edit Student", action.payload);
       return {
         ...state,
         students: state.students.map(student =>

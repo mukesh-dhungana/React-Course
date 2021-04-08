@@ -11,9 +11,7 @@ const StudentDetailBody = ({ results }) => {
   const [editMode, setEditMode] = useState(false);
   const [idToEdit, setIdToEdit] = useState();
 
-  const [studentResult, StudentResultDispatch] = useContext(
-    StudentDetailContext
-  );
+  const [, StudentResultDispatch] = useContext(StudentDetailContext);
   const { id } = useParams();
 
   const handleAddResultClick = () => {
@@ -27,7 +25,6 @@ const StudentDetailBody = ({ results }) => {
   };
 
   const handleSingleDeleteResult = resultId => {
-    // console.log('Result Id=>', resultId);
     StudentResultDispatch({
       type: "DELETE_ONE_RESULT",
       payload: {

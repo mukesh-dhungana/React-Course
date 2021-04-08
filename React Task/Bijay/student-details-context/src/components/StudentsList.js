@@ -6,12 +6,9 @@ import StudentListRow from "./StudentListRow";
 const StudentsList = () => {
   const [studentsList, StudentListDispatch] = useContext(StudentListContext);
 
-  const [studentResultList, StudentResultDispatch] = useContext(
-    StudentDetailContext
-  );
+  const [, StudentResultDispatch] = useContext(StudentDetailContext);
 
   const handleStudentDelete = studentId => {
-    console.log("Student Delete", studentId);
     StudentResultDispatch({
       type: "DELETE_ALL",
       payload: studentId,

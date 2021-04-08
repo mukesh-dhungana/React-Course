@@ -1,8 +1,6 @@
 import React from "react";
 
 const AddedResult = props => {
-  // const { allresultsInfo } = props;
-  // console.log(props.allresultsInfo);
   return (
     <>
       <table className="table table-hover">
@@ -20,7 +18,12 @@ const AddedResult = props => {
               <td> {result.gpa} </td>
               <td>
                 {" "}
-                <span className=" badge-pill badge-danger" onClick={()=>props.handleDeleteResult(result.id)} >DELETE</span>
+                <span
+                  className=" badge-pill badge-danger"
+                  onClick={() => props.handleDeleteResult(result.id)}
+                >
+                  DELETE
+                </span>
               </td>
             </tr>
           ))}
