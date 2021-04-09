@@ -49,7 +49,7 @@ function App() {
                 />
               )}
             />
-            
+
           </div>
 
           <div>
@@ -70,6 +70,7 @@ function App() {
                 field: { value, name, ref, onChange },
               }) => (
                 <TextField
+                  type="password"
                   onChange={onChange}
                   inputRef={ref}
                   name={name}
@@ -83,7 +84,7 @@ function App() {
           </div>
 
 
-          <Button type="submit" variant="contained" color="secondary">
+          <Button type="submit" variant="contained" color="secondary" style={{marginTop:12}}>
             Submit
           </Button>
         </form>
