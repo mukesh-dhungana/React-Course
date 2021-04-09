@@ -1,10 +1,10 @@
 import React from "react";
 import './Error.css'
-const ErrorBlock = props => {
+const ErrorBlock = ({title}) => {
   return (
-    <div class="alert alert-info error-alert">
-      <p class="mt-auto">
-        {props.title} 
+    <div class="alert alert-warning error-alert">
+      <p class="">
+        {title} 
       </p>
     </div>
   );

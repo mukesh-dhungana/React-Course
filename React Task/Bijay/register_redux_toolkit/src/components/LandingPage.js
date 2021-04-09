@@ -15,6 +15,7 @@ import skyImg from "./images/sky.png";
 // const moon = document.getElementById("moonn");
 // const sky = document.getElementById("sky");
 // const headingText = document.getElementById("heading-text");
+const cursor = document.getElementById("cursor");
 
 // document.addEventListener("scroll", () => {
 //   var value = window.scrollY;
@@ -42,12 +43,12 @@ const LandingPage = () => {
   //   moon.style.top = "20%";
   // });
 
-  // document.addEventListener("mousemove", e => {
-  //   let x = e.clientX;
-  //   let y = e.clientY;
-  //   cursor.style.left = x + "px";
-  //   cursor.style.top = y + "px";
-  // });
+  document.addEventListener("mousemove", e => {
+    let x = e.clientX;
+    let y = e.clientY;
+    cursor.style.left = x + "px";
+    cursor.style.top = y + "px";
+  });
 
   return (
     <>

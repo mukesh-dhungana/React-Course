@@ -34,6 +34,20 @@
       "password": "pass",
       "password2": "pass",
       "id": 8
+    },
+    {
+      "fullName": "test",
+      "email": "pari@test.com",
+      "password": "pass",
+      "password2": "pass",
+      "id": 9
+    },
+    {
+      "id": 1617948395994,
+      "fullName": "Beezay Bohora",
+      "email": "np.beezay@gmail.com",
+      "password": "pass",
+      "password2": "pass"
     }
   ]
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { loginUser, selectUsers } from "../../reducers/UsersSlice";
@@ -12,35 +13,44 @@ const Login = props => {
   const [showError, setShowError] = useState(false);
   const [errorTitle, setErrorTitle] = useState();
 
-  /***Handling Form Inputs */
-  const handleInputChange = e => {
-    setLoginUserInfo(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  /* FORM VALIDATION WITH USEFORM HOOKS */
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  /***Handling Form Inputs */
+  // const handleInputChange = e => {
+  //   setLoginUserInfo(prev => ({
+  //     ...prev,
+  //     [e.target.name]: e.target.value,
+  //   }));
+  // };
+
+  const handleLoginSubmit = data => {
+    // e.preventDefault();
     // console.log(loginUserInfo);
 
-    if (e.target.email.value === "" || e.target.password.value === "") {
-      console.log("Enter Data");
-      setErrorTitle("Please Enter Email and Password");
-      setShowError(true);
-      setTimeout(() => {
-        setShowError(false);
-      }, 3000);
-      return;
-    }
+    // if (e.target.email.value === "" || e.target.password.value === "") {
+    //   console.log("Enter Data");
+    //   setErrorTitle("Please Enter Email and Password");
+    //   setShowError(true);
+    //   setTimeout(() => {
+    //     setShowError(false);
+    //   }, 3000);
+    //   return;
+    // }
 
-    if (typeof loginUserInfo === "undefined") {
-      return;
-    }
+    // if (typeof loginUserInfo === "undefined") {
+    //   return;
+    // }
+
+    console.log('Data', data);
     const check = checkUser(loginUserInfo);
     const filterUser = users.filter(
       x =>
-        x.email === loginUserInfo.email && loginUserInfo.password === x.password
+        x.email === data.email && data.password === x.password
     );
     // console.log(check, filterUser);
     if (check) {
@@ -98,13 +108,19 @@ const Login = props => {
 
   return (
     <div>
-      <form class="form-login" method="post" action="#" onSubmit={handleSubmit}>
+      <form
+        class="form-login"
+        method="post"
+        action="#"
+        onSubmit={handleSubmit(handleLoginSubmit)}
+        noValidate
+      >
         <div class="form-log-in-with-email">
           <div class="form-white-background">
             <div class="form-title-row">
               <h1>Log in</h1>
             </div>
-            {showError && <ErrorBlock title={errorTitle} />}
+            {/* {showError && <ErrorBlock title={errorTitle} />} */}
             <div class="form-row">
               <label>
                 <span>Email</span>
@@ -112,8 +128,12 @@ const Login = props => {
                   type="email"
                   name="email"
                   defaultValue=""
-                  onChange={handleInputChange}
+                  ref={register}
+                  // onChange={handleInputChange}
+                  {...register("email", { required: true, pattern: /\S+@\S+\.\S+/ })}
                 />
+                {errors.email && errors.email.type === "required" && <ErrorBlock title="Email is Required" />}
+                {errors.email && errors.email.type === "pattern" && <ErrorBlock title="Email is Invalid!" />}
               </label>
             </div>
 
@@ -124,8 +144,10 @@ const Login = props => {
                   type="password"
                   name="password"
                   defaultValue=""
-                  onChange={handleInputChange}
+                  // onChange={handleInputChange}
+                  {...register("password", {required:true})}
                 />
+                {errors.password && <ErrorBlock title="Password Field is Required" />}
               </label>
             </div>
 
