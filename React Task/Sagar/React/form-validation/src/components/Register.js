@@ -42,7 +42,7 @@ const Register = () => {
 
   return (
     <div>
-      <form action="" onSubmit={(e) => onSubmitHandler(e)}>
+      <form action="" onSubmit={(e) => onSubmitHandler(e)} noValidate>
         <input
           type="text"
           placeholder="email"
