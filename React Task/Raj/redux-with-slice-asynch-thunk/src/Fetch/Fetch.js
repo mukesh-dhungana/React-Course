@@ -1,9 +1,4 @@
-import editData from "../Config/Config";
-import {
-  createAsyncThunk,
-  createSlice,
-  configureStore,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchData = createAsyncThunk("getData/fetchAPIData", async () => {
   return await fetch("https://jsonplaceholder.typicode.com/posts").then(data =>
@@ -11,21 +6,21 @@ export const fetchData = createAsyncThunk("getData/fetchAPIData", async () => {
   );
 });
 
-export const fetchSlice = createSlice({
+const fetchSlice = createSlice({
   name: "getData",
   initialState: {
     data: [],
     loading: false,
   },
   extraReducers: {
-    [fetchData.pending]: (state, action) => {
+    [fetchData.pending]: state => {
       state.loading = true;
     },
     [fetchData.fulfilled]: (state, { payload }) => {
       state.data = payload;
       state.loading = false;
     },
-    [fetchData.rejected]: (state, action) => {
+    [fetchData.rejected]: state => {
       state.loading = true;
     },
   },
@@ -33,8 +28,3 @@ export const fetchSlice = createSlice({
 
 export default fetchSlice.reducer;
 export const { loading } = fetchSlice.actions;
-
-// export const store = configureStore({
-//   reducer: fetchSlice,
-//   editData,
-// });

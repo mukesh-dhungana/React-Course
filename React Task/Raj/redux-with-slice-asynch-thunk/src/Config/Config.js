@@ -1,4 +1,4 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const data = {
   id: 12,
@@ -7,7 +7,7 @@ const data = {
   address: "Kathmandu Nepal",
   phone: "9860512866",
 };
-export const slice = createSlice({
+const slice = createSlice({
   name: "edit",
   initialState: data,
   reducers: {

@@ -4,7 +4,7 @@ import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 
 export const FetchSlice = () => {
-  const selector = useSelector(state => state.fetchSlice);
+  const selector = useSelector(state => state.fetchSlice); 
   const dispatch = useDispatch();
   const fetchAPI = () => dispatch(fetchData());
   return (
