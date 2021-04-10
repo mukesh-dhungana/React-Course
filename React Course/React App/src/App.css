@@ -46,9 +46,43 @@
   top: 0;
   padding: 1rem;
 }
-#header{
+#header {
   width: 150px;
 }
-.root{
-  min-height: 1200px;
+.root {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+form{
+  padding:2rem;
+  box-shadow: 0 5px 5px 5px #e4e4e4;
+
+}
+.input-field{
+  padding:1rem;
+ 
+}
+.input-field input{
+  min-width: 250px;
+}
+form label{
+  display:block;
+}
+.submit{
+  padding:1rem;
+}
+button{
+  padding:.5rem 1rem;
+  border:0;
+  border-radius: 3px;
+  background:rgb(22, 192, 22);
+  color:white;
+}
+.error{
+  margin-top:.5rem;
+  color:rgb(187, 32, 32);
+  font-size: .9rem;
+  display:block;
 }
