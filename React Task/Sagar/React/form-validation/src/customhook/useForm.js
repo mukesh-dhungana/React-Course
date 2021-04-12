@@ -23,7 +23,7 @@ const useForm = (initialState) => {
     }));
   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = (event, value) => {
     console.log("SERO", errors);
     event.preventDefault();
 
@@ -34,7 +34,7 @@ const useForm = (initialState) => {
     }));
     if (checkErrors(nErrors)) {
       console.log("valid", nErrors);
-      history.push("/login");
+      history.push(`/${value}`);
     } else {
       console.log("invalid", nErrors);
     }

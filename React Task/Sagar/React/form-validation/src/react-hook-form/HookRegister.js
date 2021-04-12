@@ -2,13 +2,13 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
+import classes from "../css/hook.module.css";
 
 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const HookRegister = () => {
   const history = useHistory();
   const {
-    register,
     handleSubmit,
     control,
     formState: { errors },
@@ -20,9 +20,9 @@ const HookRegister = () => {
   };
 
   return (
-    <div>
+    <div className={classes.container}>
       <h1>Hook Form</h1>
-      <form action="" onSubmit={handleSubmit(submit)}>
+      <form action="" onSubmit={handleSubmit(submit)} className={classes.form}>
         <Controller
           control={control}
           name="fullName"
@@ -31,6 +31,7 @@ const HookRegister = () => {
           }}
           render={({ field: { name, ref, onChange } }) => (
             <TextField
+              className={classes.input}
               onChange={onChange}
               inputRef={ref}
               name={name}
@@ -54,6 +55,7 @@ const HookRegister = () => {
           }}
           render={({ field: { name, ref, onChange } }) => (
             <TextField
+              className={classes.input}
               onChange={onChange}
               inputRef={ref}
               name={name}
@@ -75,6 +77,7 @@ const HookRegister = () => {
           render={({ field: { name, ref, onChange } }) => (
             <TextField
               inputRef={ref}
+              className={classes.input}
               onChange={onChange}
               name={name}
               label="Password"
@@ -84,7 +87,7 @@ const HookRegister = () => {
             />
           )}
         />
-        <button type="submit">Lo0gin</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );

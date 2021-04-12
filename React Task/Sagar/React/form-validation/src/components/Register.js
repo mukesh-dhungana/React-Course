@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import classes from "../css/register.module.css";
 import { validateForm, validateAll, checkErrors } from "./formValidation";
+import user from "../css/user.png";
 
 const Register = () => {
   const history = useHistory();
@@ -41,8 +43,14 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <form action="" onSubmit={(e) => onSubmitHandler(e)} noValidate>
+    <div className={classes.signup}>
+      <img className={classes.image} src={user} alt="" />
+      <h1 className={classes.header}>Register Now</h1>
+      <form
+        action=""
+        onSubmit={(e) => onSubmitHandler(e)}
+        className={classes.form}
+      >
         <input
           type="text"
           placeholder="email"
@@ -51,7 +59,9 @@ const Register = () => {
           validator={["required", "email"]}
         />
         {formErrors.email ? (
-          <div style={{ color: "red" }}>{formErrors.email}</div>
+          <div className={classes.error} style={{ color: "red" }}>
+            {formErrors.email}
+          </div>
         ) : (
           ""
         )}
@@ -63,7 +73,9 @@ const Register = () => {
           validator={["required", "password", "capital", "special"]}
         />
         {formErrors.password ? (
-          <div style={{ color: "red" }}>{formErrors.password}</div>
+          <div className={classes.error} style={{ color: "red" }}>
+            {formErrors.password}
+          </div>
         ) : (
           ""
         )}
@@ -75,7 +87,9 @@ const Register = () => {
           validator={["required", "fullName"]}
         />
         {formErrors.fullName ? (
-          <div style={{ color: "red" }}>{formErrors.fullName}</div>
+          <div className={classes.error} style={{ color: "red" }}>
+            {formErrors.fullName}
+          </div>
         ) : (
           ""
         )}
@@ -90,7 +104,9 @@ const Register = () => {
           onChange={(e) => onChangeHandler("phone", e)}
         />
 
-        <button type="submit">Submit</button>
+        <button className={classes.button} type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );
