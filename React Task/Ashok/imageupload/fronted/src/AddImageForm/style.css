@@ -1,0 +1,13 @@
+.view-image-container {
+  display: flex;
+  margin: 30px;
+  flex-direction: column;
+
+  justify-content: space-between;
+}
+
+button {
+  margin: 20px;
+
+  padding: 20px;
+}
