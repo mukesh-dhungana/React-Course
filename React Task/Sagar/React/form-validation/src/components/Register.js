@@ -19,7 +19,7 @@ const Register = () => {
 
   const onChangeHandler = (name, e) => {
     const errors = validateAll({ [name]: e.target.value });
-
+    console.log(value)
     setValue({
       ...value,
       [name]: e.target.value,
