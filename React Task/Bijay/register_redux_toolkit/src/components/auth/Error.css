@@ -1,0 +1,22 @@
+.error-alert {
+    max-height: 40px!important;
+    text-align: center;
+    width: 90%;
+    margin: 1px auto 10px;
+    /* border: 2px solid red; */
+    left: 40px;
+    font-size: 12px;
+    padding: 0!important;
+    background: #2f3542!important;
+    color: #ffa502;
+    border-radius:8px;
+    /* display: inline-block; */
+}
+
+.error-alert p {
+    font-size: 14px;
+    padding: 8px;
+    font-family:cursive;
+    /* color: #747d8c; */
+    /* background-color: red; */
+}
