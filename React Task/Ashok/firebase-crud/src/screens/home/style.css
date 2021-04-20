@@ -1,0 +1,19 @@
+.user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.user-item {
+  box-shadow: 2px 5px 5px solid black;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.user-item img {
+  width: 100%;
+  height: 80%;
+}
