@@ -1,25 +1,18 @@
 import './App.css';
 import { addData, getAllData, getAllDataSnapShot } from './firebaseServices/databaseService';
-import React, { useEffect } from 'react'
-import useStorage from './hooks/useStorage';
+import React from 'react'
+// import useStorage from './hooks/useStorage';
 
 function App() {
 
   const [data, setData] = React.useState([])
   const [file, setFile] = React.useState(null);
   const [name, setName] = React.useState('')
-  const { url, setUrlFile } = useStorage()
+  // const { url, setUrlFile } = useStorage()
 
   React.useEffect(() => {
-    const getData = async (table) => {
-      const d = await getAllData(table)
-      let user = []
-      d.forEach((snap) => {
-        user = [...user, { id: snap.id, ...snap.data() }]
-      })
-      setData(user)
-    }
 
+    
     const getSnapShot = async (table) => {
       getAllDataSnapShot(table, snap => {
         let user = []
@@ -32,22 +25,22 @@ function App() {
     }
 
     getSnapShot("user")
-    getData("user")
+    //getData("user")
 
     return () => getSnapShot("user")
 
   }, [])
 
-  useEffect(() => {
-    if (url) {
-      addData("user", { name, url })
-      setUrlFile(null)
-    }
-  }, [url, name, setUrlFile])
+  // React.useEffect(() => {
+  //   if (url) {
+  //     addData("user", { name, url })
+  //     setUrlFile(null)
+  //   }
+  // }, [url, name, setUrlFile])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setUrlFile(file)
+    addData("user", { name }, file)
     setFile(null)
     e.target.reset()
   }
