@@ -19,7 +19,7 @@ function MallAdd() {
     const dispatch = useDispatch()
     const [data, setData] = useState(defaultData)
     const [mallImage, setMallImage] = useState(0)
-    console.log(data);
+
     const handleData = (e) => setData(th => ({ ...th, ...{ [e.target.name]: e.target.value } }))
 
     const handleImage = (e) => {
