@@ -25,7 +25,7 @@ function Mall(props) {
 
             </div>
             {hover && <ClearIcon
-                style={{ color: "red", position: "absolute", top: "1%", left: "86%", cursor: "pointer", fontSize:"2rem" }}
+                className="delete-icon"
                 onClick={() => dispatch(deleteMallData(props))}
             />}
 

@@ -77,3 +77,11 @@
     top: 0;
     opacity: 0;
   }
+
+  .delete-icon{
+    color: red;
+    position: absolute;
+    top: 1%;
+    left: 90%;
+    cursor: pointer;
+  }

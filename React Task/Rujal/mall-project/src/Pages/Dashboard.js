@@ -14,10 +14,12 @@ function Dashboard({ malls, getMallData, locationChange }) {
         return () => locationChange()
     }, [getMallData, locationChange])
 
+    const shops = malls.map((x, i) => ({ id: x.id, shop: x.shops[x.shops.length - 1] }))
+
     return (
         <Grid container spacing={2}
             style={{ width: "90%", margin: "auto" }}
-            onClick={() => console.log("Go to next page")}>
+        >
             <Grid item sm={12}>
                 <Button
                     variant="contained"
@@ -31,7 +33,7 @@ function Dashboard({ malls, getMallData, locationChange }) {
                 <Malls malls={malls} />
             </Grid>
             <Grid item sm={12}>
-                <Shops />
+                <Shops shops={shops} />
             </Grid>
         </Grid >
     )
