@@ -29,6 +29,14 @@ export const getFileUrl = async (e, setData, index) => {
     //     return { image_name: x[1].name, url: url[i], id: uniqueName }
     // })
     // return newDta
+
+    // const urls = list.map(async (x) => {
+    //     const uniqueName = random1 + x[1].name + random2
+    //     await firebaseFile.ref(uniqueName).put(x[1])
+    //     const url = await firebaseFile.ref(uniqueName).getDownloadURL()
+    //     return { url, image_name: x[1], id: uniqueName }
+    // })
+
     list.forEach(x => {
         if (x[1]) {
             const uniqueName = Math.random() + x[1].name + Math.random()

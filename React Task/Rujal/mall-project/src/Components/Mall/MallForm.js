@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Fab, Grid, TextField, Typography, Button, Avatar } from '@material-ui/core'
 import { Add } from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
-import ShopForm from '../Components/Shop/ShopForm';
-import { firebaseFile } from '../firebase/config';
-import { addMallData } from '../redux/actions/mall';
-import UploadFile from '../Components/UploadFile';
+import ShopForm from '../Shop/ShopForm';
+import { firebaseFile } from '../../firebase/config';
+import { addMallData } from '../../redux/actions/mall';
+import UploadFile from '../UploadFile';
 
 const defaultData = {
     mall_name: "",
@@ -14,7 +14,7 @@ const defaultData = {
     shops: [{ shop_name: "", shop_description: "", images: [] }]
 }
 
-function MallAdd() {
+function MallForm() {
 
     const dispatch = useDispatch()
     const [data, setData] = useState(defaultData)
@@ -118,4 +118,4 @@ function MallAdd() {
     )
 }
 
-export default MallAdd
+export default MallForm
