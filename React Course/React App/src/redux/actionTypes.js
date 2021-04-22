@@ -1,0 +1,4 @@
+export const INCREMENT_COUNT = "INCREMENT_COUNT";
+export const DECREMENT_COUNT = "DECREMENT_COUNT";
+export const SET_USERS="SET_USERS"
+export const SET_NAME="SET_NAME"

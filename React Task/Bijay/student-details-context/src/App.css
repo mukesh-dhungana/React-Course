@@ -1,0 +1,121 @@
+.header-container {
+  text-align: center;
+  margin: 20px auto;
+  font-weight: 2000 !important;
+}
+
+.card-body.student-detail-body {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.card-body.student-detail-body .student-name {
+  max-width: 60%;
+  min-width: 38%;
+  text-align: center;
+}
+
+.card-body.student-detail-body .student-name p {
+  color: rgb(160, 77, 0);
+  font-weight: 400;
+}
+
+.card-body .student-detail {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+  /* border: 2px solid black; */
+  min-width: 60%;
+  text-align: center;
+}
+
+.card-body .student-detail cite {
+  color: crimson;
+  font-size: 1.2rem;
+}
+
+.card-body .student-detail p {
+  color: darkslateblue;
+  font-size: 1rem;
+}
+
+.card-header.student-detail-header {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: rgb(243, 108, 108);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.card-header.student-detail-header p {
+  display: inline-block;
+  padding: 2px 12px !important;
+  /* border: 2px solid red!important; */
+  min-width: 80%;
+}
+
+.card-header.student-detail-header span.btn-info {
+  padding: 10px 22px;
+  background: rgba(22, 14, 1, 0.795) !important;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin: auto;
+  transition: all 0.2s ease;
+}
+
+.card-header.student-detail-header span.btn-info:hover {
+  background: rgba(22, 14, 1, 0.959) !important;
+}
+td.edit-student,
+td.delete-student {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 1s ease-out;
+}
+
+td.edit-student:hover,
+td.delete-student:hover {
+  opacity: 1;
+  transform: scale(1.1) translateZ(2px) !important;
+  border-radius: 8px;
+}
+
+.badge-primary,
+.badge-danger {
+  padding: 10px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: all 0.2s ease-in;
+}
+
+.badge-primary:hover,
+.badge-danger:hover {
+  opacity: 1;
+}
+
+.student-img {
+  max-width: 150px;
+  max-height: 100px;
+}
+
+.student-img img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+p.errors {
+  margin-top: 1px;
+  color: crimson;
+}
+
+.form-submit-btn button:disabled {
+  pointer-events: all;
+  cursor: not-allowed;
+  background-color: rgba(34, 33, 33, 0.787);
+}

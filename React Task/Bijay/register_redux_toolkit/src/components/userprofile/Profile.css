@@ -1,0 +1,89 @@
+.profile-card {
+    margin: 14px auto;
+    text-align: center!important;
+}
+
+.profile-card .card-body {
+    font-size: 22px;
+}
+
+.settings-card {
+    margin-bottom: 24px!important;
+}
+
+.settings-card .settings-card-header {
+    text-align: center;
+    margin: 10px auto;
+    font-size: 24px;
+    width: 100%;
+    letter-spacing: 4px;
+    font-weight: 1200;
+    padding: 8px 20px;
+}
+
+.settings-card ul li {
+    margin: 8px 0 8px 8px!important;
+    font-size: 16px;
+    cursor: pointer;
+    width: 70%;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+}
+
+.settings-card ul li:hover {
+    background-color: darkgrey;
+    color: crimson;
+}
+
+.change {
+    width: 100%;
+    margin-left: 1em;
+    margin-top: 2em;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+.change:hover {
+    background-color: #325d88c4;
+    color: turquoise;
+}
+
+.flex-container  {
+    /* border: 2px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.flex-container h4 {
+    letter-spacing: 2px;
+}
+
+.flex-container .flex-content2 {
+    margin-right: 2rem;
+}
+
+.flex-container .flex-content1 {
+    width: 100%;
+}
+
+.account-container {
+    /* border: 2px solid red; */
+    width:100%!important;
+}
+
+.security-container {
+    width:30%;
+    margin-left: 100px!important;
+    /* position: absolute!important;
+    left:0; */
+}
+
+div.buttons {
+    margin: 12px 0;
+}
+
+div.buttons-container button {
+    margin: 0 10px;
+    font-size: 14px;
+}

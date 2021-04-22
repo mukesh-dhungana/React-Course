@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  width: 100%;
+  background-color: black;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  color: white;
+  margin-left: 3%;
+  cursor: pointer;
+}
+
+ul {
+  display: flex;
+}
+
+li {
+  list-style: none;
+  margin-left: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in;
+  outline: none;
+}
+
+a:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+.body {
+  width: 80%;
+  margin: 20px auto;
+  text-align: center;
+}

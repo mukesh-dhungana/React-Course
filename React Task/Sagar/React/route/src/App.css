@@ -1,0 +1,147 @@
+.className {
+  height: 100vh;
+  background-color: white;
+  width: 80%;
+  margin: auto;
+}
+
+.App {
+  text-align: center;
+  width: 100%;
+  background-color: white;
+  margin: auto;
+}
+
+.links {
+  /* background: rgb(136, 197, 247); */
+  background: linear-gradient(45deg, rgb(52, 125, 184), rgb(136, 197, 247));
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home,
+.about,
+.contact,
+.posts,
+.login {
+  text-decoration: none;
+  padding: 10px 25px;
+  color: rgb(49, 49, 49);
+}
+
+.home:hover,
+.about:hover,
+.contact:hover,
+.posts:hover,
+.login:hover {
+  color: rgb(255, 255, 255);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.active {
+  color: red;
+}
+
+.postLink {
+  background-color: black;
+}
+
+.p {
+  width: 90%;
+  margin: 5px auto;
+  padding: 10px;
+  background-color: #eee;
+  color: black;
+}
+
+.p:hover {
+  background-color: rgb(219, 219, 219);
+}
+
+.detailp {
+  background-color: #eee;
+  padding: 20px 30px;
+  width: 50%;
+  margin: 30px auto;
+  border-radius: 10px;
+}
+
+.backBtn,
+.inputButton,
+.logoutBtn {
+  padding: 10px 15px;
+  width: 100px;
+  text-transform: uppercase;
+  font-weight: 600;
+  background-color: rgb(136, 197, 247);
+  border: none;
+  outline: none;
+  color: rgb(58, 57, 57);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.backBtn:hover,
+.inputButton:hover,
+.logoutBtn:hover {
+  background-color: rgb(75, 154, 219);
+  color: rgb(255, 255, 255);
+}
+
+.logoutBtn {
+  margin-top: 20px;
+}
+
+.loginPage {
+  position: relative;
+  height: 100%;
+}
+
+.errorDiv {
+  position: absolute;
+  margin-top: -50px;
+  left: 35%;
+}
+
+.form {
+  margin-top: 50px;
+}
+
+.loginForm {
+  /* background-color: red; */
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 10px;
+  height: 1.5em;
+  padding: 10px 15px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba(160, 160, 160);
+  background-color: rgba(238, 238, 238, 0.5);
+  border-radius: 5px;
+}
+
+input:focus {
+  background-color: rgb(218, 218, 218);
+}
+
+.inputButton {
+  width: 200px;
+  height: 3em;
+  margin: auto;
+}
+
+.inputButton:focus {
+  background-color: rgb(136, 197, 247);
+}
+
+.loginFail {
+  margin-top: 20px;
+}

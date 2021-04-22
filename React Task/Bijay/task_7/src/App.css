@@ -1,0 +1,52 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css");
+
+.main-container {
+  margin: 2px auto;
+  height: 100vh;
+  position: relative;
+}
+
+.container {
+  width: 95%;
+  /* border: 5px solid brown; */
+  margin: 1px auto;
+  height: calc(100vh - 13px);
+  z-index: 2;
+}
+
+.dark-mode {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #34495e;
+  background-blend-mode: unset;
+  z-index: -110;
+  border: 2px solid black;
+  color: #fff;
+}
+
+.post-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #fff;
+  /* border: 2px solid blue;  */
+}
+
+.post-container > * {
+  flex: 2 2 200px;
+  /* max-height: max-content;
+  min-height: max-content; */
+}
+
+.toggle {
+  /* border: 1px solid black; */
+  padding: 3px;
+  width: max-content;
+  background-color: #f1f2f6;
+  background-blend-mode: screen;
+  border-radius: 14px;
+}

@@ -1,0 +1,41 @@
+#top {
+  text-align: center;
+}
+#main {
+  display: flex;
+}
+#form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#i {
+  width: 240px;
+  margin-right: 20px;
+  height: 30px;
+  border-radius: 10px;
+  outline: none;
+}
+#b {
+  width: 140px;
+  margin-right: 20px;
+  height: 60px;
+  border-radius: 10px;
+  outline: none;
+}
+#b:hover {
+  background-color: blueviolet;
+  cursor: pointer;
+}
+.d {
+  margin-top: 20px;
+  margin-left: 10%;
+  border: 1px solid black;
+  width: 200px;
+  height: 80px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.d:hover {
+  background-color: darkgrey;
+}

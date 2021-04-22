@@ -1,0 +1,103 @@
+body {
+  background-image: url("img.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+@keyframes anime {
+  0% {
+    transform: translateY(-1500px);
+  }
+
+  50% {
+    transform: translateY(0px);
+  }
+}
+.card {
+  margin-top: 25px;
+  margin-left: 25px;
+  width: 200px;
+  height: 200px;
+  background-color: darkgreen;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  color: wheat;
+  font-weight: bold;
+  animation-name: anime;
+  animation-duration: 5s;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.card:hover {
+  background-color: chocolate;
+  transform: scale(1.2);
+}
+
+button {
+  height: 60px;
+  margin-left: 180px;
+  width: 100px;
+  background-color: khaki;
+  border-radius: 10px;
+  color: darkolivegreen;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+button:hover {
+  background-color: brown;
+  outline: none;
+  transform: scale(1);
+}
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+}
+
+.modal {
+  transform: translateY(0px);
+  width: 500px;
+  margin: auto;
+  height: 300px;
+  margin-top: 150px;
+  animation-name: anime1;
+  animation-duration: 1.5s;
+}
+@keyframes anime1 {
+  0% {
+    transform: translateX(600px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+.close {
+  width: 500px;
+  margin: auto;
+  height: 300px;
+  margin-top: 150px;
+  animation-name: anime2;
+  animation-duration: 3s;
+}
+@keyframes anime2 {
+  0% {
+    transform: translateY(-0px);
+  }
+  100% {
+    transform: translateY(-1100px);
+  }
+}
+h1 {
+  text-align: center;
+  color: darkmagenta;
+  text-transform: capitalize;
+}
+h2 {
+  text-align: center;
+  color: darkgreen;
+}
+span {
+  color: red;
+}

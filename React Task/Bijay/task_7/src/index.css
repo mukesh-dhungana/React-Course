@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&family=Roboto:wght@100;300;400;500;700&family=Slabo+27px&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* font-family: "Oswald", sans-serif; */
+  font-family: "Roboto", sans-serif;
+  /* font-family: "Slabo 27px", serif; */
+  text-align: center;
+  align-items: center;
+}

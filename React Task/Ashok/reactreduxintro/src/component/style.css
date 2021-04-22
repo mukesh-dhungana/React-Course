@@ -1,0 +1,7 @@
+.listContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 50%;
+  margin: 20px auto;
+}

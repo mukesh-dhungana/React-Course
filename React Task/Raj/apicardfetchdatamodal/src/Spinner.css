@@ -1,0 +1,52 @@
+.loading-spinner {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 3px solid black;
+  display: inline-block;
+  margin-left: 50%;
+  margin-top: 70px;
+  border-top-color: #ffff;
+  animation-name: rotate;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(360deg);
+  }
+}
+.loading-dot {
+  margin-left: 47%;
+  margin-top: 5px;
+}
+
+.loading-dot > div {
+  height: 30px;
+  width: 30px;
+  background-color: #fff;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: saddlebrown;
+  animation-name: bounce;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  margin-left: 2%;
+}
+
+.loading-dot .bounce1 {
+  animation-delay: 1;
+}
+.loading-dot .bounce3 {
+  animation-delay: 1.5;
+}
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
