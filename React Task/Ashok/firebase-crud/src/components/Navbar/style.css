@@ -1,0 +1,11 @@
+.nav-item {
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s;
+}
+
+.nav-item:hover {
+  text-decoration: none;
+  background-color: blanchedalmond;
+  color: black;
+}
