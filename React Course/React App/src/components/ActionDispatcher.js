@@ -13,10 +13,8 @@ function ActionDispatcher(props) {
   // const count = useSelector((state) => state.countReducer.count);
   // const name = useSelector((state) => state.countReducer.name);
   //strict comparison ===
-  const { count, userCount } = useSelector(
-    (state) => state.countReducer
-  );
-  const { users,isloading} = useSelector((state) => state.reducer);
+  const { count, userCount } = useSelector((state) => state.countReducer);
+  const { users, isloading } = useSelector((state) => state.reducer);
 
   return (
     <div>

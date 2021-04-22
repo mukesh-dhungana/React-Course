@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import './_attachment.scss';
+import './_utils.scss';
 import Apps from "./App";
 import ErrorBoundry from "./components/ErrorBoundry";
 import { Provider } from "react-redux";

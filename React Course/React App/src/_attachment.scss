@@ -1,0 +1,31 @@
+.attachment {
+  &__title {
+    h3 {
+      font-size: 0.9rem;
+      color: #717171;
+      font-weight: normal;
+    }
+  }
+  &__upload {
+    .MuiPaper-root {
+      padding: 1.2rem;
+      border: 1px dashed #5a5a5a;
+      outline: none;
+      border-radius: 3px;
+      background: #f9f9fa;
+      p {
+        font-size: 0.9rem;
+        text-align: center;
+      }
+    }
+    .MuiPaper-elevation1 {
+      box-shadow: none;
+    }
+  }
+  .file-li {
+    padding-top: 0.5rem;
+  }
+  .error-message {
+    margin-right: 0.1rem;
+  }
+}

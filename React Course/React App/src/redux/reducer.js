@@ -47,25 +47,29 @@ const userSlice = createSlice({
       state.isloading = true;
     },
     getUsers: (state, action) => {
-      state.users.push({ id: 0, name: "dsd" });
+      // state.users.push({ id: 0, name: "dsd" });
+      state.users = action.payload;
       console.log("user updated");
       state.isloading = false;
     },
   },
-  // extraReducers: {
-  //   [getUserAction.pending]: (state, action) => {
-  //     console.log("state is pending");
-  //     state.isloading = true;
-  //   },
-  //   [getUserAction.fulfilled]: (state, action) => {
-  //     console.log("state is fulfilled");
-  //     state.users = action.payload;
-  //     state.isloading = false;
-  //   },
-  //   [getUserAction.rejected]: (state, action) => {
-  //     console.log("state is rejected");
-  //   },
-  // },
+  extraReducers: {
+    // [getUserAction.pending]: (state, action) => {
+    //   console.log("state is pending");
+    //   state.isloading = true;
+    // },
+    // [getUserAction.fulfilled]: (state, action) => {
+    //   console.log("state is fulfilled");
+    //   state.users = action.payload;
+    //   state.isloading = false;
+    // },
+    // [getUserAction.rejected]: (state, action) => {
+    //   console.log("state is rejected");
+    // },
+    // [countSlice.actions.increment]:(state, action) => {
+
+    // }
+  },
 });
 
 const countSlice = createSlice({

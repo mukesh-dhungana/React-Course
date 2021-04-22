@@ -1,0 +1,42 @@
+$font-size: 12px;
+$background-color: #dcdcdc;
+
+@import "./variables";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.myname {
+  padding: 30px;
+  .title {
+    font-size: $font-size;
+  }
+}
+
+.block {
+  width: 200px;
+  height: 150px;
+  background: #e4e4e4;
+  background-image: url("./assets/adomas-aleno-4vrZpOo7fTc-unsplash.jpg");
+  background-size: cover;
+}
+
+.error {
+  &__message {
+    display: block;
+    font-size: 12px;
+    color: #{$color-red};
+    font-weight: 400 !important;
+    margin-left: 1rem;
+  }
+  .makeStyles-input-2,
+  .css-yk16xz-control,
+  .pickers .MuiInputBase-root,
+  .form-group__input {
+    border: 1px solid #{$color-red};
+  }
+  label {
+    color: #{$color-red} !important;
+  }
+}
