@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "fullName": "test",
+      "email": "pari@test.com",
+      "password": "pari",
+      "password2": "pari",
+      "id": 4
+    },
+    {
+      "fullName": "new user",
+      "email": "new@test.com",
+      "password": "new",
+      "password2": "new",
+      "id": 5
+    },
+    {
+      "fullName": "Rujal",
+      "email": "rujal@gmail.com",
+      "password": "rujal",
+      "password2": "rujal",
+      "id": 6
+    },
+    {
+      "fullName": "Beezay Bohora",
+      "email": "np.beezay@gmail.com",
+      "password": "2222",
+      "password2": "2222",
+      "id": 7
+    },
+    {
+      "fullName": "test name",
+      "email": "test@test.com",
+      "password": "pass",
+      "password2": "pass",
+      "id": 8
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.024);
+}
+
+.parallelax {
+  background-image: url(./../../asset/background2.jpg);
+  height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallelax1 {
+  background-image: url(./../../asset/backgroung.jpg);
+  height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.377);
+}
+
+a {
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 12px;
+  color: black;
+  background-color: transparent;
+  transition: all 0.3s;
+}
+a:hover {
+  color: white;
+  background-color: turquoise;
+}

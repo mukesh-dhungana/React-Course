@@ -1,0 +1,18 @@
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  background-color: #313131;
+}
+
+nav a {
+  text-decoration: none;
+  color: rgb(199, 199, 199);
+  /* font-weight: bold; */
+  font-size: 20px;
+}
+
+nav a:hover {
+  color: rgb(255, 255, 255);
+}

@@ -1,0 +1,33 @@
+/* .navbar-nav .nav-item.left-nav {
+    right: 0;
+    margin-left:auto;
+    border: 2px solid red;
+} */
+
+.flex-start, .flex-end {
+    display: flex;
+    margin: 0 auto;
+}
+
+.navbar-nav.not-logged .flex-start, .flex-end {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 auto;
+    width: 98%;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: space-between!important;
+    /* border: 2px solid red; */
+    width: 90%;
+}
+.navbar-nav.not-logged {
+    justify-content: flex-end;
+    width: 100%;
+    /* border: 2px solid red; */
+}
+
+li a {
+    font-size: 13px!important;
+}
