@@ -6,6 +6,7 @@ import ShopForm from '../Shop/ShopForm';
 import { firebaseFile } from '../../firebase/config';
 import { addMallData } from '../../redux/actions/mall';
 import UploadFile from '../UploadFile';
+import { deleteFile } from '../../firebase/fireStorage';
 
 const defaultData = {
     mall_name: "",
@@ -22,7 +23,8 @@ function MallForm() {
 
     const handleData = (e) => setData(th => ({ ...th, ...{ [e.target.name]: e.target.value } }))
 
-    const handleImage = (e) => {
+    const handleImage = async (e) => {
+        data.mall_image && await deleteFile(data.mall_image.name)
         const file = e.target.files[0]
         const uniqueName = Math.random() + file.name + Math.random()
         const storageRef = firebaseFile.ref(uniqueName)
@@ -77,7 +79,7 @@ function MallForm() {
                         />
                     </Grid>
                     <Grid item sm={12}>
-                       
+
                         <UploadFile
                             name="mall_image"
                             onChange={handleImage}

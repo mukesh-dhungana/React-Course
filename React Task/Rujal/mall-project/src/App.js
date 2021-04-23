@@ -6,6 +6,8 @@ import Dashboard from './Pages/Dashboard';
 import Login from './Pages/Login';
 import Main from './Pages/Main';
 import MallForm from './Components/Mall/MallForm';
+import MallList from './Pages/MallList';
+import ShopList from './Pages/ShopList';
 
 function App() {
   return (
@@ -17,7 +19,9 @@ function App() {
           :
           <Redirect to={{ pathname: "/dashboard", state: { from: props.location } }} />} />
         <ProtectedRoute path="/dashboard" component={Dashboard} />
-        <ProtectedRoute path="/addMall" component={MallForm}/>
+        <ProtectedRoute path="/addMall" component={MallForm} />
+        <ProtectedRoute path="/malls" component={MallList} />
+        <ProtectedRoute path="/shops" component={ShopList} />
       </Switch>
     </Router>
   );

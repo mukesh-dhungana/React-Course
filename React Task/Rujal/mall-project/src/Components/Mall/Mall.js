@@ -11,7 +11,7 @@ function Mall(props) {
 
     return (
         <div
-            style={{ height: "222px", width: "100%", position: "relative" }}
+            style={{ height: "220px", width: "100%", position: "relative" }}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >

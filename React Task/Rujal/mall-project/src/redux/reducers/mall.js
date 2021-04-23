@@ -12,8 +12,9 @@ const malls = (state = initialInit, action) => {
         
         case "LOCATION_CHANGE":
             return {
-                ...state,
-                malls: []
+                malls: [],
+                editMode:false,
+                loading:false
             }
 
         case actionType.ADD_MALL_REQUEST:
@@ -32,7 +33,7 @@ const malls = (state = initialInit, action) => {
             return {
                 ...state,
                 loading: false,
-                malls: shuffle([...state.malls, action.payload])
+                malls: shuffle([...state.malls, {...action.payload, shops:shuffle(action.payload.shops)}])
             }
 
         case actionType.FETCH_MALL_FAILURE:

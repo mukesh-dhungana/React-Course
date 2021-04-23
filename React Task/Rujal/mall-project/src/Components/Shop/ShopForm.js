@@ -46,7 +46,7 @@ function ShopForm({ data, setData, index = 0 }) {
                     <UploadFile
                         name="shop_images"
                         multiple
-                        onChange={(e) => getFileUrl(e, setData, index)}
+                        onChange={(e) => { getFileUrl(e, setData, index); e.target.value = null }}
                         label="Shop Images"
                     />
 

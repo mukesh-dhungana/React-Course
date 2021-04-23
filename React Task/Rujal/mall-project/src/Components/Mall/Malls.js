@@ -1,10 +1,11 @@
 import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import Mall from './Mall'
+import { Link } from 'react-router-dom'
 
 function Malls({ malls }) {
     return (
-        <div>
+        <Grid>
             <Typography variant="h4" color="secondary">Malls</Typography>
 
             <Grid container spacing={2}>
@@ -18,7 +19,8 @@ function Malls({ malls }) {
 
 
             </Grid>
-        </div>
+            <Link to="/malls" className="link">View All</Link>
+        </Grid>
     )
 }
 

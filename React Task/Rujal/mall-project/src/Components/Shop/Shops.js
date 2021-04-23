@@ -2,11 +2,12 @@ import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import Shop from './Shop'
 import { shuffle } from '../Shuffle'
+import { Link } from 'react-router-dom'
 
 function Shops({ shops }) {
-    
+
     return (
-        <div>
+        <Grid>
             <Typography variant="h4" color="secondary">Shops</Typography>
 
             <Grid container spacing={2}>
@@ -18,8 +19,10 @@ function Shops({ shops }) {
                     ))
                 }
 
+                <Link to="/shops" className="link">View All</Link>
+
             </Grid>
-        </div>
+        </Grid>
     )
 }
 

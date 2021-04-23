@@ -30,7 +30,7 @@ export const getFileUrl = async (e, setData, index) => {
     // })
     // return newDta
 
-    // const urls = list.map(async (x) => {
+    // const urls = await list.map(async (x) => {
     //     const uniqueName = random1 + x[1].name + random2
     //     await firebaseFile.ref(uniqueName).put(x[1])
     //     const url = await firebaseFile.ref(uniqueName).getDownloadURL()
