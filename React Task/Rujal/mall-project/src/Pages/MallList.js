@@ -1,12 +1,13 @@
-import { Grid, TextField, Typography } from '@material-ui/core'
+import { Grid, TextField, Typography, Button } from '@material-ui/core'
 import React from 'react'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router'
 import Mall from '../Components/Mall/Mall'
 import { getMallData } from '../redux/actions/mall'
 import { LOCATION_CHANGE } from '../redux/actionType'
 
 function MallList({ getMallData, malls, locationChange }) {
-
+    const history = useHistory()
     const [search, setSearch] = React.useState('')
 
     React.useEffect(() => {
@@ -24,17 +25,31 @@ function MallList({ getMallData, malls, locationChange }) {
     return (
 
         <Grid container spacing={2} style={{ width: "90%", margin: "auto" }}>
-            <Grid item sm={12} md={12} style={{textAlign:'center'}}>
+            <Grid item sm={12} md={12} style={{ textAlign: 'center' }}>
                 <TextField
                     name="search"
                     label="Search"
                     variant="filled"
                     onChange={handleChange}
-                    style={{width:"35%"}}
+                    style={{ width: "35%" }}
                 />
             </Grid>
-            <Typography variant="h4" color="secondary">Malls</Typography>
+
             <Grid container spacing={2}>
+                <Grid item sm={12}>
+                    <Grid item sm={12}>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => history.push('/addMall')}
+                        >
+                            Add Mall
+                        </Button>
+
+                    </Grid>
+                    <Typography variant="h4" color="secondary">Malls</Typography>
+                </Grid>
+
                 {
                     malls.filter(x => search === "" ? x : x.mall_name.toLowerCase().includes(search.toLowerCase()))
                         .map(mall => (
@@ -53,8 +68,6 @@ function MallList({ getMallData, malls, locationChange }) {
 const mapStateToProps = state => {
     return {
         malls: state.mallReducer.malls,
-        searchText: state.mallReducer.searchText
-
     }
 }
 

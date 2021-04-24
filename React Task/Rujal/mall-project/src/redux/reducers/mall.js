@@ -5,7 +5,6 @@ const initialInit = {
     malls: [],
     loading: false,
     editMode: false,
-    searchText: ""
 }
 
 const malls = (state = initialInit, action) => {
@@ -16,7 +15,6 @@ const malls = (state = initialInit, action) => {
                 malls: [],
                 editMode: false,
                 loading: false,
-                searchText:""
             }
 
         case actionType.ADD_MALL_REQUEST:

@@ -10,7 +10,7 @@ function Malls({ malls }) {
 
             <Grid container spacing={2}>
                 {
-                    malls.slice(0,3).map(mall => (
+                    malls.map(mall => (
                         <Grid item sm={4} key={mall.id}>
                             <Mall {...mall} />
                         </Grid>

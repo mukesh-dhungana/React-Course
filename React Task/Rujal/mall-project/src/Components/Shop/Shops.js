@@ -11,16 +11,15 @@ function Shops({ shops }) {
 
             <Grid container spacing={2}>
                 {
-                    shops.slice(0, 3).map((x) => (
+                    shops.map((x) => (
                         <Grid item sm={4} key={x.id}>
                             <Shop {...x.shop} />
                         </Grid>
                     ))
                 }
 
-                <Link to="/shops" className="link">View All</Link>
-
             </Grid>
+            <Link to="/shops" className="link">View All</Link>
         </Grid>
     )
 }

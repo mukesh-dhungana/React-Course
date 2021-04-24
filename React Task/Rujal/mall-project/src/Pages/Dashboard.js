@@ -14,7 +14,7 @@ function Dashboard({ malls, getMallData, locationChange }) {
         return () => locationChange()
     }, [getMallData, locationChange])
 
-    const shops = malls.map((x, i) => ({ id: x.id, shop: x.shops[x.shops.length - 1] }))
+    const shops = malls.map(x => ({ id: x.id, shop: x.shops[x.shops.length - 1] }))
 
     return (
         <Grid container spacing={2}
@@ -30,10 +30,10 @@ function Dashboard({ malls, getMallData, locationChange }) {
                 </Button>
             </Grid>
             <Grid item sm={12}>
-                <Malls malls={malls} />
+                <Malls malls={malls.slice(0, 3)} />
             </Grid>
             <Grid item sm={12}>
-                <Shops shops={shops} />
+                <Shops shops={shops.slice(0, 3)} />
             </Grid>
         </Grid >
     )
