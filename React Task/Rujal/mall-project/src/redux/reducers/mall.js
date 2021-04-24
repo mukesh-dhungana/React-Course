@@ -4,17 +4,19 @@ import * as actionType from '../actionType'
 const initialInit = {
     malls: [],
     loading: false,
-    editMode: false
+    editMode: false,
+    searchText: ""
 }
 
 const malls = (state = initialInit, action) => {
     switch (action.type) {
-        
-        case "LOCATION_CHANGE":
+
+        case actionType.LOCATION_CHANGE:
             return {
                 malls: [],
-                editMode:false,
-                loading:false
+                editMode: false,
+                loading: false,
+                searchText:""
             }
 
         case actionType.ADD_MALL_REQUEST:
@@ -33,7 +35,7 @@ const malls = (state = initialInit, action) => {
             return {
                 ...state,
                 loading: false,
-                malls: shuffle([...state.malls, {...action.payload, shops:shuffle(action.payload.shops)}])
+                malls: shuffle([...state.malls, { ...action.payload, shops: shuffle(action.payload.shops) }])
             }
 
         case actionType.FETCH_MALL_FAILURE:
@@ -54,7 +56,6 @@ const malls = (state = initialInit, action) => {
                 malls: state.malls.filter(mall => mall.id !== action.payload),
                 loading: false
             }
-
 
         default: return state
     }

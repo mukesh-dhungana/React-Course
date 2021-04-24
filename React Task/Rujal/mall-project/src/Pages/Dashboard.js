@@ -48,7 +48,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getMallData: () => dispatch(getMallData()),
-        locationChange: () => dispatch({ type: "LOCATION_CHANGE" })
+        locationChange: () => dispatch({ type: "LOCATION_CHANGE" }),
     }
 }
 
