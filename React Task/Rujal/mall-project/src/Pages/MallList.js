@@ -24,7 +24,7 @@ function MallList({ getMallData, malls, locationChange }) {
     return (
 
         <Grid container spacing={2} style={{ width: "90%", margin: "auto" }}>
-            <Grid item sm={12} style={{textAlign:'center'}}>
+            <Grid item sm={12} md={12} style={{textAlign:'center'}}>
                 <TextField
                     name="search"
                     label="Search"
@@ -38,7 +38,7 @@ function MallList({ getMallData, malls, locationChange }) {
                 {
                     malls.filter(x => search === "" ? x : x.mall_name.toLowerCase().includes(search.toLowerCase()))
                         .map(mall => (
-                            <Grid item sm={4} key={mall.id}>
+                            <Grid item sm={4} xs={12} key={mall.id}>
                                 <Mall {...mall} />
                             </Grid>
                         ))
