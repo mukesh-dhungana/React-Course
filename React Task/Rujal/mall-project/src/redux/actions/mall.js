@@ -33,7 +33,12 @@ export const getMallData = () => dispatch => {
 }
 
 export const updateMallData = (id, data) => dispatch => {
-
+    dispatch({ type: actionType.UPDATE_MALL_REQUEST })
+    firebaseDatabase.collection("malls").doc(id).update(data).then(resp => {
+        dispatch({ type: actionType.UPDATE_MALL_SUCCESS })
+    }).catch(err => {
+        dispatch({ type: actionType.UPDATE_MALL_FAILURE })
+    })
 }
 
 export const deleteMallData = (data) => dispatch => {
