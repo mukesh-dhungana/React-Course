@@ -84,5 +84,5 @@
     top: 1%;
     left: 90%;
     cursor: pointer;
-    z-index: 22;
+    z-index: 999;
   }

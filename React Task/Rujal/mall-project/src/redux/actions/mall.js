@@ -44,7 +44,7 @@ export const updateMallData = (id, data) => dispatch => {
 export const deleteMallData = (data) => dispatch => {
     dispatch({ type: actionType.DELETE_MALL_REQUEST })
     firebaseDatabase.collection("malls").doc(data.id).delete().then(() => {
-        deleteFile(data.mall_image.name)
+        deleteFile(data.mall_image.id)
         data.shops.forEach(shop => {
             shop.images.forEach(image => {
                 deleteFile(image.id)

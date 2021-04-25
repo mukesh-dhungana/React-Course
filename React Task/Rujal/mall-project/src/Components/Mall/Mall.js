@@ -10,6 +10,7 @@ function Mall(props) {
     const [hover, setHover] = useState(false)
     const dispatch = useDispatch()
     const history = useHistory()
+    
     return (
         <div
             style={{ height: "220px", width: "100%", position: "relative" }}
@@ -28,7 +29,7 @@ function Mall(props) {
             </div>
             {hover && <ClearIcon
                 className="delete-icon"
-                onClick={() => dispatch(deleteMallData(props))}
+                onClick={(e) => {e.stopPropagation();dispatch(deleteMallData(props))}}
             />}
 
             <div className="mall-content">
