@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
 import Mall from '../Components/Mall/Mall'
 import { getMallData } from '../redux/actions/mall'
-import { LOCATION_CHANGE } from '../redux/actionType'
 import { paginate, Pagination } from '../Components/Paginate'
 
 function MallList({ getMallData, malls, locationChange }) {
@@ -15,8 +14,7 @@ function MallList({ getMallData, malls, locationChange }) {
 
     React.useEffect(() => {
         getMallData()
-        return () => locationChange()
-    }, [getMallData, locationChange])
+    }, [getMallData])
 
 
 
@@ -91,8 +89,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getMallData: () => dispatch(getMallData()),
-        locationChange: () => dispatch({ type: LOCATION_CHANGE }),
+        getMallData: () => dispatch(getMallData())
     }
 }
 

@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { Fab, Grid, TextField, Typography, Button, Avatar } from '@material-ui/core'
 import { Add } from '@material-ui/icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import ShopForm from '../Shop/ShopForm';
 import { firebaseFile } from '../../firebase/config';
-import { addMallData } from '../../redux/actions/mall';
+import { addMallData, getMallData } from '../../redux/actions/mall';
 import UploadFile from '../UploadFile';
 import { deleteFile } from '../../firebase/fireStorage';
+import { useParams } from 'react-router';
+import { EDIT_MALL } from '../../redux/actionType'
 
 const defaultData = {
     mall_name: "",
@@ -15,13 +17,28 @@ const defaultData = {
     shops: [{ shop_name: "", shop_description: "", images: [] }]
 }
 
+
 function MallForm() {
 
     const dispatch = useDispatch()
+    const { editMode, malls } = useSelector(state => state.mallReducer, shallowEqual)
+    const { id } = useParams()
     const [data, setData] = useState(defaultData)
     const [mallImage, setMallImage] = useState(0)
 
     const handleData = (e) => setData(th => ({ ...th, ...{ [e.target.name]: e.target.value } }))
+
+    React.useEffect(() => {
+        if (id) {
+            dispatch({ type: EDIT_MALL })
+            const mall = malls.find(x => x.id === id)
+            mall && setData(mall)
+        }
+    }, [id, dispatch, malls])
+
+    React.useEffect(() => {
+        dispatch(getMallData())
+    }, [dispatch])
 
     const handleImage = async (e) => {
         data.mall_image && await deleteFile(data.mall_image.name)
@@ -41,15 +58,20 @@ function MallForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(addMallData(data))
-        setData(defaultData)
-        setMallImage(0)
+        if (editMode) {
+
+        } else {
+            dispatch(addMallData(data))
+            setData(defaultData)
+            setMallImage(0)
+        }
+
     }
     return (
         <Grid container spacing={2}>
             <Grid item sm={12}>
                 <Typography variant="h5" component="h5" color="secondary" style={{ textAlign: "center" }}>
-                    Add Mall
+                    {editMode ? "Edit" : "Add"} Mall
                 </Typography>
             </Grid>
             <form onSubmit={handleSubmit}>

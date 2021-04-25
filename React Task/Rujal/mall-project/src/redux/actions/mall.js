@@ -5,7 +5,7 @@ import * as actionType from '../actionType'
 export const addMallData = (data) => dispatch => {
     dispatch({ type: actionType.ADD_MALL_REQUEST })
     firebaseDatabase.collection("malls").add(data)
-   // dispatch(onSnapShotData())
+    // dispatch(onSnapShotData())
 }
 
 // export const onSnapShotData = () => dispatch => {
@@ -23,9 +23,11 @@ export const getMallData = () => dispatch => {
 
     dispatch({ type: actionType.FETCH_MALL_REQUEST })
     firebaseDatabase.collection("malls").get().then((doc) => {
+        let arr = []
         doc.forEach(da => {
-            dispatch({ type: actionType.FETCH_MALL_SUCCESS, payload: { id: da.id, ...da.data() } })
+            arr.push({ id: da.id, ...da.data() })
         })
+        dispatch({ type: actionType.FETCH_MALL_SUCCESS, payload: arr })
     }).catch(err => {
         dispatch({ type: actionType.FETCH_MALL_FAILURE })
     })

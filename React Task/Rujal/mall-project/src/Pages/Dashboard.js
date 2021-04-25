@@ -11,8 +11,7 @@ function Dashboard({ malls, getMallData, locationChange }) {
 
     React.useEffect(() => {
         getMallData()
-        return () => locationChange()
-    }, [getMallData, locationChange])
+    }, [getMallData])
 
     const shops = malls.map(x => ({ id: x.id, shop: x.shops[x.shops.length - 1] }))
 
@@ -47,8 +46,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getMallData: () => dispatch(getMallData()),
-        locationChange: () => dispatch({ type: "LOCATION_CHANGE" }),
+        getMallData: () => dispatch(getMallData())
     }
 }
 

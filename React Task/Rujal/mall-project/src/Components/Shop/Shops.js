@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 
 function Shops({ shops }) {
 
-    console.log(shops);
 
     return (
         <Grid>

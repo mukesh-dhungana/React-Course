@@ -10,13 +10,6 @@ const initialInit = {
 const malls = (state = initialInit, action) => {
     switch (action.type) {
 
-        case actionType.LOCATION_CHANGE:
-            return {
-                malls: [],
-                editMode: false,
-                loading: false,
-            }
-
         case actionType.ADD_MALL_REQUEST:
             return {
                 ...state,
@@ -33,7 +26,7 @@ const malls = (state = initialInit, action) => {
             return {
                 ...state,
                 loading: false,
-                malls: shuffle([...state.malls, { ...action.payload, shops: shuffle(action.payload.shops) }])
+                malls: shuffle(action.payload)
             }
 
         case actionType.FETCH_MALL_FAILURE:
@@ -53,6 +46,12 @@ const malls = (state = initialInit, action) => {
                 ...state,
                 malls: state.malls.filter(mall => mall.id !== action.payload),
                 loading: false
+            }
+
+        case actionType.EDIT_MALL:
+            return {
+                ...state,
+                editMode: true,
             }
 
         default: return state

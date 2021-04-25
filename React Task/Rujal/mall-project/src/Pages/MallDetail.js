@@ -3,7 +3,6 @@ import { Typography, Grid, Button } from '@material-ui/core'
 import { useHistory, useParams } from 'react-router'
 import { connect } from 'react-redux'
 import { getMallData } from '../redux/actions/mall'
-import { LOCATION_CHANGE } from '../redux/actionType'
 import { paginate, Pagination } from '../Components/Paginate'
 import Shop from '../Components/Shop/Shop'
 
@@ -16,8 +15,7 @@ function MallDetail({ getMallData, malls, locationChange }) {
 
     React.useEffect(() => {
         getMallData()
-        return () => locationChange()
-    }, [getMallData, locationChange])
+    }, [getMallData])
 
     React.useEffect(() => {
         if (id) {
@@ -45,7 +43,7 @@ function MallDetail({ getMallData, malls, locationChange }) {
                 <Grid container spacing={2} style={{ margin: "auto", width: "90%" }}>
                     <Grid item sm={12}>
                         <Button
-                            onClick={() => history.push({ path: '/editMall/' + detail?.id })}
+                            onClick={() => history.push('/' + detail.id+'/editMall')}
                             variant="contained"
                             color="secondary">Edit Mall</Button>
                     </Grid>
@@ -89,7 +87,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getMallData: () => dispatch(getMallData()),
-        locationChange: () => dispatch({ type: LOCATION_CHANGE })
     }
 }
 
