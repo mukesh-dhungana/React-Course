@@ -3,10 +3,9 @@ import { Fab, Grid, TextField, Typography, Button, Avatar } from '@material-ui/c
 import { Add } from '@material-ui/icons';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import ShopForm from '../Shop/ShopForm';
-import { firebaseFile } from '../../firebase/config';
 import { addMallData, getMallData, updateMallData } from '../../redux/actions/mall';
 import UploadFile from '../UploadFile';
-import { deleteFile } from '../../firebase/fireStorage';
+import { deleteFile, getFileUrl } from '../../firebase/fireStorage';
 import { useParams } from 'react-router';
 import { EDIT_MALL, LOCATION_CHANGE } from '../../redux/actionType'
 
@@ -23,7 +22,6 @@ function MallForm() {
     const { editMode, malls } = useSelector(state => state.mallReducer, shallowEqual)
     const { id } = useParams()
     const [data, setData] = useState(defaultData)
-    const [mallImage, setMallImage] = useState(0)
 
     const handleData = (e) => setData(th => ({ ...th, ...{ [e.target.name]: e.target.value } }))
 
@@ -44,19 +42,11 @@ function MallForm() {
     }, [dispatch])
 
     const handleImage = async (e) => {
-        data.mall_image && await deleteFile(data.mall_image.name)
-        const file = e.target.files[0]
-        const uniqueName = Math.random() + file.name + Math.random()
-        const storageRef = firebaseFile.ref(uniqueName)
-        storageRef.put(file).on("state_changed", snapshot => {
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            setMallImage(progress)
-        }, error => {
-
-        }, async () => {
-            const url = await storageRef.getDownloadURL()
-            setData(th => ({ ...th, mall_image: { url, name: uniqueName } }))
-        })
+        data.mall_image && await deleteFile(data.mall_image.id)
+        const response = await getFileUrl(e)
+        if (response) {
+            setData(th => ({ ...th, mall_image: { ...response[0] } }))
+        }
     }
 
     const handleSubmit = (e) => {
@@ -66,10 +56,10 @@ function MallForm() {
         } else {
             dispatch(addMallData(data))
             setData(defaultData)
-            setMallImage(0)
         }
 
     }
+
     return (
         <Grid container spacing={2}>
             <Grid item sm={12}>
@@ -110,10 +100,11 @@ function MallForm() {
                             onChange={handleImage}
                             label="Mall Image"
                         />
-                        {data.mall_image ? <Avatar src={data.mall_image.url} style={{ height: "122px", width: "122px", marginTop: "8px" }} />
-                            :
-                            <div style={{ height: '8px', background: 'red', width: mallImage + "%" }}></div>
-                        }
+                        {data.mall_image &&
+                            <Avatar
+                                src={data.mall_image.url}
+                                style={{ height: "122px", width: "122px", marginTop: "8px" }}
+                            />}
 
                     </Grid>
                     <Grid item sm={12}>

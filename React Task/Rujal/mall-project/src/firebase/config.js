@@ -15,4 +15,3 @@ firebase.initializeApp(firebaseConfig);
 
 export const firebaseDatabase = firebase.firestore()
 export const firebaseFile = firebase.storage()
-export const timeStamp = firebase.firestore.Timestamp

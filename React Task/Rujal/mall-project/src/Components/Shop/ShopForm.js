@@ -1,10 +1,12 @@
 import React from 'react'
-import { Grid, TextField } from '@material-ui/core'
+import { CircularProgress, Grid, TextField } from '@material-ui/core'
 import CancelIcon from '@material-ui/icons/Cancel';
 import { deleteFile, getFileUrl } from '../../firebase/fireStorage';
 import UploadFile from '../UploadFile';
 
 function ShopForm({ data, setData, index = 0 }) {
+
+    const [loading, setLoading] = React.useState(false)
 
     const removeFile = async (id) => {
         await deleteFile(id)
@@ -45,10 +47,21 @@ function ShopForm({ data, setData, index = 0 }) {
                 <Grid item sm={12}>
                     <UploadFile
                         name="shop_images"
+                        disabled={loading}
                         multiple
-                        onChange={(e) => { getFileUrl(e, setData, index); e.target.value = null }}
+                        onChange={async (e) => {
+                            setLoading(true)
+                            const url = await getFileUrl(e);
+                            setData(th => ({
+                                ...th,
+                                shops: th.shops.map((x, i) => (index === i ? { ...x, images: [...x.images, ...url] } : x))
+                            }))
+                            e.target.value = null
+                            setLoading(false)
+                        }}
                         label="Shop Images"
                     />
+                    {loading && <CircularProgress style={{ height: 22, width: 22, marginLeft:10 }} />}
 
                     <p>First Image will be Thumbline</p>
                     {data.images.map((image) => (

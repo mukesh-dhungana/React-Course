@@ -20,7 +20,7 @@ function Shops({ shops }) {
                 }
 
             </Grid>
-            <Link to="/shops" className="link">View All</Link>
+            {shops.length>3 && <Link to="/shops" className="link">View All</Link>}
         </Grid>
     )
 }

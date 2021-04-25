@@ -30,7 +30,7 @@ const malls = (state = initialInit, action) => {
             return {
                 ...state,
                 loading: false,
-                malls: shuffle(action.payload)
+                malls: shuffle(action.payload.map(x => ({ ...x, shops: shuffle(x.shops) })))
             }
 
         case actionType.FETCH_MALL_FAILURE:

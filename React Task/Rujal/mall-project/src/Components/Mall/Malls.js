@@ -19,7 +19,7 @@ function Malls({ malls }) {
 
 
             </Grid>
-            <Link to="/malls" className="link">View All</Link>
+            {malls.length >3 && <Link to="/malls" className="link">View All</Link>}
         </Grid>
     )
 }
