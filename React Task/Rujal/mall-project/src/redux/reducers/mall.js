@@ -9,7 +9,11 @@ const initialInit = {
 
 const malls = (state = initialInit, action) => {
     switch (action.type) {
-
+        case actionType.LOCATION_CHANGE:
+            return {
+                ...state,
+                editMode: false
+            }
         case actionType.ADD_MALL_REQUEST:
             return {
                 ...state,

@@ -8,7 +8,7 @@ import { addMallData, getMallData } from '../../redux/actions/mall';
 import UploadFile from '../UploadFile';
 import { deleteFile } from '../../firebase/fireStorage';
 import { useParams } from 'react-router';
-import { EDIT_MALL } from '../../redux/actionType'
+import { EDIT_MALL, LOCATION_CHANGE } from '../../redux/actionType'
 
 const defaultData = {
     mall_name: "",
@@ -38,6 +38,7 @@ function MallForm() {
 
     React.useEffect(() => {
         dispatch(getMallData())
+        return () => dispatch({ type: LOCATION_CHANGE })
     }, [dispatch])
 
     const handleImage = async (e) => {

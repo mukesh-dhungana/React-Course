@@ -7,11 +7,11 @@ import UploadFile from '../UploadFile';
 function ShopForm({ data, setData, index = 0 }) {
 
     const removeFile = async (id) => {
-        let fileList = data.images.filter(file => file.id !== id)
         await deleteFile(id)
+        const fileList = data.images.filter(file => file.id !== id)
         setData(th => ({
             ...th,
-            shops: th.shops.map((shop, i) => i === index ? { ...shop, images: [...fileList] } : shop)
+            shops: th.shops.map((shop, i) => i === index ? { ...shop, images: fileList } : shop)
         }))
     }
 

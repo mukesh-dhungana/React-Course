@@ -5,7 +5,6 @@ import * as actionType from '../actionType'
 export const addMallData = (data) => dispatch => {
     dispatch({ type: actionType.ADD_MALL_REQUEST })
     firebaseDatabase.collection("malls").add(data)
-    // dispatch(onSnapShotData())
 }
 
 // export const onSnapShotData = () => dispatch => {
@@ -31,6 +30,10 @@ export const getMallData = () => dispatch => {
     }).catch(err => {
         dispatch({ type: actionType.FETCH_MALL_FAILURE })
     })
+}
+
+export const updateMallData = (id, data) => dispatch => {
+
 }
 
 export const deleteMallData = (data) => dispatch => {
