@@ -22,6 +22,17 @@ function ShopForm({ data, setData, index = 0 }) {
         shops: th.shops.map((shop, i) => i === index ? { ...shop, ...{ [e.target.name]: e.target.value } } : shop)
     }))
 
+    const handleShopImage = async (e) => {
+        setLoading(true)
+        const url = await getFileUrl(e);
+        setData(th => ({
+            ...th,
+            shops: th.shops.map((x, i) => (index === i ? { ...x, images: [...x.images, ...url] } : x))
+        }))
+        e.target.value = null
+        setLoading(false)
+    }
+
 
     return (
         <Grid container spacing={2}>
@@ -49,19 +60,11 @@ function ShopForm({ data, setData, index = 0 }) {
                         name="shop_images"
                         disabled={loading}
                         multiple
-                        onChange={async (e) => {
-                            setLoading(true)
-                            const url = await getFileUrl(e);
-                            setData(th => ({
-                                ...th,
-                                shops: th.shops.map((x, i) => (index === i ? { ...x, images: [...x.images, ...url] } : x))
-                            }))
-                            e.target.value = null
-                            setLoading(false)
-                        }}
+                        onChange={handleShopImage}
+
                         label="Shop Images"
                     />
-                    {loading && <CircularProgress style={{ height: 22, width: 22, marginLeft:10 }} />}
+                    {loading && <CircularProgress style={{ height: 22, width: 22, marginLeft: 10 }} />}
 
                     <p>First Image will be Thumbline</p>
                     {data.images.map((image) => (
