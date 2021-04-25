@@ -4,7 +4,7 @@ import { Add } from '@material-ui/icons';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import ShopForm from '../Shop/ShopForm';
 import { firebaseFile } from '../../firebase/config';
-import { addMallData, getMallData } from '../../redux/actions/mall';
+import { addMallData, getMallData, updateMallData } from '../../redux/actions/mall';
 import UploadFile from '../UploadFile';
 import { deleteFile } from '../../firebase/fireStorage';
 import { useParams } from 'react-router';
@@ -16,7 +16,6 @@ const defaultData = {
     mall_image: null,
     shops: [{ shop_name: "", shop_description: "", images: [] }]
 }
-
 
 function MallForm() {
 
@@ -32,7 +31,10 @@ function MallForm() {
         if (id) {
             dispatch({ type: EDIT_MALL })
             const mall = malls.find(x => x.id === id)
-            mall && setData(mall)
+            if (mall) {
+                delete mall.id
+                setData(mall)
+            }
         }
     }, [id, dispatch, malls])
 
@@ -60,7 +62,7 @@ function MallForm() {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (editMode) {
-
+            dispatch(updateMallData(id, data))
         } else {
             dispatch(addMallData(data))
             setData(defaultData)
