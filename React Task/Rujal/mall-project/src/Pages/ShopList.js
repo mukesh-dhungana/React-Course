@@ -7,9 +7,10 @@ import { getMallData } from '../redux/actions/mall'
 import { LOCATION_CHANGE } from '../redux/actionType'
 
 function ShopList({ getMallData, shops, locationChange }) {
-    
+
     const [search, setSearch] = React.useState('')
     const [currentPage, setPage] = React.useState(1)
+    const [postPerPage, setPostPerPage] = React.useState(3)
 
     React.useEffect(() => {
         getMallData()
@@ -19,11 +20,14 @@ function ShopList({ getMallData, shops, locationChange }) {
 
 
     const handleChange = (e) => {
+        setPage(1)
         const value = e.target.value
         setSearch(value)
     }
 
     const runPaginate = (number) => setPage(number)
+
+    const filteredShops = shops.filter(x => search === "" ? x : x.shop_name.toLowerCase().includes(search.toLowerCase()))
 
     return (
 
@@ -43,7 +47,7 @@ function ShopList({ getMallData, shops, locationChange }) {
                     <Typography variant="h4" color="secondary">Shops</Typography>
                 </Grid>
                 {
-                    paginate(shops, 3, currentPage).filter(x => search === "" ? x : x.shop_name.toLowerCase().includes(search.toLowerCase()))
+                    paginate(filteredShops, postPerPage, currentPage)
                         .map(shop => (
                             <Grid item sm={4} xs={12} key={shop.shop_name}>
                                 <Shop {...shop} />
@@ -54,9 +58,10 @@ function ShopList({ getMallData, shops, locationChange }) {
             <Grid container spacing={2}>
                 <Grid item sm={12}>
                     <Pagination
-                        postPerPage={3}
+                        postPerPage={postPerPage}
                         totalPosts={shops.length}
                         paginate={runPaginate}
+                        setPostPerPage={(e)=>{setPostPerPage(+e.target.value);setPage(1)}}
                     />
                 </Grid>
             </Grid>

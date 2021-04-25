@@ -1,18 +1,96 @@
-import { Typography } from '@material-ui/core'
 import React from 'react'
+import { Typography, Grid, Button } from '@material-ui/core'
+import { useHistory, useParams } from 'react-router'
+import { connect } from 'react-redux'
+import { getMallData } from '../redux/actions/mall'
+import { LOCATION_CHANGE } from '../redux/actionType'
+import { paginate, Pagination } from '../Components/Paginate'
+import Shop from '../Components/Shop/Shop'
 
-function MallDetail(props) {
+function MallDetail({ getMallData, malls, locationChange }) {
+    const { id } = useParams()
+    const history = useHistory()
+    const [detail, setDetail] = React.useState({ id: '', mall_name: '', mall_address: '', shops: [] })
+    const [currentPage, setPage] = React.useState(1)
+    const [postPerPage, setPostPerPage] = React.useState(3)
+
+    React.useEffect(() => {
+        getMallData()
+        return () => locationChange()
+    }, [getMallData, locationChange])
+
+    React.useEffect(() => {
+        if (id) {
+            const mallDetail = malls.find(x => x.id === id)
+            mallDetail && setDetail(mallDetail)
+        }
+    }, [id, malls])
+
+    const runPaginate = (number) => setPage(number)
+
     return (
         <Grid>
             <Grid container spacing={2}>
                 <Grid item sm={12} xs={12}>
-                    <Typography variant="h5" component="h5" color="secondary" style={{ textAlign: "center" }}>
-                        Mall Name
+                    <Typography variant="h4" component="h4" color="primary" style={{ textAlign: "center" }}>
+                        {detail.mall_name}
                     </Typography>
+                </Grid>
+                <Grid item sm={12} xs={12}>
+                    <Typography variant="h5" component="h5" color="primary" style={{ textAlign: "center" }}>
+                        {detail.mall_address}
+                    </Typography>
+                </Grid>
+
+                <Grid container spacing={2} style={{ margin: "auto", width: "90%" }}>
+                    <Grid item sm={12}>
+                        <Button
+                            onClick={() => history.push({ path: '/editMall/' + detail?.id })}
+                            variant="contained"
+                            color="secondary">Edit Mall</Button>
+                    </Grid>
+                    <Grid item sm={12}>
+                        <Grid container spacing={2}>
+                            <Grid item sm={12}>
+                                <Typography variant="h4" color="primary">Shops</Typography>
+                            </Grid>
+                            {
+                                paginate(detail.shops, postPerPage, currentPage)
+                                    .map(shop => (
+                                        <Grid item sm={4} xs={12} key={shop.shop_name}>
+                                            <Shop {...shop} />
+                                        </Grid>
+                                    ))
+                            }
+                        </Grid>
+                        <Grid container spacing={2} >
+                            <Grid item sm={12}>
+                                <Pagination
+                                    postPerPage={postPerPage}
+                                    totalPosts={detail.shops.length}
+                                    paginate={runPaginate}
+                                    setPostPerPage={setPostPerPage}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
     )
 }
 
-export default MallDetail
+const mapStateToProps = state => {
+    return {
+        malls: state.mallReducer.malls
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getMallData: () => dispatch(getMallData()),
+        locationChange: () => dispatch({ type: LOCATION_CHANGE })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MallDetail)

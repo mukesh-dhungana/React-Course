@@ -8,6 +8,8 @@ import Main from './Pages/Main';
 import MallForm from './Components/Mall/MallForm';
 import MallList from './Pages/MallList';
 import ShopList from './Pages/ShopList';
+import MallDetail from './Pages/MallDetail'
+import ShopDetail from './Pages/ShopDetail'
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
         <ProtectedRoute path="/addMall" component={MallForm} />
         <ProtectedRoute path="/malls" component={MallList} />
         <ProtectedRoute path="/shops" component={ShopList} />
+        <ProtectedRoute path="/:id" component = {MallDetail} />
         <ProtectedRoute path="/editMall/:id" component={MallForm} />
+        <ProtectedRoute path = "/:shop_name" component ={ShopDetail}/>
       </Switch>
     </Router>
   );

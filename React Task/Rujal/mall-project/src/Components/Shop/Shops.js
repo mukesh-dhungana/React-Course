@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 
 function Shops({ shops }) {
 
+    console.log(shops);
+
     return (
         <Grid>
             <Typography variant="h4" color="secondary">Shops</Typography>

@@ -2,18 +2,20 @@ import React, { useState } from 'react'
 import ClearIcon from '@material-ui/icons/Clear';
 import { useDispatch } from 'react-redux';
 import { deleteMallData } from '../../redux/actions/mall';
+import { useHistory } from 'react-router';
 
 
 function Mall(props) {
 
     const [hover, setHover] = useState(false)
     const dispatch = useDispatch()
-
+    const history = useHistory()
     return (
         <div
             style={{ height: "220px", width: "100%", position: "relative" }}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
+            onClick={() => history.push('/' + props.id)}
         >
 
             <div
