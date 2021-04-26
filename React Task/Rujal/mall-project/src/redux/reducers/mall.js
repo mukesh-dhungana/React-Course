@@ -1,4 +1,3 @@
-import { shuffle } from '../../Components/Shuffle'
 import * as actionType from '../actionType'
 
 const initialInit = {
@@ -30,7 +29,7 @@ const malls = (state = initialInit, action) => {
             return {
                 ...state,
                 loading: false,
-                malls: shuffle(action.payload.map(x => ({ ...x, shops: shuffle(x.shops) })))
+                malls: action.payload
             }
 
         case actionType.FETCH_MALL_FAILURE:

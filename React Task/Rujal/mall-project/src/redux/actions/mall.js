@@ -7,19 +7,21 @@ export const addMallData = (data) => dispatch => {
     firebaseDatabase.collection("malls").add(data)
 }
 
-// export const onSnapShotData = () => dispatch => {
-//     dispatch({ type: actionType.FETCH_MALL_REQUEST })
-//     firebaseDatabase.collection("malls").onSnapshot(snap => {
-//         snap.forEach(doc => {
-//             dispatch({ type: actionType.FETCH_MALL_SUCCESS, payload: { id: doc.id, ...doc.data() } })
-//         })
-//     }, error => {
-//         dispatch({ type: actionType.FETCH_MALL_FAILURE })
-//     })
-// }
+export const onSnapShotData = () => dispatch => {
+    dispatch({ type: actionType.FETCH_MALL_REQUEST })
+    firebaseDatabase.collection("malls").onSnapshot(snap => {
+        let arr = []
+        snap.forEach(da => {
+            arr.push({ id: da.id, ...da.data() })
+        })
+        dispatch({ type: actionType.FETCH_MALL_SUCCESS, payload: arr })
+
+    }, error => {
+        dispatch({ type: actionType.FETCH_MALL_FAILURE })
+    })
+}
 
 export const getMallData = () => dispatch => {
-
     dispatch({ type: actionType.FETCH_MALL_REQUEST })
     firebaseDatabase.collection("malls").get().then((doc) => {
         let arr = []
@@ -34,6 +36,7 @@ export const getMallData = () => dispatch => {
 
 export const updateMallData = (id, data) => dispatch => {
     dispatch({ type: actionType.UPDATE_MALL_REQUEST })
+    dispatch(onSnapShotData())
     firebaseDatabase.collection("malls").doc(id).update(data).then(resp => {
         dispatch({ type: actionType.UPDATE_MALL_SUCCESS })
     }).catch(err => {

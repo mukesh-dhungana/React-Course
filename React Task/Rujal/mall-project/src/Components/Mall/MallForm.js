@@ -22,6 +22,8 @@ function MallForm() {
     const { editMode, malls } = useSelector(state => state.mallReducer, shallowEqual)
     const { id } = useParams()
     const [data, setData] = useState(defaultData)
+    const [imageUrl, setImageUrl] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const handleData = (e) => setData(th => ({ ...th, ...{ [e.target.name]: e.target.value } }))
 
@@ -30,8 +32,8 @@ function MallForm() {
             dispatch({ type: EDIT_MALL })
             const mall = malls.find(x => x.id === id)
             if (mall) {
-                delete mall.id
                 setData(mall)
+                setImageUrl(mall.mall_image.url)
             }
         }
     }, [id, dispatch, malls])
@@ -41,23 +43,63 @@ function MallForm() {
         return () => dispatch({ type: LOCATION_CHANGE })
     }, [dispatch])
 
-    const handleImage = async (e) => {
-        data.mall_image && await deleteFile(data.mall_image.id)
-        const response = await getFileUrl(e)
-        if (response) {
-            setData(th => ({ ...th, mall_image: { ...response[0] } }))
+    const handleImage = (e) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            if (reader.readyState === 2) {
+                setImageUrl(reader.result)
+            }
         }
+        reader.readAsDataURL(e.target.files[0])
+
+        const imageData = Object.entries(e.target.files).map(([key, value]) => (
+            { id: key + Math.random() + value.name, image_name: value.name, file: value }
+        ))
+        setData(th => ({ ...th, mall_image: imageData }))
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if (editMode) {
-            dispatch(updateMallData(id, data))
-        } else {
-            dispatch(addMallData(data))
-            setData(defaultData)
-        }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setLoading(true)
+
+        if (editMode) {
+            const mall = malls.find(x => x.id === id)
+
+            if (mall.mall_image.id !== data.mall_image.id) {
+                await deleteFile(data.mall_image.id)
+            }
+            const mall_image = await getFileUrl([data.mall_image])
+            const shops = await Promise.all(data.shops.map(async (shop, i) => {
+                const specificShop = mall.shops.find(s => s.shop_name === shop.shop_name)
+                if (specificShop) {
+                    await Promise.all(specificShop.images.map(async (img, j) => (
+                        !shop.images.map(x => x.id).includes(img.id) && await deleteFile(img.id)
+                    )))
+                }
+
+                const images = await getFileUrl(shop.images)
+                return { ...shop, images }
+            }))
+            const datas = {
+                ...data, mall_image: mall_image[0], shops
+            }
+            delete datas.id
+            dispatch(updateMallData(id, datas))
+        } else {
+            const mall_image = await getFileUrl(data.mall_image)
+            const shops = await Promise.all(data.shops.map(async shop => {
+                const images = await getFileUrl(shop.images)
+                return { ...shop, images }
+            }))
+            const datas = {
+                ...data, mall_image: mall_image[0], shops
+            }
+            dispatch(addMallData(datas))
+            setData(defaultData)
+            setImageUrl('')
+        }
+        setLoading(false)
     }
 
     return (
@@ -100,9 +142,9 @@ function MallForm() {
                             onChange={handleImage}
                             label="Mall Image"
                         />
-                        {data.mall_image &&
+                        {imageUrl &&
                             <Avatar
-                                src={data.mall_image.url}
+                                src={imageUrl}
                                 style={{ height: "122px", width: "122px", marginTop: "8px" }}
                             />}
 
@@ -127,7 +169,13 @@ function MallForm() {
                         </Typography>
                     </Grid>
                     <Grid item sm={12}>
-                        <Button type="submit" variant="contained" color="primary">Submit</Button>
+                        <Button
+                            disabled={loading}
+                            type="submit"
+                            variant="contained"
+                            color="primary">
+                            Submit{loading && "ting..."}
+                        </Button>
                     </Grid>
                 </Grid>
             </form>

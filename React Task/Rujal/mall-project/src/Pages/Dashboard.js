@@ -3,17 +3,18 @@ import React from 'react'
 import { useHistory } from 'react-router'
 import Malls from '../Components/Mall/Malls'
 import Shops from '../Components/Shop/Shops'
+import { shuffle } from '../Components/Shuffle'
 import { connect } from 'react-redux'
 import { getMallData } from '../redux/actions/mall'
 
-function Dashboard({ malls, getMallData, locationChange }) {
+function Dashboard({ malls, getMallData }) {
     const history = useHistory()
 
     React.useEffect(() => {
         getMallData()
     }, [getMallData])
 
-    const shops = malls.map(x => ({ id: x.id, shop: x.shops[x.shops.length - 1] }))
+    const shops = malls.map(x => ({ id: x.id, shop: shuffle(x.shops)[x.shops.length - 1] }))
 
     return (
         <Grid container spacing={2}
@@ -29,10 +30,10 @@ function Dashboard({ malls, getMallData, locationChange }) {
                 </Button>
             </Grid>
             <Grid item sm={12}>
-                <Malls malls={malls.slice(0, 3)} />
+                <Malls malls={shuffle(malls)} />
             </Grid>
             <Grid item sm={12}>
-                <Shops shops={shops.slice(0, 3)} />
+                <Shops shops={shops} />
             </Grid>
         </Grid >
     )

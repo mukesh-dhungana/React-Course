@@ -10,7 +10,7 @@ function Malls({ malls }) {
 
             <Grid container spacing={2}>
                 {
-                    malls.map(mall => (
+                    malls.slice(0,3).map(mall => (
                         <Grid item sm={4} key={mall.id}>
                             <Mall {...mall} />
                         </Grid>
@@ -19,7 +19,7 @@ function Malls({ malls }) {
 
 
             </Grid>
-            {malls.length >3 && <Link to="/malls" className="link">View All</Link>}
+            {malls.length > 2 && <Link to="/malls" className="link">View All</Link> }
         </Grid>
     )
 }
