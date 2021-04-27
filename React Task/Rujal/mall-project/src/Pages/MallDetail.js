@@ -4,8 +4,9 @@ import { useHistory, useParams } from 'react-router'
 import { paginate, Pagination } from '../Components/Paginate'
 import Card from '../Components/Card'
 import HOC from '../Components/HOC'
+import { deleteShop } from '../utils/deleteShop'
 
-function MallDetail({ malls }) {
+function MallDetail({ malls, updateMallData }) {
     const { id } = useParams()
     const history = useHistory()
     const [detail, setDetail] = React.useState({ id: '', mall_name: '', mall_address: '', shops: [] })
@@ -19,7 +20,14 @@ function MallDetail({ malls }) {
         }
     }, [id, malls])
 
-    const runPaginate = (number) => setPage(number)
+    const runPaginate = async (number) => setPage(number)
+
+    const handleShopDelete = async (shopName) => {
+        const data = await deleteShop(malls, id, shopName)
+        if (data) {
+            updateMallData(id, data)
+        }
+    }
 
     return (
         <Grid>
@@ -62,7 +70,7 @@ function MallDetail({ malls }) {
                                                 description={detail.mall_name}
                                                 url={shop.images[0].url}
                                                 handleClick={() => history.push(`/${id}/shop/${shop.shop_name}`)}
-                                                crossClick={() => console.log("Delete Shop")}
+                                                crossClick={() => handleShopDelete(shop.shop_name)}
                                             />
                                         </Grid>
                                     ))

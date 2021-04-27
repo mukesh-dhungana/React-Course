@@ -18,7 +18,8 @@ function Card(props) {
                 className="mall"
                 style={{
                     backgroundImage: `url(${props.url})`,
-                    filter: hover ? "blur(0.4px)" : "blur(2px)"
+                    filter: hover ? "blur(0.2px)" : "blur(1.6px)",
+                    borderRadius:"9px"
                 }}>
 
             </div>
@@ -27,7 +28,7 @@ function Card(props) {
                 onClick={(e) => { e.stopPropagation(); props.crossClick(e) }}
             />}
 
-            <div className="mall-content">
+            <div className={`mall-content ${props.className}`}>
                 <div>
                     <h1>{props.name}</h1>
                 </div>

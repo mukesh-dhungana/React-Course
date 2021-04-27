@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import Card from '../Card'
 import { useDispatch } from 'react-redux'
 import { deleteMallData } from '../../redux/actions/mall'
+import { shuffle } from '../Shuffle'
 
 function Malls({ malls }) {
     const history = useHistory()
@@ -15,7 +16,7 @@ function Malls({ malls }) {
 
             <Grid container spacing={2}>
                 {
-                    malls.slice(0, 3).map(mall => (
+                    shuffle(malls).slice(0, 3).map(mall => (
                         <Grid item sm={4} xs={6} key={mall.id}>
                             <Card
                                 name={mall.mall_name}
@@ -23,6 +24,7 @@ function Malls({ malls }) {
                                 handleClick={() => history.push('/' + mall.id)}
                                 url={mall.mall_image.url}
                                 crossClick={() => dispatch(deleteMallData(mall))}
+
                             />
                         </Grid>
                     ))
