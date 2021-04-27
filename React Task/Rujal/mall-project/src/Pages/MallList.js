@@ -1,22 +1,15 @@
 import { Grid, TextField, Typography, Button } from '@material-ui/core'
 import React from 'react'
-import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
-import { deleteMallData, getMallData } from '../redux/actions/mall'
 import { paginate, Pagination } from '../Components/Paginate'
 import Card from '../Components/Card'
+import HOC from '../Components/HOC'
 
-function MallList({ getMallData, malls, deleteMallData }) {
+function MallList({ malls, deleteMallData }) {
     const history = useHistory()
     const [search, setSearch] = React.useState('')
     const [currentPage, setPage] = React.useState(1)
     const [postPerPage, setPostPerPage] = React.useState(6)
-
-    React.useEffect(() => {
-        getMallData()
-    }, [getMallData])
-
-
 
     const handleChange = (e) => {
         setPage(1)
@@ -26,7 +19,9 @@ function MallList({ getMallData, malls, deleteMallData }) {
 
     const runPaginate = (number) => setPage(number)
 
-    const filteredMalls = malls.filter(x => search === "" ? x : x.mall_name.toLowerCase().includes(search.toLowerCase()))
+    const filteredMalls = malls.filter(x => search === "" ? x
+        :
+        x.mall_name.toLowerCase().includes(search.toLowerCase()))
 
     return (
 
@@ -67,7 +62,7 @@ function MallList({ getMallData, malls, deleteMallData }) {
                                     url={mall.mall_image.url}
                                     crossClick={() => deleteMallData(mall)}
                                 />
-                            
+
                             </Grid>
                         ))
                 }
@@ -88,17 +83,5 @@ function MallList({ getMallData, malls, deleteMallData }) {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        malls: state.mallReducer.malls,
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getMallData: () => dispatch(getMallData()),
-        deleteMallData: (data) => dispatch(deleteMallData(data))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MallList)
+export default HOC(MallList)

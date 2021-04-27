@@ -1,21 +1,16 @@
 import React from 'react'
 import { Typography, Grid, Button } from '@material-ui/core'
 import { useHistory, useParams } from 'react-router'
-import { connect } from 'react-redux'
-import { getMallData } from '../redux/actions/mall'
 import { paginate, Pagination } from '../Components/Paginate'
 import Card from '../Components/Card'
+import HOC from '../Components/HOC'
 
-function MallDetail({ getMallData, malls }) {
+function MallDetail({ malls }) {
     const { id } = useParams()
     const history = useHistory()
     const [detail, setDetail] = React.useState({ id: '', mall_name: '', mall_address: '', shops: [] })
     const [currentPage, setPage] = React.useState(1)
     const [postPerPage, setPostPerPage] = React.useState(3)
-
-    React.useEffect(() => {
-        getMallData()
-    }, [getMallData])
 
     React.useEffect(() => {
         if (id) {
@@ -89,16 +84,4 @@ function MallDetail({ getMallData, malls }) {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        malls: state.mallReducer.malls
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        getMallData: () => dispatch(getMallData()),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MallDetail)
+export default HOC(MallDetail)

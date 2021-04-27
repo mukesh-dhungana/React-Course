@@ -4,6 +4,7 @@ const initialInit = {
     malls: [],
     loading: false,
     editMode: false,
+    searchText: ''
 }
 
 const malls = (state = initialInit, action) => {
@@ -26,7 +27,7 @@ const malls = (state = initialInit, action) => {
             }
 
         case actionType.FETCH_MALL_SUCCESS:
-            
+
             return {
                 ...state,
                 loading: false,
@@ -56,6 +57,12 @@ const malls = (state = initialInit, action) => {
             return {
                 ...state,
                 editMode: true,
+            }
+
+        case actionType.SEARCH_MALL:
+            return {
+                ...state,
+                searchText: action.payload
             }
 
         default: return state

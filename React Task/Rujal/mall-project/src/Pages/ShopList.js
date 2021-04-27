@@ -1,25 +1,17 @@
 import { Grid, TextField, Typography } from '@material-ui/core'
 import React from 'react'
-import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
 import Card from '../Components/Card'
+import HOC from '../Components/HOC'
 import { paginate, Pagination } from '../Components/Paginate'
-import { getMallData } from '../redux/actions/mall'
-import { LOCATION_CHANGE } from '../redux/actionType'
 
-function ShopList({ getMallData, shops, locationChange }) {
+function ShopList({ malls }) {
 
     const [search, setSearch] = React.useState('')
     const [currentPage, setPage] = React.useState(1)
     const [postPerPage, setPostPerPage] = React.useState(6)
     const history = useHistory()
-
-    React.useEffect(() => {
-        getMallData()
-        return () => locationChange()
-    }, [getMallData, locationChange])
-
-
+    const shops = malls.map(mall => mall.shops.map(x => ({ ...x, id: mall.id }))).flat()
 
     const handleChange = (e) => {
         setPage(1)
@@ -80,17 +72,5 @@ function ShopList({ getMallData, shops, locationChange }) {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        shops: state.mallReducer.malls.map(mall => mall.shops.map(x => ({ ...x, id: mall.id }))).flat(),
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getMallData: () => dispatch(getMallData()),
-        locationChange: () => dispatch({ type: LOCATION_CHANGE }),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShopList)
+export default HOC(ShopList)

@@ -1,19 +1,15 @@
 import React, { useState } from 'react'
 import { Typography, Grid, Button } from '@material-ui/core'
 import { useHistory, useParams } from 'react-router'
-import { connect } from 'react-redux'
-import { getMallData } from '../redux/actions/mall'
 import Card from '../Components/Card'
+import HOC from '../Components/HOC'
 
-function ShopDetail({ getMallData, malls }) {
+function ShopDetail({ malls }) {
     const { id, shop_name } = useParams()
     const history = useHistory()
     const [data, setData] = useState({})
 
-    React.useEffect(() => {
-        getMallData()
-    }, [getMallData])
-
+   
     React.useEffect(() => {
         if (id && shop_name) {
             const mall = malls.filter(x => x.id === id)[0]
@@ -78,16 +74,6 @@ function ShopDetail({ getMallData, malls }) {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        malls: state.mallReducer.malls
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getMallData: () => dispatch(getMallData())
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShopDetail)
+export default HOC(ShopDetail)
