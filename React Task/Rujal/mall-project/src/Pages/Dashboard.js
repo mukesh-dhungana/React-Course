@@ -6,7 +6,7 @@ import Shops from '../Components/Shop/Shops'
 import { shuffle } from '../utils/Shuffle'
 import HOC from '../Components/HOC'
 
-function Dashboard({ malls, updateMallData }) {
+function Dashboard({ malls, updateMallData, deleteMallData }) {
     const history = useHistory()
     const shops = malls.map(x => ({ id: x.id, mall_name: x.mall_name, shop: shuffle(x.shops) }))
 
@@ -25,7 +25,7 @@ function Dashboard({ malls, updateMallData }) {
                 </Button>
             </Grid>
             <Grid item sm={12}>
-                <Malls malls={malls} />
+                <Malls malls={malls} deleteMallData={deleteMallData}/>
             </Grid>
             <Grid item sm={12}>
                 <Shops shops={shops} malls={malls} updateMallData={updateMallData} />

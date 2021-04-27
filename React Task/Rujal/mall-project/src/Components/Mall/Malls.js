@@ -2,13 +2,10 @@ import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { Link, useHistory } from 'react-router-dom'
 import Card from '../Card'
-import { useDispatch } from 'react-redux'
-import { deleteMallData } from '../../redux/actions/mall'
 import { shuffle } from '../../utils/Shuffle'
 
-function Malls({ malls }) {
+function Malls({ malls, deleteMallData }) {
     const history = useHistory()
-    const dispatch = useDispatch()
 
     return (
         <Grid>
@@ -23,7 +20,7 @@ function Malls({ malls }) {
                                 description={mall.mall_address}
                                 handleClick={() => history.push('/' + mall.id)}
                                 url={mall.mall_image.url}
-                                crossClick={() => dispatch(deleteMallData(mall))}
+                                crossClick={() => deleteMallData(mall)}
 
                             />
                         </Grid>
