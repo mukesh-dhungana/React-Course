@@ -1,7 +1,7 @@
 import { Grid, TextField, Typography, Button } from '@material-ui/core'
 import React from 'react'
 import { useHistory } from 'react-router'
-import { paginate, Pagination } from '../Components/Paginate'
+import { paginate, Pagination } from '../utils/Paginate'
 import Card from '../Components/Card'
 import HOC from '../Components/HOC'
 

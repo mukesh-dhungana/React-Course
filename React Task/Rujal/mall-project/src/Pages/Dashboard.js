@@ -3,7 +3,7 @@ import React from 'react'
 import { useHistory } from 'react-router'
 import Malls from '../Components/Mall/Malls'
 import Shops from '../Components/Shop/Shops'
-import { shuffle } from '../Components/Shuffle'
+import { shuffle } from '../utils/Shuffle'
 import HOC from '../Components/HOC'
 
 function Dashboard({ malls, updateMallData }) {

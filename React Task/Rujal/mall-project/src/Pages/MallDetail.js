@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, Grid, Button } from '@material-ui/core'
 import { useHistory, useParams } from 'react-router'
-import { paginate, Pagination } from '../Components/Paginate'
+import { paginate, Pagination } from '../utils/Paginate'
 import Card from '../Components/Card'
 import HOC from '../Components/HOC'
 import { deleteShop } from '../utils/deleteShop'

@@ -5,6 +5,7 @@ import Card from '../Card'
 import { deleteShop } from '../../utils/deleteShop'
 
 function Shops({ shops, malls, updateMallData }) {
+    
     const history = useHistory()
 
     const handleShopDelete = async (mallId, shopName) => {

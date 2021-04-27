@@ -3,7 +3,7 @@ import React from 'react'
 import { useHistory } from 'react-router'
 import Card from '../Components/Card'
 import HOC from '../Components/HOC'
-import { paginate, Pagination } from '../Components/Paginate'
+import { paginate, Pagination } from '../utils/Paginate'
 import { deleteShop } from '../utils/deleteShop'
 
 function ShopList({ malls, updateMallData }) {

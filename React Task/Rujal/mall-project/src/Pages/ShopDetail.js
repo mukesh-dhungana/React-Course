@@ -3,25 +3,35 @@ import { Typography, Grid, Button } from '@material-ui/core'
 import { useHistory, useParams } from 'react-router'
 import Card from '../Components/Card'
 import HOC from '../Components/HOC'
+import { deleteFile } from '../firebase/fireStorage'
 
-function ShopDetail({ malls }) {
+function ShopDetail({ malls, updateMallData }) {
     const { id, shop_name } = useParams()
     const history = useHistory()
     const [data, setData] = useState({})
 
-   
+
     React.useEffect(() => {
         if (id && shop_name) {
             const mall = malls.filter(x => x.id === id)[0]
             if (mall) {
-                const {id, ...rest} = mall
+                const { id, ...rest } = mall
                 setData(rest)
             }
         }
     }, [shop_name, malls, id])
 
-    const deleteImage = (imageId) => {
-        console.log(data);
+    const deleteImage = async (imageId) => {
+        await deleteFile(imageId)
+        const mall = malls.find(mall => mall.id === id)
+        const data = {
+            ...mall,
+            shops: mall.shops.map(shop => shop.shop_name === shop_name ?
+                { ...shop, images: shop.images.filter(img => img.id !== imageId) }
+                : shop
+            )
+        }
+        updateMallData(id, data)
     }
 
     const detail = data?.shops?.find(x => x.shop_name === shop_name)
@@ -60,7 +70,6 @@ function ShopDetail({ malls }) {
                                                 name={image.image_name}
                                                 url={image.url}
                                                 crossClick={() => deleteImage(image.id)}
-
                                             />
                                         </Grid>
                                     ))

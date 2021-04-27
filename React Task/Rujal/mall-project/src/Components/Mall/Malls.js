@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import Card from '../Card'
 import { useDispatch } from 'react-redux'
 import { deleteMallData } from '../../redux/actions/mall'
-import { shuffle } from '../Shuffle'
+import { shuffle } from '../../utils/Shuffle'
 
 function Malls({ malls }) {
     const history = useHistory()
