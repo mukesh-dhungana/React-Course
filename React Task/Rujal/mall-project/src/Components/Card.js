@@ -33,7 +33,7 @@ function Card(props) {
                 </div>
                 <div>
                     <h3>
-                        {props.description || ''}
+                        {props.description}
                     </h3>
                 </div>
             </div>

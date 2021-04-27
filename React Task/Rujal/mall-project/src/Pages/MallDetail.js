@@ -59,6 +59,7 @@ function MallDetail({ malls }) {
                                         <Grid item sm={4} xs={12} key={shop.shop_name}>
                                             <Card
                                                 name={shop.shop_name}
+                                                description={detail.mall_name}
                                                 url={shop.images[0].url}
                                                 handleClick={() => history.push(`/${id}/shop/${shop.shop_name}`)}
                                                 crossClick={() => console.log("Delete Shop")}

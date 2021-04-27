@@ -11,7 +11,7 @@ function ShopList({ malls }) {
     const [currentPage, setPage] = React.useState(1)
     const [postPerPage, setPostPerPage] = React.useState(6)
     const history = useHistory()
-    const shops = malls.map(mall => mall.shops.map(x => ({ ...x, id: mall.id }))).flat()
+    const shops = malls.map(mall => mall.shops.map(x => ({ ...x, id: mall.id, mall_name: mall.mall_name }))).flat()
 
     const handleChange = (e) => {
         setPage(1)
@@ -49,6 +49,7 @@ function ShopList({ malls }) {
                                 <Card
                                     name={shop.shop_name}
                                     url={shop.images[0].url}
+                                    description={shop.mall_name}
                                     handleClick={() => history.push('/' + shop.id + '/shop/' + shop.shop_name)}
                                     crossClick={() => console.log("Delete Shop")}
                                 />

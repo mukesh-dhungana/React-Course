@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getMallData, deleteMallData } from '../redux/actions/mall'
+import { getMallData, deleteMallData, updateMallData } from '../redux/actions/mall'
 
 const HOC = (OriginalComponent) => {
     function ComponentUpdated() {
@@ -15,6 +15,7 @@ const HOC = (OriginalComponent) => {
         return <OriginalComponent
             malls={malls}
             deleteMallData={(data) => dispatch(deleteMallData(data))}
+            updateMallData={(id, data) => dispatch(updateMallData(id, data))}
         />
     }
 

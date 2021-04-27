@@ -17,6 +17,7 @@ function Shops({ shops }) {
                             <Card
                                 name={x.shop.shop_name}
                                 url={x.shop.images[0].url}
+                                description={x.mall_name}
                                 handleClick={() => history.push(`/${x.id}/shop/${x.shop.shop_name}`)}
                                 crossClick={() => console.log("Delete Shop")}
                             />

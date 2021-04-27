@@ -6,6 +6,7 @@ import Card from '../Components/Card'
 import HOC from '../Components/HOC'
 
 function MallList({ malls, deleteMallData }) {
+    
     const history = useHistory()
     const [search, setSearch] = React.useState('')
     const [currentPage, setPage] = React.useState(1)

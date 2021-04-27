@@ -3,12 +3,12 @@ import React from 'react'
 import { useHistory } from 'react-router'
 import Malls from '../Components/Mall/Malls'
 import Shops from '../Components/Shop/Shops'
-import {shuffle} from '../Components/Shuffle'
+import { shuffle } from '../Components/Shuffle'
 import HOC from '../Components/HOC'
 
 function Dashboard({ malls }) {
     const history = useHistory()
-    const shops = malls.map(x => ({ id: x.id, shop: shuffle(x.shops)[x.shops.length - 1] }))
+    const shops = malls.map(x => ({ id: x.id, mall_name: x.mall_name, shop: shuffle(x.shops)[x.shops.length - 1] }))
 
 
     return (
@@ -28,7 +28,7 @@ function Dashboard({ malls }) {
                 <Malls malls={malls} />
             </Grid>
             <Grid item sm={12}>
-                <Shops shops={shops.slice(0, 3)}/>
+                <Shops shops={shops.slice(0, 3)} />
             </Grid>
         </Grid >
     )
