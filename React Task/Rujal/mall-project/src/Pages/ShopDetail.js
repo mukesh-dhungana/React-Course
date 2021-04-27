@@ -16,10 +16,10 @@ function ShopDetail({ getMallData, malls }) {
 
     React.useEffect(() => {
         if (id && shop_name) {
-            const mall = [...malls].find(x => x.id === id)
+            const mall = malls.filter(x => x.id === id)[0]
             if (mall) {
-                // delete mall.id
-                setData(mall)
+                const {id, ...rest} = mall
+                setData(rest)
             }
         }
     }, [shop_name, malls, id])

@@ -29,7 +29,6 @@ export const getMallData = () => dispatch => {
             arr.push({ id: da.id, ...da.data() })
         })
         dispatch({ type: actionType.FETCH_MALL_SUCCESS, payload: arr })
-
     }).catch(err => {
         dispatch({ type: actionType.FETCH_MALL_FAILURE })
     })
