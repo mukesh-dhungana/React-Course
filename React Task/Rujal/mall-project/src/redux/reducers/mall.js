@@ -26,6 +26,7 @@ const malls = (state = initialInit, action) => {
             }
 
         case actionType.FETCH_MALL_SUCCESS:
+            
             return {
                 ...state,
                 loading: false,

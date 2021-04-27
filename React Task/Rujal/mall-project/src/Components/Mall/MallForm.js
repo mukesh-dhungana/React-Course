@@ -67,7 +67,7 @@ function MallForm() {
             const mall = malls.find(x => x.id === id)
 
             if (mall.mall_image.id !== data.mall_image.id) {
-                await deleteFile(data.mall_image.id)
+                await deleteFile(mall.mall_image.id)
             }
             const mall_image = await getFileUrl([data.mall_image])
             const shops = await Promise.all(data.shops.map(async (shop, i) => {

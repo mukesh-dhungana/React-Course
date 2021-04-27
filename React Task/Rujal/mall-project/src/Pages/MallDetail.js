@@ -4,9 +4,9 @@ import { useHistory, useParams } from 'react-router'
 import { connect } from 'react-redux'
 import { getMallData } from '../redux/actions/mall'
 import { paginate, Pagination } from '../Components/Paginate'
-import Shop from '../Components/Shop/Shop'
+import Card from '../Components/Card'
 
-function MallDetail({ getMallData, malls, locationChange }) {
+function MallDetail({ getMallData, malls }) {
     const { id } = useParams()
     const history = useHistory()
     const [detail, setDetail] = React.useState({ id: '', mall_name: '', mall_address: '', shops: [] })
@@ -41,9 +41,15 @@ function MallDetail({ getMallData, malls, locationChange }) {
                 </Grid>
 
                 <Grid container spacing={2} style={{ margin: "auto", width: "90%" }}>
-                    <Grid item sm={12}>
+                    <Grid item sm={6}>
                         <Button
-                            onClick={() => history.push('/' + detail.id+'/editMall')}
+                            //onClick={() => history.push('/' + detail.id+'/editMall')}
+                            variant="contained"
+                            color="secondary">Add Shop</Button>
+                    </Grid>
+                    <Grid item sm={6}>
+                        <Button
+                            onClick={() => history.push('/' + detail.id + '/editMall')}
                             variant="contained"
                             color="secondary">Edit Mall</Button>
                     </Grid>
@@ -56,7 +62,12 @@ function MallDetail({ getMallData, malls, locationChange }) {
                                 paginate(detail.shops, postPerPage, currentPage)
                                     .map(shop => (
                                         <Grid item sm={4} xs={12} key={shop.shop_name}>
-                                            <Shop {...shop} />
+                                            <Card
+                                                name={shop.shop_name}
+                                                url={shop.images[0].url}
+                                                handleClick={() => history.push(`/${id}/shop/${shop.shop_name}`)}
+                                                crossClick={() => console.log("Delete Shop")}
+                                            />
                                         </Grid>
                                     ))
                             }

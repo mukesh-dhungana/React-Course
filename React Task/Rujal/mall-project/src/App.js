@@ -24,9 +24,9 @@ function App() {
         <ProtectedRoute path="/addMall" component={MallForm} />
         <ProtectedRoute path="/malls" component={MallList} />
         <ProtectedRoute path="/shops" component={ShopList} />
-        <ProtectedRoute exact path="/:id" component = {MallDetail} />
+        <ProtectedRoute exact path="/:id" component={MallDetail} />
         <ProtectedRoute path="/:id/editMall" component={MallForm} />
-        <ProtectedRoute path = "/:shop_name" component ={ShopDetail}/>
+        <ProtectedRoute exact path="/:id/shop/:shop_name" component={ShopDetail} />
       </Switch>
     </Router>
   );

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
-import Shop from './Shop'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import Card from '../Card'
 
 function Shops({ shops }) {
-
+    const history = useHistory()
 
     return (
         <Grid>
@@ -12,15 +12,20 @@ function Shops({ shops }) {
 
             <Grid container spacing={2}>
                 {
-                    shops.slice(0, 3).map((x) => (
-                        <Grid item sm={4} key={x.id}>
-                            <Shop {...x.shop} />
+                    shops.map((x) => (
+                        <Grid item sm={4} xs={12} key={x.shop.shop_name}>
+                            <Card
+                                name={x.shop.shop_name}
+                                url={x.shop.images[0].url}
+                                handleClick={() => history.push(`/${x.id}/shop/${x.shop.shop_name}`)}
+                                crossClick={() => console.log("Delete Shop")}
+                            />
                         </Grid>
                     ))
                 }
 
             </Grid>
-            {shops.length > 2 && <Link to="/shops" className="link">View All</Link>}
+            {shops.length >= 3 && <Link to="/shops" className="link">View All</Link>}
         </Grid>
     )
 }

@@ -2,15 +2,15 @@ import { Grid, TextField, Typography, Button } from '@material-ui/core'
 import React from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
-import Mall from '../Components/Mall/Mall'
-import { getMallData } from '../redux/actions/mall'
+import { deleteMallData, getMallData } from '../redux/actions/mall'
 import { paginate, Pagination } from '../Components/Paginate'
+import Card from '../Components/Card'
 
-function MallList({ getMallData, malls, locationChange }) {
+function MallList({ getMallData, malls, deleteMallData }) {
     const history = useHistory()
     const [search, setSearch] = React.useState('')
     const [currentPage, setPage] = React.useState(1)
-    const [postPerPage, setPostPerPage] = React.useState(3)
+    const [postPerPage, setPostPerPage] = React.useState(6)
 
     React.useEffect(() => {
         getMallData()
@@ -23,7 +23,7 @@ function MallList({ getMallData, malls, locationChange }) {
         const value = e.target.value
         setSearch(value)
     }
-    
+
     const runPaginate = (number) => setPage(number)
 
     const filteredMalls = malls.filter(x => search === "" ? x : x.mall_name.toLowerCase().includes(search.toLowerCase()))
@@ -60,7 +60,14 @@ function MallList({ getMallData, malls, locationChange }) {
                     paginate(filteredMalls, postPerPage, currentPage)
                         .map(mall => (
                             <Grid item sm={4} xs={12} key={mall.id}>
-                                <Mall {...mall} />
+                                <Card
+                                    name={mall.mall_name}
+                                    description={mall.mall_address}
+                                    handleClick={() => history.push('/' + mall.id)}
+                                    url={mall.mall_image.url}
+                                    crossClick={() => deleteMallData(mall)}
+                                />
+                            
                             </Grid>
                         ))
                 }
@@ -71,7 +78,7 @@ function MallList({ getMallData, malls, locationChange }) {
                         postPerPage={postPerPage}
                         totalPosts={malls.length}
                         paginate={runPaginate}
-                        setPostPerPage={(e)=>{setPostPerPage(+e.target.value);setPage(1)}}
+                        setPostPerPage={(e) => { setPostPerPage(+e.target.value); setPage(1) }}
                     />
                 </Grid>
             </Grid>
@@ -89,7 +96,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getMallData: () => dispatch(getMallData())
+        getMallData: () => dispatch(getMallData()),
+        deleteMallData: (data) => dispatch(deleteMallData(data))
     }
 }
 
