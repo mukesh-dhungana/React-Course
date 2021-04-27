@@ -13,7 +13,7 @@ function ShopDetail({ malls, updateMallData }) {
 
     React.useEffect(() => {
         if (id && shop_name) {
-            const mall = malls.filter(x => x.id === id)[0]
+            const mall = malls.find(x => x.id === id)
             if (mall) {
                 const { id, ...rest } = mall
                 setData(rest)
@@ -22,7 +22,9 @@ function ShopDetail({ malls, updateMallData }) {
     }, [shop_name, malls, id])
 
     const deleteImage = async (imageId) => {
+
         await deleteFile(imageId)
+        
         const mall = malls.find(mall => mall.id === id)
         const data = {
             ...mall,
