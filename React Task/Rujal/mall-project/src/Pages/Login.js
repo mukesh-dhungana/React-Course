@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
 import { login } from '../redux/actions/user'
+import { LOGIN_SUCCESS } from '../redux/actionType'
 
 
 function Login(props) {
@@ -16,6 +17,7 @@ function Login(props) {
         let validation = await props.login({ username, password })
         if (validation) {
             localStorage.setItem("user_token", "fjsldfjslfd09sdf80sdf")
+            props.setToken("fjsldfjslfd09sdf80sdf")
             history.push('/dashboard')
         }
 
@@ -69,7 +71,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        login: data => dispatch(login(data))
+        login: data => dispatch(login(data)),
+        setToken:(payload)=>dispatch({type:LOGIN_SUCCESS, payload})
     }
 }
 

@@ -9,6 +9,7 @@ const HOC = (OriginalComponent) => {
         const dispatch = useDispatch()
         const malls = useSelector(state => state.mallReducer.malls)
         const editMode = useSelector(state => state.mallReducer.editMode)
+        const user_token = useSelector(state => state.userReducer.user_token)
 
         React.useEffect(() => {
             dispatch(getMallData())
@@ -16,6 +17,7 @@ const HOC = (OriginalComponent) => {
 
 
         return <OriginalComponent
+            user_token={user_token}
             malls={malls}
             editMode={editMode}
             deleteMallData={(data) => dispatch(deleteMallData(data))}

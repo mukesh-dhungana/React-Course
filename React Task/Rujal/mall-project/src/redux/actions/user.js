@@ -10,7 +10,6 @@ export const login = ({ username, password }) => async dispatch => {
         users.push(doc.data())
     }
     if (users.some(x => x.username === username && x.password === password)) {
-        dispatch({ type: actions.LOGIN_SUCCESS })
         return Promise.resolve(true)
     } else {
         dispatch({ type: actions.LOGIN_FAILURE })

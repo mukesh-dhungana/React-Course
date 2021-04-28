@@ -6,6 +6,8 @@ import Card from '../Components/Card'
 import HOC from '../Components/HOC'
 import { deleteShop } from '../utils/deleteShop'
 
+const userToken = localStorage.getItem("user_token")
+
 function MallDetail({ malls, updateMallData }) {
     const { id } = useParams()
     const history = useHistory()
@@ -44,18 +46,20 @@ function MallDetail({ malls, updateMallData }) {
                 </Grid>
 
                 <Grid container spacing={2} style={{ margin: "auto", width: "90%" }}>
-                    <Grid item sm={3}>
-                        <Button
-                            onClick={() => history.push('/' + detail.id+'/addShop')}
-                            variant="contained"
-                            color="secondary">Add Shop</Button>
-                    </Grid>
-                    <Grid item sm={3}>
-                        <Button
-                            onClick={() => history.push('/' + detail.id + '/editMall')}
-                            variant="contained"
-                            color="secondary">Edit Mall</Button>
-                    </Grid>
+                    {userToken && <>
+                        <Grid item sm={3}>
+                            <Button
+                                onClick={() => history.push('/' + detail.id + '/addShop')}
+                                variant="contained"
+                                color="secondary">Add Shop</Button>
+                        </Grid>
+                        <Grid item sm={3}>
+                            <Button
+                                onClick={() => history.push('/' + detail.id + '/editMall')}
+                                variant="contained"
+                                color="secondary">Edit Mall</Button>
+                        </Grid>
+                    </>}
                     <Grid item sm={12}>
                         <Grid container spacing={2}>
                             <Grid item sm={12}>

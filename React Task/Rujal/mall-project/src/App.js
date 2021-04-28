@@ -4,7 +4,6 @@ import './App.css';
 import { ProtectedRoute } from './Components/ProtectedRoute';
 import Dashboard from './Pages/Dashboard';
 import Login from './Pages/Login';
-import Main from './Pages/Main';
 import MallForm from './Components/Mall/MallForm';
 import MallList from './Pages/MallList';
 import ShopList from './Pages/ShopList';
@@ -16,7 +15,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Main} />
+        <Route exact path="/" component={Dashboard} />
         <Route path="/login" render={props => !localStorage.getItem("user_token") ?
           <Login {...props} />
           :

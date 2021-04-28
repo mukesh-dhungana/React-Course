@@ -2,6 +2,8 @@ import * as actionType from '../actionType'
 
 const initialInit = {
     loading: false,
+    user_token: localStorage.getItem("user_token")
+
 }
 
 const user = (state = initialInit, action) => {
@@ -15,7 +17,8 @@ const user = (state = initialInit, action) => {
         case actionType.LOGIN_SUCCESS:
             return {
                 ...state,
-                loading: false
+                loading: false,
+                user_token: action.payload
             }
 
         case actionType.LOGIN_FAILURE:
@@ -24,7 +27,7 @@ const user = (state = initialInit, action) => {
                 loading: false
             }
 
-    
+
 
         default: return state
     }

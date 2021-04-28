@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import ClearIcon from '@material-ui/icons/Clear';
-
+import {useSelector} from 'react-redux'
 
 function Card(props) {
 
     const [hover, setHover] = useState(false)
+    const userToken = useSelector(state => state.userReducer.user_token)
 
     return (
         <div
@@ -19,14 +20,20 @@ function Card(props) {
                 style={{
                     backgroundImage: `url(${props.url})`,
                     filter: hover ? "blur(0.2px)" : "blur(1.6px)",
-                    borderRadius:"9px"
+                    borderRadius: "9px"
                 }}>
 
             </div>
-            {hover && <ClearIcon
-                className="delete-icon"
-                onClick={(e) => { e.stopPropagation(); props.crossClick(e) }}
-            />}
+            {
+                userToken &&
+                <>
+                {hover && <ClearIcon
+                    className="delete-icon"
+                    onClick={(e) => { e.stopPropagation(); props.crossClick(e) }}
+                />}
+                </>
+            }
+
 
             <div className={`mall-content ${props.className}`}>
                 <div>

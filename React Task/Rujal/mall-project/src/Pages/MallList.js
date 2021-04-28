@@ -5,6 +5,9 @@ import { paginate, Pagination } from '../utils/Paginate'
 import Card from '../Components/Card'
 import HOC from '../Components/HOC'
 
+const userToken = localStorage.getItem("user_token")
+
+
 function MallList({ malls, deleteMallData }) {
     
     const history = useHistory()
@@ -39,7 +42,7 @@ function MallList({ malls, deleteMallData }) {
 
             <Grid container spacing={2}>
                 <Grid item sm={12}>
-                    <Grid item sm={12}>
+                    {userToken && <Grid item sm={12}>
                         <Button
                             variant="contained"
                             color="secondary"
@@ -48,7 +51,7 @@ function MallList({ malls, deleteMallData }) {
                             Add Mall
                         </Button>
 
-                    </Grid>
+                    </Grid>}
                     <Typography variant="h4" color="secondary">Malls</Typography>
                 </Grid>
 
