@@ -44,13 +44,13 @@ function MallDetail({ malls, updateMallData }) {
                 </Grid>
 
                 <Grid container spacing={2} style={{ margin: "auto", width: "90%" }}>
-                    <Grid item sm={6}>
+                    <Grid item sm={3}>
                         <Button
-                            //onClick={() => history.push('/' + detail.id+'/editMall')}
+                            onClick={() => history.push('/' + detail.id+'/addShop')}
                             variant="contained"
                             color="secondary">Add Shop</Button>
                     </Grid>
-                    <Grid item sm={6}>
+                    <Grid item sm={3}>
                         <Button
                             onClick={() => history.push('/' + detail.id + '/editMall')}
                             variant="contained"

@@ -6,7 +6,13 @@ import Shops from '../Components/Shop/Shops'
 import { shuffle } from '../utils/Shuffle'
 import HOC from '../Components/HOC'
 
+const userToken = localStorage.getItem("user_token")
+
+
 function Dashboard({ malls, updateMallData, deleteMallData }) {
+
+
+
     const history = useHistory()
     const shops = malls.map(x => ({ id: x.id, mall_name: x.mall_name, shop: shuffle(x.shops) }))
 
@@ -15,7 +21,7 @@ function Dashboard({ malls, updateMallData, deleteMallData }) {
         <Grid container spacing={2}
             style={{ width: "90%", margin: "auto" }}
         >
-            <Grid item sm={12}>
+            {userToken && <Grid item sm={12}>
                 <Button
                     variant="contained"
                     color="secondary"
@@ -23,7 +29,7 @@ function Dashboard({ malls, updateMallData, deleteMallData }) {
                 >
                     Add Mall
                 </Button>
-            </Grid>
+            </Grid>}
             <Grid item sm={12}>
                 <Malls malls={malls} deleteMallData={deleteMallData}/>
             </Grid>
