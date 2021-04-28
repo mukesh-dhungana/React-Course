@@ -55,7 +55,7 @@ function ShopDetail({ malls, updateMallData }) {
                 <Grid container spacing={2} style={{ margin: "auto", width: "90%" }}>
                     <Grid item sm={12}>
                         <Button
-                            onClick={() => history.push('/' + id + '/' + shop_name + '/editShop')}
+                            onClick={() => history.push('/' + id + '/shop/' + shop_name + '/editShop')}
                             variant="contained"
                             color="secondary">Edit Shop</Button>
                     </Grid>
