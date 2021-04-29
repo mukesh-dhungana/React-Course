@@ -1,0 +1,25 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0.3;
+  font-size: 2rem;
+  color: gray;
+}
+
+.navbar__right > p {
+  cursor: pointer;
+}
+
+.avatar {
+  width: 80px !important;
+  height: 80px !important;
+  font-size: 3rem !important;
+}

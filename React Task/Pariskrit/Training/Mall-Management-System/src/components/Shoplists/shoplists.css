@@ -1,0 +1,12 @@
+.shoplists__headings {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.shoplists__headings > h1 {
+  font-size: 3rem;
+}
+
+.shoplists__headings > h2 {
+  font-size: 3rem;
+}
