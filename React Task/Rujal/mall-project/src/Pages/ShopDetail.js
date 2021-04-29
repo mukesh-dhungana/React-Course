@@ -1,28 +1,24 @@
 import React, { useState } from 'react'
 import { Typography, Grid, Button } from '@material-ui/core'
-import { useHistory, useParams } from 'react-router'
+import { useHistory } from 'react-router'
 import Card from '../Components/Card'
 import HOC from '../Components/HOC'
 import { deleteFile } from '../firebase/fireStorage'
 
-const userToken = localStorage.getItem("user_token")
-
-
-function ShopDetail({ malls, updateMallData }) {
-    const { id, shop_name } = useParams()
+function ShopDetail({ malls, updateMallData, match }) {
+    const { id, shop_id } = match.params
     const history = useHistory()
     const [data, setData] = useState({})
 
-
     React.useEffect(() => {
-        if (id && shop_name) {
+        if (id && shop_id) {
             const mall = malls.find(x => x.id === id)
             if (mall) {
                 const { id, ...rest } = mall
                 setData(rest)
             }
         }
-    }, [shop_name, malls, id])
+    }, [shop_id, malls, id])
 
     const deleteImage = async (imageId) => {
 
@@ -31,7 +27,7 @@ function ShopDetail({ malls, updateMallData }) {
         const mall = malls.find(mall => mall.id === id)
         const data = {
             ...mall,
-            shops: mall.shops.map(shop => shop.shop_name === shop_name ?
+            shops: mall.shops.map(shop => shop.shop_id === shop_id ?
                 { ...shop, images: shop.images.filter(img => img.id !== imageId) }
                 : shop
             )
@@ -39,7 +35,9 @@ function ShopDetail({ malls, updateMallData }) {
         updateMallData(id, data)
     }
 
-    const detail = data?.shops?.find(x => x.shop_name === shop_name)
+    const detail = data?.shops?.find(x => x.shop_id === shop_id)
+
+    const adminMode = !match.path.includes("user")
 
     return (
         <Grid>
@@ -56,16 +54,16 @@ function ShopDetail({ malls, updateMallData }) {
                 </Grid>
 
                 <Grid container spacing={2} style={{ margin: "auto", width: "90%" }}>
-                    {userToken && <Grid item sm={12}>
+                    {adminMode && <Grid item sm={12}>
                         <Button
-                            onClick={() => history.push('/' + id + '/shop/' + shop_name + '/editShop')}
+                            onClick={() => history.push('/' + id + '/shop/' + shop_id + '/editShop')}
                             variant="contained"
                             color="secondary">Edit Shop</Button>
                     </Grid>}
                     <Grid item sm={12}>
                         <Grid container spacing={2}>
                             <Grid item sm={12}>
-                                <Typography variant="h4" color="primary">Shops</Typography>
+                                <Typography variant="h4" color="primary">Images</Typography>
                             </Grid>
                             {
                                 detail?.images
@@ -75,6 +73,7 @@ function ShopDetail({ malls, updateMallData }) {
                                                 name={image.image_name}
                                                 url={image.url}
                                                 crossClick={() => deleteImage(image.id)}
+                                                adminMode={adminMode}
                                             />
                                         </Grid>
                                     ))

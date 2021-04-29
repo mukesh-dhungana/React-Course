@@ -15,20 +15,31 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Dashboard} />
+
+        {/* USER ACCESS */}
         <Route path="/login" render={props => !localStorage.getItem("user_token") ?
           <Login {...props} />
           :
           <Redirect to={{ pathname: "/dashboard", state: { from: props.location } }} />} />
+
+        <Route exact path="/" component={Dashboard} />
+        <Route path="/malls/user" component={MallList} />
+        <Route path="/shops/user" component={ShopList} />
+        <Route exact path="/:id/user" component={MallDetail} />
+        <Route exact path="/:id/shop/:shop_id/user" component={ShopDetail} />
+
+        {/* ADMIN ACCESS */}
         <ProtectedRoute path="/dashboard" component={Dashboard} />
         <ProtectedRoute path="/addMall" component={MallForm} />
         <ProtectedRoute path="/malls" component={MallList} />
         <ProtectedRoute path="/shops" component={ShopList} />
         <ProtectedRoute exact path="/:id" component={MallDetail} />
         <ProtectedRoute path="/:id/editMall" component={MallForm} />
-        <ProtectedRoute exact path="/:id/shop/:shop_name" component={ShopDetail} />
+        <ProtectedRoute exact path="/:id/shop/:shop_id" component={ShopDetail} />
         <ProtectedRoute path="/:id/addShop" component={ShopOnly} />
-        <ProtectedRoute exact path="/:id/shop/:shop_name/editShop" component={ShopOnly} />
+        <ProtectedRoute exact path="/:id/shop/:shop_id/editShop" component={ShopOnly} />
+
+
       </Switch>
     </Router>
   );

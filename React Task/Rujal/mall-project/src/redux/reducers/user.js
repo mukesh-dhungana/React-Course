@@ -2,8 +2,8 @@ import * as actionType from '../actionType'
 
 const initialInit = {
     loading: false,
-    user_token: localStorage.getItem("user_token")
-
+    user_token: localStorage.getItem("user_token"),
+    mode: "admin"
 }
 
 const user = (state = initialInit, action) => {
@@ -25,6 +25,12 @@ const user = (state = initialInit, action) => {
             return {
                 ...state,
                 loading: false
+            }
+
+        case actionType.SWITCH_USER:
+            return {
+                ...state,
+                mode: action.payload
             }
 
 

@@ -1,18 +1,16 @@
 import { Button, Grid, TextField } from '@material-ui/core'
 import React from 'react'
-import { useHistory } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 import Malls from '../Components/Mall/Malls'
 import Shops from '../Components/Shop/Shops'
 import { shuffle } from '../utils/Shuffle'
 import HOC from '../Components/HOC'
+import Nav from '../Components/Nav'
 
-
-
-function Dashboard({ malls, updateMallData, deleteMallData, user_token }) {
-
-    console.log(user_token);
+function Dashboard({ malls, updateMallData, deleteMallData }) {
 
     const history = useHistory()
+    const location = useLocation()
     const [mallData, setMall] = React.useState([])
 
     React.useEffect(() => {
@@ -35,11 +33,15 @@ function Dashboard({ malls, updateMallData, deleteMallData, user_token }) {
         setMall(data)
     }
 
+    const adminMode = location.pathname.includes('dashboard')
+
     return (
+        <>
+        {adminMode && <Nav />}
         <Grid container spacing={2}
             style={{ width: "90%", margin: "auto" }}
         >
-            {!user_token && <Grid item sm={12} style={{ textAlign: 'center' }}>
+            {!adminMode && <Grid item sm={12} style={{ textAlign: 'center' }}>
                 <TextField
                     name="search"
                     label="Search Mall..."
@@ -48,7 +50,7 @@ function Dashboard({ malls, updateMallData, deleteMallData, user_token }) {
                     onChange={searchMall}
                 />
             </Grid>}
-            {user_token && <Grid item sm={12}>
+            {adminMode && <Grid item sm={12}>
                 <Button
                     variant="contained"
                     color="secondary"
@@ -58,12 +60,13 @@ function Dashboard({ malls, updateMallData, deleteMallData, user_token }) {
                 </Button>
             </Grid>}
             <Grid item sm={12}>
-                <Malls malls={mallData} deleteMallData={deleteMallData} />
+                <Malls malls={mallData} deleteMallData={deleteMallData} adminMode={adminMode}/>
             </Grid>
             <Grid item sm={12}>
-                <Shops shops={shops} malls={mallData} updateMallData={updateMallData} />
+                <Shops shops={shops} malls={mallData} updateMallData={updateMallData} adminMode={adminMode}/>
             </Grid>
         </Grid >
+        </>
     )
 }
 

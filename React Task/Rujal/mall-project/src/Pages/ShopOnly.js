@@ -1,34 +1,34 @@
-import { Grid, Typography, Button } from '@material-ui/core'
+import { Grid, Typography, Button, Fab } from '@material-ui/core'
+import { Add } from '@material-ui/icons'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
 import HOC from '../Components/HOC'
 import ShopForm from '../Components/Shop/ShopForm'
 import { deleteFile, getFileUrl } from '../firebase/fireStorage'
 
 const defaultData = {
-    shops: [{ shop_name: "", shop_description: "", images: [] }]
+    shops: [{ shop_id: "" + Math.floor(Math.random() * Date.now()), shop_name: "", shop_description: "", images: [] }]
 }
 
-function ShopOnly({ malls, editMode, updateMallData, setEditMode }) {
+function ShopOnly({ malls, editMode, updateMallData, setEditMode, match }) {
 
-    const { id, shop_name } = useParams()
+    const { id, shop_id } = match.params
     const [data, setData] = useState(defaultData)
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        if (id && shop_name) {
+        if (id && shop_id) {
             setEditMode()
-            const shop = malls.find(x => x.id === id)?.shops.find(y => y.shop_name === shop_name)
+            const shop = malls.find(x => x.id === id)?.shops.find(y => y.shop_id === shop_id)
             if (shop) {
                 setData({ shops: [shop] })
             }
         }
-    }, [id, malls, shop_name, setEditMode])
+    }, [id, malls, shop_id, setEditMode])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
-        
+
         const specificMall = malls.find(mall => mall.id === id)
 
         let finalData = {}
@@ -39,15 +39,15 @@ function ShopOnly({ malls, editMode, updateMallData, setEditMode }) {
             const stateImage = await getFileUrl(shopData.images)
             const imagesId = stateImage.map(x => x.id)
             //Reducer Image
-            const reducerImages = specificMall.shops.find(x => x.shop_name === shop_name).images
+            const reducerImages = specificMall.shops.find(x => x.shop_id === shop_id).images
             await Promise.all(reducerImages.map(async im => (
                 !imagesId.includes(im.id) && await deleteFile(im.id)
             )))
             shopData['images'] = stateImage
 
             finalData = {
-                ...specificMall,
-                shops: specificMall.shops.map(shop => shop.shop_name === shop_name ? shopData : shop)
+
+                shops: specificMall.shops.map(shop => shop.shop_id === shop_id ? shopData : shop)
             }
 
         } else {
@@ -57,10 +57,14 @@ function ShopOnly({ malls, editMode, updateMallData, setEditMode }) {
                 return { ...shop, images }
             }))
             finalData = {
-                ...specificMall,
                 shops: [...specificMall.shops, ...shopData]
             }
-            setData(defaultData)
+            setData({
+                shops: [{
+                    shop_id: "" + Math.floor(Math.random() * Date.now()),
+                    shop_name: "", shop_description: "", images: []
+                }]
+            })
         }
 
         delete finalData.id
@@ -81,7 +85,23 @@ function ShopOnly({ malls, editMode, updateMallData, setEditMode }) {
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={2} style={{ margin: "auto", width: "40%" }}>
                         <Grid item sm={12}>
-                            <ShopForm setData={setData} data={data.shops[0]} />
+                            {data.shops.map((shop, i) => (
+                                <ShopForm key={i} setData={setData} data={shop} index={i} />
+                            ))}
+                            {!editMode && <Typography variant="h5" color="secondary">
+                                <Fab
+                                    color="secondary"
+                                    style={{ height: 44, width: 44, margin: 12 }}>
+                                    <Add
+                                        onClick={() => setData({
+                                            ...data,
+                                            shops: [...data.shops, { shop_id: "" + Math.floor(Math.random() * Date.now()), shop_name: "", shop_description: "", images: [] }]
+                                        })}
+                                    />
+                                </Fab>
+                            </Typography>}
+                        </Grid>
+                        <Grid item sm={12}>
                             <Button
                                 disabled={loading}
                                 variant="contained"
