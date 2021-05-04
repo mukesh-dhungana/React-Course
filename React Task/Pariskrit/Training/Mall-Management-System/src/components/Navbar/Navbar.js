@@ -10,7 +10,14 @@ function Navbar() {
     <div className="navbar">
       <Avatar className="avatar">P</Avatar>
       <div className="navbar__right">
-        <p>Logout</p>
+        <p
+          onClick={() => {
+            localStorage.removeItem("user");
+            history.push("/login");
+          }}
+        >
+          Logout
+        </p>
         <p onClick={() => history.push("/user/home")}>Switch To User</p>
       </div>
     </div>

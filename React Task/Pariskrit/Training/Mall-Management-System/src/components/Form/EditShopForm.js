@@ -1,14 +1,21 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, TextField } from "@material-ui/core";
-import { Context } from "../../context/ContextProvider";
+
 import { useParams } from "react-router";
-import { projectFirestore, projectStorage } from "../../firebase/config";
 import Loader from "../Loader/Loader";
 import { getImageUrl } from "../../utils/getImageUrl";
+import {
+  deleteShopImageFromStorage,
+  updateShop,
+} from "../../utils/firebaseCrud";
+import Success from "../Success/Success";
+import { Context } from "../../context/ContextProvider";
 
-function EditShopForm() {
-  const [{ shopDetails, allDatas }, dispatch] = useContext(Context);
+function EditShopForm({ allDatas }) {
+  const [{ shopDetails }, dispatch] = useContext(Context);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [shopToEdit, setShopToEdit] = useState({});
   const { mallid, shopid } = useParams();
 
   const onSubmit = async (e) => {
@@ -16,17 +23,40 @@ function EditShopForm() {
 
     setIsSubmitted(true);
     let editedShopData = {};
+    const removedImages = [];
+
     const mallToUpdate = allDatas.find((mall) => mall.id === mallid);
-    const isNewImages = shopDetails[0].shopImages.some(
-      (image) => typeof image === "object"
+
+    const isNewImages = shopDetails[0].shopImages.filter(
+      (image) => image?.image?.name
     );
-    console.log(shopDetails[0]);
-    if (isNewImages) {
-      const { shopsurl } = await getImageUrl(shopDetails);
+
+    for (let i = 0; i <= shopToEdit.shopImages.length - 1; i++) {
+      if (
+        shopDetails[0].shopImages.findIndex(
+          (image) => image.id === shopToEdit.shopImages[i].id
+        ) === -1
+      ) {
+        removedImages.push(shopToEdit.shopImages[i]);
+      }
+    }
+
+    if (removedImages.length > 0) {
+      await deleteShopImageFromStorage(removedImages);
+    }
+    if (isNewImages.length > 0) {
+      const { shopsurl } = await getImageUrl(isNewImages);
 
       editedShopData = {
         ...shopDetails[0],
-        shopImages: shopsurl[0],
+        shopImages: [
+          ...shopDetails[0].shopImages.filter((image) => !image?.image?.name),
+          ...shopsurl.map((url, index) => ({
+            id: isNewImages[index].id,
+            imageName: isNewImages[index].imageName,
+            url,
+          })),
+        ],
       };
     } else {
       editedShopData = {
@@ -35,28 +65,23 @@ function EditShopForm() {
       };
     }
 
-    projectFirestore
-      .collection("Malls")
-      .doc(mallid)
-      .update({
-        shops: mallToUpdate.shops.map((shop) =>
-          shop.id === +shopid ? editedShopData : shop
-        ),
-      })
-      .then(() => console.log("succesfully added"))
-      .catch((error) => console.log(error));
+    //Updating the shop
+    updateShop(mallid, mallToUpdate, shopid, editedShopData);
 
+    setIsSuccess(true);
+    setTimeout(() => setIsSuccess(false), 3000);
     setIsSubmitted(false);
     dispatch({ type: "Reset_ShopDetails" });
   };
 
   useEffect(() => {
-    console.log(shopDetails);
-
     const selectedMall = allDatas.find((mall) => mall.id === mallid);
-    const shopToEdit = selectedMall.shops.find((shop) => shop.id === +shopid);
+    const shopToEdit = selectedMall?.shops.find((shop) => shop.id === +shopid);
+    setShopToEdit(shopToEdit);
     dispatch({ type: "Save_Shops", payload: [shopToEdit] });
-  }, [shopid]);
+
+    return () => dispatch({ type: "Reset_ShopDetails" });
+  }, [allDatas, shopid]);
 
   return (
     <div>
@@ -69,7 +94,7 @@ function EditShopForm() {
             label="Shop Name"
             variant="outlined"
             name="title"
-            value={shopDetails[0].title}
+            value={shopDetails[0]?.title}
             onChange={(e) =>
               dispatch({
                 type: "handleShopInputChange",
@@ -87,7 +112,7 @@ function EditShopForm() {
             multiline
             rows={4}
             name="description"
-            value={shopDetails[0].description}
+            value={shopDetails[0]?.description}
             onChange={(e) =>
               dispatch({
                 type: "handleShopInputChange",
@@ -105,7 +130,7 @@ function EditShopForm() {
             name="shopImages"
             onChange={(e) =>
               dispatch({
-                type: "handleShopImagesChange",
+                type: "handleShopImagesEditChange",
                 name: e.target.name,
                 value: e.target.files,
                 id: 0,
@@ -113,8 +138,40 @@ function EditShopForm() {
             }
             multiple
           />
+          <ol>
+            {shopDetails[0]?.shopImages?.length > 0 &&
+              shopDetails[0].shopImages.map((image) => (
+                <li
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    margin: "10px 0",
+                  }}
+                >
+                  {image.imageName}
+                  <p
+                    style={{
+                      color: "red",
+                      fontWeight: "800",
+                      margin: "0 10px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() =>
+                      dispatch({
+                        type: "handleShopImagesRemove",
+                        id: image.id,
+                        index: 0,
+                      })
+                    }
+                  >
+                    Remove
+                  </p>
+                </li>
+              ))}
+          </ol>
         </div>
         {isSubmitted && <Loader />}
+        {isSuccess && <Success />}
         <Button
           type="submit"
           className="form__button"

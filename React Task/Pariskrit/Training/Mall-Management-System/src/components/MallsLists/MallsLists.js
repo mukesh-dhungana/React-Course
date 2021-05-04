@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
+import useFirestore from "../../firebase/useFirestore";
+import useFilterData from "../../hooks/useFilterData";
 import Block from "../Block/Block";
 import Container from "../Container/Container";
 import InputField from "../InputField/InputField";
 
-function MallsLists({ malls }) {
+function MallsLists({ isAdmin = false }) {
   const history = useHistory();
+  const { docs } = useFirestore("Malls");
+  const { filteredData, setAllData, setInputValue } = useFilterData();
+
+  useEffect(() => {
+    setAllData(docs);
+  }, [docs]);
+
   return (
     <div>
-      <InputField placeholder="Search Malls..." />
+      <InputField
+        placeholder="Search Malls..."
+        onSearchInputChange={(e) => setInputValue(e.target.value)}
+      />
       <Container
         heading="Malls"
-        malls={malls}
+        malls={filteredData}
         render={(malls) =>
           malls?.map((mall) => (
             <Block
@@ -19,7 +31,8 @@ function MallsLists({ malls }) {
               title={mall.title}
               subTitle={mall.address}
               image={mall.image}
-              handleClick={() => history.push("/user/malls/" + mall.title)}
+              handleClick={() => history.push("/user/malls/" + mall.id)}
+              isAdmin={isAdmin}
             />
           ))
         }

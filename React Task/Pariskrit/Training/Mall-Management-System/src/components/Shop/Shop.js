@@ -5,7 +5,7 @@ import { Button } from "@material-ui/core";
 import "./shop.css";
 import useFirestore from "../../firebase/useFirestore";
 
-function Shop({ isAdmin }) {
+function Shop({ isAdmin = false }) {
   const { mallid, shopid } = useParams();
   const { docs } = useFirestore("Malls");
   const [shops, setShops] = useState([]);
@@ -17,7 +17,7 @@ function Shop({ isAdmin }) {
       setShops(selectedMall.shops.find((shop) => shop.id === +shopid));
     }
   }, [docs]);
-  console.log(shops);
+
   return (
     <div className="shop">
       <div className="shop__headings">
@@ -43,7 +43,7 @@ function Shop({ isAdmin }) {
       )}
       <div className="shop__images">
         {shops?.shopImages?.map((shop, index) => (
-          <img key={index} src={shop} alt="imageess" />
+          <img key={index} src={shop.url} alt="imageess" />
         ))}
       </div>
     </div>

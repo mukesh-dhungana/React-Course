@@ -3,31 +3,34 @@ import React, { useState, useContext } from "react";
 import Loader from "../Loader/Loader";
 import "./addform.css";
 import Shopform from "./AddShopform";
-import { projectStorage, projectFirestore } from "../../firebase/config";
+import { projectStorage } from "../../firebase/config";
 import { Context } from "../../context/ContextProvider";
 import AddMallform from "./AddMallform";
-import { getImageUrl } from "../../utils/getImageUrl";
+import { getAllImageUrl } from "../../utils/getImageUrl";
 import { addMallAndShop } from "../../utils/firebaseCrud";
+import { useForm } from "react-hook-form";
 
 function AddForm() {
   const [{ shopDetails, mallDetails }, dispatch] = useContext(Context);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  // const handleAddMoreShop = () => {
-  //   if (
-  //     shopDetails[shopDetails.length - 1].title === "" ||
-  //     shopDetails[shopDetails.length - 1].description === "" ||
-  //     !shopDetails[shopDetails.length - 1].images.length
-  //   ) {
-  //     alert("Please First Fill Up The Present Shop Form");
-  //   } else {
-  //     setShopDetails([
-  //       ...shopDetails,
-  //       { id: ++shopNumber, title: "", description: "", images: [] },
-  //     ]);
-  //   }
-  // };
+  const handleAddMoreShop = () => {
+    if (
+      shopDetails[shopDetails.length - 1].title === "" ||
+      shopDetails[shopDetails.length - 1].description === "" ||
+      !shopDetails[shopDetails.length - 1].shopImages.length
+    ) {
+      alert("Please First Fill Up The Present Shop Form");
+    } else {
+      dispatch({ type: "Add_ShopFields" });
+    }
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -42,12 +45,15 @@ function AddForm() {
 
     setIsSubmitted(true);
     /* storing mall image in storage and getting url */
-    await projectStorage.ref(mallDetails.image.name).put(mallDetails.image);
-    const mallurl = await projectStorage
-      .ref(mallDetails.image.name)
-      .getDownloadURL();
 
-    const { shopsurl } = await getImageUrl(shopDetails);
+    await projectStorage
+      .ref(mallDetails.image.id + mallDetails.image.image.name)
+      .put(mallDetails.image.image);
+    const mallurl = await projectStorage
+      .ref(mallDetails.image.id + mallDetails.image.image.name)
+      .getDownloadURL();
+    console.log(mallDetails, shopDetails);
+    const { shopsurl } = await getAllImageUrl(shopDetails);
 
     /*saving all data to firestore*/
     addMallAndShop(mallDetails, mallurl, shopDetails, shopsurl);
@@ -55,6 +61,7 @@ function AddForm() {
     setIsSuccess(true);
     setTimeout(() => setIsSuccess(false), 3000);
     setIsSubmitted(false);
+    dispatch({ type: "Reset_ShopDetails" });
   };
 
   return (
@@ -65,7 +72,11 @@ function AddForm() {
 
         <h1 className="addform__heading">Add Shops</h1>
 
-        <Shopform shopDetails={shopDetails} dispatch={dispatch} />
+        <Shopform
+          shopDetails={shopDetails}
+          dispatch={dispatch}
+          handleAddMoreShop={handleAddMoreShop}
+        />
         {isSubmitted && <Loader />}
         {isSuccess && <div className="alert__success">SuccessFully Saved!</div>}
 

@@ -1,39 +1,41 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../Container/Container";
 import { useHistory, useParams } from "react-router";
 import Block from "../Block/Block";
 import InputField from "../InputField/InputField";
 import "./shoplists.css";
 import { Button } from "@material-ui/core";
-import { projectFirestore, projectStorage } from "../../firebase/config";
-import useFirestore from "../../firebase/useFirestore";
+import Confirmation from "../Modal/Confirmation";
+import {
+  deleteShop,
+  deleteShopImageFromStorage,
+} from "../../utils/firebaseCrud";
+import useFilterData from "../../hooks/useFilterData";
 
-function Shoplists({ isAdmin }) {
+function Shoplists({ isAdmin, selectedMall }) {
   const { mallid } = useParams();
-  const { docs } = useFirestore("Malls");
-  const [selectedMall, setSelectedMall] = useState({});
+  const [openModal, setOpenModal] = useState(false);
+  const [shopId, setShopId] = useState(null);
   const history = useHistory();
+  const { filteredData, setAllData, setInputValue } = useFilterData();
 
   useEffect(() => {
-    if (Object.keys(selectedMall).length <= 0 && docs.length > 0) {
-      setSelectedMall(docs.find((mall) => mall.id === mallid));
-    }
-  }, [selectedMall, docs]);
+    setAllData(selectedMall?.shops);
+  }, [selectedMall]);
 
-  const handleDelete = (e, id) => {
-    e.stopPropagation();
+  const handleDelete = async () => {
     const shopsAfterDeleted = selectedMall.shops.filter(
-      (shop) => shop.id !== id
+      (shop) => shop.id !== shopId
     );
+    const deletedShop = selectedMall.shops.find((shop) => shop.id === shopId);
 
-    projectFirestore
-      .collection("Malls")
-      .doc(mallid)
-      .update({ shops: shopsAfterDeleted })
-      .then(() =>
-        setSelectedMall({ ...selectedMall, shops: shopsAfterDeleted })
-      )
-      .then((error) => console.log(error));
+    //delete shop
+    deleteShop(mallid, shopsAfterDeleted);
+
+    //delete shop images from storage
+    await deleteShopImageFromStorage(deletedShop.shopImages);
+
+    setOpenModal(false);
   };
 
   return (
@@ -42,7 +44,11 @@ function Shoplists({ isAdmin }) {
         <h1>{selectedMall?.title}</h1>
         <h2>{selectedMall?.address}</h2>
       </div>
-      <InputField placeholder="Search Shops..." />
+      <InputField
+        placeholder="Search Shops..."
+        onSearchInputChange={(e) => setInputValue(e.target.value)}
+      />
+
       {isAdmin && (
         <Button
           ClassName="addbutton"
@@ -54,9 +60,20 @@ function Shoplists({ isAdmin }) {
           Add Shops
         </Button>
       )}
+      {isAdmin && (
+        <Button
+          className="addbutton"
+          color="primary"
+          variant="contained"
+          size="large"
+          onClick={() => history.push(`/admin/${mallid}/editmall`)}
+        >
+          Update Mall
+        </Button>
+      )}
       <Container
         heading="Shops"
-        malls={selectedMall?.shops}
+        malls={filteredData}
         render={(shops) =>
           shops?.map((shop) => (
             <Block
@@ -65,13 +82,26 @@ function Shoplists({ isAdmin }) {
               title={shop.title}
               image={shop.shopImages[0]}
               handleClick={() =>
-                history.push(`/admin/malls/${mallid}/${shop.id}`)
+                history.push(
+                  isAdmin
+                    ? `/admin/malls/${mallid}/${shop.id}`
+                    : `/user/malls/${mallid}/${shop.id}`
+                )
               }
-              handleDelete={(e) => handleDelete(e, shop.id)}
+              handleDelete={(e) => {
+                e.stopPropagation();
+                setOpenModal(true);
+                setShopId(shop.id);
+              }}
               isAdmin={isAdmin}
             />
           ))
         }
+      />
+      <Confirmation
+        openModal={openModal}
+        handleClose={() => setOpenModal(false)}
+        handleDelete={handleDelete}
       />
     </div>
   );

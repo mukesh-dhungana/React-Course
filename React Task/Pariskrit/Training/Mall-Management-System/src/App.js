@@ -1,38 +1,80 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import UserHomepage from "./pages/user/Homepage";
 import ShopsListpage from "./pages/user/ShopsListpage";
 import Shoppage from "./pages/admin/ShopDetailspage";
 import AllMallspage from "./pages/user/AllMallspage";
+import AdminAllMallspage from "./pages/admin/AllMallspage";
 import AdminHomepage from "./pages/admin/Homepage";
 import AddFormPage from "./pages/admin/AddFormPage";
 import AdminShopLists from "./pages/admin/ShopListspage";
 import AddShopsFormPage from "./pages/admin/AddShopsFormPage";
-import EditShopForm from "./components/Form/EditShopForm";
+import EditShopFormpage from "./pages/admin/EditShopFormpage";
+import ShopDetailspage from "./pages/user/ShopDetailspage";
+import AllShopspage from "./pages/user/AllShopspage";
+import AdminAllShopspage from "./pages/admin/AllShopspage";
+import EditMallFormpage from "./pages/admin/EditMallFormpage";
+import Login from "./components/Form/Login";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
+          <Route path="/login" component={Login} />
           {/* User Routes */}
-          <Route path="/user/home" component={UserHomepage} />
-          <Route path="/user/allmalls" component={AllMallspage} />
-          <Route exact path="/user/malls/:id" component={ShopsListpage} />
+          <ProtectedRoute path="/user/home" component={UserHomepage} />
+          <ProtectedRoute path="/user/allmalls" component={AllMallspage} />
+          <ProtectedRoute path="/user/allshops" component={AllShopspage} />
+          <ProtectedRoute
+            exact
+            path="/user/malls/:mallid"
+            component={ShopsListpage}
+          />
+          <ProtectedRoute
+            path="/user/malls/:mallid/:shopid"
+            component={ShopDetailspage}
+          />
 
           {/* Admin Routes */}
-          <Route path="/admin/malls/:mallid/:shopid" component={Shoppage} />
-          <Route path="/admin/addmall" component={AddFormPage} />
-          <Route path="/admin/:mallid/addshop" component={AddShopsFormPage} />
-          <Route path="/admin/malls/:mallid" component={AdminShopLists} />
-          <Route
+          <ProtectedRoute
+            path="/admin/malls/:mallid/:shopid"
+            component={Shoppage}
+          />
+          <ProtectedRoute path="/admin/addmall" component={AddFormPage} />
+          <ProtectedRoute
+            path="/admin/:mallid/addshop"
+            component={AddShopsFormPage}
+          />
+          <ProtectedRoute
+            path="/admin/malls/:mallid"
+            component={AdminShopLists}
+          />
+          <ProtectedRoute
+            path="/admin/allmalls"
+            component={AdminAllMallspage}
+          />
+          <ProtectedRoute
+            path="/admin/allshops"
+            component={AdminAllShopspage}
+          />
+          <ProtectedRoute
             path="/admin/:mallid/:shopid/editshop"
-            component={EditShopForm}
+            component={EditShopFormpage}
           />
-          <Route
-            path="/admin/home"
-            render={() => <AdminHomepage isAdmin="true" />}
+          <ProtectedRoute
+            path="/admin/:mallid/editmall"
+            component={EditMallFormpage}
           />
+
+          <ProtectedRoute path="/admin/home" component={AdminHomepage} />
+          <Route path="/" render={() => <Redirect to="/admin/home" />} />
         </Switch>
       </Router>
     </div>

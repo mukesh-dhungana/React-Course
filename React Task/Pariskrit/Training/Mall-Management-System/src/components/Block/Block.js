@@ -9,23 +9,23 @@ function Block({
   handleDelete,
   isAdmin,
 }) {
-  const [showDescription, setShowDescription] = useState(false);
+  const [showDescription, setShowDescription] = useState(true);
 
   return (
     <div
       className="block"
-      onMouseEnter={() => setShowDescription(true)}
-      onMouseLeave={() => setShowDescription(false)}
+      onMouseEnter={() => setShowDescription(false)}
+      onMouseLeave={() => setShowDescription(true)}
       onClick={handleClick}
     >
-      <img src={image} alt="mall" className="block__image" />
+      <img src={image?.url} alt="mall" className="block__image" />
       {showDescription && (
         <div className="block__description">
           <h2>{title}</h2>
           {subTitle && <h2>{subTitle}</h2>}
         </div>
       )}
-      {isAdmin && showDescription && (
+      {isAdmin && !showDescription && (
         <p className="block__deletebutton" onClick={handleDelete}>
           Delete
         </p>
