@@ -35,17 +35,18 @@ const SingleShop = () => {
               </div>
 
               <div className={classes.container}>
-                {shop.shopImages.map((s, i) => (
-                  <div key={i} className={classes.wrapper}>
-                    <div className={classes.imageContainer}>
-                      <img
-                        className={classes.image}
-                        src={s.url}
-                        alt="shopImage"
-                      />
+                {shop.shopImages &&
+                  shop.shopImages.map((s, i) => (
+                    <div key={i} className={classes.wrapper}>
+                      <div className={classes.imageContainer}>
+                        <img
+                          className={classes.image}
+                          src={s.url}
+                          alt="shopImage"
+                        />
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           )

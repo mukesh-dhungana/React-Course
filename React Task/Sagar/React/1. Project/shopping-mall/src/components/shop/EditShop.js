@@ -1,33 +1,38 @@
 import React, { useState } from "react";
 import classes from "./shopform.module.css";
 
+import { storage, fireStore } from "../../firebase/config";
+
 const ShopForm = ({
-  d,
-  data,
-  s,
-  state,
-  dispatch,
+  dataShop,
+  editData,
+  editDispatch,
   index,
-  shopImageState,
-  shopImageDispatch,
+  setImagesToRemove,
+  addedShopImagesDispatch,
+  addedShopImages,
+  // shopImageState,
+  // shopImageDispatch,
 }) => {
   const [shopImageError, setShopImageError] = useState(null);
 
+  console.log("sssss", dataShop);
+
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
-    dispatch({
-      type: "ADD_SHOP_INFO",
+    editDispatch({
+      type: "EDIT_SHOP_INFO",
       payload: { name: name, value: value, index: index },
     });
   };
 
   const types = ["image/jpeg", "image/png"];
-  const shopImageHandler = (e) => {
+  const shopImageHandler = (e, shopData) => {
     for (let i = 0; i < e.target.files.length; i++) {
       let selectedShopImages = e.target.files[i];
 
       if (selectedShopImages && types.includes(selectedShopImages.type)) {
-        shopImageDispatch({
+        addedShopImagesDispatch({
           type: "ADD",
           payload: { index, selectedShopImages },
         });
@@ -37,18 +42,48 @@ const ShopForm = ({
     }
   };
 
-  const closeShopForm = () => {
-    dispatch({
+  const closeShopForm = (dataShop) => {
+    editDispatch({
       type: "REMOVE_SHOP_FORM",
       payload: {
-        s,
+        dataShop,
+      },
+    });
+    setImagesToRemove((prevState) => [
+      ...prevState,
+      ...dataShop.shopImages.map((image) => image),
+    ]);
+  };
+
+  //Remove Image
+
+  const removeImage = (img, index) => {
+    setImagesToRemove((prevState) => [...prevState, img]);
+    editDispatch({
+      type: "REMOVE_IMAGE",
+      payload: {
+        img,
+        index,
       },
     });
   };
 
+  // const removeImageFromArray = (img, index) => {
+  //   setAddedShopImages([
+  //     ...addedShopImages.map((item, ind) =>
+  //       ind === index
+  //         ? {
+  //             ...item,
+  //             images: item.images.filter((i) => i.name !== img.name),
+  //           }
+  //         : item
+  //     ),
+  //   ]);
+  // };
+
   return (
     <div className={classes.shopContainer}>
-      <div onClick={closeShopForm} className={classes.close}>
+      <div onClick={() => closeShopForm(dataShop)} className={classes.close}>
         <i className="fas fa-times"></i>
       </div>
       <div className={classes.innerDiv}>
@@ -56,7 +91,7 @@ const ShopForm = ({
           type="text"
           placeholder="Name of Shop"
           name="shopName"
-          value={data ? d?.shopName : s.shopName}
+          value={dataShop?.shopName}
           onChange={onChangeHandler}
           className={classes.input}
         />
@@ -64,13 +99,17 @@ const ShopForm = ({
           type="text"
           placeholder="Description"
           name="shopDescription"
-          value={data ? d?.shopDescription : s?.shopDescription}
+          value={dataShop?.shopDescription}
           onChange={onChangeHandler}
           className={classes.textarea}
         />
         {shopImageError && <p>{shopImageError}</p>}
         <label className={classes.label}>
-          <input multiple type="file" onChange={shopImageHandler} />
+          <input
+            multiple
+            type="file"
+            onChange={(e) => shopImageHandler(e, dataShop)}
+          />
           <span>
             <div className={classes.imgButton}>Add Image</div>
           </span>
@@ -78,25 +117,38 @@ const ShopForm = ({
       </div>
 
       <div className={classes.selectedImages}>
-        {shopImageState &&
-          shopImageState?.map(
-            (image, ind) =>
+        {dataShop.shopImages &&
+          dataShop.shopImages.map((img, i) => (
+            <p key={i} className={classes.image}>
+              <button
+                className={classes.button}
+                type="button"
+                onClick={() => removeImage(img, index)}
+              >
+                <i className="fas fa-times"></i>
+              </button>
+              {img.ImageName}
+            </p>
+          ))}
+        {addedShopImages &&
+          addedShopImages.map(
+            (img, ind) =>
               ind === index &&
-              image?.images?.map((img, i) => (
+              img.images.map((img, i) => (
                 <p key={i} className={classes.image}>
                   <button
                     className={classes.button}
                     type="button"
                     onClick={() =>
-                      shopImageDispatch({
+                      addedShopImagesDispatch({
                         type: "REMOVE_IMAGE",
-                        payload: { outerIndex: ind, name: img?.name },
+                        payload: { outerIndex: ind, name: img.name },
                       })
                     }
                   >
                     <i className="fas fa-times"></i>
                   </button>
-                  {img?.name}
+                  {img.name}
                 </p>
               ))
           )}

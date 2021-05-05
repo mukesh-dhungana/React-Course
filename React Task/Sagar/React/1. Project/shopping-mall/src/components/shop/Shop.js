@@ -8,6 +8,8 @@ const Shop = ({ docs }) => {
   const history = useHistory();
   const location = useLocation();
 
+  console.log(docs);
+
   return (
     <div className={classes.container}>
       {location.pathname === "/admin/dashboard" || location.pathname === "/"
@@ -28,16 +30,26 @@ const Shop = ({ docs }) => {
                     )
               }
             >
-              <div className={classes.imageContainer}>
-                <img
-                  src={
-                    doc?.shops[0] ? doc?.shops[0]?.shopImages[0]?.url : NoImage
-                  }
-                  alt="shopImages"
-                  className={classes.image}
-                />
-              </div>
-              <p className={classes.title}>{doc?.shops[0]?.shopName}</p>
+              {doc?.hasOwnProperty("shops") ? (
+                <>
+                  {console.log("shop", doc.shops)}
+                  <div className={classes.imageContainer}>
+                    {doc.shops[0].shopImages && (
+                      <img
+                        src={
+                          doc?.shops[0]
+                            ? doc?.shops[0]?.shopImages[0]?.url
+                            : NoImage
+                        }
+                        alt="shopImages"
+                        className={classes.image}
+                      />
+                    )}
+                  </div>
+
+                  <p className={classes.title}>{doc?.shops[0]?.shopName}</p>
+                </>
+              ) : null}
               <p>( Inside {doc.mallName})</p>
             </div>
           ))
@@ -55,11 +67,13 @@ const Shop = ({ docs }) => {
                 }
               >
                 <div className={classes.imageContainer}>
+                {doc.shops[0].shopImages && (
                   <img
                     className={classes.image}
                     src={shop.shopImages[0].url}
                     alt=""
                   />
+                )}
                 </div>
                 <p className={classes.title}>{shop.shopName}</p>
                 <p>(Inside {doc.mallName})</p>

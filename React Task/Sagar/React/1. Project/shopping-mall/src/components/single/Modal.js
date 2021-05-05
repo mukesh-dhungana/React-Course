@@ -12,6 +12,8 @@ const Modal = ({ setShowModal, docId, mall }) => {
     shopImages: [{ id: "", imageName: "", url: "" }],
   });
 
+  console.log("mall", mall);
+
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setShop({
@@ -56,13 +58,21 @@ const Modal = ({ setShowModal, docId, mall }) => {
       };
 
       //FireStore
-      fireStore
-        .collection("Shopping Mall")
-        .doc(docId)
-        .set({
-          ...mall,
-          shops: [...mall.shops, result],
-        });
+      mall.shops
+        ? fireStore
+            .collection("Shopping Mall")
+            .doc(docId)
+            .set({
+              ...mall,
+              shops: [...mall.shops, result],
+            })
+        : fireStore
+            .collection("Shopping Mall")
+            .doc(docId)
+            .set({
+              ...mall,
+              result,
+            });
     } catch {}
 
     setShowModal(false);
@@ -106,7 +116,7 @@ const Modal = ({ setShowModal, docId, mall }) => {
               onChange={shopImageHandler}
             />
             <span>
-              <i class="far fa-plus-circle"></i>
+              <i className="far fa-plus-circle"></i>
             </span>
           </label>
 

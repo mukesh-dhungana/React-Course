@@ -108,15 +108,16 @@ const Mall = ({ docs }) => {
                       );
 
                       //Shop Images
-                      doc.shops.map((shop) =>
-                        shop.shopImages.map((s) =>
-                          storageRef
-                            .child(s.ImageName)
-                            .delete()
-                            .then(() => "Images Deleted SuccessFUlly")
-                            .catch((err) => "Images Not Deleted")
-                        )
-                      );
+                      doc &&
+                        doc.shops.map((shop) =>
+                          shop.shopImages.map((s) =>
+                            storageRef
+                              .child(s.ImageName)
+                              .delete()
+                              .then(() => "Images Deleted SuccessFUlly")
+                              .catch((err) => "Images Not Deleted")
+                          )
+                        );
 
                       //Deleting Images
                       mallImageDel

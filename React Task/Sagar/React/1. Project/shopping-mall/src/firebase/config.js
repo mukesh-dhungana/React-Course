@@ -4,7 +4,7 @@ import firebase from "firebase/app";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  apiKey: "Your API Key Goes Here",
+  apiKey: "YOUR API KEY HERE",
   authDomain: "shopping-mall-67399.firebaseapp.com",
   projectId: "shopping-mall-67399",
   storageBucket: "shopping-mall-67399.appspot.com",

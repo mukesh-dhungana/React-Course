@@ -9,6 +9,8 @@ import { useParams, useLocation } from "react-router-dom";
 const SingleMall = () => {
   const [mall, setMall] = useState([]);
 
+  console.log("mall", mall);
+
   const [showModal, setShowModal] = useState(false);
 
   const history = useHistory();
@@ -58,7 +60,12 @@ const SingleMall = () => {
                 </button>
                 <button
                   className={classes.editBtn}
-                  onClick={() => console.log("edit")}
+                  onClick={() =>
+                    history.push({
+                      pathname: "/admin/editMall",
+                      dataToSend: mall,
+                    })
+                  }
                 >
                   <i className="fas fa-edit "></i>
                   <span className={classes.text}>Edit</span>
@@ -74,44 +81,47 @@ const SingleMall = () => {
             <div className={classes.header}>
               <h4 className={cls.heading}>Shops</h4>
             </div>
-            {mall?.shops?.length > 0 ? (
+
+            {mall.shops && mall?.shops?.length > 0 ? (
               <div className={cls.container}>
-                {mall?.shops?.map((shop, index) => (
-                  <div className={cls.wrapper} key={index}>
-                    {shop.shopImages.map(
-                      (s, i) =>
-                        i === 0 && (
-                          <div
-                            key={i}
-                            className={cls.imageContainer}
-                            onClick={() =>
-                              location.pathname.split("/")[1] === "admin"
-                                ? history.push(
-                                    "/admin/" +
-                                      mall.mallName +
-                                      "/shops/" +
-                                      shop.shopName
-                                  )
-                                : history.push(
-                                    "/mall/" +
-                                      mall.mallName +
-                                      "/shops/" +
-                                      shop.shopName
-                                  )
-                            }
-                          >
-                            <img
-                              className={cls.image}
-                              key={i}
-                              src={s.url}
-                              alt="thumbnails"
-                            />
-                          </div>
-                        )
-                    )}
-                    <h3>{shop.shopName}</h3>
-                  </div>
-                ))}
+                {mall.shops &&
+                  mall?.shops?.map((shop, index) => (
+                    <div className={cls.wrapper} key={index}>
+                      {shop.shopImages &&
+                        shop.shopImages.map(
+                          (s, i) =>
+                            i === 0 && (
+                              <div
+                                key={i}
+                                className={cls.imageContainer}
+                                onClick={() =>
+                                  location.pathname.split("/")[1] === "admin"
+                                    ? history.push(
+                                        "/admin/" +
+                                          mall.mallName +
+                                          "/shops/" +
+                                          shop.shopName
+                                      )
+                                    : history.push(
+                                        "/mall/" +
+                                          mall.mallName +
+                                          "/shops/" +
+                                          shop.shopName
+                                      )
+                                }
+                              >
+                                <img
+                                  className={cls.image}
+                                  key={i}
+                                  src={s.url}
+                                  alt="thumbnails"
+                                />
+                              </div>
+                            )
+                        )}
+                      <h3>{shop.shopName}</h3>
+                    </div>
+                  ))}
               </div>
             ) : (
               <h3>No Shops Yet</h3>

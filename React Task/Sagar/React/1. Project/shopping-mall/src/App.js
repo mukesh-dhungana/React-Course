@@ -15,6 +15,8 @@ import {
 import allDataReducer from "./reducers/allDataReducer";
 import Nav from "./components/Nav";
 
+import EditMall from './components/mall/EditMall'
+
 const MyContext = createContext();
 
 function App() {
@@ -61,6 +63,7 @@ function App() {
         <Route exact path="/malls/:id" component={SingleMall} />
         <ProtectedRoute exact path="/admin/malls/:id" component={SingleMall} />
         <ProtectedRoute exact path="/admin/malls" component={AllMalls} />
+        <ProtectedRoute exact path="/admin/editMall" component={EditMall} />
         <Route exact path="/malls" component={AllMalls} />
         <ProtectedRoute exact path="/admin/shops" component={AllShops} />
         <Route exact path="/shops" component={AllShops} />

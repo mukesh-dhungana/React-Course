@@ -2,7 +2,7 @@ import { MyContext } from "../../App";
 import Loader from "../Loader/Loader";
 import ShopForm from "../shop/ShopForm";
 import classes from "./mallform.module.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import reducer from "../../reducers/reducer";
 import { storage, fireStore } from "../../firebase/config";
 import shopImageReducer from "../../reducers/shopImageReducer";
@@ -12,6 +12,7 @@ const MallForm = () => {
   const { allDataDispatch } = useContext(MyContext);
 
   const history = useHistory();
+  const location = useLocation();
 
   const initialValues = {
     mallName: "",
@@ -32,6 +33,8 @@ const MallForm = () => {
     shopImageReducer,
     shopImageValues
   );
+
+  console.log("shop", shopImageState);
 
   //Loading
   const [isLoading, setIsLoading] = useState(false);
@@ -79,38 +82,43 @@ const MallForm = () => {
       }
 
       await Promise.all(
-        shopImageState.map((item) =>
+        shopImageState?.map((item) =>
           Promise.all(
-            item.images.map((image) => storage.ref(image.name).put(image))
+            item?.images?.map((image) =>
+              storage.ref().child(image.name).put(image)
+            )
           )
         )
       );
 
       const shopImageUrl = await Promise.all(
-        shopImageState.map((item) =>
+        shopImageState?.map((item) =>
           Promise.all(
-            item.images.map((image) => storage.ref(image.name).getDownloadURL())
+            item?.images?.map((image) =>
+              storage.ref(image.name).getDownloadURL()
+            )
           )
         )
       );
 
       let mall = {
-        mallName: state.mallName,
-        mallAddress: state.mallAddress,
+        mallId: Math.random() * 9999,
+        mallName: state?.mallName,
+        mallAddress: state?.mallAddress,
         mallImage: {
-          id: Math.random() + mallImage.name,
-          imageName: mallImage.name,
+          id: Math.random() + mallImage?.name,
+          imageName: mallImage?.name,
           imageUrl: mallImageUrl,
         },
       };
 
-      let shops = state.shops.map((s, i) => ({
+      let shops = state?.shops?.map((s, i) => ({
         id: i,
-        shopName: s.shopName,
-        shopDescription: s.shopDescription,
-        shopImages: shopImageUrl[i].map((items, index) => ({
-          id: Math.random() + shopImageState[i].images[index].name,
-          ImageName: shopImageState[i].images[index].name,
+        shopName: s?.shopName,
+        shopDescription: s?.shopDescription,
+        shopImages: shopImageUrl[i]?.map((items, index) => ({
+          id: Math.random() + shopImageState[i]?.images[index]?.name,
+          ImageName: shopImageState[i]?.images[index]?.name,
           url: items,
         })),
       }));
@@ -118,7 +126,7 @@ const MallForm = () => {
       //FireStore
       fireStore
         .collection("Shopping Mall")
-        .doc(state.mallName)
+        .doc(state?.mallName)
         .set({
           ...mall,
           shops,
@@ -155,7 +163,7 @@ const MallForm = () => {
               type="text"
               placeholder="Name of Mall"
               name="mallName"
-              value={state.mallName}
+              value={state?.mallName}
               onChange={changeHandler}
               className={classes.input}
             />
@@ -164,7 +172,7 @@ const MallForm = () => {
               placeholder="Address"
               name="mallAddress"
               onChange={changeHandler}
-              value={state.mallAddress}
+              value={state?.mallAddress}
               className={classes.input}
             />
             <label className={classes.label}>
@@ -180,11 +188,13 @@ const MallForm = () => {
             </label>
             {mallImageError && <p>{mallImageError}</p>}
           </div>
-          <div>{mallImage && mallImage.name}</div>
+          <div>{mallImage && mallImage?.name}</div>
 
           {/*------- Shop ---------*/}
-          {state.shops.length > 0 && <h4 className={classes.name}>Shop</h4>}
-          {state.shops.map((s, index) => (
+
+          <h4 className={classes.name}>Shop</h4>
+
+          {state?.shops?.map((s, index) => (
             <div key={index}>
               <ShopForm
                 {...{
@@ -206,6 +216,7 @@ const MallForm = () => {
             </span>
             Add Shop
           </div>
+
           {/* --------------------- */}
 
           <input className={classes.submitBtn} type="submit" value="Save" />
