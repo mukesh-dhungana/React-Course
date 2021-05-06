@@ -1,32 +1,32 @@
 let submitted = false;
-const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 export const validateForm = (toValidate) => {
   submitted = true;
-
+  console.log("validateForm", toValidate);
   return validateFields(toValidate);
 };
 
-// const validateFields = (toValidate) => {
-//   let errors = {};
-
-//   return errors;
-// };
 export const validateFields = (toValidate) => {
+  console.log("validateField", toValidate);
   let errors = {};
   if (submitted) {
     Object.keys(toValidate).forEach((field) => {
       let el = document.getElementsByName(field)[0];
       let validator = el && el.getAttribute("validator");
       const conditions = validator?.split(",");
-      conditions?.map((condition) => {
-        errors[field] = validateConditions(condition, toValidate[field]);
-      });
+      conditions &&
+        conditions.some((condition) => {
+          errors[field] = validateConditions(condition, toValidate[field]);
+        });
+      // console.log("check", conditions);
     });
   }
   return errors;
   //debugger
 };
 const validateConditions = (condition, value) => {
+  console.log("ValidateCOntisions", value);
   switch (condition) {
     case "required":
       return value === "" ? "Required" : "";

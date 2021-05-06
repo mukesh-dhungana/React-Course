@@ -12,8 +12,9 @@ class Form extends Component {
   };
   handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(value);
     // debugger
-    const errors = validateFields({ [name]: value });
+    // const errors = validateFields({ [name]: value });
     this.setState((state) => ({
       ...state,
       formState: {
@@ -22,7 +23,7 @@ class Form extends Component {
       },
       errors: {
         ...state.errors,
-        [name]: errors[name],
+        // [name]: errors[name],
       },
     }));
   };
@@ -30,6 +31,7 @@ class Form extends Component {
     e.preventDefault();
     const { fullName, email, password } = this.state.formState;
     const errors = validateForm({ fullName, email, password });
+    console.log("Errors", errors);
     if (checkError(errors)) {
       console.log("valid form");
     } else {
@@ -37,6 +39,9 @@ class Form extends Component {
     }
     this.setState({ errors });
   };
+
+  //
+
   render() {
     const { errors } = this.state;
     return (

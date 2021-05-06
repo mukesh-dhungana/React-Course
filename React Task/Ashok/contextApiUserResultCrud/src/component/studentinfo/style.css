@@ -1,0 +1,29 @@
+.student-info-container {
+  margin: 20px auto;
+  text-align: center;
+  width: 80%;
+}
+
+.info-container {
+  margin: 20px;
+  padding: 10px;
+  background-color: rgba(135, 220, 226, 0.452);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-radius: 5px;
+}
+
+.info-nabvar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+button {
+  padding: 6px 12px;
+  background-color: rgba(35, 177, 182, 0.781);
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s;
+  outline: none;
+  cursor: pointer;
+}

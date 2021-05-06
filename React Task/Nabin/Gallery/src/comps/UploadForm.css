@@ -1,0 +1,30 @@
+.form {
+    position: absolute;
+    left: 45%;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-file{
+    display: none;
+}
+
+.add-file {
+    font-size: 30px;
+    color: rosybrown;
+    padding: 5px 15px;
+    margin: 10px;
+    border: 1px solid rosybrown;
+    border-radius: 50%;
+}
+
+.add-file:hover{
+    background-color: rosybrown;
+    color: white;
+}
+
+.file {
+    margin-top: 15px;
+}
+
