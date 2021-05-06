@@ -101,7 +101,9 @@ function MallForm() {
         const finalData = {
             ...datas,
             mall_image: data.mall_image,
-            shops: data.shops.map((shop, i) => ({ ...shop, shop_name: datas.shops[i].shop_name, shop_description: datas.shops[i].shop_description }))
+            shops: data.shops.map((shop, i) => (
+                { ...shop, shop_name: datas.shops[i].shop_name, shop_description: datas.shops[i].shop_description }
+            ))
         }
 
 

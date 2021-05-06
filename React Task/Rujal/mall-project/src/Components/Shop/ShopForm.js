@@ -20,7 +20,9 @@ function ShopForm({ data, setData, index }) {
     }
 
     const handleShopImage = (e) => {
-        const imageData = Object.entries(e.target.files).map(([key, value]) => ({ id: key + Math.random() + value.name, image_name: value.name, file: value }))
+        const imageData = Object.entries(e.target.files).map(([key, value]) => (
+            { id: key + Math.random() + value.name, image_name: value.name, file: value }
+        ))
         setData(th => ({
             ...th,
             shops: th.shops.map((x, i) => (index === i ? { ...x, images: [...x.images, ...imageData] } : x))
@@ -126,7 +128,7 @@ function ShopForm({ data, setData, index }) {
             </Grid>
             <Grid item sm={12}>
                 <Grid item sm={12}>
-                    
+
                     <Controller
                         control={control}
                         name={`shops[${index}].images`}
