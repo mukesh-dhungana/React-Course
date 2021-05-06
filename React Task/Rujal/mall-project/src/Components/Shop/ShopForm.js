@@ -10,7 +10,7 @@ function ShopForm({ data, setData, index }) {
 
     const { formState: { errors }, control, getValues, clearErrors } = useFormContext()
 
-    const removeFile = async (id) => {
+    const removeFile = (id) => {
 
         const fileList = data.images.filter(file => file.id !== id)
         setData(th => ({
