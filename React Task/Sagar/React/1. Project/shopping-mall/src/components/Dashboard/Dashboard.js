@@ -1,6 +1,6 @@
 import Shop from "../shop/Shop";
 import Mall from "../mall/Mall";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import classes from "./dashboard.module.css";
 import useFirestore from "../../hooks/useFirestore";
 import { useHistory, Link, useLocation } from "react-router-dom";
@@ -48,15 +48,17 @@ const Dashboard = () => {
             <h4 className={classes.heading}>Malls</h4>
           </div>
           <Mall {...{ docs }} />
-          {location.pathname === "/admin/dashboard" ? (
-            <Link className={classes.view} to="/admin/malls">
-              View all
-            </Link>
-          ) : (
-            <Link className={classes.view} to="/malls">
-              VIEW all
-            </Link>
-          )}
+
+          {docs.length > 3 &&
+            (location.pathname === "/admin/dashboard" ? (
+              <Link className={classes.view} to="/admin/malls">
+                View all
+              </Link>
+            ) : (
+              <Link className={classes.view} to="/malls">
+                VIEW all
+              </Link>
+            ))}
         </div>
 
         <div className={classes.mallContainer}>
@@ -65,15 +67,16 @@ const Dashboard = () => {
           </div>
           <Shop {...{ docs }} />
           <div className={classes.link}>
-            {location.pathname === "/admin/dashboard" ? (
-              <Link className={classes.view} to="/admin/shops">
-                View all
-              </Link>
-            ) : (
-              <Link className={classes.view} to="/shops">
-                View all
-              </Link>
-            )}
+            {docs.length > 3 &&
+              (location.pathname === "/admin/dashboard" ? (
+                <Link className={classes.view} to="/admin/shops">
+                  View all
+                </Link>
+              ) : (
+                <Link className={classes.view} to="/shops">
+                  View all
+                </Link>
+              ))}
           </div>
         </div>
       </main>

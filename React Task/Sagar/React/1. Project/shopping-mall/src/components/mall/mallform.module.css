@@ -1,13 +1,14 @@
 .mainContainer {
   max-width: 100%;
-  height: 88.5vh;
+  min-height: 89vh;
+  height: auto;
   margin-top: -10px;
   background-color: #eee;
 }
 
 .formContainer {
   width: 100vw;
-  /* height: 100%; */
+  height: inherit;
   background-color: #eee;
   display: flex;
   justify-content: center;
@@ -113,7 +114,8 @@
   font-size: 24px;
 }
 
-.submitBtn {
+.submitBtn,
+.submitBtnOnLoad {
   border: none;
   padding: 10px 15px;
   width: 100%;
@@ -124,6 +126,20 @@
   border-radius: 10px;
 }
 
+.submitBtnOnLoad {
+  background-color: grey;
+}
+
 .submitBtn:hover {
   background-color: rgb(199, 59, 59);
+}
+
+.loaderPosition {
+  position: absolute;
+  height: 100%;
+  /* background-color: rgb(102, 56, 56); */
+  width: 100%;
+  z-index: 100;
+  /* top: 50%; */
+  left: 0;
 }

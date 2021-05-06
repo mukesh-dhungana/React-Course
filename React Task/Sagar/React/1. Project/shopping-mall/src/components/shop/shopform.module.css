@@ -1,6 +1,7 @@
 .innerDiv {
   display: flex;
   flex-direction: column;
+  /* position: relative; */
   /* justify-content: space-around; */
 }
 
@@ -80,6 +81,17 @@
   border-radius: 60px;
   margin-bottom: 10px;
   padding: 10px;
+  max-width: 320px;
+  overflow: hidden;
+}
+
+.para {
+  position: relative;
+  text-align: left;
+  color: red;
+  font-size: 10px;
+  font-weight: bold;
+
 }
 
 .button {

@@ -2,7 +2,7 @@ import { MyContext } from "../../App";
 import Loader from "../Loader/Loader";
 import ShopForm from "../shop/ShopForm";
 import classes from "./mallform.module.css";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import reducer from "../../reducers/reducer";
 import { storage, fireStore } from "../../firebase/config";
 import shopImageReducer from "../../reducers/shopImageReducer";
@@ -12,7 +12,6 @@ const MallForm = () => {
   const { allDataDispatch } = useContext(MyContext);
 
   const history = useHistory();
-  const location = useLocation();
 
   const initialValues = {
     mallName: "",
@@ -33,8 +32,6 @@ const MallForm = () => {
     shopImageReducer,
     shopImageValues
   );
-
-  console.log("shop", shopImageState);
 
   //Loading
   const [isLoading, setIsLoading] = useState(false);
@@ -156,7 +153,11 @@ const MallForm = () => {
   return (
     <div className={classes.mainContainer}>
       <div className={classes.formContainer}>
-        {isLoading === true && <Loader />}
+        {isLoading === true && (
+          <div className={classes.loaderPosition}>
+            <Loader />
+          </div>
+        )}
         <form className={classes.form} action="" onSubmit={submitHandler}>
           <div className={classes.innerDiv}>
             <input
@@ -199,7 +200,6 @@ const MallForm = () => {
               <ShopForm
                 {...{
                   s,
-                  state,
                   dispatch,
                   index,
                   shopImageState,
@@ -219,7 +219,11 @@ const MallForm = () => {
 
           {/* --------------------- */}
 
-          <input className={classes.submitBtn} type="submit" value="Save" />
+          <input
+            className={isLoading ? classes.submitBtnOnLoad : classes.submitBtn}
+            type="submit"
+            value={isLoading ? "Loading..." : "Save"}
+          />
         </form>
       </div>
     </div>

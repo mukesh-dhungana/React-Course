@@ -1,4 +1,3 @@
-import { MyContext } from "../../App";
 import Loader from "../Loader/Loader";
 import EditShop from "../shop/EditShop";
 import classes from "./mallform.module.css";
@@ -6,30 +5,21 @@ import { useHistory, useLocation } from "react-router-dom";
 import editReducer from "../../reducers/editReducer";
 import addedShopImagesReducer from "../../reducers/addedShopImagesReducer";
 import { storage, fireStore } from "../../firebase/config";
-// import shopImageReducer from "../../reducers/shopImageReducer";
-import React, { useState, useReducer, useEffect, useContext } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 
 const MallForm = () => {
-  const { allDataDispatch } = useContext(MyContext);
 
   //Removed Images
   const [imagesToRemove, setImagesToRemove] = useState([]);
 
-  console.log("REMOVE", imagesToRemove);
-
   const history = useHistory();
   const location = useLocation();
 
-  // const shopImageValues = [{ id: 0, images: [] }];
 
   //States
-  //   const [state, dispatch] = useReducer(reducer, initialValues);
   const [editData, editDispatch] = useReducer(editReducer, location.dataToSend);
   const [mallImage, setMallImage] = useState(null);
   const [mallImageError, setMallImageError] = useState(null);
-
-  console.log("asdf", editData);
-  console.log("location", location.dataToSend);
 
   //Added Images
   const shopImageValues = [{ id: 0, images: [] }];
@@ -38,17 +28,6 @@ const MallForm = () => {
     addedShopImagesReducer,
     shopImageValues
   );
-
-  console.log("shop", addedShopImages);
-
-  // const place = location.dataToSend.mallId;
-  // const compare = editData.mallId;
-
-  //Shop States
-  // const [shopImageState, shopImageDispatch] = useReducer(
-  //   shopImageReducer,
-  //   shopImageValues
-  // );
 
   //Loading
   const [isLoading, setIsLoading] = useState(false);
@@ -119,7 +98,6 @@ const MallForm = () => {
         )
       );
 
-      console.log("url", shopImageUrl);
       //Remove Shop Images from Firebase Storage
       imagesToRemove.forEach((image) =>
         storage.ref().child(image.ImageName).delete()
@@ -140,7 +118,6 @@ const MallForm = () => {
         mallImage: setMallImage,
       };
 
-      // debugger;
       let shops = editData?.shops?.map((s, i) =>
         s.shopImages
           ? shopImageUrl[i]
@@ -156,8 +133,6 @@ const MallForm = () => {
                     url: items,
                   })),
                 ],
-
-                // shopImages: s.shopImages,
               }
             : {
                 id: i,
@@ -193,17 +168,6 @@ const MallForm = () => {
           ...mall,
           shops: shops,
         });
-
-      //   dispatch({
-      //     type: "ADD_IMAGE_URLS",
-      //     payload: { mallImageUrl, shops, mallImage },
-      //   });
-
-      //   allDataDispatch({
-      //     type: "ADD_DATA",
-      //     payload: { mall, shops },
-      //   });
-
       history.push("/admin/malls");
     } catch (err) {
       console.log("Error", err);
@@ -261,13 +225,10 @@ const MallForm = () => {
                   setImagesToRemove,
                   editData,
                   dataShop,
-                  //   state,
                   editDispatch,
                   index,
                   addedShopImagesDispatch,
                   addedShopImages,
-                  // shopImageState,
-                  // shopImageDispatch,
                 }}
               />
               <div className={classes.line}></div>
@@ -276,7 +237,11 @@ const MallForm = () => {
 
           {/* --------------------- */}
 
-          <input className={classes.submitBtn} type="submit" value="Update" />
+          <input
+            className={isLoading ? classes.submitBtnOnLoad : classes.submitBtn}
+            type="submit"
+            value={isLoading ? "Updating..." : "Update"}
+          />
         </form>
       </div>
     </div>

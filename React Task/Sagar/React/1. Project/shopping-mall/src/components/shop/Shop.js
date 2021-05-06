@@ -4,11 +4,8 @@ import NoImage from "../../image/No_Image_Available.jpg";
 import { useHistory, useLocation } from "react-router-dom";
 
 const Shop = ({ docs }) => {
-  // const { docs } = useFirestore("Shopping Mall");
   const history = useHistory();
   const location = useLocation();
-
-  console.log(docs);
 
   return (
     <div className={classes.container}>
@@ -32,9 +29,8 @@ const Shop = ({ docs }) => {
             >
               {doc?.hasOwnProperty("shops") ? (
                 <>
-                  {console.log("shop", doc.shops)}
                   <div className={classes.imageContainer}>
-                    {doc.shops[0].shopImages && (
+                    {doc.shops.length > 0 && doc.shops[0].shopImages && (
                       <img
                         src={
                           doc?.shops[0]
@@ -67,13 +63,13 @@ const Shop = ({ docs }) => {
                 }
               >
                 <div className={classes.imageContainer}>
-                {doc.shops[0].shopImages && (
-                  <img
-                    className={classes.image}
-                    src={shop.shopImages[0].url}
-                    alt=""
-                  />
-                )}
+                  {doc.shops[0].shopImages && (
+                    <img
+                      className={classes.image}
+                      src={shop.shopImages[0].url}
+                      alt=""
+                    />
+                  )}
                 </div>
                 <p className={classes.title}>{shop.shopName}</p>
                 <p>(Inside {doc.mallName})</p>

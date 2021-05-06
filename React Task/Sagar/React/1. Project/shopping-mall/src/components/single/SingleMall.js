@@ -9,8 +9,6 @@ import { useParams, useLocation } from "react-router-dom";
 const SingleMall = () => {
   const [mall, setMall] = useState([]);
 
-  console.log("mall", mall);
-
   const [showModal, setShowModal] = useState(false);
 
   const history = useHistory();
@@ -74,7 +72,6 @@ const SingleMall = () => {
             ) : (
               <div className={classes.break}></div>
             )}
-            {/* {location.pathname==='/'} */}
           </div>
 
           <div className={classes.mallContainer}>

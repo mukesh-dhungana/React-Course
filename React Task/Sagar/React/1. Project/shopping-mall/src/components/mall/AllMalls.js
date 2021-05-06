@@ -12,8 +12,6 @@ const AllMalls = () => {
 
   let { docs } = useFirestore("Shopping Mall");
 
-  console.log("docs", docs);
-
   const filter = (e) => {
     setSearch(e.target.value);
   };

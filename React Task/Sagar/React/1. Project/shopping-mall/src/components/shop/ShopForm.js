@@ -5,7 +5,6 @@ const ShopForm = ({
   d,
   data,
   s,
-  state,
   dispatch,
   index,
   shopImageState,
@@ -75,6 +74,7 @@ const ShopForm = ({
             <div className={classes.imgButton}>Add Image</div>
           </span>
         </label>
+        <p className={classes.para}>**First chosen Image will be Thumnail</p>
       </div>
 
       <div className={classes.selectedImages}>

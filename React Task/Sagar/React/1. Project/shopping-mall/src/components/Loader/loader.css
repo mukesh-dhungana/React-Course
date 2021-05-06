@@ -2,12 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
   z-index: 1;
+  width: 100%;
+  height: inherit;
   position: absolute;
+  left: 0;
 }
 
 .spinner {
+  /* margin-top: 50%; */
   position: absolute;
   display: flex;
   justify-content: center;

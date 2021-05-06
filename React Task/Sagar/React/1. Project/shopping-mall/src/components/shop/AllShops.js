@@ -6,21 +6,10 @@ import classes from "../Dashboard/dashboard.module.css";
 const AllShops = () => {
   let { docs } = useFirestore("Shopping Mall");
   const [search, setSearch] = useState("");
-  const [shops, setShops] = useState([]);
 
   const filter = (e) => {
     setSearch(e.target.value);
   };
-
-  React.useEffect(() => {
-    docs?.map((doc) =>
-      doc.shops.map((shop) =>
-        setShops((prevState) => [...prevState, shop.shopName])
-      )
-    );
-  }, [docs]);
-
-  console.log(docs);
 
   if (search) {
     docs = docs?.map((doc) => {

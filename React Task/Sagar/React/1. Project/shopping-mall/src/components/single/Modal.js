@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./modal.module.css";
 import { fireStore, storage } from "../../firebase/config";
 
@@ -6,13 +6,15 @@ const Modal = ({ setShowModal, docId, mall }) => {
   const [images, setImages] = useState([]);
   const [errors, setErrors] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => setIsLoading(false), []);
+
   const [shop, setShop] = useState({
     shopName: "",
     shopDescription: "",
     shopImages: [{ id: "", imageName: "", url: "" }],
   });
-
-  console.log("mall", mall);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -38,6 +40,8 @@ const Modal = ({ setShowModal, docId, mall }) => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
     try {
       await Promise.all(
         images.map((image) => storage.ref(image.name).put(image))
@@ -48,6 +52,7 @@ const Modal = ({ setShowModal, docId, mall }) => {
       );
 
       let result = {
+        id: Math.random(),
         shopName: shop.shopName,
         shopDescription: shop.shopDescription,
         shopImages: shopImageUrl.map((items, index) => ({
@@ -129,7 +134,11 @@ const Modal = ({ setShowModal, docId, mall }) => {
               ))}
           </div>
 
-          <input className={classes.submitBtn} type="submit" value="Save" />
+          <input
+            className={isLoading ? classes.submitBtnOnLoad : classes.submitBtn}
+            type="submit"
+            value={isLoading ? "Loading..." : "Save"}
+          />
         </form>
       </div>
     </div>

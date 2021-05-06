@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import classes from "./shopform.module.css";
 
-import { storage, fireStore } from "../../firebase/config";
-
 const ShopForm = ({
   dataShop,
   editData,
@@ -11,12 +9,9 @@ const ShopForm = ({
   setImagesToRemove,
   addedShopImagesDispatch,
   addedShopImages,
-  // shopImageState,
-  // shopImageDispatch,
+
 }) => {
   const [shopImageError, setShopImageError] = useState(null);
-
-  console.log("sssss", dataShop);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -25,6 +20,9 @@ const ShopForm = ({
       payload: { name: name, value: value, index: index },
     });
   };
+
+  console.log(editData);
+  console.log("shopData", dataShop);
 
   const types = ["image/jpeg", "image/png"];
   const shopImageHandler = (e, shopData) => {
@@ -67,19 +65,6 @@ const ShopForm = ({
       },
     });
   };
-
-  // const removeImageFromArray = (img, index) => {
-  //   setAddedShopImages([
-  //     ...addedShopImages.map((item, ind) =>
-  //       ind === index
-  //         ? {
-  //             ...item,
-  //             images: item.images.filter((i) => i.name !== img.name),
-  //           }
-  //         : item
-  //     ),
-  //   ]);
-  // };
 
   return (
     <div className={classes.shopContainer}>
