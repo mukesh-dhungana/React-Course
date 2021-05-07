@@ -35,7 +35,7 @@ function ShopDetail({ malls, updateMallData, match }) {
         updateMallData(id, data)
     }
 
-    const detail = data?.shops?.find(x => x.shop_id === shop_id)
+    const detail = data?.shops?.find(shop => shop.shop_id === shop_id)
 
     const adminMode = !match.path.includes("user")
 
