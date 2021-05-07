@@ -10,3 +10,11 @@
 .shoplists__headings > h2 {
   font-size: 3rem;
 }
+
+.shoplists__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50px 0;
+  width: 25%;
+}

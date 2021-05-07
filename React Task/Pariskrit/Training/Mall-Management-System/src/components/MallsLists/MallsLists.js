@@ -24,6 +24,7 @@ function MallsLists({ isAdmin = false }) {
       <Container
         heading="Malls"
         malls={filteredData}
+        removeViewAll
         render={(malls) =>
           malls?.map((mall) => (
             <Block

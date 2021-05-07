@@ -3,7 +3,7 @@ import { projectStorage, projectFirestore } from "./config";
 
 const useStorage = (file) => {
   const { title, address, image, imageName } = file;
-  const [progress, setProgress] = useState(0);
+
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
 
@@ -14,7 +14,6 @@ const useStorage = (file) => {
       "state_changed",
       (snap) => {
         let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
-        setProgress(percentage);
       },
       (err) => {
         setError(err);
@@ -26,7 +25,7 @@ const useStorage = (file) => {
       }
     );
   }, [file]);
-  return { progress, error, url };
+  return { error, url };
 };
 
 export default useStorage;

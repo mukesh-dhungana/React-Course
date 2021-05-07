@@ -1,9 +1,12 @@
 import React from "react";
 import Shop from "../../components/Shop/Shop";
-function ShopDetailspage() {
+function ShopDetailspage({ location }) {
+  const {
+    state: { shop },
+  } = location;
   return (
     <>
-      <Shop />
+      <Shop shops={shop} />
     </>
   );
 }

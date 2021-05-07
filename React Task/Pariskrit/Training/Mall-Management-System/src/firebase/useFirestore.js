@@ -3,6 +3,7 @@ import { projectFirestore } from "./config";
 
 const useFirestore = (collection) => {
   const [docs, setDocs] = useState([]);
+
   useEffect(() => {
     const unsub = projectFirestore
       .collection(collection)

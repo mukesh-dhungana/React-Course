@@ -8,6 +8,7 @@ import { Context } from "../../context/ContextProvider";
 import AddMallform from "./AddMallform";
 import Success from "../Success/Success";
 import { updateShop } from "../../utils/updateForm";
+import { useForm } from "react-hook-form";
 
 function EditMallForm({ mallid }) {
   const [{ shopDetails, mallDetails }, dispatch] = useContext(Context);
@@ -15,13 +16,21 @@ function EditMallForm({ mallid }) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [oldShopDetails, setOldShopDetails] = useState({});
   const [oldMallImage, setOldMallImage] = useState({});
+  const {
+    control,
+    handleSubmit,
+    register,
+    setValue,
+    formState: { errors },
+    reset,
+    getValues,
+  } = useForm();
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-
+  const onSubmit = async (data) => {
     setIsSubmitted(true);
     let updatedShopLists = [];
 
+    // Updating ShopDetails
     for (let i = 0; i <= shopDetails.length - 1; i++) {
       const editedShopData = await updateShop(
         [shopDetails[i]],
@@ -32,9 +41,10 @@ function EditMallForm({ mallid }) {
 
     mallDetails.shops = updatedShopLists;
 
-    console.log(mallDetails);
+    // Updating Mall Details
+    const isNewMallImage = mallDetails?.image?.image?.name;
 
-    if (mallDetails?.image?.image?.name) {
+    if (isNewMallImage) {
       await projectStorage
         .ref(mallDetails.image.id + mallDetails.image.image.name)
         .put(mallDetails.image.image);
@@ -69,17 +79,46 @@ function EditMallForm({ mallid }) {
   useEffect(() => {
     setOldShopDetails(mallDetails.shops);
     setOldMallImage(mallDetails.image);
-  }, [mallDetails]);
+
+    //used for form validation react-hook-form
+    reset({
+      mallname: mallDetails.title,
+      address: mallDetails.address,
+
+      shops: shopDetails.map((shop) => ({
+        title: shop.title,
+        description: shop.description,
+      })),
+    });
+  }, [mallDetails, reset]);
 
   return (
     <div className="addform">
       <h1 className="addform__heading">Edit Mall</h1>
-      <form className="form" onSubmit={onSubmit}>
-        <AddMallform mallDetails={mallDetails} dispatch={dispatch} />
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <AddMallform
+          mallDetails={mallDetails}
+          dispatch={dispatch}
+          control={control}
+          register={register}
+          setValue={setValue}
+          getValues={getValues}
+          errors={errors}
+        />
 
         <h1 className="addform__heading">Edit Shops</h1>
 
-        <Shopform shopDetails={shopDetails} dispatch={dispatch} isEdit />
+        <Shopform
+          shopDetails={shopDetails}
+          dispatch={dispatch}
+          control={control}
+          register={register}
+          setValue={setValue}
+          handleSubmit={handleSubmit}
+          errors={errors}
+          getValues={getValues}
+          isEdit
+        />
         {isSubmitted && <Loader />}
         {isSuccess && <Success />}
 

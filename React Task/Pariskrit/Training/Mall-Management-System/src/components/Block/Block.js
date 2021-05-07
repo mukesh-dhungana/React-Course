@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./block.css";
+import CancelPresentationTwoToneIcon from "@material-ui/icons/CancelPresentationTwoTone";
 
 function Block({
   title = "Title",
@@ -27,7 +28,7 @@ function Block({
       )}
       {isAdmin && !showDescription && (
         <p className="block__deletebutton" onClick={handleDelete}>
-          Delete
+          <CancelPresentationTwoToneIcon className="deleteicon" />
         </p>
       )}
     </div>

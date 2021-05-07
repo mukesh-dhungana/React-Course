@@ -17,3 +17,9 @@
   text-align: end;
   cursor: pointer;
 }
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

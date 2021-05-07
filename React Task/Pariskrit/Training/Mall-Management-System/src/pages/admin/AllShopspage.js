@@ -5,6 +5,7 @@ import Block from "../../components/Block/Block";
 import { useHistory } from "react-router";
 import InputField from "../../components/InputField/InputField";
 import useFilterData from "../../hooks/useFilterData";
+import Navbar from "../../components/Navbar/Navbar";
 
 function AllShopspage() {
   const { docs } = useFirestore("Malls");
@@ -14,9 +15,10 @@ function AllShopspage() {
   useEffect(() => {
     setAllData(docs.map((mall) => [...mall.shops]).flat());
   }, [docs]);
-  console.log(filteredData);
+
   return (
     <>
+      <Navbar />
       <InputField
         placeholder="Search Shops..."
         onSearchInputChange={(e) => setInputValue(e.target.value)}

@@ -1,22 +1,23 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Shopform from "../../components/Form/AddShopform";
 import { Context } from "../../context/ContextProvider";
 import useFirestore from "../../firebase/useFirestore";
+import { useForm } from "react-hook-form";
 
 function AddShopsFormPage() {
-  const [{ allDatas, shopDetails }, dispatch] = useContext(Context);
+  const [state, dispatch] = useContext(Context);
   const { docs } = useFirestore("Malls");
-
+  const {
+    control,
+    handleSubmit,
+    register,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm();
+  const shopImages = register("shopImages");
   const handleAddMoreShop = () => {
-    if (
-      shopDetails[shopDetails.length - 1].title === "" ||
-      shopDetails[shopDetails.length - 1].description === "" ||
-      !shopDetails[shopDetails.length - 1].shopImages.length
-    ) {
-      alert("Please First Fill Up The Present Shop Form");
-    } else {
-      dispatch({ type: "Add_ShopFields" });
-    }
+    dispatch({ type: "Add_ShopFields" });
   };
 
   useEffect(() => {
@@ -26,11 +27,15 @@ function AddShopsFormPage() {
   return (
     <>
       <Shopform
-        allDatas={allDatas}
-        shopDetails={shopDetails}
-        dispatch={dispatch}
         isShopsOnly={true}
         handleAddMoreShop={handleAddMoreShop}
+        control={control}
+        handleSubmit={handleSubmit}
+        setValue={setValue}
+        errors={errors}
+        register={register}
+        getValues={getValues}
+        shopImages={shopImages}
       />
     </>
   );

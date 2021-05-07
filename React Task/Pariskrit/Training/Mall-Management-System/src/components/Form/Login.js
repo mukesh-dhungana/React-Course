@@ -17,7 +17,7 @@ function Login() {
   const handleSubmit = (e) => {
     const { username, password } = formInput;
     e.preventDefault();
-    console.log(userCredentials);
+
     if (
       username === userCredentials[0].username &&
       password === userCredentials[0].password
@@ -55,6 +55,7 @@ function Login() {
         <Button
           color="primary"
           variant="outlined"
+          style={{ margin: "40px 0" }}
           onClick={handleSubmit}
           fullWidth
         >

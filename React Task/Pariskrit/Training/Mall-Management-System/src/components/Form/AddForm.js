@@ -12,47 +12,32 @@ import { useForm } from "react-hook-form";
 
 function AddForm() {
   const [{ shopDetails, mallDetails }, dispatch] = useContext(Context);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const {
-    register,
+    control,
     handleSubmit,
+    register,
+    setValue,
+    getValues,
     formState: { errors },
   } = useForm();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleAddMoreShop = () => {
-    if (
-      shopDetails[shopDetails.length - 1].title === "" ||
-      shopDetails[shopDetails.length - 1].description === "" ||
-      !shopDetails[shopDetails.length - 1].shopImages.length
-    ) {
-      alert("Please First Fill Up The Present Shop Form");
-    } else {
-      dispatch({ type: "Add_ShopFields" });
-    }
+    dispatch({ type: "Add_ShopFields" });
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-
-    if (
-      !mallDetails.image ||
-      shopDetails.some((shop) => shop.shopImages.length === 0)
-    ) {
-      alert("please provide at least one image");
-      return;
-    }
-
+  const onSubmit = async (data) => {
     setIsSubmitted(true);
-    /* storing mall image in storage and getting url */
 
+    /* storing mall image in storage and getting url */
     await projectStorage
       .ref(mallDetails.image.id + mallDetails.image.image.name)
       .put(mallDetails.image.image);
     const mallurl = await projectStorage
       .ref(mallDetails.image.id + mallDetails.image.image.name)
       .getDownloadURL();
-    console.log(mallDetails, shopDetails);
+
     const { shopsurl } = await getAllImageUrl(shopDetails);
 
     /*saving all data to firestore*/
@@ -67,19 +52,30 @@ function AddForm() {
   return (
     <div className="addform">
       <h1 className="addform__heading">Add Mall</h1>
-      <form className="form" onSubmit={onSubmit}>
-        <AddMallform mallDetails={mallDetails} dispatch={dispatch} />
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <AddMallform
+          mallDetails={mallDetails}
+          dispatch={dispatch}
+          control={control}
+          register={register}
+          setValue={setValue}
+          getValues={getValues}
+          errors={errors}
+        />
 
         <h1 className="addform__heading">Add Shops</h1>
 
         <Shopform
-          shopDetails={shopDetails}
-          dispatch={dispatch}
           handleAddMoreShop={handleAddMoreShop}
+          control={control}
+          register={register}
+          setValue={setValue}
+          getValues={getValues}
+          handleSubmit={handleSubmit}
+          errors={errors}
         />
         {isSubmitted && <Loader />}
         {isSuccess && <div className="alert__success">SuccessFully Saved!</div>}
-
         <Button
           type="submit"
           className="form__button"

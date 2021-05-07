@@ -1,56 +1,97 @@
 import React from "react";
-import { Button, TextField } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
+import { Controller } from "react-hook-form";
+import ImageUpload from "../ImageUpload/ImageUpload";
 
-function AddMallform({ mallDetails, dispatch }) {
+function AddMallform({
+  mallDetails,
+  dispatch,
+  control,
+  register,
+  setValue,
+  getValues,
+  errors,
+}) {
+  console.log(mallDetails);
   return (
     <div className="shopform">
-      <TextField
-        className="form__inputfield"
-        type="text"
-        label="Name Of The Mall"
-        variant="outlined"
-        name="title"
-        value={mallDetails?.title}
-        onChange={(e) =>
-          dispatch({
-            type: "handleMallInputChange",
-            name: e.target.name,
-            value: e.target.value,
-          })
-        }
-        fullWidth
+      <Controller
+        control={control}
+        name="mallname"
+        defaultValue={getValues("mallname")}
+        render={({ field: { onChange }, fieldState: { error, invalid } }) => (
+          <TextField
+            className="form__inputfield"
+            type="text"
+            label="Name Of The Mall"
+            variant="outlined"
+            name="title"
+            value={mallDetails?.title}
+            error={invalid}
+            onChange={(e) => {
+              onChange(e);
+              dispatch({
+                type: "handleMallInputChange",
+                name: e.target.name,
+                value: e.target.value,
+              });
+            }}
+            helperText={error?.message}
+            fullWidth
+          />
+        )}
+        rules={{ required: { value: true, message: "*Name is Required" } }}
       />
-      <TextField
-        className="form__inputfield"
-        type="text"
-        label="Address"
-        variant="outlined"
+      <Controller
+        control={control}
         name="address"
-        value={mallDetails?.address}
-        onChange={(e) =>
-          dispatch({
-            type: "handleMallInputChange",
-            name: e.target.name,
-            value: e.target.value,
-          })
-        }
-        fullWidth
+        defaultValue={getValues("address")}
+        render={({ field: { onChange }, fieldState: { error, invalid } }) => (
+          <TextField
+            className="form__inputfield"
+            type="text"
+            label="Address"
+            variant="outlined"
+            name="address"
+            value={mallDetails?.address}
+            error={invalid}
+            onChange={(e) => {
+              onChange(e);
+              dispatch({
+                type: "handleMallInputChange",
+                name: e.target.name,
+                value: e.target.value,
+              });
+            }}
+            helperText={error?.message}
+            fullWidth
+          />
+        )}
+        rules={{ required: { value: true, message: "*Address is Required" } }}
       />
-      <TextField
-        className="form__inputfield"
+      <ImageUpload
         type="file"
         name="image"
-        onChange={(e) =>
+        accept=".png, .jpg, .jpeg"
+        {...register("image", {
+          validate: (value) => mallDetails.image,
+        })}
+        onChange={(e) => {
           dispatch({
             type: "handleMallImageChange",
             name: e.target.name,
             value: e.target.files[0],
-          })
-        }
-        fullWidth
+          });
+        }}
       />
+
+      <br />
+      {errors?.image && (
+        <span className="error">At Least One Image is Required</span>
+      )}
+
       <ol>
-        {mallDetails?.image?.imageName && (
+        {mallDetails?.image && (
           <li>
             {mallDetails?.image?.imageName || mallDetails?.image?.image?.name}
           </li>

@@ -127,6 +127,7 @@ export const reducer = (state, action) => {
 
     case "Save_AllData":
       return { ...state, allDatas: action.payload };
+
     default:
       return state;
   }

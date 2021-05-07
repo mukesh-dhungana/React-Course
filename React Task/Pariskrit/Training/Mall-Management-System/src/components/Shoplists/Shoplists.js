@@ -18,10 +18,17 @@ function Shoplists({ isAdmin, selectedMall }) {
   const [shopId, setShopId] = useState(null);
   const history = useHistory();
   const { filteredData, setAllData, setInputValue } = useFilterData();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setAllData(selectedMall?.shops);
   }, [selectedMall]);
+
+  useEffect(() => {
+    if (filteredData?.length > 0) {
+      setIsLoading(false);
+    }
+  }, [filteredData]);
 
   const handleDelete = async () => {
     const shopsAfterDeleted = selectedMall.shops.filter(
@@ -29,7 +36,7 @@ function Shoplists({ isAdmin, selectedMall }) {
     );
     const deletedShop = selectedMall.shops.find((shop) => shop.id === shopId);
 
-    //delete shop
+    //delete shop from firestore
     deleteShop(mallid, shopsAfterDeleted);
 
     //delete shop images from storage
@@ -50,30 +57,32 @@ function Shoplists({ isAdmin, selectedMall }) {
       />
 
       {isAdmin && (
-        <Button
-          ClassName="addbutton"
-          color="primary"
-          variant="contained"
-          size="large"
-          onClick={() => history.push(`/admin/${mallid}/addshop`)}
-        >
-          Add Shops
-        </Button>
+        <div className="shoplists__buttons">
+          <Button
+            ClassName="addbutton"
+            color="primary"
+            variant="contained"
+            size="large"
+            onClick={() => history.push(`/admin/${mallid}/addshop`)}
+          >
+            Add Shops
+          </Button>
+          <Button
+            className="addbutton"
+            color="primary"
+            variant="contained"
+            size="large"
+            onClick={() => history.push(`/admin/${mallid}/editmall`)}
+          >
+            Update Mall
+          </Button>
+        </div>
       )}
-      {isAdmin && (
-        <Button
-          className="addbutton"
-          color="primary"
-          variant="contained"
-          size="large"
-          onClick={() => history.push(`/admin/${mallid}/editmall`)}
-        >
-          Update Mall
-        </Button>
-      )}
+
       <Container
         heading="Shops"
         malls={filteredData}
+        isLoading={isLoading}
         render={(shops) =>
           shops?.map((shop) => (
             <Block
@@ -85,7 +94,8 @@ function Shoplists({ isAdmin, selectedMall }) {
                 history.push(
                   isAdmin
                     ? `/admin/malls/${mallid}/${shop.id}`
-                    : `/user/malls/${mallid}/${shop.id}`
+                    : `/user/malls/${mallid}/${shop.id}`,
+                  { shopid: shop.id, mallid }
                 )
               }
               handleDelete={(e) => {

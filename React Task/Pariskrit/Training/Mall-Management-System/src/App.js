@@ -21,6 +21,7 @@ import AdminAllShopspage from "./pages/admin/AllShopspage";
 import EditMallFormpage from "./pages/admin/EditMallFormpage";
 import Login from "./components/Form/Login";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/login" component={Login} />
+
           {/* User Routes */}
           <ProtectedRoute path="/user/home" component={UserHomepage} />
           <ProtectedRoute path="/user/allmalls" component={AllMallspage} />
@@ -41,6 +43,7 @@ function App() {
             path="/user/malls/:mallid/:shopid"
             component={ShopDetailspage}
           />
+          <ProtectedRoute path="/user/shops" component={ShopDetailspage} />
 
           {/* Admin Routes */}
           <ProtectedRoute
@@ -72,6 +75,7 @@ function App() {
             path="/admin/:mallid/editmall"
             component={EditMallFormpage}
           />
+          <ProtectedRoute path="/admin/shop" component={ShopDetailspage} />
 
           <ProtectedRoute path="/admin/home" component={AdminHomepage} />
           <Route path="/" render={() => <Redirect to="/admin/home" />} />
