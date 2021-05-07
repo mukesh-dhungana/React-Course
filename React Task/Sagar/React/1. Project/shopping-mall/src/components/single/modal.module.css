@@ -4,7 +4,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 10;
+  z-index: 100;
 }
 
 .modal {
@@ -14,7 +14,7 @@
   height: auto;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 11;
+  z-index: 101;
   border-radius: 10px;
   padding: 20px;
 }
@@ -92,4 +92,26 @@
   height: 0;
   width: 0;
   opacity: 0;
+}
+
+/* Image Open Modal */
+
+.ImageContainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 101;
+}
+
+.Image {
+  max-width: 650px;
+  max-height: 400px;
+}
+
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
 }

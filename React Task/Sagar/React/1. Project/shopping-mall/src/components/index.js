@@ -10,12 +10,12 @@ import PageNotFound from "./PageNotFound/PageNotFound";
 
 export {
   Login,
-  MallForm,
-  ShopForm,
   AllMalls,
   AllShops,
+  MallForm,
+  ShopForm,
   Dashboard,
-  SingleMall,
   SingleShop,
+  SingleMall,
   PageNotFound,
 };

@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "../Dashboard/dashboard.module.css";
 import NoImage from "../../image/No_Image_Available.jpg";
-import { fireStore, storage } from "../../firebase/config";
 import { useHistory, useLocation } from "react-router-dom";
+import { fireStore, storage } from "../../firebase/config";
 
 const Mall = ({ docs }) => {
   const history = useHistory();

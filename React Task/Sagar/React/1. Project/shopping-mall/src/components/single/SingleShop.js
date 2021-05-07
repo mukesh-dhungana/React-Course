@@ -4,10 +4,15 @@ import { fireStore } from "../../firebase/config";
 import React, { useEffect, useState } from "react";
 import classes from "../Dashboard/dashboard.module.css";
 
+import modalclasses from "./modal.module.css";
+
 const SingleShop = () => {
   const [mall, setMall] = useState();
   const { id, type } = useParams();
   const docId = id.replace("_", " ");
+
+  const [modal, setModal] = useState(false);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +27,7 @@ const SingleShop = () => {
 
   return (
     <div>
+      {modal && <Modal {...{ setModal, image, setImage }} />}
       {mall?.shops?.map(
         (shop, ind) =>
           type === shop.shopName && (
@@ -40,6 +46,10 @@ const SingleShop = () => {
                     <div key={i} className={classes.wrapper}>
                       <div className={classes.imageContainer}>
                         <img
+                          onClick={() => {
+                            setModal(true);
+                            setImage(s.url);
+                          }}
                           className={classes.image}
                           src={s.url}
                           alt="shopImage"
@@ -51,6 +61,23 @@ const SingleShop = () => {
             </div>
           )
       )}
+    </div>
+  );
+};
+
+const Modal = ({ setModal, image, setImage }) => {
+  return (
+    <div className={modalclasses.modalBackground}>
+      <div
+        className={modalclasses.backdrop}
+        onClick={() => {
+          setModal(false);
+          setImage(null);
+        }}
+      ></div>
+      <div className={modalclasses.ImageContainer}>
+        <img className={modalclasses.Image} src={image} alt="" />
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
 import classes from "./modal.module.css";
+import React, { useState, useEffect } from "react";
 import { fireStore, storage } from "../../firebase/config";
 
 const Modal = ({ setShowModal, docId, mall }) => {

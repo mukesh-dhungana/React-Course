@@ -28,7 +28,11 @@ const Dashboard = () => {
         {location.pathname === "/admin/dashboard" ? (
           <button
             className={classes.addBtn}
-            onClick={() => history.push("/admin/newMall")}
+            onClick={() =>
+              history.push({
+                pathname: "/admin/newMall",
+              })
+            }
           >
             Add New Mall
           </button>

@@ -10,7 +10,6 @@ const SingleMall = () => {
   const [mall, setMall] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
-
   const history = useHistory();
   const location = useLocation();
 
@@ -58,12 +57,12 @@ const SingleMall = () => {
                 </button>
                 <button
                   className={classes.editBtn}
-                  onClick={() =>
+                  onClick={() => {
                     history.push({
                       pathname: "/admin/editMall",
                       dataToSend: mall,
-                    })
-                  }
+                    });
+                  }}
                 >
                   <i className="fas fa-edit "></i>
                   <span className={classes.text}>Edit</span>

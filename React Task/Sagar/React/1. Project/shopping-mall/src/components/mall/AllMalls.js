@@ -1,8 +1,8 @@
 import Mall from "./Mall";
 import React, { useState } from "react";
 import useFirestore from "../../hooks/useFirestore";
-import { useHistory, useLocation } from "react-router-dom";
 import classes from "../Dashboard/dashboard.module.css";
+import { useHistory, useLocation } from "react-router-dom";
 
 const AllMalls = () => {
   const [search, setSearch] = useState("");

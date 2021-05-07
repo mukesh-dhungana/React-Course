@@ -1,25 +1,22 @@
-import Loader from "../Loader/Loader";
-import EditShop from "../shop/EditShop";
-import classes from "./mallform.module.css";
-import { useHistory, useLocation } from "react-router-dom";
+import CommonForm from "./CommonForm";
 import editReducer from "../../reducers/editReducer";
-import addedShopImagesReducer from "../../reducers/addedShopImagesReducer";
+import { useHistory, useLocation } from "react-router-dom";
 import { storage, fireStore } from "../../firebase/config";
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer } from "react";
+import addedShopImagesReducer from "../../reducers/addedShopImagesReducer";
 
 const MallForm = () => {
-
   //Removed Images
   const [imagesToRemove, setImagesToRemove] = useState([]);
+
+  const edit = true;
 
   const history = useHistory();
   const location = useLocation();
 
-
   //States
   const [editData, editDispatch] = useReducer(editReducer, location.dataToSend);
   const [mallImage, setMallImage] = useState(null);
-  const [mallImageError, setMallImageError] = useState(null);
 
   //Added Images
   const shopImageValues = [{ id: 0, images: [] }];
@@ -32,31 +29,6 @@ const MallForm = () => {
   //Loading
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    setIsLoading(false);
-  }, []);
-
-  //Change Handler
-  const changeHandler = (e) => {
-    const { name, value } = e.target;
-    editDispatch({
-      type: "EDIT_MALL_INFO",
-      payload: { name: name, value: value },
-    });
-  };
-
-  const types = ["image/jpeg", "image/png"];
-  const imageHandler = (e) => {
-    const selected = e.target.files[0];
-
-    if (selected && types.includes(selected.type)) {
-      setMallImage(selected);
-      setMallImageError(null);
-    } else {
-      setMallImageError("Please select an image file  (jpeg or png)");
-      setMallImage(null);
-    }
-  };
 
   const submitHandler = async (e) => {
     setIsLoading(true);
@@ -175,76 +147,21 @@ const MallForm = () => {
   };
 
   return (
-    <div className={classes.mainContainer}>
-      <div className={classes.formContainer}>
-        {isLoading === true && <Loader />}
-        <form className={classes.form} action="" onSubmit={submitHandler}>
-          <div className={classes.innerDiv}>
-            <input
-              type="text"
-              placeholder="Name of Mall"
-              name="mallName"
-              value={editData?.mallName}
-              onChange={changeHandler}
-              className={classes.input}
-            />
-            <input
-              type="text"
-              placeholder="Address"
-              name="mallAddress"
-              onChange={changeHandler}
-              value={editData?.mallAddress}
-              className={classes.input}
-            />
-            <label className={classes.label}>
-              <input
-                className={classes.upload}
-                type="file"
-                onChange={imageHandler}
-              />
-              <span>
-                <i className="fas fa-image"></i>
-              </span>
-              <span className={classes.text}>(Add Image)</span>
-            </label>
-            {mallImageError && <p>{mallImageError}</p>}
-          </div>
-          <div>
-            {mallImage ? mallImage.name : editData?.mallImage?.imageName}
-          </div>
-
-          {/*------- Shop ---------*/}
-          {editData?.shops?.length > 0 && (
-            <h4 className={classes.name}>Shop</h4>
-          )}
-
-          {editData?.shops?.map((dataShop, index) => (
-            <div key={index}>
-              <EditShop
-                {...{
-                  setImagesToRemove,
-                  editData,
-                  dataShop,
-                  editDispatch,
-                  index,
-                  addedShopImagesDispatch,
-                  addedShopImages,
-                }}
-              />
-              <div className={classes.line}></div>
-            </div>
-          ))}
-
-          {/* --------------------- */}
-
-          <input
-            className={isLoading ? classes.submitBtnOnLoad : classes.submitBtn}
-            type="submit"
-            value={isLoading ? "Updating..." : "Update"}
-          />
-        </form>
-      </div>
-    </div>
+    <CommonForm
+      {...{
+        edit,
+        editDispatch,
+        editData,
+        submitHandler,
+        setImagesToRemove,
+        addedShopImagesDispatch,
+        addedShopImages,
+        mallImage,
+        setMallImage,
+        isLoading,
+        setIsLoading,
+      }}
+    />
   );
 };
 
