@@ -12,7 +12,7 @@ function ShopDetail({ malls, updateMallData, match }) {
 
     React.useEffect(() => {
         if (id && shop_id) {
-            const mall = malls.find(x => x.id === id)
+            const mall = malls.find(mall => mall.id === id)
             if (mall) {
                 const { id, ...rest } = mall
                 setData(rest)

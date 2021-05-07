@@ -110,7 +110,7 @@ function MallForm() {
         setLoading(true)
 
         if (editMode) {
-            const mall = malls.find(x => x.id === id)
+            const mall = malls.find(mall => mall.id === id)
 
             if (mall.mall_image.id !== finalData.mall_image.id) {
                 await deleteFile(mall.mall_image.id)
@@ -120,7 +120,7 @@ function MallForm() {
                 const specificShop = mall.shops.find(s => s.shop_name === shop.shop_name)
                 if (specificShop) {
                     await Promise.all(specificShop.images.map(async (img, j) => (
-                        !shop.images.map(x => x.id).includes(img.id) && await deleteFile(img.id)
+                        !shop.images.map(image => image.id).includes(img.id) && await deleteFile(img.id)
                     )))
                 }
 

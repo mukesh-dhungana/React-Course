@@ -29,9 +29,9 @@ function ShopList({ malls, updateMallData, match }) {
         }
     }
 
-    const filteredShops = shops.filter(x => search === "" ? x
+    const filteredShops = shops.filter(shop => search === "" ? shop
         :
-        x.shop_name.toLowerCase().includes(search.toLowerCase()))
+        shop.shop_name.toLowerCase().includes(search.toLowerCase()))
 
     const adminMode = !match.path.includes("user")
 

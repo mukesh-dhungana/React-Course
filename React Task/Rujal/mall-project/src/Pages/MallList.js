@@ -20,9 +20,9 @@ function MallList({ malls, deleteMallData, match }) {
 
     const runPaginate = (number) => setPage(number)
 
-    const filteredMalls = malls.filter(x => search === "" ? x
+    const filteredMalls = malls.filter(mall => search === "" ? mall
         :
-        x.mall_name.toLowerCase().includes(search.toLowerCase()))
+        mall.mall_name.toLowerCase().includes(search.toLowerCase()))
     
 
     const adminMode = !match.path.includes("user")
