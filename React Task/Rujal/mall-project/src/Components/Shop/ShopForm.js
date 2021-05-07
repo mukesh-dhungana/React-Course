@@ -8,7 +8,13 @@ const imageFormat = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 function ShopForm({ data, setData, index }) {
 
-    const { formState: { errors }, control, getValues, clearErrors } = useFormContext()
+    const { formState: { errors }, control, getValues, clearErrors, setValue } = useFormContext()
+
+    React.useEffect(() => {
+        if (data.images.length === 0) {
+            setValue(`shops[${index}].images`, '')
+        }
+    }, [data, index, setValue])
 
     const removeFile = (id) => {
 
@@ -41,11 +47,8 @@ function ShopForm({ data, setData, index }) {
         }
     }
 
-    const shopImageValidation = () => {
-
-        if (data.images.length === 0) {
-            return "Please Provide Shop Image"
-        } else {
+    const shopImageValidation = (value) => {
+        if (data.images.length > 0 || value?.length > 0) {
             if (data.images.every(im => {
                 if (im.hasOwnProperty("url")) {
                     return true
@@ -62,6 +65,8 @@ function ShopForm({ data, setData, index }) {
             } else {
                 return "One of the image format is not Valid"
             }
+        } else {
+            return "Please Provide Shop Image"
         }
     }
 

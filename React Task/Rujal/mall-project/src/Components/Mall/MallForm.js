@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { Fab, Grid, TextField, Typography, Button, Avatar } from '@material-ui/core'
 import { Add } from '@material-ui/icons';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ShopForm from '../Shop/ShopForm';
-import { addMallData, getMallData, updateMallData } from '../../redux/actions/mall';
+import { addMallData, updateMallData } from '../../redux/actions/mall';
 import UploadFile from '../UploadFile';
 import { deleteFile, getFileUrl } from '../../firebase/fireStorage';
 import { useHistory, useParams } from 'react-router';
 import { EDIT_MALL, LOCATION_CHANGE } from '../../redux/actionType'
 import { useForm, useFieldArray, FormProvider, Controller } from 'react-hook-form'
-
+import HOC from '../HOC'
 const imageFormat = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
-function MallForm() {
+function MallForm({ malls, editMode }) {
 
     const methods = useForm({
         defaultValues: {
@@ -26,7 +26,7 @@ function MallForm() {
             }]
         }
     })
-    const { handleSubmit, formState: { errors }, control, reset, clearErrors } = methods
+    const { handleSubmit, formState: { errors }, control, reset } = methods
 
     const { fields, append } = useFieldArray({
         control,
@@ -35,7 +35,6 @@ function MallForm() {
 
     const dispatch = useDispatch()
     const history = useHistory()
-    const { editMode, malls } = useSelector(state => state.mallReducer, shallowEqual)
     const { id } = useParams()
     const [data, setData] = useState({
         mall_image: null,
@@ -43,7 +42,6 @@ function MallForm() {
     })
     const [imageUrl, setImageUrl] = useState('')
     const [loading, setLoading] = useState(false)
-
 
     useEffect(() => {
         if (id) {
@@ -72,7 +70,6 @@ function MallForm() {
     }, [id, dispatch, malls, reset])
 
     useEffect(() => {
-        dispatch(getMallData())
         return () => dispatch({ type: LOCATION_CHANGE })
     }, [dispatch])
 
@@ -94,7 +91,6 @@ function MallForm() {
         }
 
     }
-
 
     const submitData = async (datas) => {
 
@@ -160,21 +156,23 @@ function MallForm() {
         }))
     }
 
-    const mallImageValidation = () => {
-        if (!data.mall_image) {
-            return "Please Provide Mall Image"
-        } else {
-            if (data.mall_image.hasOwnProperty("url")) {
+    const mallImageValidation = (value) => {
+
+        const format = "image/" + value.slice(value.lastIndexOf('.') + 1);
+
+        if (data.mall_image || value?.length > 0) {
+            if (data.mall_image?.hasOwnProperty("url")) {
                 return true
             } else {
-                if (!imageFormat.includes(data.mall_image.file.type)) {
-                    return "Provide Valid Image Format"
-                } else {
-                    clearErrors("mall_image")
+                if (imageFormat.includes(data?.mall_image?.file?.type) || imageFormat.includes(format)) {
                     return true
+                } else {
+                    return "Provide Valid Image Format"
+
                 }
             }
-
+        } else {
+            return "Please Provide Mall Image"
         }
     }
 
@@ -310,10 +308,8 @@ function MallForm() {
                     </Grid>
                 </form>
             </FormProvider>
-
-
         </Grid>
     )
 }
 
-export default MallForm
+export default HOC(MallForm)
