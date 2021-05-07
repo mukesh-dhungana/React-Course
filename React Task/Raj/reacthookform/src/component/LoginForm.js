@@ -21,9 +21,7 @@ const LoginForm = () => {
   });
 
   const submitForm = ({ email, password }) => {
-    if (email && password) {
-      history.push("/success");
-    }
+    history.push("/success");
   };
 
   const form = () => {
@@ -61,12 +59,7 @@ const LoginForm = () => {
     );
   };
 
-  return (
-    <div id="main">
-      {form()}
-      {console.log(schema)}
-    </div>
-  );
+  return <div id="main">{form()}</div>;
 };
 
 export default LoginForm;

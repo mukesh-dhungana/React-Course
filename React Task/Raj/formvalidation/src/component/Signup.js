@@ -27,49 +27,33 @@ const SignUp = () => {
   const user = {};
   const handleChange = (e, name) => {
     console.log("", name);
-
-    const emailRegEx = RegExp(
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
     user[name] = e.target.value;
-    console.log("user", user);
+
     setData({
       ...data,
       [name]: e.target.value,
     });
-
+    setError({ name, email, password, confPassword, [name]: e.target.value });
     // validations
     switch (name) {
       case "name":
         setname(user.name);
-        user.name.length < 3
-          ? setnameErr("Name must be at least 3 characters!")
-          : setnameErr("");
+
         break;
 
       case "email":
         setemail(user.email);
-        !emailRegEx.test(user.email)
-          ? setemailErr("Invalid Email!")
-          : setemailErr("");
+
         break;
 
       case "password":
         setpassword(user.password);
-        if (user.password.length < 8) {
-          setpasswordErr("Password must be at least 8 characters!");
-        } else {
-          setpasswordErr("");
-          setBol(true);
-        }
 
         break;
 
       case "confPassword":
         setconfPassword(user.confPassword);
-        user.confPassword !== password
-          ? setconfPasswordErr("Passwords do not match!")
-          : setconfPasswordErr("");
+
         break;
       default:
         break;
@@ -78,13 +62,7 @@ const SignUp = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    const err = FormValidator({ name, email, password, confPassword });
-    setnameErr(err.name);
-    setemailErr(err.email);
-    setpasswordErr(err.password);
-    setconfPasswordErr(err.confPassword);
-
+    setError({ name, email, password, confPassword });
     if (
       name &&
       email &&
@@ -97,9 +75,14 @@ const SignUp = () => {
     ) {
       history.push("/login");
     }
-    setconfPassword("");
   };
-
+  const setError = ({ name, email, password, confPassword }) => {
+    const err = FormValidator({ name, email, password, confPassword });
+    setnameErr(err.name);
+    setemailErr(err.email);
+    setpasswordErr(err.password);
+    setconfPasswordErr(err.confPassword);
+  };
   const form = () => {
     return (
       <>
