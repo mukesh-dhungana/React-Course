@@ -15,7 +15,6 @@ const ContactForm = ({ addOrEdit, currentId, contactObjects }) => {
     if (currentId === "") {
       setData(initialValues);
     } else {
-      debugger;
       setData({ ...contactObjects[currentId] });
     }
   }, [currentId, contactObjects]);
@@ -32,6 +31,10 @@ const ContactForm = ({ addOrEdit, currentId, contactObjects }) => {
     e.preventDefault();
     addOrEdit(data);
     setData(initialValues);
+  };
+
+  const handleChange = (e) => {
+    console.log(e.target.files[0]);
   };
 
   return (
@@ -92,6 +95,7 @@ const ContactForm = ({ addOrEdit, currentId, contactObjects }) => {
           value={address}
           onChange={onChangeHandler}
         />
+        <input type="file" onChange={handleChange} />
       </div>
       <div className="form-group">
         <input
