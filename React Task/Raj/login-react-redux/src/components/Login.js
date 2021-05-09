@@ -3,15 +3,7 @@ import { Redirect } from "react-router";
 
 export const Login = props => {
   console.log("login form", props);
-  const [data, setData] = useState({
-    defaultUsername: "a",
-    defaultPassword: "a",
-    username: "",
-    password: "",
-    error: "",
-    api: [],
-    redirect: false,
-  });
+  const [data, setData] = useState({});
 
   const {
     defaultUsername,
@@ -23,35 +15,12 @@ export const Login = props => {
     api,
   } = data;
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () =>
-    await fetch(`http://hn.algolia.com/api/v1/search?query=node`)
-      .then(data => data.json())
-      .then(result => setData({ ...data, api: result.hits }));
-
   const handleChange = (name, event) => {
     setData({ ...data, [name]: event.target.value, error: false });
   };
   const handleSubmit = e => {
     e.preventDefault();
-    if (defaultUsername === username && defaultPassword === password) {
-      props.fetchData(api);
-      setData({ ...data, error: false, redirect: true });
-    } else {
-      setData({
-        ...data,
-        error: "Username And Password Donot Match",
-        redirect: false,
-      });
-    }
   };
-  const errorMsg = () => (
-    <div style={{ display: error ? "" : "none" }}>{error}</div>
-  );
-  const redirectTo = () => redirect && <Redirect to="/dashboard" />;
 
   const form = () => (
     <>
