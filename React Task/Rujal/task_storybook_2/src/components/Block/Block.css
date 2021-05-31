@@ -1,0 +1,16 @@
+.tooltip {
+    border-radius: 5px;
+    
+    position: relative;
+  }
+  
+  .triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    z-index: -1;
+    left: 0;
+    bottom: -50px;
+  }
