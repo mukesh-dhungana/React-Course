@@ -143,3 +143,29 @@
   /* top: 50%; */
   left: 0;
 }
+
+/* Pagination */
+.paginationContainer {
+  width: inherit;
+  display: flex;
+  justify-content: center;
+}
+
+.numbers {
+  display: flex;
+}
+
+.numbers li {
+  list-style-type: none;
+  margin-left: 20px;
+  border-left: 1px solid rgb(236, 78, 78);
+  border-right: 1px solid rgb(236, 78, 78);
+  padding: 10px;
+  cursor: pointer;
+}
+
+.numbers li:hover {
+  color: rgb(236, 78, 78);
+}
+
+
