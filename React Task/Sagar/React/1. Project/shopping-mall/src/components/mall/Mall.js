@@ -5,6 +5,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { fireStore, storage } from "../../firebase/config";
 
 const Mall = ({ docs }) => {
+  console.log("malls", docs);
   const history = useHistory();
   const location = useLocation();
 

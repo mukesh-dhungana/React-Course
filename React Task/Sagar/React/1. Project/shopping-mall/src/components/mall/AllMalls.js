@@ -1,4 +1,5 @@
 import Mall from "./Mall";
+import Pagination from "./Pagination";
 import React, { useState } from "react";
 import useFirestore from "../../hooks/useFirestore";
 import classes from "../Dashboard/dashboard.module.css";
@@ -7,10 +8,22 @@ import { useHistory, useLocation } from "react-router-dom";
 const AllMalls = () => {
   const [search, setSearch] = useState("");
 
+  let { docs } = useFirestore("Shopping Mall");
+
+  //Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [mallsPerPage, setMallsPerPage] = useState(3);
+
+  const indexOfLastMall = currentPage * mallsPerPage;
+  const indexOfFirstMall = indexOfLastMall - mallsPerPage;
+  const currentMalls = docs.slice(indexOfFirstMall, indexOfLastMall);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // ------------
+
   const location = useLocation();
   const history = useHistory();
-
-  let { docs } = useFirestore("Shopping Mall");
 
   const filter = (e) => {
     setSearch(e.target.value);
@@ -45,7 +58,15 @@ const AllMalls = () => {
           <h4 className={classes.heading}>Malls</h4>
         </div>
         {docs?.length !== 0 ? (
-          <Mall {...{ docs }} />
+          // <Mall {...{ docs }} />
+          <>
+            <Mall docs={currentMalls} />
+            <Pagination
+              mallsPerPage={mallsPerPage}
+              docs={docs.length}
+              paginate={paginate}
+            />
+          </>
         ) : (
           <h3>No Malls Added Yet</h3>
         )}
